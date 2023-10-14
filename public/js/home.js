@@ -1025,8 +1025,9 @@ async function initiate_gateway_recharge(){
 const yy_pay = document.querySelector('#yy_pay');
 document.querySelector('#recharge_btn').addEventListener('click', () => {
   let is_gateway = document.querySelector("#gateway_radio_btn").checked;
+  let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
   
-  if(is_gateway){
+  if(is_gateway || is_gateway_2){
     initiate_gateway_recharge();
     return;
   }else{

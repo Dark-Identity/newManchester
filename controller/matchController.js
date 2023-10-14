@@ -63,8 +63,8 @@ module.exports.get_live_bets_two = get_live_bets_two = async (req, res) => {
     let response_to_send = [];
     count = 0;
     for (let item of matches['response']) {
-
-        if (count > 300) {
+        
+        if (count > 100) {
             count++;
             break;
         }

@@ -28,7 +28,8 @@ async function generate_inv_code() {
 }
 
 module.exports.get_otp = get_otp = async (req, res) => {
-    
+
+
     let number = getrandom();
     let body = req.body;
     let user_phone, stat;
@@ -43,10 +44,10 @@ module.exports.get_otp = get_otp = async (req, res) => {
         }
     }
 
-var req = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
+var request = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
 let message = `OTP :  ${number}`
 
-req.query({
+request.query({
   "authorization": "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
   "message": message,
   "language": "english",
@@ -54,16 +55,16 @@ req.query({
   "numbers": `${user_phone}`,
 });
 
-req.headers({
+request.headers({
   "cache-control": "no-cache"
 });
 
-req.end(function (response) {
+request.end(function (response) {
   if (response.error) {
     return res.send({status : "something went wrong"});
   };
- req.session.otp = number;
-
+  req.session.otp = number;
+  console.log(req.session.otp);
   if(response.body.return){
     return res.send({status : 1});
   }else{

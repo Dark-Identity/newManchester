@@ -141,7 +141,6 @@ async function get_live_bets() {
         if ('percentage' in match_data) {
             create_match(match_data);
             percentage[match_data['fixture_id']] = match_data['percentage'];
-            console.log("yes works");
         }
     }
     console.log("yes works");
@@ -497,14 +496,6 @@ function create_match_two(data) {
 
     let ndate = new Date(data['raw_date']);
     let date = new Date(data['raw_date']);
-
-
-    console.log(ndate);
-    console.log(date);
-
-
-    console.log(data['raw_date']);
-
 
     let parent_box = document.querySelector('.collection_two');
     let match_card = document.createElement('div');
