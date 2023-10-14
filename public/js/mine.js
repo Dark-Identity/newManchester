@@ -548,8 +548,6 @@ get_history_matches();
 
 
 
-
-
 document.querySelector('#show').addEventListener('click',()=>{
     var x = document.getElementById("myInput");
     let y = document.querySelector('#eye_open')

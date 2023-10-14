@@ -105,20 +105,20 @@ app.get("/redirect" , async (req , res)=>{
     timeZone: 'Asia/Calcutta'
     });
   let inv  = req.session.inv;
+  console.log(inv);
 
   let today = new Date(nDate);
 
    let response = await axios.post('https://api.ekqr.in/api/check_order_status' , {
       "key": "84fb7c42-9780-4bec-a771-aea20568439c",
       "client_txn_id": `${client_txn_id}`,
-      "txn_date":"05-10-2023" 
-      // `${(today.getDate() < 9)? "0"+today.getDate() : today.getDate()}-${((today.getMonth()+1) < 9)? "0"+(today.getMonth()+1) : (today.getMonth()+1)}-${today.getFullYear()}`
+      "txn_date": `${(today.getDate() < 9)? "0"+today.getDate() : today.getDate()}-${((today.getMonth()+1) < 9)? "0"+(today.getMonth()+1) : (today.getMonth()+1)}-${today.getFullYear()}`
    });
-   
+   console.log(response.data);
    if(response.data.status === false){
     return res.send("invalid details");
    }else{
-   
+   console.log(req.session , response.data.data.client_txn_id , req.session.client_txn_id , response.data.data.amount ,req.session.amount );
     if(parseInt(response.data.data.client_txn_id) === parseInt(req.session.client_txn_id) && 
       parseInt(response.data.data.amount) === parseInt(req.session.amount) ){
     
@@ -126,7 +126,7 @@ app.get("/redirect" , async (req , res)=>{
           response.data.data['upi_txn_id'] && 
           response.data.data['upi_txn_id'] !== undefined ){
     
-          let done_deposit = await gateway_deposit({
+          let done_deposit = await gateway_deposit(req, res , {
             amount : response.data.data['amount'], 
             transactioin_id  : response.data.data['upi_txn_id'], 
             INVITATION_CODE : inv

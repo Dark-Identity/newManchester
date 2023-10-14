@@ -51,7 +51,7 @@ module.exports.manual_recharge = manual_recharge = async (req, res) => {
 
 }
 
-module.exports.gateway_deposit = gateway_deposit = async (data)=>{
+module.exports.gateway_deposit = gateway_deposit = async (req , res , data)=>{
     let {amount , transactioin_id , INVITATION_CODE} = data;
 
     let trans_id_exist = await Deposit.findOne({transactioin_id : transactioin_id});
@@ -87,7 +87,7 @@ module.exports.gateway_deposit = gateway_deposit = async (data)=>{
           `
         SENDMAIL('DEPOSIT' , body);
 
-        let response = await gateway_deposit_settle(data);
+        let response = await gateway_deposit_settle(req , res , data);
         return(response);
 
       }else{
@@ -125,13 +125,12 @@ module.exports.gateway_initiator = gateway_initiator = async(req,res)=>{
     
 }
 
-async function gateway_deposit_settle(data){
+async function gateway_deposit_settle(req, res , data){
   // status 3 = inv || amount || tnx_id not found
   // status 1 = ok
   // status 4 = data not found in db check again
   // 
     let {amount , transactioin_id , INVITATION_CODE} = data;
-
     let nDate = new Date().toLocaleString('en-US' , {
       timeZone : 'Asia/Calcutta'
     });
