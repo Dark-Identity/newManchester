@@ -111,8 +111,7 @@ app.get("/redirect" , async (req , res)=>{
    let response = await axios.post('https://api.ekqr.in/api/check_order_status' , {
       "key": "84fb7c42-9780-4bec-a771-aea20568439c",
       "client_txn_id": `${client_txn_id}`,
-      "txn_date":"05-10-2023" 
-      // `${(today.getDate() < 9)? "0"+today.getDate() : today.getDate()}-${((today.getMonth()+1) < 9)? "0"+(today.getMonth()+1) : (today.getMonth()+1)}-${today.getFullYear()}`
+      "txn_date":`${(today.getDate() < 9)? "0"+today.getDate() : today.getDate()}-${((today.getMonth()+1) < 9)? "0"+(today.getMonth()+1) : (today.getMonth()+1)}-${today.getFullYear()}`
    });
    
    if(response.data.status === false){
