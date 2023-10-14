@@ -330,8 +330,8 @@ async function SENDMAIL(subject, body) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'vishwakarma9304411522@gmail.com',
-            pass: 'qavr typr qziv ruhp'
+          user : 'vkv9162871357@gmail.com',
+          pass : 'kahsizmojovvmsio'
         }
     })
 
