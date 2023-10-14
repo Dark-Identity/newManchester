@@ -134,12 +134,16 @@ app.get("/redirect" , async (req , res)=>{
 
           if(done_deposit.status === 1){
             req.session.destroy();
+            res.clearCookie('connect.sid');          
             return res.send({status : "valid"});
+
           }else if(done_deposit.status === 3){
             return res.send({status : "contact support" });
           }else{
             return res.send({status : "something went wrong"});
           }
+        }else{
+          return res.send({status : "transaction was a failure or contact support"});
         }
       }else{
         return res.send({status : "invalid data"});

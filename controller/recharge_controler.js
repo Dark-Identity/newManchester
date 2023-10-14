@@ -76,7 +76,7 @@ module.exports.gateway_deposit = gateway_deposit = async (req , res , data)=>{
         status : 1
       }
 
-      if(await newDeposit(deposit_body)){
+      if(true){
 
         let body = `
           GATEWAY \n
@@ -88,7 +88,12 @@ module.exports.gateway_deposit = gateway_deposit = async (req , res , data)=>{
         SENDMAIL('DEPOSIT' , body);
 
         let response = await gateway_deposit_settle(req , res , data);
-        return(response);
+        if(response.status === 1){
+          await newDeposit(deposit_body);
+          return(response);
+        }else{
+          return response;
+        }
 
       }else{
         return({status : 0});
