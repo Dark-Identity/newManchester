@@ -1,0 +1,117 @@
+.bankbox[data-v-1a0e7463] {
+    min-height: 100vh;
+    background: #f8f8f8;
+    padding: 6vw 0 4vw;
+    position: relative
+}
+
+.bankbox .imgbank[data-v-1a0e7463] {
+    width: 61.866667vw;
+    height: auto;
+    margin-top: 8vw
+}
+
+.bankbox .section-box[data-v-1a0e7463] {
+    padding: 0 4vw;
+    margin-top: 6.666667vw
+}
+
+.bankbox .section-box .cardname[data-v-1a0e7463] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.666667vw
+}
+
+.bankbox .section-box .cardname img[data-v-1a0e7463] {
+    width: 5.333333vw;
+    height: 5.333333vw;
+    margin-right: 1.733333vw
+}
+
+.bankbox .section-box .cardname p[data-v-1a0e7463] {
+    font-size: 4.266667vw;
+    font-weight: 500;
+    color: #333
+}
+
+.bankbox .btnrech[data-v-1a0e7463] {
+    width: 92vw;
+    height: 13.066667vw;
+    border-radius: 6.8vw;
+    border: .266667vw solid #8ec0ae;
+    font-size: 4.8vw;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 4vw;
+    background: #7bebff;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+}
+
+.bankbox .imguis[data-v-1a0e7463] {
+    width: 66.666667vw;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    z-index: 0
+}
+
+[data-v-1a0e7463] .nav-bar {
+    background: none
+}
+
+[data-v-1a0e7463] .nav-bar .van-nav-bar__content .van-nav-bar__left i {
+    color: #333;
+    font-size: 4.666667vw
+}
+
+[data-v-1a0e7463] .nav-bar .van-nav-bar__content .van-nav-bar__title {
+    font-size: 4.666667vw;
+    color: #333;
+    font-weight: 500
+}
+
+[data-v-1a0e7463] .nav-bar:after {
+    display: none
+}
+
+[data-v-1a0e7463] .input-box {
+    background: #fff;
+    border-radius: 1.333333vw;
+    margin-bottom: 8vw
+}
+
+[data-v-1a0e7463] .input-box input::-moz-placeholder {
+    color: #999
+}
+
+[data-v-1a0e7463] .input-box input::placeholder {
+    color: #999
+}
+
+[data-v-1a0e7463] .input-box input {
+    font-size: 4vw;
+    color: #333
+}
+
+[data-v-1a0e7463] .input-box:after {
+    display: none
+}
+
+.bankbox .btnrech[data-v-1a0e7463] {
+    width: 92vw;
+    height: 13.066667vw;
+    border-radius: 6.8vw;
+    border: .266667vw solid #8ec0ae;
+    font-size: 4.8vw;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 4vw;
+    background: #7bebff;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+}

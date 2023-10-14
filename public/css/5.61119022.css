@@ -1,0 +1,170 @@
+.empty-wrap[data-v-4f44bbea] {
+    width: 100%
+}
+
+.empty-wrap .empty[data-v-4f44bbea] {
+    width: 53.333333vw;
+    height: 53.333333vw;
+    margin: 0 auto
+}
+
+.empty-wrap .text[data-v-4f44bbea] {
+    color: #333;
+    font-weight: 500;
+    font-size: 3.733333vw
+}
+
+.conpon[data-v-2ccbf7b8] {
+    min-height: 100vh;
+    background: #fafafa;
+    padding: 6vw 4vw 0
+}
+
+.conpon .list-coupon[data-v-2ccbf7b8] {
+    width: 93.066667vw;
+    height: 30.4vw;
+    background: url(/HappyFootball/dist/img/ic_bg1.e2d5dc67.png) no-repeat;
+    background-size: cover;
+    padding: 2.666667vw 2.666667vw 2.666667vw 1.333333vw;
+    margin-bottom: 4vw;
+    position: relative;
+    display: flex;
+    align-items: center
+}
+
+.conpon .list-coupon .lefti[data-v-2ccbf7b8] {
+    width: 25.333333vw;
+    text-align: center;
+    margin-right: 4.666667vw
+}
+
+.conpon .list-coupon .lefti span[data-v-2ccbf7b8] {
+    font-size: 6.4vw;
+    font-weight: 800;
+    color: #fff
+}
+
+.conpon .list-coupon .lefti p[data-v-2ccbf7b8] {
+    font-size: 4vw;
+    color: #fff;
+    font-weight: 500;
+    margin-top: .666667vw
+}
+
+.conpon .list-coupon .righti[data-v-2ccbf7b8] {
+    flex: 1
+}
+
+.conpon .list-coupon .righti .titlens[data-v-2ccbf7b8] {
+    font-size: 4.8vw;
+    font-weight: 600;
+    color: #333;
+    text-align: left
+}
+
+.conpon .list-coupon .righti .canonly[data-v-2ccbf7b8] {
+    font-size: 3.2vw;
+    color: #ef0000;
+    text-align: left;
+    width: 40vw;
+    font-weight: 500;
+    margin: .666667vw 0
+}
+
+.conpon .list-coupon .righti .usebtn p[data-v-2ccbf7b8] {
+    font-size: 3.2vw;
+    color: #666;
+    font-weight: 500
+}
+
+.conpon .list-coupon .righti .usebtn button[data-v-2ccbf7b8] {
+    background: linear-gradient(180deg, #00af83, #00774c);
+    padding: .666667vw 3.2vw;
+    font-size: 4.266667vw;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 6.666667vw
+}
+
+.conpon .list-coupon .imguse[data-v-2ccbf7b8] {
+    width: 14.266667vw;
+    height: 11.866667vw;
+    position: absolute;
+    right: 0;
+    bottom: 0
+}
+
+.conpon .list-coupon .imguset[data-v-2ccbf7b8] {
+    width: 22.666667vw;
+    height: 22.666667vw;
+    position: absolute;
+    right: 1.866667vw;
+    top: 3.6vw
+}
+
+.conpon .listboxi[data-v-2ccbf7b8] {
+    background: url(/HappyFootball/dist/img/ic_bg2.b9066ba8.png) no-repeat;
+    background-size: cover;
+    opacity: .5
+}
+
+.conpon .listboxit[data-v-2ccbf7b8] {
+    background: url(/HappyFootball/dist/img/ic_bg3.0be53429.png) no-repeat;
+    background-size: cover;
+    opacity: .5
+}
+
+[data-v-2ccbf7b8] .nav-bar {
+    background: none
+}
+
+[data-v-2ccbf7b8] .nav-bar .van-nav-bar__content .van-nav-bar__left {
+    padding: 0
+}
+
+[data-v-2ccbf7b8] .nav-bar .van-nav-bar__content .van-nav-bar__left i,
+[data-v-2ccbf7b8] .nav-bar .van-nav-bar__content .van-nav-bar__title {
+    color: #333;
+    font-size: 4.666667vw
+}
+
+[data-v-2ccbf7b8] .nav-bar:after {
+    display: none
+}
+
+[data-v-2ccbf7b8] .tabs-box {
+    margin-top: 4vw;
+    border-radius: 2.133333vw
+}
+
+[data-v-2ccbf7b8] .tabs-box .van-tabs__wrap {
+    border-radius: 6vw;
+    border: .266667vw solid #00774c;
+    height: 10.533333vw
+}
+
+[data-v-2ccbf7b8] .tabs-box .van-tabs__wrap .van-tabs__nav {
+    background: none
+}
+
+[data-v-2ccbf7b8] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tab {
+    width: 46vw;
+    height: 10.266667vw;
+    padding: 0
+}
+
+[data-v-2ccbf7b8] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tab span {
+    color: #00774c
+}
+
+[data-v-2ccbf7b8] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tab--active span {
+    color: #fff
+}
+
+[data-v-2ccbf7b8] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tabs__line {
+    display: none
+}
+
+[data-v-2ccbf7b8] .tabs-box .van-tabs__content {
+    margin-top: 4vw
+}

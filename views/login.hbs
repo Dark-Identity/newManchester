@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/login2.css" />
+    <link rel="stylesheet" href="../../css/copyCSS.css" />
+    <script defer src="js/login2.js"></script>
+    <title>login page</title>
+</head>
+
+<body>
+    <!-- --------------------------------------------- login section outer Cantainer ------------------------------- -->
+    <section class="loginCantainer" style="">
+        <div class="login" data-v-eb193776="">
+            <p class="foottitle" data-v-eb193776="">Log in</p>
+            <p class="welcomei" data-v-eb193776="">
+                You are welcome to use Manchester City APP.
+            </p>
+
+            <!-- --------------------------------------------- login section code ------------------------------- -->
+            <div class="container" data-v-eb193776="">
+                <!-- --------------------------------------------- number field box ------------------------------- -->
+                <p class="mobilephone" data-v-eb193776="">Phone</p>
+                <div class="van-cell van-field input-box" data-v-eb193776="">
+                    <div class="van-field__left-icon">
+                        <p data-v-eb193776="">+91 |</p>
+                    </div>
+                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                        <div class="van-field__body">
+                            <input type="number" inputmode="numeric" id="van-field-5-input"
+                                class="van-field__control number"
+                                placeholder="Please enter phone number" /><!----><!----><!---->
+                        </div>
+                        <!----><!---->
+                    </div>
+                    <!----><!---->
+                </div>
+
+                <!-- --------------------------------------------- password field box ------------------------------- -->
+                <p class="mobilephone" data-v-eb193776="">Password</p>
+                <div class="van-cell van-field input-box" data-v-eb193776="">
+                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" id="van-field-6-input" class="van-field__control password"
+                                placeholder="Please enter in the password" /><!---->
+
+
+                            <div class="van-field__right-icon" id="show">
+                                <ion-icon name="eye-off-outline" style="font-size:24px;color:#fff;"
+                                    id="eye_close"></ion-icon>
+                                <ion-icon name="eye-outline" style="font-size:24px;color:#fff;display:none"
+                                    id="eye_open"></ion-icon>
+                            </div>
+
+
+                            <!---->
+                        </div>
+                        <!----><!---->
+                    </div>
+                    <!----><!---->
+                </div>
+
+                <div style="text-align:end" class="forgetbtn">
+                    <p style="color: white;display:none">Forget password</p>
+                </div>
+
+                <!-- --------------------------------------------- login and register buttons ------------------------------- -->
+                <button class="logbtn" data-v-eb193776="" id="login">
+                    <a style="color:white; display: block;">Log in</a>
+
+                </button>
+                <p class="noaccount" data-v-eb193776="">Don't have an account?</p>
+                <button class="createbtn" data-v-eb193776="">
+                    <a href="/" style="color:#fff; display: block;">Create an account</a>
+
+                </button>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <section class="forget_page">
+        <div class="forget_header">
+            <div class="forget_close"><ion-icon name="chevron-back-outline" style="font-size: 7vw;"></ion-icon> </div>
+            <div style="font-size:2vh">Forget password</div>
+        </div>
+
+        <section class="body">
+
+            <section class="gap">
+                <p class="mobilephone" data-v-eb193776="" style="color:#fff">Phone</p>
+                <div class="van-cell van-field input-box" data-v-eb193776="">
+                    <div class="van-field__left-icon">
+                        <p data-v-eb193776="" style="color: white;">+91 |</p>
+                    </div>
+                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                        <div class="van-field__body">
+                            <input type="number" id="contact" placeholder="Enter the Number">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gap">
+                <p class="mobilephone" data-v-eb193776="" style="color:#fff">Verification</p>
+                <div class="van-cell van-field input-box" data-v-eb193776="">
+                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                        <div class="van-field__body">
+
+                            <input type="number" placeholder="Enter the verification code" id="verification">
+
+                            <div class="van-field__right-icon" id="show_two">
+                                <button style="padding:0 2vw;" id="otp_btn">send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="gap">
+                <p class="mobilephone" data-v-eb193776="" style="color:#fff">Password</p>
+                <div class="van-cell van-field input-box" data-v-eb193776="">
+                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                        <div class="van-field__body">
+
+                             <input type="password" placeholder="Enter the password" id="password">
+                            <div class="van-field__right-icon" id="show_three">
+                                <ion-icon name="eye-off-outline" style="font-size:24px;color:#fff;"
+                                    id="eye_close_two"></ion-icon>
+                                <ion-icon name="eye-outline" style="font-size:24px;color:#fff;display:none"
+                                    id="eye_open_two"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gap">
+                <p class="mobilephone" data-v-eb193776="" style="color:#fff">Confirm Password</p>
+                <div class="van-cell van-field input-box" data-v-eb193776="">
+                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" placeholder="Enter the confirm password" id="confrim_password">
+
+                            <div class="van-field__right-icon" id="show_two">
+                                <ion-icon name="eye-off-outline" style="font-size:24px;color:#fff;"
+                                    id="eye_close_three"></ion-icon>
+                                <ion-icon name="eye-outline" style="font-size:24px;color:#fff;display:none"
+                                    id="eye_open_three"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <button class="forget_btn">confirm</button>
+
+
+
+        </section>
+
+    </section>
+
+
+    <section class="popup_page" id="popup_page">
+        <div>
+            <h3 id="popup_tip">LOADING...</h3>
+            <button id="popup_close_btn" type="button" autofocus="true">OK</button>
+        </div>
+    </section>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

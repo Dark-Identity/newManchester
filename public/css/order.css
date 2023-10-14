@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color:#fafafa;
+}
+
+.mainContent {
+    position: relative;
+}
+
+.resultCantain {
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+
+.matchResult {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+
+
+/* --------------------------------------------------------------------------------- */
+
+
+.outer {
+    margin-top: 2vh;
+    border: 1px solid #107397;
+    height: 40px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.one {
+    color: black;
+    width: 27vw;
+    text-align: center;
+    padding: 1vh;
+    border-radius: 100px;
+    font-size: 4vw;
+    z-index: 1;
+
+}
+
+
+.secondOuter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 100px;
+    display: flex;
+    justify-content: start;
+
+}
+
+.bg {
+    width: 30vw;
+    height: 40px;
+    border-radius: 100px;
+    text-align: center;
+    background: url(../elephantFootball/orderPage/orderSwip.png) no-repeat;
+    background-size: cover;
+}
+
+
+/* ---------------------------------------------- order popup ------------------------------------ */
+.orderPopup,
+.historicalPopup,
+.cancelPopup {
+    position:absolute;
+    top: 35%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 10vh;
+    overflow-y: scroll;
+  
+}
+.orderPopup::-webkit-scrollbar {
+    display: none;
+}
+
+.historicalPopup {
+    z-index: -1;
+}
+
+.cancelPopup {
+    z-index: -1;
+}
+
+
+/* ------------------------------------------------------------------------ */
+.topGames {
+    display: flex;
+    align-items: center;
+    width: 92vw;
+    margin: 0 auto;
+    padding: 3vw 0;
+}
+
+.topGames .gamesLogo>img {
+    width: 5.6vw;
+    height: 5.6vw;
+    margin-left: 2vw;
+}
+
+.topGames>p {
+    font-size: 4.266667vw;
+    font-weight: 500;
+    color: #00774c;
+    margin-left: 2vw;
+}
+.teamLogo {
+    width: 10.133333vw;
+    height: 10.133333vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #5bb2ea;
+    border-radius: 50%;
+}
+.teamLogo > img{
+    width: 6vw;
+    height: 6vw;
+}
+.orders{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+.order_teams{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ellipsis-1, .ellipsis-2 {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 3.466667vw;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-top: 1vw;
+}
+.x{
+    color: #666;    
+    text-transform: capitalize;
+}
+.paisa{
+    color: #333;
+    font-weight:800;
+}

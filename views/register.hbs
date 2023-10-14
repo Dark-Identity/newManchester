@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>register page</title>
+  <link rel="shortcut icon" href="/elephantFootball/mainLogo.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/login.css">
+  <script defer src="/js/login.js "></script>
+</head>
+
+<body>
+  <!-- --------------------------------------------- register section ------------------------------- -->
+
+  <section class="registerCantainer">
+    <div id="app" data-v-app="">
+
+      <div class="register" data-v-f7c41c52="">
+        <p class="foottitle" data-v-f7c41c52="">Sign up</p>
+        <p class="welcomei" data-v-f7c41c52="">
+          You are welcome to use Manchester City APP.
+        </p>
+
+        <!-- --------------------------------------------- form section ------------------------------- -->
+        <section>
+          <form>
+            <div class="container" data-v-f7c41c52="">
+              <!-- --------------------------------------------- number filed ------------------------------- -->
+              <div class="phonei" data-v-f7c41c52="">
+                <p data-v-f7c41c52="">Phone</p>
+              </div>
+              <div class="van-cell van-field input-box" data-v-f7c41c52="">
+                <div class="van-field__left-icon">
+                  <p data-v-f7c41c52="">+91</p>
+                </div>
+                <!---->
+                <div class="van-cell__value van-cell__value--alone van-field__value">
+                  <div class="van-field__body">
+                    <input type="number" inputmode="numeric" placeholder="Please enter phone number" class="num" /
+                      id="contact_num"><!----><!----><!---->
+                  </div>
+                  <!----><!---->
+                </div>
+                <!----><!---->
+              </div>
+
+              <!-- --------------------------------------------- email filed ------------------------------- -->
+              <div class="phonei" data-v-f7c41c52="">
+                <p data-v-f7c41c52="">Email</p>
+              </div>
+              <div class="van-cell van-field input-box" data-v-f7c41c52="">
+                <!----><!---->
+                <div class="van-cell__value van-cell__value--alone van-field__value">
+                  <div class="van-field__body">
+                    <input type="email" placeholder="Please enter email                         (optional)"
+                      class="email" /><!---->
+                    <div class="van-field__right-icon"></div>
+                    <!---->
+                  </div>
+                  <!----><!---->
+                </div>
+                <!----><!---->
+              </div>
+
+              <!-- --------------------------------------------- password filed ------------------------------- -->
+              <div class="phonei" data-v-f7c41c52="">
+                <p data-v-f7c41c52="">Password</p>
+              </div>
+              <div class="van-cell van-field input-box" data-v-f7c41c52="">
+                <div class="van-cell__value van-cell__value--alone van-field__value">
+                  <div class="van-field__body">
+                    <input type="password" placeholder="Please enter password" class="password" id="myInput" />
+
+                    <div class="van-field__right-icon" style="" id="show">
+                      <ion-icon name="eye-off-outline" style="font-size:24px;color:#fff;" id="eye_close"></ion-icon>
+                      <ion-icon name="eye-outline" style="font-size:24px;color:#fff;display:none"
+                        id="eye_open"></ion-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- --------------------------------------------- verification code ------------------------------- -->
+              <div class="phonei" data-v-f7c41c52="">
+                <p data-v-f7c41c52="">Verification code</p>
+              </div>
+              <div class="second" data-v-f7c41c52="">
+                <div class="van-cell van-field input-box" data-v-f7c41c52="">
+                  <!----><!---->
+                  <div class="van-cell__value van-cell__value--alone van-field__value">
+                    <div class="van-field__body">
+                      <input type="number" placeholder="Please send verification code" class="verification" /><!---->
+                      <div class="van-field__right-icon">
+                        <button type="button">
+                          <div class="van-button__content">
+                            <!----><span class="van-button__text" id="otp_btn">Send</span><!---->
+                          </div>
+                        </button>
+                      </div>
+                      <!---->
+                    </div>
+                    <!----><!---->
+                  </div>
+                  <!----><!---->
+                </div>
+              </div>
+
+              <!-- --------------------------------------------- invitaton code ------------------------------- -->
+              <div class="phonei" data-v-f7c41c52="">
+                <p data-v-f7c41c52="">Invitation code</p>
+              </div>
+              <div class="van-cell van-field input-box" data-v-f7c41c52="">
+                <!----><!---->
+                <div class="van-cell__value van-cell__value--alone van-field__value">
+                  <div class="van-field__body">
+                    <input type="text" id="van-field-6-input" class="invitation"
+                      placeholder="Please enter the invitation code" /><!----><!----><!---->
+                  </div>
+                  <!----><!---->
+                </div>
+                <!----><!---->
+              </div>
+
+              <!-- --------------------------------------------- register and login buttons ------------------------------- -->
+              <button class="logbtn registerbtn" data-v-f7c41c52="">
+                Register
+              </button>
+              <button class="logbtn loginregi" data-v-f7c41c52="">
+                <a href="/login">Log in</a>
+              </button>
+
+              <!-- --------------------------------------------- terms and conditions div ------------------------------- -->
+              <div class="iuseragree" data-v-f7c41c52="">
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAABDVJREFUWEfNmX9MlVUYxz/nCoG00DJbZpnmH9qmWEv7ga6EVf6BWluawcBNWkOycHNDu+JaVEpMmwtTjHTKaiGTlamJ/YEjCraarLB/0vzRZqkl2UotMLqnPe9977t7L5f7/vDq3vMf932e7/N5z3nP8zznoPAwtNYBYDqQDzwATALGADeZcheBs8BRoBs4BBxWSoXchlNuHLTWY4FlQDFwlxtf4DTwIbBZKfWLU19HgFrrUcDrwPNAhlPxIez6ge3Aq0qp3+20bAG11ouAd4Fb7cRcPu8FXlJKNSfzGxJQa50G1AFLAdsXcQkXMdfAVqBCKTWQSCNhYK31cGA3UOAxsFu3z4CFSql/4h0HAZozt+c6wkWYBPLp+JlMBLgFKHc7BSmyr1dKvRitFQNoboima/jN2b2HfJOF0RvHAjRTyQ/XYLfaQcU/l909OZKCogE3AzHT61Y5hfZblFJSEMLpw6wQJ1KQhB0xhrTmo+/aDdui+2YTUIO2giTziVJxIoDrgKAj9RQYLd/bQF3XPkPpg0UrKL4/L5FqjVJqtTIL/08eaqsn1LfaWwgebLR8kwBK7R4vgA8CX3uK5tKpsfsQS3ZvRLaqjIU5s9hVWElASXOUcDwkgK8ANS5juTZvPdrN/MY3GAj9Z/jm3ZNDa+lrZKSlJ9MKCqCUtAWuI7pw+Ob0MfLfr+LylT7Da9qYCXxRVsOIzBvtVFoE8AgwNZmlCK9q3WmYrJuzmOzMLDth6/mPvWeYWb+S85f/NH4bf/NtdJav547sW5xofC+A5+2S86au/VTsfc8QzJ+Yw4Eltktj2J67+Ae59ZWcuvCr8feorGw6y2uZNPpOJ3Bi0yuAMu9Jm9C24z08vm2NJSofd9NzlQwLDPlx81ff38xuCPLtmZOGX1Z6Bm0vrOXhcXI6cDz6HQGKXHx6eDl3Lu/ML0vYKPYP/EvBzmrkxWSkBYaxZ3EVBZNnOCYzDQ1A2yWOqC7f10BdZzjBylg7p4TVec/GBA3pEMW73qapp8P6ffuCCkqnP+EWzlpi200SUZbgRU0baD7y5ZDBV+zfxsavPrWev/lkCVX5sS/hgtTYJK7SjLF8O6ppOxFZvgCflKxh7r0z2NDxMZUHdljxlz1SwKanll7NecFIM64TdaINUDFzHrXtLVaVeGZKLs1Fq5JuJAczaSRqT6VOUojkt5MXzg2K8+iEKXxeWk1m+g0OGJKaGKVOcoWnZkGS8KytK/ntUjgJy5h6+910lNUycrhtlbCDDzcLYqW19txuHf75OHkNQS5d6WPcyNF0la9n7Ag551/1CLdbJqBcaXhuWHvOnuLgsW4Kpz1mQKZgxDasJqR/W34TUNbFv4cmE1LuYfx57Ix8N1pr/x7czVmUSyP/Xn2YkP69PIpaav9ev0XnMd9eYMZB+vcKOA7Un5fo8aXrev4b4n9qU6guGuHBGwAAAABJRU5ErkJggg=="
+                  alt="" data-v-f7c41c52="" />
+                <p data-v-f7c41c52="">
+                  I am an adult, I have read and accept the
+                  <span data-v-f7c41c52="">Terms of Service</span> and
+                  <span data-v-f7c41c52="">Privacy Policy</span>
+                </p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+
+
+      <section class="popup_page" id="popup_page">
+        <div>
+          <h3 id="popup_tip">LOADING...</h3>
+          <button id="popup_close_btn" type="button" autofocus="true">OK</button>
+        </div>
+      </section>
+
+
+    </div>
+  </section>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

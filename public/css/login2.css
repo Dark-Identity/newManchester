@@ -1,0 +1,311 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --x: 11px;
+    --h: 1rem;
+    --grey: #4e596e;
+    --grey_dark: #242a32;
+    --blue: #5a8ed3;
+    --background: #f1f1f6;
+    --white: #ffffff;
+}
+
+
+html {
+    -webkit-tap-highlight-color: transparent
+}
+
+body {
+    /* margin: 0; */
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Segoe UI, Arial, Roboto, PingFang SC, miui, Hiragino Sans GB, Microsoft Yahei, sans-serif
+}
+
+.loginCantainer {
+  z-index: 2;
+  background-color: #333;
+ }
+
+.login[data-v-eb193776] {
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    padding: 25.6vw 0 0;
+}
+
+.login[data-v-eb193776]:after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: url(/elephantFootball/registerPage/loginBack.jpg) center no-repeat;
+    background-size: cover;
+    filter: opacity(95%);
+}
+
+.login .imglogo[data-v-eb193776] {
+    width: 20vw;
+    height: 20vw;
+    border-radius: 1.333333vw
+}
+
+.login .foottitle[data-v-eb193776] {
+    font-size: 8vw;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 4vw;
+    text-align: left;
+    padding-left: 4vw
+}
+
+.login .welcomei[data-v-eb193776] {
+    text-align: left;
+    color: #fff;
+    font-size: 4.266667vw;
+    padding: 0 4vw
+}
+
+.login .personal[data-v-eb193776] {
+    font-size: 3.466667vw;
+    color: hsla(0, 0%, 100%, 0.966);
+    padding: 0 8vw;
+    margin-top: 5.333333vw
+}
+
+.login .container[data-v-eb193776] {
+    margin-top: 8vw;
+    padding: 0 4vw
+}
+
+.login .container .mobilephone[data-v-eb193776] {
+    font-size: 4.266667vw;
+    /* color: hsla(0,0%,100%,.8); */
+    color: #fff;
+    text-align: left;
+    margin-bottom: 2vw
+}
+
+.login .container .forgetpa[data-v-eb193776] {
+    text-align: left;
+    color: hsla(0, 0%, 100%, .8);
+    font-size: 4.266667vw;
+    margin-top: 4vw
+}
+
+.login .container .forgetpa span[data-v-eb193776] {
+    font-size: 4.266667vw;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline
+}
+
+.login .container .logbtn[data-v-eb193776] {
+    width: 100%;
+    height: 13.333333vw;
+    background: #99c5e8;
+    border-radius: 6.8vw;
+    margin-top: 6.4vw;
+    font-size: 4.8vw;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+}
+
+.login .container .noaccount[data-v-eb193776] {
+    font-size: 4.266667vw;
+    color: #fff;
+    margin-top: 8vw
+}
+
+.login .container .createbtn[data-v-eb193776] {
+    width: 92vw;
+    height: 13.6vw;
+    background: #333;
+    border-radius: 6.8vw;
+    font-size: 4.8vw;
+    font-weight: 500;
+    color: #fff;
+    border: none;
+    margin-top: 1.333333vw
+}
+
+[data-v-eb193776] .input-box {
+    background: none;
+    border-radius: 1.066667vw;
+    margin-bottom: 5.333333vw;
+    border: .4vw solid #fff
+}
+
+[data-v-eb193776] .input-box .van-field__left-icon {
+    margin-right: 2vw
+}
+
+[data-v-eb193776] .input-box .van-field__left-icon p {
+    font-size: 4.266667vw;
+    color: #fff;
+    font-weight: 500
+}
+
+[data-v-eb193776] .input-box .van-field__right-icon .imgeye {
+    width: 5.333333vw;
+    height: auto
+}
+
+[data-v-eb193776] .input-box:after {
+    display: none
+}
+
+[data-v-eb193776] .input-box input {
+    color: #fff;
+    font-size: 4.266667vw;
+    font-weight: 500
+}
+
+[data-v-eb193776] .chobox {
+    background: hsla(0, 0%, 100%, .2)
+}
+
+.van-field__body {
+    display: flex;
+    align-items: center;
+}
+
+.van-cell {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    line-height: 20px;
+    flex-direction: row;
+    padding: 10px 16px;
+}
+
+.van-field__body>input::placeholder {
+    color: white;
+}
+
+
+/* ------------------- popup styling--------------- */
+
+.popup_page {
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    height: 100%;
+    width: 100vw;
+    display: grid;
+    z-index: 1000;
+    place-content: center;
+}
+
+.popup_page>div {
+    width: min(90vw, 500px);
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--white);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.popup_page>div>button {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: var(--blue);
+    color: var(--white);
+    text-align: center;
+    box-shadow: 0 0 10px -5px var(--grey_dark);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.popup_page>div>button:disabled {
+    background-color: var(--grey);
+}
+
+
+.forget_page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 3vh;
+    background: url('../elephantFootball/registerPage/loginBack.jpg')no-repeat center;
+    background-size: cover;
+    color: #fff;
+     z-index: -1;    
+}
+
+.forget_header {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    justify-content: start;
+    align-items: center;
+    justify-items: center;
+    padding: 3vw;
+}
+
+.body {
+    width: 92vw;
+    margin: 0 auto;
+}
+
+.input-box {
+    border: 1px solid;
+    border-radius: 50px;
+    /* background: none; */
+    border-radius: 1.066667vw;
+    margin-bottom: 5.333333vw;
+    border: .4vw solid #fff;
+    color: #fff;
+    font-size: 4.266667vw;
+    font-weight: 500;
+    background: transparent;
+
+}
+
+.gap {
+    margin-bottom: 3vw;
+}
+
+
+.van-field__body {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 2vw 0 2vw;
+    overflow: hidden;
+}
+.van-field__body > input{
+    width: 100%;
+    background: none;
+    outline: none;
+    border: none;
+
+}
+.mobilephone{
+    margin: 1vw;
+}
+
+.forget_btn {
+    width: 100%;
+    height: 13.333333vw;
+    /* background: linear-gradient(180deg, #1a8b63, #00623f); */
+    border-radius: 6.8vw;
+    margin-top: 5.333333vw;
+    font-size: 5.333333vw;
+    font-weight: 600;
+    color: #ffffffee;
+    border: none;
+    background-color: #99c5e8;
+}

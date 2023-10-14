@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/73.50840830.css">
+    <link rel="stylesheet" href="/css/889.a7f741d8.css">
+    <link rel="stylesheet" href="/css/app.b5a00fe6.css">
+    <link rel="stylesheet" href="/css/copyCSS.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/match.css">
+    <link rel="stylesheet" href="/css/loading.css">
+
+    <link rel="stylesheet" type="text/css" href="css/895.5c36acc7.css">
+    <script defer src="/js/match.js"></script>
+</head>
+
+<body>
+
+    
+    <div id="loading">
+        <span class="loader"></span>
+    </div>
+
+
+    <section class="matchCantain">
+        <section class="matchBody">
+            <div class="match-box" data-v-9e204bb0="">
+                <p class="matchti" data-v-9e204bb0="">Match</p>
+
+                <div class="van-cell van-field input-box" data-v-9e204bb0="">
+                    <div class="van-field__left-icon">
+                        <img src="data:image/png;base64,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"
+                            alt="" data-v-9e204bb0="">
+                    </div>
+                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                        <div class="van-field__body">
+                            <input type="text" placeholder="Search related to competion" id="teamInput"
+                                oninput="search()" style="border: none; outline: none; background: transparent;">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="van-tabs van-tabs--line tabs-box" data-v-9e204bb0="">
+
+
+                    <div class="outer">
+
+                        <div class="one" id="two">
+                            <p>
+                            <h3 class="ii"style="color:#FFF">Today</h3>
+                            </p>
+                        </div>
+                        <div class="one" id="three">
+                            <p>
+                            <h3 class="iii" style="color: #0f6997;">Tomorrow</h3>
+                            </p>
+                        </div>
+
+                        <div class="secondOuter">
+                            <div class="bg"></div>
+                        </div>
+                    </div>
+
+
+                    <section class="collection today">
+
+                    </section>
+
+
+
+                    <section class="collection_two tomorrow">
+
+                    </section>
+
+
+                </div>
+
+
+        </section>
+
+
+    </section>
+
+
+
+
+
+
+    <!-- ------------------------------------------------------- match list  Section implemention --------------------------------- -->
+    <section class="popCantain">
+
+        <section class="matchPopUp">
+            <div class="matchlist" data-v-9336a864="">
+                <div class="van-nav-bar van-hairline--bottom nav-bar" data-v-9336a864="">
+                    <div class="van-nav-bar__content">
+                        <div class="van-nav-bar__left van-haptics-feedback" id="betBtn">
+                            <i class="van-badge__wrapper van-icon van-icon-arrow-left van-nav-bar__arrow">
+                            </i><!---->
+                        </div>
+                        <div class="van-nav-bar__title van-ellipsis">Competition details</div><!---->
+                    </div>
+                </div>
+
+
+                <div class="listcontnet" data-v-9336a864="">
+                    <p class="competion final_league" data-v-9336a864="">United Arab Emirates Division 1 Group A</p>
+                    <p class="matchdata" data-v-9336a864="" id="b_date">10/09/2023 </p>
+                    <p class="league_id" id="final_league_id">1234</p>
+                    <div class="vsmath" data-v-9336a864="">
+                        <div class="loadimg" data-v-9336a864="">
+                            <div class="van-image logo-img" data-v-9336a864=""><img
+                                    src="https://img.thesports.com/football/team/d20e05eaa26e170108d9d29c7b48504e.png"
+                                    class="van-image__img" id="team_a_logo"><!----><!----></div>
+                            <p class="nameu ellipsis-1 team_a" data-v-9336a864="">Ahli Al-Fujirah
+                            </p>
+                        </div>
+
+                        <div class="centerz" data-v-9336a864=""><span data-v-9336a864="">Start time</span>
+                            <p class="scorei" data-v-9336a864="" id="b_time">18:40</p>
+                        </div>
+
+                        <div class="loadimg" data-v-9336a864="">
+                            <div class="van-image logo-img" data-v-9336a864=""><img
+                                    src="https://img.thesports.com/football/team/71e61f22b6f6b93195fb8d83c2b3d827.png"
+                                    class="van-image__img" id="team_b_logo"><!----><!----></div>
+                            <p class="nameu ellipsis-1 team_b" data-v-9336a864="">City Club</p>
+                        </div>
+                    </div>
+
+                    <div class="coundownbox" data-v-9336a864="">
+                        <p class="matchcoun" data-v-9336a864="">Match countdown</p>
+                        <div class="uisdowsi" data-v-9336a864="">
+                            <div role="timer" class="van-count-down countdown" data-v-9336a864=""><span class="block"
+                                    data-v-9336a864="">00</span><span class="colon" data-v-9336a864="">:</span><span
+                                    class="block" data-v-9336a864="">03</span><span class="colon"
+                                    data-v-9336a864="">:</span><span class="block" data-v-9336a864="">31</span></div>
+                        </div>
+                        <div class="minshrs" data-v-9336a864="">
+                            <p data-v-9336a864="">Hrs</p>
+                            <p data-v-9336a864="">Mins</p>
+                            <p data-v-9336a864="">Secs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leftcurrent" data-v-9336a864=""><img class="trophyimg"
+                        src="data:image/png;base64,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"
+                        alt="" data-v-9336a864="">
+                    <p class="competi" data-v-9336a864="">Match score</p>
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864="">
+                            <span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">0 - 0</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864="">
+                            <span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">4.06%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="" id="profit">0 - 1</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="">1.77%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">0 - 2</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864="">
+                            <span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.68%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">0 - 3</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864="">
+                            <span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.53%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">1 - 0</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864="">
+                            <span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">6.96%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">1 - 1</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">5.84%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864="">
+                            <span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="" id="profit">1 - 2</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">1.84%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">1 - 3</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.92%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">2 - 0</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">9.65%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">2 - 1</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">2.37%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">2 - 2</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">1.94%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">2 - 3</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.76%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">3 - 0</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">4.31%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">3 - 1</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.72%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">3 - 2</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.62%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div><!---->
+                </div>
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">3 - 3</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.95%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="matchscore flex" data-v-9336a864="">
+                    <div class="left" data-v-9336a864="">
+                        <div class="scoreuis" data-v-9336a864=""><span data-v-9336a864="">Match score</span>
+                            <p data-v-9336a864="">4 - 4</p>
+                        </div>
+                        <div class="scoreuis oddch" data-v-9336a864=""><span data-v-9336a864="">Match odds</span>
+                            <p data-v-9336a864="" id="profit">0.95%</p>
+                        </div>
+                    </div>
+                    <div class="right" data-v-9336a864="">
+                        <p class="line" data-v-9336a864=""></p>
+                        <div class="btnbete" data-v-9336a864="">
+                            <p data-v-9336a864="">To bet</p><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                                alt="" data-v-9336a864="">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+
+        <div class="placebet">
+            <div class="betHead">
+                <span></span>
+                <h3>
+                    <p>Bet Details</p>
+                </h3>
+                <ion-icon name="close-circle-outline"
+                    style="font-size: 7vw; color: #333;font-weight: 800; display: flex; justify-self: end; margin-right: 15%;"></ion-icon>
+
+            </div>
+
+
+            <div class="leaguebox">
+                <p class="league_id" id="league_id">1135724</p>
+                <span class="final_league" id="league_name">League name</span>
+                <span style="color: #333333db;">
+                    <p class="team_a" id="team_a">team1</p>
+                    <p>
+                        <img src="/elephantFootball/vs.png" alt="" srcset="" style="width: 20px;">
+                    </p>
+                    <p class="team_b" id="team_b">team2</p>
+                </span>
+
+                <p class="betdetail">Betting Details</p>
+
+                <div class="race">
+                    <h4 style="color: #333333db;">Race betting details </h4>
+                    <span id="score">0-0</span>
+                    <p id="p">3.01%</p>
+                </div>
+
+                <div class="xyz">
+                    <div style="color:#333333db;">
+                        <p>Estimated income</p>
+                        <p>Handling fee</p>
+                    </div>
+
+                    <div style="color: red;">
+                        <p id="available">Rs.0.00</p>
+                        <p>5%</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="amountBox">
+                <div class="betAmount">
+                    <p>Bet amount</p>
+                    <img src="/elephantFootball/underbet_popup.png" alt="" style="width: 100px;">
+                </div>
+                <input type="number" placeholder="Please enter the amount" id="bet_amount" style="color: black;">
+                <p style="color: red;">Guaranteed maximum bet amount of RS.10000</p>
+            </div>
+
+
+            <div class="betvalue">
+                <p>To pay</p>
+                <div class="arrange">
+                    <div class="settingicon"><ion-icon name="settings-outline"></ion-icon></div>
+                    <div class="values">
+                        <span> 600</span>
+                        <span> 1000</span>
+                        <span>2000</span>
+                        <span> 5000</span>
+                        <span> 10000</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="voletbox">
+                <div class="incomeBox">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAhxJREFUWEftmLGLE0EUxr9vV0MC1yuiKbQ5VsFkJmkEQT0FObCx8R9QO7HVSrGQ6+3Uf0DQxkIF5Q7BLrzsgphOC09EOwshQdx9MrKBXBIl5JhjojfdLm/e/PZ7+968GSLwwcD5sAu43QgtpoLtdvtwnuc3SJ4HcABAvF0l/jI/B/BZVV/EcbzW6XQ+jNpOKNhoNFajKHpEcskj1FTXqvq9KIpLWZY9GxpsAbTWHlHVbATui6q+I+m+0stQ1ZjkUQD73QIOkmRDRN675y2AzWbzQRRFl0vD+4PB4Fqv1/vhhWzEaZIklWq1eo/kVfe6KIqHaZpemQC01m4COAjga7/fr+8E3JDTQdZqtY8A9gH4JCKHpgH+LBNiQ0TO+FZu3L+1dh3AaQC5iOyZBqhleF91u91zOw1ojHlJ8qxbV0R+/37jSfJfAbLVap3I83w5iqK9M0bjOoBl7wpaa+uq+phke0awCTOfIY6NMULy+LxwXhU0xlwg+bSEewtgTVX7s8CSvAPgmFdAa+1NAHfLgruapunzWeCcjbV2A8Apr4DGmFskb5dQJ0XkzZ8AkyRZqlQqKwBeZ1n2LThAY8wTkhcBrIvIyi6gC2XwIV6EJAm7zLhuKOhCXdazoLe6YdkLt1mYdecYt/sn+sHgW/5QDk2bIlKfaPkX4dgZ9sHdSRr01ccw7YO+PJq3hvmat5j3g77UmMfvroLzqDY65xeo6N44oAQw1AAAAABJRU5ErkJggg=="
+                        style="width: 21px;" alt="" data-v-5597067f="">
+                    <p data-v-5597067f="" style="margin-left: 2vw;">Balance</p>
+
+                </div>
+
+                <div>
+                    <p class="s_balance">Rs. 0.00</p>
+                </div>
+
+            </div>
+
+            <div class="btnss">
+                <button id="recharge">Recharge</button>
+                <button id="confirm">Confirm</button>
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <section class="popup_page" id="popup_page">
+        <div>
+            <h3 id="popup_tip">LOADING...</h3>
+            <button id="popup_close_btn" type="button" autofocus="true">OK</button>
+        </div>
+    </section>
+
+
+
+    <!--------------------------------------------- footer------------------------------------------------------ -->
+    <section class="footerCantainer">
+        <div class="footer">
+            <div class="footflex">
+                <div class="footImg" href="./login&register/register.html">
+                    <img src="/elephantFootball/footer/home.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/home">Home</a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/order.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/order"> Order</a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/matchblue.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/match" style="color: rgb(130 184 228);">
+                        Match
+                    </a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/teams.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/team">Team</a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/profile.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/mine">Profile</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

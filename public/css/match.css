@@ -1,0 +1,595 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --grey: #4e596e;
+    --grey_dark: #242a32;
+    --blue: #5a8ed3;
+    --background: #f1f1f6;
+    --white: #ffffff;
+}
+
+
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+
+
+.matchCantain {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    text-align: center;
+    background: #f8f8f8;
+}
+
+.matchBody {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.popCantain {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.matchPopUp {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+
+
+
+
+
+
+
+
+
+.outer {
+    margin-top: 2vh;
+    border: 1px solid #228c69;
+    height: 40px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.one {
+    color: rgb(53, 171, 53);
+    width: 50%;
+    text-align: center;
+    padding: 1vh;
+    border-radius: 100px;
+    font-size: 4vw;
+    z-index: 1;
+}
+
+
+.secondOuter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 100px;
+    display: flex;
+    justify-content: start;
+
+}
+
+.bg {
+    background-color: #228c69;
+    width: 50%;
+    height: 40px;
+    border-radius: 250px;
+    text-align: center;
+    background: url(/elephantFootball/orderPage/orderSwip.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------ implementing collection div ------------------------------- */
+
+
+.collection,
+.collection_two {
+    margin-top: 1.2vh;
+    padding-bottom: 8vh;
+    height: 100vh;
+
+
+}
+
+.collection {
+    z-index: 1;
+    background: #f8f8f8;
+}
+
+.collection_two {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #f8f8f8;
+    z-index: -1;
+    height: 100vh;
+}
+
+.collection::-webkit-scrollbar {
+    display: none;
+}
+
+
+.topGames>p {
+    font-size: 4.266667vw;
+    font-weight: 500;
+    color: #00774c;
+    margin-left: 2vw;
+}
+
+.gameBox {
+    width: 91.466667vw;
+    padding: 2.666667vw 2.666667vw;
+    box-shadow: 0 .666667vw 1.6vw .266667vw rgba(0, 119, 76, .16);
+    background: linear-gradient(180deg, #fff, #eff8fe);
+    border-radius: 2.666667vw;
+    margin-bottom: 3.333333vw;
+}
+
+.tName {
+    margin-left: 1vw;
+}
+
+.circle {
+    width: 12px;
+    height: 11px;
+    background: #fff;
+    border: .8vw solid skyblue;
+    border-radius: 50%;
+    margin-right: 2vw;
+}
+
+.dataDiv {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 8px;
+}
+
+.dataDiv .tName {
+    width: 53.333333vw;
+    font-size: 3.733333vw;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+
+}
+
+.ellipsis-1,
+.ellipsis-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ellipsis-1 {
+    white-space: nowrap;
+}
+
+p,
+span {
+    font-size: 3.733333vw;
+}
+
+.dataDiv>div {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    padding: 1vw;
+}
+
+.date {
+    justify-content: space-between;
+    width: 33%;
+    margin: 0 5px;
+}
+
+.match {
+    margin: 2vw 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.teamOne {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    text-transform: capitalize;
+    justify-content: center;
+    text-align: center;
+}
+
+.vs {
+    margin: 0 1.333333vw;
+}
+
+.match .teamOne .nameu {
+    flex: 1;
+    font-size: 3.466667vw;
+    font-weight: 600;
+    color: #333;
+    margin-right: 1.333333vw;
+}
+
+.ellipsis-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.teamLogo {
+    width: 10.133333vw;
+    height: 10.133333vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #00774c;
+    border-radius: 50%;
+}
+
+.teamLogo>img {
+    width: 6.666667vw;
+    height: 6.666667vw;
+}
+
+.vs p[data-v-7afa3138] {
+    background: linear-gradient(180deg, #00af83, #00774c);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 4.8vw;
+    font-weight: 600;
+}
+
+.gameBox .downbox[data-v-7afa3138] {
+    margin-top: 1.333333vw;
+    display: flex;
+    justify-content: center;
+}
+
+[data-v-7afa3138] .countdown .block {
+    font-size: 4vw;
+    font-weight: 600;
+    border-radius: .8vw;
+    line-height: 6vw;
+    color: #ef0000;
+}
+
+.matchResult {
+    padding: 1vh 2.666667vh;
+    margin-top: 1.333333vw;
+    /* height: 5vh; */
+    /* background: #fafafa; */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #FAFAFA;
+
+}
+
+.highi[data-v-7afa3138] {
+    font-size: 3.2vw;
+    color: #999;
+}
+
+.highuis .oddsop[data-v-7afa3138] {
+    font-size: 3.733333vw;
+    font-weight: 500;
+    color: #333;
+}
+
+.transty[data-v-7afa3138] {
+    padding: 0 2.666667vw;
+    margin-top: .666667vw;
+}
+
+.transty span[data-v-7afa3138] {
+    font-size: 3.2vw;
+    color: #999;
+}
+
+.transty p[data-v-7afa3138] {
+    font-size: 3.733333vw;
+    font-weight: 500;
+    color: #ff7600;
+}
+
+
+.highuis .oddsop span[data-v-7afa3138] {
+    color: #00cf08;
+}
+
+/* ---------------------------- popup_page ------------------------------- */
+
+.popup_page {
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    height: 100%;
+    width: 100vw;
+    display: grid;
+    z-index: 1000;
+    place-content: center;
+    background: #4e596eb3;
+}
+
+.popup_page>div {
+    width: min(90vw, 500px);
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--white);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.popup_page>div>button {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: var(--blue);
+    color: var(--white);
+    text-align: center;
+    box-shadow: 0 0 10px -5px var(--grey_dark);
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+.popup_page>div>button:disabled {
+    background-color: var(--grey);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------- place bet popup -------------------------------- */
+.placebet {
+    position: absolute;
+    top: 32%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: #FAFAFA;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    transform: translateY(150vw);
+}
+
+.betHead {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-content: center;
+    align-items: center;
+    justify-items: center;
+    margin-top: 1vh;
+    color: gray;
+}
+
+.leaguebox {
+    width: 92vw;
+    margin: 1vh auto;
+    padding: 4vw 3vw;
+    box-shadow: 0 0.266667vw 0.533333vw 0 rgba(51, 51, 51, .1);
+    background: #fff;
+    border-radius: 10px;
+}
+
+.leaguebox span {
+    display: flex;
+}
+
+.leaguebox span p {
+    font-size: 16px;
+}
+
+.race {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.betdetail {
+    margin-bottom: 1vw;
+    color: rgba(128, 128, 128, 0.767);
+}
+
+.race span {
+    background: #fff;
+    box-shadow: 0 0 .533333vw 0 rgba(51, 51, 51, .15);
+    border-radius: 5.333333vw;
+    border: 1px solid #f3f3f3;
+    margin: 0 2.133333vw 0 2.666667vw;
+    padding: .4vw 2vw;
+    font-size: 4vw;
+    font-weight: 900;
+    color: #ef0000;
+}
+
+.race>p {
+    background: #fff;
+    box-shadow: 0 0 .533333vw 0 rgba(51, 51, 51, .15);
+    border-radius: 5.333333vw;
+    border: 1px solid #f3f3f3;
+    margin: 0 2.133333vw 0 2.666667vw;
+    padding: .4vw 2vw;
+    font-size: 4vw;
+    font-weight: 900;
+    color: #ef0000;
+}
+
+.xyz {
+    display: grid;
+}
+
+.xyz>div {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.betvalue {
+    width: 92vw;
+    margin: 0 auto;
+}
+
+.amountBox {
+    width: 92vw;
+    margin: 5vw auto;
+}
+
+.betAmount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vw;
+}
+
+.amountBox>input {
+    width: 100%;
+    padding: 2vw;
+    outline: none;
+    height: 5.5vh;
+    border: 2px solid rgba(128, 128, 128, 0.273);
+    border-radius: 5px;
+
+}
+
+.arrange {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2vw;
+}
+
+.values {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.values>span {
+    text-align: center;
+    width: 100%;
+    padding: 2.4vw 0;
+    margin: 0 1vw;
+    background: #fff;
+    border-radius: 1.066667vw;
+    border: 1px solid #999;
+    color: #666;
+}
+
+.settingicon {
+    font-size: 5vw;
+    display: flex;
+    border: 1px solid;
+    padding: 2vw;
+    border: 1px solid #999;
+}
+
+.voletbox {
+    display: grid;
+    width: 40%;
+    padding: 1vw;
+    margin-left: 5vw;
+    border: 1px solid rgba(128, 128, 128, 0.752);
+    color: grey;
+    /* box-shadow: 2px 2px 2px skyblue; */
+}
+
+.incomeBox {
+    width: 100%;
+    display: flex;
+}
+
+.btnss {
+    margin-top: 3vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+#recharge {
+    width: 40vw;
+    height: 12vw;
+    border-radius: 6.533333vw;
+    border: .266667vw solid #154fe4;
+    font-size: 4.8vw;
+    font-weight: 500;
+    color: #154fe4;
+    background: none;
+}
+
+#confirm {
+    width: 40vw;
+    height: 12vw;
+    border-radius: 6.533333vw;
+    border: .266667vw solid #154fe4;
+    font-size: 4.8vw;
+    font-weight: 500;
+    color: #154fe4;
+    background: none;
+    background: linear-gradient(180deg, #2e87f4, #154fe4);
+    border-radius: 6.533333vw;
+    color: #fff;
+}
+
+.league_id {
+    position: absolute;
+    display: none;
+}
+
+.match {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------ implemanting tomorrow div -------------------------------------- */

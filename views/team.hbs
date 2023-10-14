@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manchester City</title>
+    <link rel="shortcut icon" href="/elephantFootball/mainLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/chunk-vendors.0468bd4c.css">
+    <link rel="stylesheet" href="/css/app.b5a00fe6.css">
+    <link rel="stylesheet" href="/css/401.8f492c1c.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/team.css">
+    <link rel="stylesheet" href="/css/873.92c2b7ab.css">
+    <link rel="stylesheet" href="/css/loading.css">
+
+    <script defer src="/js/team.js"></script>
+</head>
+
+<body>
+
+  
+    <div id="loading">
+        <span class="loader"></span>
+    </div>
+
+
+
+    <section class="teamMain">
+
+        <section class="teamBody">
+
+            <div class="team-box" data-v-4accc8f9="">
+
+                <div class="nav-top flex" data-v-4accc8f9="">
+                    <div class="leftel" data-v-4accc8f9=""><img src="/elephantFootball/mainLogo.png"
+                            style="border: none; background: white;" alt="" data-v-4accc8f9="">
+                        <p data-v-4accc8f9="">Manchester Football</p>
+                    </div>
+                </div>
+
+                <section class="section-box" data-v-4accc8f9="">
+                    <div class="totalui" data-v-4accc8f9="">
+                        <div class="top" data-v-4accc8f9="">
+                            <div class="recharto" data-v-4accc8f9="">
+                                <p data-v-4accc8f9="" class="s_members">0</p><span data-v-4accc8f9="">Total
+                                    people</span>
+                            </div>
+                            <div class="recharto" data-v-4accc8f9="">
+                                <p data-v-4accc8f9="" id="s_tot_profit">0</p><span data-v-4accc8f9="">Total
+                                    income</span>
+                            </div>
+                        </div>
+
+                        <div class="top bottomi" data-v-4accc8f9="">
+                            <div class="recharto" data-v-4accc8f9="">
+                                <p data-v-4accc8f9="" id="s_tot_deposit">0</p><span data-v-4accc8f9="">Total
+                                    recharge</span>
+                            </div>
+                            <div class="recharto" data-v-4accc8f9="">
+                                <p data-v-4accc8f9="" id="total_rebate">0</p><span data-v-4accc8f9="">Today
+                                    commission</span>
+                            </div>
+                        </div>
+
+                        <div class="codete" data-v-4accc8f9=""><img src="/elephantFootball/teamPage/invite.png" alt=""
+                                data-v-4accc8f9="">
+
+                            <p data-v-4accc8f9="">Invite</p>
+                        </div>
+                    </div>
+
+                    <div class="teamlist" data-v-4accc8f9="" id="tierOne">
+                        <div class="tireui" data-v-4accc8f9=""><img
+                                src="data:image/png;base64,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"
+                                alt="" data-v-4accc8f9=""><!----><!---->
+                            <p data-v-4accc8f9="">Level 1</p>
+                        </div>
+                        <div class="listrate flex" data-v-4accc8f9="">
+                            <div class="rebate firsti" data-v-4accc8f9=""><span data-v-4accc8f9="">10%</span>
+                                <p data-v-4accc8f9="">Rebate rate</p>
+                            </div>
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9=""
+                                    id="level1_rebate">0.00</span>
+                                <p data-v-4accc8f9="">Commission</p>
+                            </div>
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9="" id="level1_member">0</span>
+                                <p data-v-4accc8f9="">People</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teamlist" data-v-4accc8f9="" id="tierOne">
+                        <div class="tireui" data-v-4accc8f9=""><!----><img
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAACLdJREFUaEPtWWtsFNcV/s6dGWPHYOzwftjeeO3warBdQFEblJIKNQgQBSGQKKkpDwVCLAK0FfnTxCFASJsSnBpRIgKEiCBoFKcIEqmoJE0hSsvLECABzLOBCgIB8bY9c09157Ez+/SyEEuRuj88nt2dmfOd853vfPcu4Xv+ou95/Pg/AK+CvH5grpUjJoF5DAmqZEY3MKsMXWDGfjBv0ZqxkaoO3ryfVb8vFeD3yqdJpqXM6AKwE597cI7snX8DyOf1SYfW3C8Q9wSAP4YuL1W8xcxVkYDteJOAcLEQeL3oeWg6PQHzXoFkDIABkn+p2MCSJ0WynCjzSavBG7VfHp5Mfq0ywpIxAGtT+TxmLAvQww0ldfaDlSLwfK3q8OsZRe5elBGAG2v7d8/O1hsB5PoBRXjuAwlisWml8u2/SYQbmnGrlH5x6kKmIDICYL37yEsMvBDdrNGZV3Gqm7PfwHHA3OsXGtOOvNjWAA4zo3+Mwvhs8rIc4X+gOrHvEY4Y074c0GYAvl1V0jEvN/cKwGQD8OTSFp9Y/gc/dEOMB8d6tplPTzVeywTEXVOoaV3/AUIThxwuR3PaoUSKoAMfBXtB180BNK3xSJsA4HcGlJsSDT7/E6lOolkQC8ynlc5cQbOOHWgTALfX9g3pJE5FD66oaRuYwjHgEg05ALrZHKLqU2faBABPgGaO7H8FjA4JKZOQQjEAg40MXNcvHMunGsg2AaAeYr7Vr56BsantQ2z2FWUcYY3ySYQPjNnHxmUSvLrmrpvYBrC63yhm3hp5aMS4pdHAMUpFAqP12ce3tSkANaPM1f0+heShccYtEc8Tmjs7fTv16uOP34sfyqgCdoyrSsMmtD1g5EcpUqxURp0He4Gv6qDBNKfxRKbZz5hC3gNbVjw8lAS2MSMvlazG2gkiXIOUo4y5J3feS/AZA7i18uFeOUztafbRo80ryiqIsBkSZcGeUEGT16/eosb5wnFIa2LWvNMNd5Y/1Ec2Nd98YMG5rzMFkjaFeG0o27yTNZcYTzPzQyCwYPxOPHt8CdaG2pk3jDlMXA2JwiTV+A8R6vQr1huoOd1k/rHkeSYsVjhBfFpjevM8NS8vnP/17bsBkxaA2ytDIZ2NrWAaEG8V+G+6lNX03MnjXAPRUhCuFKBKInRVys5kXZQQ+405J/YRgXlZuNSC/JNkGhEvAHzEAo/O+e2ZU+mCaBUAvx7KtwxjDwNhL7NxnAZMBr8vWW5o1+H6xzT90vVgAPxq5w5NosMwITAZTOMB1v1ZoDRNAHm9Qe27gLTsk9rwF0ejU9lRImp1uLUKwKwr+zMzZnoDKCIqSaSRwBYD5yD5sqs5nQTQixlaVNDqw+4DISqnQIR/CspxxCzw+haAmjV1RLQ7WUVSArhTW1KmCaG8v+FkP+WOQ7wHchFEXatO2uVBDH8Jot8Y4MLn4LMfgi83ADcvOPfI6QrqVA4qHgXq+WNVoncBVBPR1VggKQG0vBGuZcYcvymD/t+VmCQWOams5vWCNvEdkA7IPTXA5QOA9O7lH+1cSQZ1Lod47GVQx5JjAH5GRFGmLykABduqDZ+TjB6RDMYNpXRsc+A77fKgVf0VZF6C3DkXaLnhZFxFK9k+EDtH+48LAnouxPA6iJ6PKhCPBiuRHEBt+ActEl9EzJdP/phNK5cnET/kFjnB6kyMqYUoLIfcPhlo9oP3Aqaug4Gug8DndgEXD0aDMHKhjd0MKghvIKKnPColBWAtL5ltWVgRx1+P1+msvIIgepRD/9UHkNunAJcaYJtnL9tqFIRGQvzoBZCRC+vzpeAv3nYB+JWgbhXQxm9SdVJVsBs7KYDmZSUrIXlWpGliHWcyB5pkPSDGLIPo1B1yxywncBcACvpAe3I1KPvByKOsz14BH1zn00thsPuEof98Daj48fVENCUlgJbXQjuY6Yn4jasAZVI2cECxSECf3wC591XwiS0+t9VXuv0Q2pNvghu3gUpHOhXYtQTcsM7eJLDtiNcPzBB9x0Eb8ZqS2C5qTiSvwB9CX4LRN067U1IooJte/CqIgmIY1TthvTcCfO1sILMMiHaAlIDZBG3qblB2R1j/XALZsCZCs0ijq3t2LIIx4xP1oDARnUwKoOX3xd+wROd4CY3Z4/FWWMEREbtoKRwMY2o9zLXlgNnsN6erPl6A2ow9DoB/LIbcHwQQkFmRBeM3SowwlIh2Ja/A0uJbYOQk3CZJMtSiLEagUlQ0BMa0epirH3EB+A1sy6Y7B/SZex0AnyyC3KsAuFkJzglhwFigdjVbA/BKkYlE4z8q0zGUSSa1BUXImvsZzA3DgatnozjtzwFAn73PAbBjEeSe1X6vqMd4cyK/yKZjqxRqXlx0E4wHYn+wiNt986qRdOWltE7AWHAQctcSyK/qHW6ryD0lcgeXXr0flJ0P6+8vQ/7bBRAcbJIhBo6HPq42jSZeVPQVmPs48aXpgeI2cn3F0sbXgh7sBqt+amBAeRPX4bg+p8E2ddb2hZD/UgDip7JetQGidFjrMmouLFxpgWfFbWC1unGbCCxAvSqgP7MV1sYJ4PP7oqXUlUlHNr0ZEQ3O/r2t9yAYM7ekOcgW9qxkpr1gcjYNoqxC7HkiOxG/I61NrIMoKoe5fizQdD0Cwvc+AYPoDq5Ij2S1h/HMh6CuZelZCRVSc02vVcx4Om4bPYkKOaM01qUGgGTnQX/2I+DWRVibp9sgHNcZn23H4LnuNysXetXbEOHH0jdzdijzeue0dLA+Yqaf+PMgjWqk8kkFhdBnbAIRw9zya/DZva4bTQQCoMJB0CcsV5m/OzvtGROuQZZp9nxOgqfYTc3Kybsvb8QHzwPK6oCO6Qn1XnYetHFLISrHgRs/hTzwPuSZ3cDV887383pAFA+BqBgP0WdY5guaSKDf0T/MPESttACMBuC7Oed5976k/I7ijrstMwsAIcBdPAH/BXD6vizq2wpEps9pdVci0xu31XX/A3ABHXxr6nGLAAAAAElFTkSuQmCC"
+                                alt="" data-v-4accc8f9=""><!---->
+                            <p data-v-4accc8f9="">Level 2</p>
+                        </div>
+                        <div class="listrate flex listrateOne" data-v-4accc8f9="">
+                            <div class="rebate firsti" data-v-4accc8f9=""><span data-v-4accc8f9="">8%</span>
+                                <p data-v-4accc8f9="">Rebate rate</p>
+                            </div>
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9=""
+                                    id="level2_rebate">0.00</span>
+                                <p data-v-4accc8f9="">Commission</p>
+                            </div><!---->
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9="" id="level2_member">0</span>
+                                <p data-v-4accc8f9="">People</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teamlist" data-v-4accc8f9="" id="tierOne">
+                        <div class="tireui" data-v-4accc8f9=""><!----><!----><img
+                                src="data:image/png;base64,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"
+                                alt="" data-v-4accc8f9="">
+                            <p data-v-4accc8f9="">Level 3</p>
+                        </div>
+                        <div class="listrate flex listrateOne" data-v-4accc8f9="">
+                            <div class="rebate firsti" data-v-4accc8f9=""><span data-v-4accc8f9="">4%</span>
+                                <p data-v-4accc8f9="">Rebate rate</p>
+                            </div>
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9=""
+                                    id="level3_rebate">0.00</span>
+                                <p data-v-4accc8f9="">Commission</p>
+                            </div><!---->
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9="" id="level3_member">0</span>
+                                <p data-v-4accc8f9="">People</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="teamlist" data-v-4accc8f9="" id="tierOne">
+                        <div class="tireui" data-v-4accc8f9=""><!----><!----><img
+                                src="data:image/png;base64,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"
+                                alt="" data-v-4accc8f9="">
+                            <p data-v-4accc8f9="">Level 4</p>
+                        </div>
+                        <div class="listrate flex listrateOne" data-v-4accc8f9="">
+                            <div class="rebate firsti" data-v-4accc8f9=""><span data-v-4accc8f9="">2%</span>
+                                <p data-v-4accc8f9="">Rebate rate</p>
+                            </div>
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9=""
+                                    id="level4_rebate">0.00</span>
+                                <p data-v-4accc8f9="">Commission</p>
+                            </div><!---->
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9="" id="level4_member">0</span>
+                                <p data-v-4accc8f9="">People</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="teamlist" data-v-4accc8f9="" id="tierOne">
+                        <div class="tireui" data-v-4accc8f9=""><!----><!----><img
+                                src="data:image/png;base64,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"
+                                alt="" data-v-4accc8f9="">
+                            <p data-v-4accc8f9="">Level 5</p>
+                        </div>
+                        <div class="listrate flex listrateOne" data-v-4accc8f9="">
+                            <div class="rebate firsti" data-v-4accc8f9=""><span data-v-4accc8f9="">1%</span>
+                                <p data-v-4accc8f9="">Rebate rate</p>
+                            </div>
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9=""
+                                    id="level5_rebate">0.00</span>
+                                <p data-v-4accc8f9="">Commission</p>
+                            </div><!---->
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9="" id="level5_member">0</span>
+                                <p data-v-4accc8f9="">People</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="teamlist" data-v-4accc8f9="" id="tierOne">
+                        <div class="tireui" data-v-4accc8f9=""><!----><!----><img
+                                src="data:image/png;base64,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"
+                                alt="" data-v-4accc8f9="">
+                            <p data-v-4accc8f9="">Level 6</p>
+                        </div>
+                        <div class="listrate flex listrateOne" data-v-4accc8f9="">
+                            <div class="rebate firsti" data-v-4accc8f9=""><span data-v-4accc8f9="">1%</span>
+                                <p data-v-4accc8f9="">Rebate rate</p>
+                            </div>
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9=""
+                                    id="level6_rebate">0.00</span>
+                                <p data-v-4accc8f9="">Commission</p>
+                            </div><!---->
+                            <div class="rebate" data-v-4accc8f9=""><span data-v-4accc8f9="" id="level6_member">0</span>
+                                <p data-v-4accc8f9="">People</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <p class="textlio" data-v-4accc8f9="" style="font-weight: 700;"><b>How to form your own team to make
+                            money?</b><br><br>
+
+                        1. Invite friends to form your own team on Telegram. WhatsApp, Facebook and Twitter via your
+                        invite link.
+                        <br>
+                        <br>
+                        2. The same IP is prohibited.
+                        <br>
+                        <br>
+
+                        3. You invite a first-level of members to recharge and you can get a 10% rebate ( frist-level ).
+                        For example:
+                        First-level member recharge Rs. 10000, you will get Rs.10000×0.10-Rs. 1000 income ( daily ).
+                        After the member recharges successfully, your 2% rewards will arrive immediately.
+                        <br>
+                        <br>
+
+                        4. You can get a commission (10% - 8% - 4% - 2% - 1% - 1%) if the team members make a profit
+                        betting For example:
+                        First level members earn Rs. 100,000 betting income every day, and you get Rs. 100,000 x 0.10 =
+                        Rs. 10,000 commission income. Second level members earn 100,000 betting income every day, and
+                        you get Rs. 100,000 × 0.08 = Rs. 8,000 commission income. Third level members earn 100,000
+                        betting income every day, and you get Rs. 100,000 × 0.04 = Rs. 4,000 commission income. Four
+                        level members earn 100,000 betting income every day, and you get Rs. 100,000 × 0.02 = Rs. 2,000
+                        commission income. Five level members earn 100,000 betting income every day, and you get Rs.
+                        100,000 × 0.01 = Rs. 1,000 commission income. Six level members earn ₹100.000 betting income
+                        every day, and you get Rs. 100,000 x 0.01 = Rs 1,000 commission income.
+                        You can get a stable commission income of Rs.10000+8000+4000+2000+1000+1000 = Rs. 26,000 every
+                        day,
+                        The reward will be distributed immediately after completing the match commission income.
+                        <br>
+                        <br>
+                        5. The stronger your team is, the more income you will earn. Hard work will definitely pay off.
+                        If you encounter problems or need cooperative support. please contact customer service.
+                </section>
+
+
+            </div>
+
+        </section>
+
+    </section>
+
+    <div class="hide">
+        <section class="teamPopup">
+            <div class="teamdetail" data-v-f08e9d44="">
+                <div class="nav-top" data-v-f08e9d44="">
+                    <div class="van-nav-bar van-hairline--bottom nav-bar" data-v-f08e9d44="">
+                        <div class="van-nav-bar__content">
+                            <div class="van-nav-bar__left van-haptics-feedback"><i
+                                    class="van-badge__wrapper van-icon van-icon-arrow-left van-nav-bar__arrow"><!----><!----><!----></i><!---->
+                            </div>
+                            <div class="van-nav-bar__title van-ellipsis">Tier 1 Team </div><!---->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="van-tabs van-tabs--line tabs-box" data-v-f08e9d44="">
+
+                    <div class="outer">
+
+                        <div class="one" id="two">
+                            <p>
+                            <h3 class="ii" style="color:white;">Members</h3>
+                            </p>
+                        </div>
+                        <div class="one" id="three">
+                            <p>
+                            <h3 class="iii">Commission</h3>
+                            </p>
+                        </div>
+
+                        <div class="secondOuter">
+                            <div class="bg"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="van-tabs__content">
+                        <div id="van-tab-10" role="tabpanel" class="van-tab__panel" tabindex="0" 
+                            aria-labelledby="van-tabs-9-0" data-v-f08e9d44="">
+
+                            {{!-- dyanamic data added --}}
+
+
+                            <div class="boxcommissions" data-v-f08e9d44="">
+                                <div role="feed" class="van-list" aria-busy="false" data-v-f08e9d44="">
+                                    <div class="empty-wrap" data-v-4f44bbea="" data-v-f08e9d44=""
+                                        style="margin:0 auto;">
+                                        <img class="empty" src="/elephantFootball/empty.43cec754.png" alt=""
+                                            data-v-4f44bbea="">
+                                        <p class="text" data-v-4f44bbea="">No content yet!</p>
+                                    </div><!---->
+                                    <div class="van-list__finished-text"> </div><!---->
+                                    <div class="van-list__placeholder"></div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div id="van-tab-11" role="tabpanel" class="van-tab__panel" tabindex="0"
+                             aria-labelledby="van-tabs-9-1" data-v-f08e9d44=""
+                            style="display:none">
+
+
+                            {{!-- dyanamic data added --}}
+
+                            <div class="boxcommissions" data-v-f08e9d44="">
+                                <div role="feed" class="van-list" aria-busy="false" data-v-f08e9d44="">
+                                    <div class="empty-wrap" data-v-4f44bbea="" data-v-f08e9d44=""
+                                        style="margin:0 auto;">
+                                        <img class="empty" src="/elephantFootball/empty.43cec754.png" alt=""
+                                            data-v-4f44bbea="">
+                                        <p class="text" data-v-4f44bbea="">No content yet!</p>
+                                    </div><!---->
+                                    <div class="van-list__finished-text"> </div><!---->
+                                    <div class="van-list__placeholder"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="van-tab-12" role="tabpanel" class="van-tab__panel" tabindex="0"
+                            aria-labelledby="van-tabs-9-2" data-v-f08e9d44="" style="display:none">
+
+
+                            {{!-- dyanamic data added --}}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ------------------------------------------------------ footer --------------------------------- -->
+    <section class="footerCantainer">
+        <div class="footer">
+            <div class="footflex">
+                <div class="footImg" href="./login&register/register.html">
+                    <img src="/elephantFootball/footer/home.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/home">Home</a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/order.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/order"> Order</a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/match.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/match">
+                        Match
+                    </a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/teamsblue.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/team" style="color: rgb(130 184 228);">Team</a>
+                </p>
+            </div>
+            <div class="footflex">
+                <div class="footImg">
+                    <img src="/elephantFootball/footer/profile.png" alt="" srcset="" />
+                </div>
+                <p>
+                    <a href="/mine">Profile</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
