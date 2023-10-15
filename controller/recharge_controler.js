@@ -150,8 +150,8 @@ async function gateway_deposit_settle(req, res , data){
 
       amount = parseFloat(amount);
 
-      let parent_profit = parseFloat(((2/amount) * 100).toFixed(2));
-      let user_profit = parseFloat(((2/amount) * 100).toFixed(2));
+      let parent_profit = parseFloat((0.02 * amount).toFixed(2));
+      let user_profit = parseFloat((0.04 * amount).toFixed(2));
       let vip = 0;
 
       // update the amount of both user and parent and send the data to admin;

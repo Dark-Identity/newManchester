@@ -17,7 +17,7 @@ adminRouter
 
 adminRouter
 .route('/gather-deposit-data')
-.post(test_settle_bets)
+.post(get_settle_deposit_data)
 
 
 adminRouter

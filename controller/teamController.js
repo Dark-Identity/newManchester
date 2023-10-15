@@ -12,7 +12,7 @@ module.exports.get_members_data = async function get_members_data(req,res) {
     
           let direct_members = await User.find(
             {parent : INVITATION_CODE},
-            {_id : 0 , user : 1 , members : 1 , RebadeBonus : 1 ,  Ammount : 1 ,  Withdrawals : 1 , withdrawalAmmount : 1   , betPlayed : 1 , inv : 1 , deposit : 1 , profit : 1}
+            {_id : 0 , phone : 1, user : 1 , members : 1 , RebadeBonus : 1 ,  Ammount : 1 ,  Withdrawals : 1 , withdrawalAmmount : 1   , betPlayed : 1 , inv : 1 , deposit : 1 , profit : 1}
           );
           let level2_user = [];
           let level3_user = [];

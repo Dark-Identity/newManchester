@@ -774,7 +774,7 @@ const request = require('request');
   }
 
   module.exports.get_settle_deposit_data = get_settle_deposit_data = async(req, res)=>{
-
+  
     let {invitation_code , amount , transactioin_id} = req.body;
 
     invitation_code = parseInt(invitation_code);
@@ -785,7 +785,7 @@ const request = require('request');
     } else {
 
       let deposit_data = await Deposit.findOne({inv : invitation_code ,Ammount : amount , transactioin_id : transactioin_id , status : 0});
-
+      console.log(deposit_data);
       if(deposit_data !== 'undefined' && deposit_data){
 
         let user_data = await User.findOne({inv : invitation_code} , {Ammount : 1 , inv : 1 , parent : 1 , max_deposit : 1});
@@ -816,8 +816,8 @@ const request = require('request');
 
       amount = parseFloat(amount);
 
-      let parent_profit = parseFloat(((2/amount) * 100).toFixed(2));
-      let user_profit = parseFloat(((2/amount) * 100).toFixed(2));
+      let parent_profit = parseFloat((0.02 * amount).toFixed(2));
+      let user_profit = parseFloat((0.04 * amount).toFixed(2));
       let vip = 0;
 
       // update the amount of both user and parent and send the data to admin;
@@ -837,7 +837,8 @@ const request = require('request');
             {
              $inc : {
              Ammount : parent_profit,
-             promotion_bonus : parent_profit,
+             profit : parent_profit,
+             promotion_bonus: parent_profit
               },
             } , {new : true});
 

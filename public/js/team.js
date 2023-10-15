@@ -81,51 +81,6 @@ function create_members(data){
     let level4_user_length = 0;
     let level5_user_length = 0;
     let level6_user_length = 0;
-    
-    if(data['direct_members']!== 'undefined'){
-  
-      data['direct_members'].forEach((item, i) => {
-        level1_user_RebadeBonus += item.RebadeBonus;
-      });
-      
-    }
-    if(data['level2_user']!== 'undefined' && Array.isArray(data['level2_user'][0]) && data['level2_user'][0].length > 0){
-      data['level2_user'][0].forEach((item, i) => {
-        level2_user_length++;
-        level2_user_RebadeBonus += item.RebadeBonus;
-      });
-    }
-
-    if( data['level3_user'] !== 'undefined' && Array.isArray(data['level3_user'][0]) && data['level3_user'][0].length > 0) {
-        data['level3_user'][0].forEach((item, i) => {
-          level3_user_length++;
-          level3_user_RebadeBonus += item.RebadeBonus;
-        });
-    }
-    
-    if( data['level4_user'] !== 'undefined'  && Array.isArray(data['level4_user'][0]) && data['level4_user'][0].length > 0 ) {
-        data['level4_user'][0].forEach((item, i) => {
-          level4_user_length++;
-          level4_user_RebadeBonus += item.RebadeBonus;
-        });
-    }
-    
-    if( data['level5_user'] !== 'undefined'  && Array.isArray(data['level5_user'][0]) && data['level5_user'][0].length > 0 ) {
-        data['level5_user'][0].forEach((item, i) => {
-          level5_user_length++;
-          level5_user_RebadeBonus += item.RebadeBonus;
-        });
-    }
-    
-    if( data['level6_user'] !== 'undefined' && Array.isArray(data['level6_user'][0]) && data['level6_user'][0].length > 0) {
-        data['level6_user'][0].forEach((item, i) => {
-          level6_user_length++;
-          level6_user_RebadeBonus += item.RebadeBonus;
-        });
-    }
-  
-    let total_rebade = (parseFloat(level1_user_RebadeBonus)+parseFloat(level2_user_RebadeBonus)+parseFloat(level3_user_RebadeBonus)+parseFloat(level4_user_RebadeBonus)+parseFloat(level5_user_RebadeBonus)+parseFloat(level6_user_RebadeBonus)).toFixed(2);
-    let total_members = parseInt(data['direct_members'].length) + parseInt(level2_user_length) + parseInt(level3_user_length) +parseInt(level4_user_length) +parseInt(level5_user_length) + parseInt(level6_user_length);
     let total_withdrawal = 0;
 
 
@@ -137,7 +92,8 @@ function create_members(data){
 
     for(let item of data['direct_members']){
     // creating the childs to append inside the boxes;
-  
+      level1_user_RebadeBonus += parseFloat((item.RebadeBonus).toFixed(2));
+      
     let tier1_member_child= document.createElement('div');
     tier1_member_child.classList.add('members_data');
   
@@ -145,9 +101,9 @@ function create_members(data){
     tier1_commission_child.classList.add('members_data');
   
     let new_tier1_member_body = `  <p>${item.phone}</p>
-                                   <p>${item}</p>`
+                                   <p>${item.profit}</p>`
     let new_tier1_commission_body =  `<p>${item.phone}</p>
-                                       <p>${item}</p>`
+                                       <p>${item.RebadeBonus}</p>`
 
   // setting every data to the child;
     tier1_member_child.innerHTML = new_tier1_member_body;
@@ -163,7 +119,8 @@ function create_members(data){
   
       for(let i = 0 ; i < data['level2_user'].length; i++){
         for(let j = 0 ; j <data['level2_user'][i].length ; j++){
-
+          level2_user_length++;
+          level2_user_RebadeBonus += parseFloat((data['level2_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level2_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level2_user'][i][j]['deposit']));
           total_bets_played = parseInt(total_bets_played) + parseInt(data['level2_user'][i][j]['betPlayed']);
@@ -204,7 +161,8 @@ function create_members(data){
   
       for(let i = 0 ; i < data['level3_user'].length; i++){
         for(let j = 0 ; j <data['level3_user'][i].length ; j++){
-  
+          level3_user_length++;
+          level3_user_RebadeBonus += parseFloat((data['level3_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level3_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level3_user'][i][j]['deposit']));
           total_bets_played = parseInt(total_bets_played) + parseInt(data['level3_user'][i][j]['betPlayed']);
@@ -244,7 +202,8 @@ function create_members(data){
   
       for(let i = 0 ; i < data['level4_user'].length; i++){
         for(let j = 0 ; j <data['level4_user'][i].length ; j++){
-  
+          level4_user_length++;
+          level4_user_RebadeBonus += parseFloat((data['level4_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level4_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level4_user'][i][j]['deposit']));
           total_bets_played = parseInt(total_bets_played) + parseInt(data['level4_user'][i][j]['betPlayed']);
@@ -285,7 +244,8 @@ function create_members(data){
   
       for(let i = 0 ; i < data['level5_user'].length; i++){
         for(let j = 0 ; j <data['level5_user'][i].length ; j++){
-  
+          level5_user_length++;
+          level5_user_RebadeBonus += parseFloat((data['level5_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level5_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level5_user'][i][j]['deposit']));
           total_bets_played = parseInt(total_bets_played) + parseInt(data['level5_user'][i][j]['betPlayed']);
@@ -326,7 +286,8 @@ function create_members(data){
   
       for(let i = 0 ; i < data['level6_user'].length; i++){
         for(let j = 0 ; j <data['level6_user'][i].length ; j++){
-  
+          level6_user_length++;
+          level6_user_RebadeBonus += parseFloat((data['level6_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level6_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level6_user'][i][j]['deposit']));
           total_bets_played = parseInt(total_bets_played) + parseInt(data['level6_user'][i][j]['betPlayed']);
@@ -364,7 +325,9 @@ function create_members(data){
 
 
 
-
+    let total_rebade = (parseFloat(level1_user_RebadeBonus)+parseFloat(level2_user_RebadeBonus)+parseFloat(level3_user_RebadeBonus)+parseFloat(level4_user_RebadeBonus)+parseFloat(level5_user_RebadeBonus)+parseFloat(level6_user_RebadeBonus)).toFixed(2);
+    let total_members = parseInt(data['direct_members'].length) + parseInt(level2_user_length) + parseInt(level3_user_length) +parseInt(level4_user_length) +parseInt(level5_user_length) + parseInt(level6_user_length);
+  
     document.querySelector('#level1_rebate').innerText =  level1_user_RebadeBonus ;
     document.querySelector('#level2_rebate').innerText =  level2_user_RebadeBonus ;
     document.querySelector('#level3_rebate').innerText =  level3_user_RebadeBonus ;
