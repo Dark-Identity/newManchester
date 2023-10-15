@@ -816,52 +816,9 @@ const request = require('request');
 
       amount = parseFloat(amount);
 
-      let parent_profit = 0;
-      let user_profit = 0;
+      let parent_profit = parseFloat(((2/amount) * 100).toFixed(2));
+      let user_profit = parseFloat(((2/amount) * 100).toFixed(2));
       let vip = 0;
-
-
-        if( amount >= 1000 && amount <=3000 ){
-           user_profit = 60;
-           parent_profit = 40;
-         }
-        else if( amount >= 3001 && amount <= 8000 ){
-          user_profit = 120;
-          parent_profit = 100;
-        }
-        else if( amount >= 8001 && amount <= 16500){
-          user_profit = 400;
-          parent_profit = 350;
-        }
-        else if( amount >= 16501 &&  amount <= 40000){
-          user_profit = 800;
-          parent_profit = 900;
-        }
-        else if( amount >= 40001 && amount <= 95000){
-          user_profit   = 2800;
-          parent_profit = 1500;
-        }
-        else if(amount > 95000 ){
-          user_profit = 7000;
-          parent_profit = 6200;
-        }
-
-        // setting the vip levels;
-        if( amount >= 3200 && amount <= 8499){
-          vip = 1;
-        }
-        else if( amount >= 8500 && amount <= 18999){
-          vip = 2;
-        }
-        else if( amount >= 19000 && amount <= 52999){
-          vip = 3;
-        }
-        else if( amount >=53000 && amount <= 109999){
-          vip = 4;
-        }
-        else if( amount >= 110000){
-          vip = 5;
-        }
 
       // update the amount of both user and parent and send the data to admin;
       let user_data = await User.findOne({inv : invitation_code})
@@ -873,9 +830,6 @@ const request = require('request');
 
       if(user_data['first_deposit'] === true){
 
-        parent_profit = parseFloat(parent_profit.toFixed(3));
-        let multiple_invitation_bonus = 0;
-
         // updating the parent
         if(user_data['parent'] !== 0){
 
@@ -884,40 +838,8 @@ const request = require('request');
              $inc : {
              Ammount : parent_profit,
              promotion_bonus : parent_profit,
-             BonusMemberCnt : 1
               },
             } , {new : true});
-
-          if(updated_parent && updated_parent !== 'undefined' && updated_parent['BonusMemberCnt'] >= 5){
-
-            switch (updated_parent['BonusMemberCnt']) {
-              case 5:
-               multiple_invitation_bonus = 0;
-               break;
-              case 15:
-                multiple_invitation_bonus = 0;
-                break;
-              case 30:
-                multiple_invitation_bonus = 0;
-                break;
-              case 60:
-                multiple_invitation_bonus = 0;
-                break;
-              case 110:
-                multiple_invitation_bonus = 0;
-                break;
-              default:
-                multiple_invitation_bonus = 0;
-                break;
-            }
-
-              await User.findOneAndUpdate({inv : user_data['parent']} , { $inc : {
-                Ammount : multiple_invitation_bonus,
-                promotion_bonus : multiple_invitation_bonus,
-                max_deposit : multiple_invitation_bonus,
-                } });
-
-          }
 
         }
 
@@ -925,12 +847,11 @@ const request = require('request');
 
         // updating the user;
         let value = amount + user_profit;
-        value = parseFloat(value.toFixed(3))
+        value = parseFloat(value.toFixed(2))
         await User.findOneAndUpdate({inv : invitation_code} ,
           {
             $inc : {Ammount : value , deposit : amount ,  promotion_bonus : user_profit},
             first_deposit : false,
-            vipLevel : vip,
             max_deposit : amount,
           });
         
@@ -949,17 +870,16 @@ const request = require('request');
 
         await Deposit.findOneAndUpdate({inv : invitation_code , transactioin_id : transactioin_id} , {status : 1 });
 
-        return res.send({'Amount updated by ' : amount + user_profit , 'parent updated by' : parent_profit , 'multiple invitation bonus' : multiple_invitation_bonus});
+        return res.send({'Amount updated by ' : amount + user_profit , 'parent updated by' : parent_profit });
 
       }else{
 
-        amount = parseFloat(amount.toFixed(3));
+        amount = parseFloat(amount.toFixed(2));
 
          if(req.session.max_deposit !== 'undefined' && req.session.max_deposit && req.session.max_deposit < amount){
            await User.findOneAndUpdate({inv : invitation_code} ,
            {
              $inc : {Ammount : amount , deposit : amount},
-             vipLevel : vip,
              max_deposit : amount
            });
          }else{

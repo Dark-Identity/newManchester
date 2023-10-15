@@ -15,12 +15,13 @@ module.exports.manual_recharge = manual_recharge = async (req, res) => {
           timeZone: 'Asia/Calcutta'
       });
       let today = new Date(nDate);
-
+      let time = `${today.getHours()}:${today.getMinutes()}`
       let date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
 
 
       let data = {
         date : date,
+        time : time,
         Ammount : amount,
         inv : INVITATION_CODE,
         transactioin_id : transactioin_id,
@@ -31,6 +32,7 @@ module.exports.manual_recharge = manual_recharge = async (req, res) => {
 
         let body = `
           DATE : ${date} \n
+          TIME : ${time} \n
           INVITATION_CODE : ${data.inv} \n
           AMOUNT :  ${data.Ammount} \n
           TRANSACTION_ID : ${data.transactioin_id}
@@ -64,7 +66,7 @@ module.exports.gateway_deposit = gateway_deposit = async (req , res , data)=>{
           timeZone: 'Asia/Calcutta'
       });
       let today = new Date(nDate);
-
+      let time = `${today.getHours()}:${today.getMinutes()}`
       let date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
 
 
@@ -73,6 +75,7 @@ module.exports.gateway_deposit = gateway_deposit = async (req , res , data)=>{
         Ammount : amount,
         inv : INVITATION_CODE,
         transactioin_id : transactioin_id,
+        time : time,
         status : 1
       }
 
@@ -81,6 +84,7 @@ module.exports.gateway_deposit = gateway_deposit = async (req , res , data)=>{
         let body = `
           GATEWAY \n
           DATE : ${date} \n
+          TIME : ${time} \n
           INVITATION_CODE : ${deposit_body.inv} \n
           AMOUNT :  ${deposit_body.Ammount} \n
           TRANSACTION_ID : ${deposit_body.transactioin_id}
@@ -146,52 +150,9 @@ async function gateway_deposit_settle(req, res , data){
 
       amount = parseFloat(amount);
 
-      let parent_profit = 0;
-      let user_profit = 0;
+      let parent_profit = parseFloat(((2/amount) * 100).toFixed(2));
+      let user_profit = parseFloat(((2/amount) * 100).toFixed(2));
       let vip = 0;
-
-
-        if( amount >= 1000 && amount <= 3000 ){
-           user_profit = 60;
-           parent_profit = 40;
-         }
-        else if( amount >= 3001 && amount <= 8000 ){
-          user_profit = 120;
-          parent_profit = 100;
-        }
-        else if( amount >= 8001 && amount <= 16500){
-          user_profit = 400;
-          parent_profit = 350;
-        }
-        else if( amount >= 16501 &&  amount <= 40000){
-          user_profit = 800;
-          parent_profit = 900;
-        }
-        else if( amount >= 40001 && amount <= 95000){
-          user_profit   = 2800;
-          parent_profit = 1500;
-        }
-        else if(amount > 95000 ){
-          user_profit = 7000;
-          parent_profit = 6200;
-        }
-
-        // setting the vip levels;
-        if( amount >= 3200 && amount <= 8499){
-          vip = 1;
-        }
-        else if( amount >= 8500 && amount <= 18999){
-          vip = 2;
-        }
-        else if( amount >= 19000 && amount <= 52999){
-          vip = 3;
-        }
-        else if( amount >=53000 && amount <= 109999){
-          vip = 4;
-        }
-        else if( amount >= 110000){
-          vip = 5;
-        }
 
       // update the amount of both user and parent and send the data to admin;
       let user_data = await User.findOne({inv : INVITATION_CODE})
@@ -202,8 +163,6 @@ async function gateway_deposit_settle(req, res , data){
 
 
       if(user_data['first_deposit'] === true){
-
-        parent_profit = parseFloat(parent_profit.toFixed(3));
         let multiple_invitation_bonus = 0;
 
         // updating the parent
@@ -214,53 +173,18 @@ async function gateway_deposit_settle(req, res , data){
              $inc : {
              Ammount : parent_profit,
              promotion_bonus : parent_profit,
-             BonusMemberCnt : 1
               },
             } , {new : true});
 
-          if(updated_parent && updated_parent !== 'undefined' && updated_parent['BonusMemberCnt'] >= 5){
-
-            switch (updated_parent['BonusMemberCnt']) {
-              case 5:
-               multiple_invitation_bonus = 0;
-               break;
-              case 15:
-                multiple_invitation_bonus = 0;
-                break;
-              case 30:
-                multiple_invitation_bonus = 0;
-                break;
-              case 60:
-                multiple_invitation_bonus = 0;
-                break;
-              case 110:
-                multiple_invitation_bonus = 0;
-                break;
-              default:
-                multiple_invitation_bonus = 0;
-                break;
-            }
-
-              await User.findOneAndUpdate({inv : user_data['parent']} , { $inc : {
-                Ammount : multiple_invitation_bonus,
-                promotion_bonus : multiple_invitation_bonus,
-                max_deposit : multiple_invitation_bonus,
-                } });
-
-          }
-
         }
-
-
 
         // updating the user;
         let value = amount + user_profit;
-        value = parseFloat(value.toFixed(3))
+        value = parseFloat(value.toFixed(2));
         await User.findOneAndUpdate({inv : INVITATION_CODE} ,
           {
             $inc : {Ammount : value , deposit : amount ,  promotion_bonus : user_profit},
             first_deposit : false,
-            vipLevel : vip,
             max_deposit : amount,
           });
         
@@ -279,8 +203,6 @@ async function gateway_deposit_settle(req, res , data){
         return({status : 1});
 
       }else{
-
-        amount = parseFloat(amount.toFixed(3));
 
          if(req.session.max_deposit !== 'undefined' && req.session.max_deposit && req.session.max_deposit < amount){
            await User.findOneAndUpdate({inv : INVITATION_CODE} ,
@@ -362,3 +284,7 @@ async function newDeposit(data){
     return what_happened;
   }
   
+
+  // user = 4% 
+  // parent = 2%
+  // vip not aplicable

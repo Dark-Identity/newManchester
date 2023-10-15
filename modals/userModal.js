@@ -124,6 +124,7 @@ const newDepositSchema = new mongoose.Schema({
     Ammount: { type: Number },
     inv: { type: Number },
     transactioin_id: { type: String },
+    time : {type : String},
     status: { type: Number }// 0 -> pending, 1 -> success , 2 -> canceled
 });
 

@@ -64,7 +64,6 @@ request.end(function (response) {
     return res.send({status : "something went wrong"});
   };
   req.session.otp = number;
-  console.log(req.session.otp);
   if(response.body.return){
     return res.send({status : 1});
   }else{
@@ -334,3 +333,12 @@ function getrandom() {
         return x;
     }
 }
+
+// it will increment the member of the user who has invited this new user while sign_in;
+async function increment_parent_mem(inv , prev_members){
+    let x = await User.updateOne({inv : inv} , {$inc : {
+      members : 1
+    }})
+    return;
+  }
+  

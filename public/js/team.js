@@ -81,44 +81,45 @@ function create_members(data){
     let level4_user_length = 0;
     let level5_user_length = 0;
     let level6_user_length = 0;
-  
+    
     if(data['direct_members']!== 'undefined'){
   
       data['direct_members'].forEach((item, i) => {
         level1_user_RebadeBonus += item.RebadeBonus;
       });
+      
     }
-    if(data['level2_user']!== 'undefined'){
-  
-      data['level2_user'].forEach((item, i) => {
-        level2_user_length += item.members;
+    if(data['level2_user']!== 'undefined' && Array.isArray(data['level2_user'][0]) && data['level2_user'][0].length > 0){
+      data['level2_user'][0].forEach((item, i) => {
+        level2_user_length++;
         level2_user_RebadeBonus += item.RebadeBonus;
       });
     }
-    if( data['level3_user'] !== 'undefined') {
-        data['level3_user'].forEach((item, i) => {
-          level3_user_length += item.members;
+
+    if( data['level3_user'] !== 'undefined' && Array.isArray(data['level3_user'][0]) && data['level3_user'][0].length > 0) {
+        data['level3_user'][0].forEach((item, i) => {
+          level3_user_length++;
           level3_user_RebadeBonus += item.RebadeBonus;
         });
     }
     
-    if( data['level4_user'] !== 'undefined') {
-        data['level4_user'].forEach((item, i) => {
-          level4_user_length += item.members;
+    if( data['level4_user'] !== 'undefined'  && Array.isArray(data['level4_user'][0]) && data['level4_user'][0].length > 0 ) {
+        data['level4_user'][0].forEach((item, i) => {
+          level4_user_length++;
           level4_user_RebadeBonus += item.RebadeBonus;
         });
     }
     
-    if( data['level5_user'] !== 'undefined') {
-        data['level5_user'].forEach((item, i) => {
-          level5_user_length += item.members;
+    if( data['level5_user'] !== 'undefined'  && Array.isArray(data['level5_user'][0]) && data['level5_user'][0].length > 0 ) {
+        data['level5_user'][0].forEach((item, i) => {
+          level5_user_length++;
           level5_user_RebadeBonus += item.RebadeBonus;
         });
     }
     
-    if( data['level6_user'] !== 'undefined') {
-        data['level6_user'].forEach((item, i) => {
-          level6_user_length += item.members;
+    if( data['level6_user'] !== 'undefined' && Array.isArray(data['level6_user'][0]) && data['level6_user'][0].length > 0) {
+        data['level6_user'][0].forEach((item, i) => {
+          level6_user_length++;
           level6_user_RebadeBonus += item.RebadeBonus;
         });
     }
@@ -135,7 +136,6 @@ function create_members(data){
     }
 
     for(let item of data['direct_members']){
-  
     // creating the childs to append inside the boxes;
   
     let tier1_member_child= document.createElement('div');
@@ -148,8 +148,7 @@ function create_members(data){
                                    <p>${item}</p>`
     let new_tier1_commission_body =  `<p>${item.phone}</p>
                                        <p>${item}</p>`
-           
-  
+
   // setting every data to the child;
     tier1_member_child.innerHTML = new_tier1_member_body;
     tier1_commission_child.innerHTML = new_tier1_commission_body;
@@ -160,11 +159,11 @@ function create_members(data){
   
     }
   
-    if(data['level2_user'] !== 'undefined'){
+    if(data['level2_user'] !== 'undefined' && Array.isArray(data['level2_user'][0]) && data['level2_user'][0].length > 0){
   
       for(let i = 0 ; i < data['level2_user'].length; i++){
         for(let j = 0 ; j <data['level2_user'][i].length ; j++){
-  
+
           user_profit = (parseFloat(user_profit) + parseFloat(data['level2_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level2_user'][i][j]['deposit']));
           total_bets_played = parseInt(total_bets_played) + parseInt(data['level2_user'][i][j]['betPlayed']);
@@ -179,11 +178,11 @@ function create_members(data){
     let tier2_commission_child= document.createElement('div');
     tier2_commission_child.classList.add('members_data');
   
-    let new_tier2_member_body = `  <p>${item.phone}</p>
-                                   <p>${item}</p>`
+    let new_tier2_member_body = `  <p>${data['level2_user'][i][j]['phone']}</p>
+                                   <p>${data['level2_user'][i][j]['profit']}</p>`
 
-    let new_tier2_commission_body =  `<p>${item.phone}</p>
-                                       <p>${item}</p>`
+    let new_tier2_commission_body =  `<p>${data['level2_user'][i][j]['phone']}</p>
+                                       <p>${data['level2_user'][i][j]['RebadeBonus']}</p>`
   
   // setting every data to the child;
     tier2_member_child.innerHTML = new_tier2_member_body;
@@ -201,7 +200,7 @@ function create_members(data){
     }
     
 
-    if(data['level3_user'] !== 'undefined'){
+    if(data['level3_user'] !== 'undefined' && Array.isArray(data['level3_user'][0]) && data['level3_user'][0].length > 0){
   
       for(let i = 0 ; i < data['level3_user'].length; i++){
         for(let j = 0 ; j <data['level3_user'][i].length ; j++){
@@ -220,11 +219,11 @@ function create_members(data){
     let tier3_commission_child= document.createElement('div');
     tier3_commission_child.classList.add('members_data');
   
-    let new_tier3_member_body = `  <p>${item.phone}</p>
-                                   <p>${item}</p>`
+    let new_tier3_member_body = `  <p>${data['level3_user'][i][j]['phone']}</p>
+    <p>${data['level3_user'][i][j]['profit']}</p>`
 
-    let new_tier3_commission_body =  `<p>${item.phone}</p>
-                                       <p>${item}</p>`
+    let new_tier3_commission_body = `  <p>${data['level3_user'][i][j]['phone']}</p>
+    <p>${data['level3_user'][i][j]['RebadeBonus']}</p>`
   
   // setting every data to the child;
     tier3_member_child.innerHTML = new_tier3_member_body;
@@ -241,7 +240,7 @@ function create_members(data){
   
     }
     
-    if(data['level4_user'] !== 'undefined'){
+    if(data['level4_user'] !== 'undefined' && Array.isArray(data['level4_user'][0]) && data['level4_user'][0].length > 0){
   
       for(let i = 0 ; i < data['level4_user'].length; i++){
         for(let j = 0 ; j <data['level4_user'][i].length ; j++){
@@ -260,11 +259,11 @@ function create_members(data){
     let tier4_commission_child= document.createElement('div');
     tier4_commission_child.classList.add('members_data');
   
-    let new_tier4_member_body = `  <p>${item.phone}</p>
-                                   <p>${item}</p>`
+    let new_tier4_member_body = `  <p>${data['level4_user'][i][j]['phone']}</p>
+    <p>${data['level4_user'][i][j]['profit']}</p>`
 
-    let new_tier4_commission_body =  `<p>${item.phone}</p>
-                                       <p>${item}</p>`
+    let new_tier4_commission_body =  `  <p>${data['level4_user'][i][j]['phone']}</p>
+    <p>${data['level4_user'][i][j]['RebadeBonus']}</p>`
   
   // setting every data to the child;
     tier4_member_child.innerHTML = new_tier4_member_body;
@@ -282,7 +281,7 @@ function create_members(data){
     }
 
 
-    if(data['level5_user'] !== 'undefined'){
+    if(data['level5_user'] !== 'undefined' && Array.isArray(data['level5_user'][0]) && data['level5_user'][0].length > 0){
   
       for(let i = 0 ; i < data['level5_user'].length; i++){
         for(let j = 0 ; j <data['level5_user'][i].length ; j++){
@@ -301,11 +300,11 @@ function create_members(data){
     let tier5_commission_child= document.createElement('div');
     tier5_commission_child.classList.add('members_data');
   
-    let new_tier5_member_body = `  <p>${item.phone}</p>
-                                   <p>${item}</p>`
+    let new_tier5_member_body =`  <p>${data['level5_user'][i][j]['phone']}</p>
+    <p>${data['level5_user'][i][j]['profit']}</p>`
 
-    let new_tier5_commission_body =  `<p>${item.phone}</p>
-                                       <p>${item}</p>`
+    let new_tier5_commission_body = `  <p>${data['level5_user'][i][j]['phone']}</p>
+    <p>${data['level5_user'][i][j]['RebadeBonus']}</p>`
   
   // setting every data to the child;
     tier5_member_child.innerHTML = new_tier5_member_body;
@@ -323,7 +322,7 @@ function create_members(data){
     }
 
 
-    if(data['level6_user'] !== 'undefined'){
+    if(data['level6_user'] !== 'undefined' && Array.isArray(data['level6_user'][0]) && data['level6_user'][0].length > 0){
   
       for(let i = 0 ; i < data['level6_user'].length; i++){
         for(let j = 0 ; j <data['level6_user'][i].length ; j++){
@@ -342,11 +341,11 @@ function create_members(data){
     let tier6_commission_child= document.createElement('div');
     tier6_commission_child.classList.add('members_data');
   
-    let new_tier6_member_body = `  <p>${item.phone}</p>
-                                   <p>${item}</p>`
+    let new_tier6_member_body =`  <p>${data['level6_user'][i][j]['phone']}</p>
+    <p>${data['level6_user'][i][j]['profit']}</p>`
 
-    let new_tier6_commission_body =  `<p>${item.phone}</p>
-                                       <p>${item}</p>`
+    let new_tier6_commission_body = `  <p>${data['level6_user'][i][j]['phone']}</p>
+    <p>${data['level6_user'][i][j]['RebadeBonus']}</p>`
   
   // setting every data to the child;
     tier6_member_child.innerHTML = new_tier6_member_body;

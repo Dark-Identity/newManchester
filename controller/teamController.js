@@ -12,7 +12,7 @@ module.exports.get_members_data = async function get_members_data(req,res) {
     
           let direct_members = await User.find(
             {parent : INVITATION_CODE},
-            {_id : 0 , user : 1 , members : 1 , Ammount : 1 ,  Withdrawals : 1 , withdrawalAmmount : 1   , betPlayed : 1 , inv : 1 , deposit : 1 , profit : 1}
+            {_id : 0 , user : 1 , members : 1 , RebadeBonus : 1 ,  Ammount : 1 ,  Withdrawals : 1 , withdrawalAmmount : 1   , betPlayed : 1 , inv : 1 , deposit : 1 , profit : 1}
           );
           let level2_user = [];
           let level3_user = [];
@@ -52,7 +52,7 @@ module.exports.get_members_data = async function get_members_data(req,res) {
                   for(let j = 0 ; j < level5.length; j++){
                      let level6 =  await User.find(
                      {parent : level5[j].inv},
-                     {_id : 0 , user : 1 , phone : 1 , members : 1 , Ammount : 1 , Withdrawals : 1 , withdrawalAmmount : 1  , betPlayed : 1 ,  inv : 1, deposit : 1 , profit : 1}
+                     {_id : 0 , user : 1 , phone : 1 ,RebadeBonus : 1 , members : 1 , Ammount : 1 , Withdrawals : 1 , withdrawalAmmount : 1  , betPlayed : 1 ,  inv : 1, deposit : 1 , profit : 1}
                      );
                      level6_user.push(level6);
                      }
