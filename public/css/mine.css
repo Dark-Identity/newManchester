@@ -159,11 +159,13 @@ body {
     right: 0;
     left: 0;
     bottom: 0;
-    background: url(/elephantFootball/rulePopup/rules.jpg) center no-repeat;
     background-size: cover;
     overflow-y: scroll;
     overflow-x: hidden;
+    background: url(../elephantFootball/rulePopup/rules.png) no-repeat center;
+    background-size: cover;
     z-index: -1;
+    
 }
 
 .accordion {
@@ -697,8 +699,7 @@ body {
    left: o;
    height: 100vh;
    width: 100vw;
-   z-index: -1;
-   background: url('../elephantFootball/minePage/App\ download.jpg') center no-repeat;
+   background: url('/elephantFootball/minePage/App\ download.jpg') center no-repeat;
    background-size: cover;
    display: flex;
    justify-content: center;
@@ -713,10 +714,36 @@ body {
     bottom: 8vh;
 }
 
-.download_flex > span{
-    margin: 2vw;
-    text-align: center;
-    width: 40%;
-    padding: 3vw;
-    box-shadow: 0 0.666667vw 1.6vw 0.266667vw rgba(0, 65, 119, 0.16);
+
+.install{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: red;
+    width: 100vw;
+    background: url(/elephantFootball/App\ download.jpg) center no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+.buttons {
+    width: 41vw;
+    height: 13.066667vw;
+    border-radius: 6.8vw;
+    border: .266667vw solid #8ec0ae;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 4vw;
+    background: #7bebff;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+    /* padding: 2vw; */
+}
+
+
+#install_close{
+    position:absolute;
+    top: 0;
+    left: 0;
 }

@@ -643,7 +643,7 @@ async function SENDMAIL(subject, body) {
         service: 'gmail',
         auth: {
             user: 'vishwakarma9304411522@gmail.com',
-            pass: 'qavr typr qziv ruhp'
+            pass: 'vigtmiugmomefooi'
         }
     })
 

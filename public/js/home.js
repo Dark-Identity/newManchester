@@ -336,7 +336,7 @@ function create_match(data) {
                       </div>
                       </div>
 
-                      <div class="matchResult">
+                      <div class="matchResult" style="display:none">
                           <div class="highuis flex" data-v-7afa3138="" style= "display:none">
                           <span class="highi" data-v-7afa3138="">
                             High return</span>

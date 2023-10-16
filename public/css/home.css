@@ -413,11 +413,10 @@ text {
 .gameBox {
     /* margin-bottom: 2.666667vw; */
     width: 91.466667vw;
-    box-shadow: 0 .666667vw 1.6vw .266667vw rgba(0, 119, 76, .16);
+    box-shadow:0 0.666667vw 1.6vw 0.266667vw rgb(0 77 119 / 16%);
     border-radius: 2.666667vw;
     padding: 0 0 2.666667vw 0;
     margin: 0 auto;
-    height: 20vh;
     background: linear-gradient(180deg, #fff, #eff8fe);
     overflow: hidden;
     position: relative;
@@ -1665,7 +1664,7 @@ img {
 /* ----------------------------------------------- place bet popup -------------------------------- */
 .placebet {
     position: absolute;
-    top: 32%;
+    top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
@@ -1999,11 +1998,12 @@ img {
     left: 15%;
     width: 70%;
     text-align: left;
+    /* padding: 2vw; */
 }
 
 #close {
     position: absolute;
-    bottom: 4vw;
+    bottom: 0.5vw;
     left: 45vw;
     font-size: 10vw;
     display: block;

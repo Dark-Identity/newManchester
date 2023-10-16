@@ -164,7 +164,7 @@ body {
 .gameBox {
     width: 91.466667vw;
     padding: 2.666667vw 2.666667vw;
-    box-shadow: 0 .666667vw 1.6vw .266667vw rgba(0, 119, 76, .16);
+    box-shadow: 0 0.666667vw 1.6vw 0.266667vw rgb(0 77 119 / 16%);
     background: linear-gradient(180deg, #fff, #eff8fe);
     border-radius: 2.666667vw;
     margin-bottom: 3.333333vw;
