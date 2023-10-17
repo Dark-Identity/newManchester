@@ -1,7 +1,7 @@
-function select(tag){
+function select(tag) {
   return document.querySelector(`${tag}`);
 }
-function selectAll(tag){
+function selectAll(tag) {
   return document.querySelectorAll(`${tag}`);
 }
 
@@ -120,8 +120,8 @@ allListner.forEach((element) => {
       `;
       footer.style.transform = "translateX(120vw)";
       withdrawalCantainer.style.transform = "translateX(0)";
-    
-      gettimenow();
+
+      // gettimenow();
     }
     else if (element.id == "three") {
       home.style.cssText = `
@@ -295,7 +295,6 @@ function create_match(data) {
                           </div>
                           <div class="date">
                               <p>${[date.getFullYear(), date.getMonth() + 1, date.getDate()].join('|')}</p>
-                              <p id='initial_time'>${date.getHours()}:${date.getMinutes()}</p>
                           </div>
                       </div>
 
@@ -324,6 +323,7 @@ function create_match(data) {
                           </div>
                       </div>
 
+                      <p id='initial_time' style="text-align:center;font-size:6vw">${date.getHours()}:${date.getMinutes()}</p>
 
                       <div class="downbox" data-v-7afa3138="" style="display:none">
                           <div role="timer" class="van-count-down countdown" data-v-7afa3138="">
@@ -424,9 +424,6 @@ function check_date(date, time) {
 // -------------------------- profit percentage --------------------------------------------------------------------
 let percentage = {};
 
-
-
-
 // --------------------------------------------------- load bet percentage -------------------------------------------------------
 function load_bet_percentages(id) {
 
@@ -451,15 +448,12 @@ function load_bet_percentages(id) {
 
 }
 
-
-
-
 // --------------------------------------------------- load bet function -------------------------------------------------------
 function load_bet_box() {
   document.querySelectorAll(".bet_card").forEach((item, i) => {
 
     item.addEventListener('click', () => {
-      
+
       let league_id = item.querySelector('#league_id').innerText;
       document.querySelector('#final_league_id').innerText = league_id;
       let team_a = item.querySelector('#initial_team_a').innerText;
@@ -482,7 +476,6 @@ function load_bet_box() {
 
       let today = new Date();
       document.querySelector('#b_date').innerText = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
-      countdown();
 
 
       let percentage_array = load_bet_percentages(league_id);
@@ -495,9 +488,6 @@ function load_bet_box() {
 
   });
 }
-
-
-
 
 // ---------------------------------------------------  bet pop up function -------------------------------------------------------
 document.querySelectorAll('.matchscore').forEach(element => {
@@ -514,9 +504,6 @@ document.querySelectorAll('.matchscore').forEach(element => {
 
   });
 });
-
-
-
 
 // --------------------------------------------------- calc bet function -------------------------------------------------------
 function calc_available() {
@@ -544,16 +531,16 @@ document.querySelectorAll('.values > span').forEach((item, i) => {
     } else {
       let text = document.querySelector('.s_balance').innerText;
       let values = text.match(/[+-]?\d+(\.\d+)?/g);
-      document.querySelector('#bet_amount').value = parseFloat(values[0]);      
+      document.querySelector('#bet_amount').value = parseFloat(values[0]);
       calc_available()
     }
   })
 });
 
 const All = document.querySelector('#All');
-All.addEventListener('click',()=>{
+All.addEventListener('click', () => {
   let text = document.querySelector('.s_balance').innerText;
-  document.querySelector('#bet_amount').value = parseFloat(text);       
+  document.querySelector('#bet_amount').value = parseFloat(text);
   calc_available();
 });
 
@@ -704,15 +691,15 @@ function gettimenow() {
   var curr_hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours();
   var curr_min = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
   var time24 = curr_hour;
-  
-  if ( time24 <= 10 || time24 > 18) {
+
+  if (time24 <= 10 || time24 > 18) {
     withdraw_btn.disabled = true;;
     popup_page.style.left = '0px';
     popup_tip.innerText = 'withdraw times up'
     popup_cancel_btn.disabled = false;
   }
 
-  
+
 }
 
 
@@ -921,52 +908,52 @@ get_user_data();
 
 // ---------------------------------------------------------------------------------------------------------------
 // ---------------------------------------- Deposite page frontend work -----------------------------------
-async function recharge(data){
+async function recharge(data) {
 
 
   popup_page.style.left = '0px';
   popup_cancel_btn.disabled = true;
 
   const config = {
-    method : 'POST',
-    headers : {
-      'content-type' : 'application/json'
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
     },
-    body :  JSON.stringify(data)
+    body: JSON.stringify(data)
   }
-  let res = await fetch('/deposit' , config);
+  let res = await fetch('/deposit', config);
   res = await res.json();
 
-  if(res['status'] === 1){
+  if (res['status'] === 1) {
     popup_tip.innerText = 'Success! your payment is in processing .';
     popup_cancel_btn.disabled = false;
-    
+
     reload();
-  }else{
+  } else {
     popup_tip.innerText = 'Failure! something went wrong try again after refreshing.'
     popup_cancel_btn.disabled = false;
-    
+
     reload();
   }
 
 }
 
-select('#yy_submit').addEventListener('click' , ()=>{
+select('#yy_submit').addEventListener('click', () => {
   let transaction_id = select('#yy_transaction').value;
   let amount = select('#yy_amount').innerText;
 
-  if(!transaction_id || transaction_id == undefined ||
-  !amount || amount == undefined){
+  if (!transaction_id || transaction_id == undefined ||
+    !amount || amount == undefined) {
     alert('something went wrong ');
     window.location.reload();
     return;
   }
   amount = parseFloat(amount);
-  let data = {'amount' : amount , "transactioin_id" : transaction_id};
+  let data = { 'amount': amount, "transactioin_id": transaction_id };
   recharge(data);
 })
 
-select('#yy_upi_cpy').addEventListener('click' , ()=>{
+select('#yy_upi_cpy').addEventListener('click', () => {
   let text = select('#yy_upi_id');
   copyPageUrl(text.innerText);
 })
@@ -981,14 +968,14 @@ async function copyPageUrl(text) {
     popup_tip.innerText = 'Failure! something went wrong.'
     popup_cancel_btn.disabled = false;
 
-  }finally{
+  } finally {
     popup_tip.innerText = 'Success! upi id copied.'
     popup_cancel_btn.disabled = false;
   }
 }
 
-async function initiate_gateway_recharge(){
-  
+async function initiate_gateway_recharge() {
+
   popup_page.style.left = '0px';
   popup_cancel_btn.disabled = true;
   // e.preventDefault();
@@ -1005,46 +992,46 @@ async function initiate_gateway_recharge(){
   // post_data.udf3 = 'extradata';
 
   let config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body : JSON.stringify(post_data)
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post_data)
   }
   try {
-      let res = await fetch("/start_payment" , config);
-      const text = await res.text();
-      const data = JSON.parse(text);
-      if(data.status === "ok"){
-          window.location.href = data.url;
-      }else{
-          popup_tip.innerText = "Something went wrong";
-          popup_close_btn.disabled = false;
-          return;
-      }
-  } catch (err) {
-      window.location.href = window.location.origin + "/login" ;
+    let res = await fetch("/start_payment", config);
+    const text = await res.text();
+    const data = JSON.parse(text);
+    if (data.status === "ok") {
+      window.location.href = data.url;
+    } else {
+      popup_tip.innerText = "Something went wrong";
+      popup_close_btn.disabled = false;
+      return;
     }
-  
+  } catch (err) {
+    window.location.href = window.location.origin + "/login";
+  }
+
 }
 
 const yy_pay = document.querySelector('#yy_pay');
 document.querySelector('#recharge_btn').addEventListener('click', () => {
   let is_gateway = document.querySelector("#gateway_radio_btn").checked;
   let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
-  
-  if(is_gateway || is_gateway_2){
+
+  if (is_gateway || is_gateway_2) {
     initiate_gateway_recharge();
     return;
-  }else{
+  } else {
 
     let recharge_path = document.querySelectorAll('.radiobtn');
     recharge_path.forEach((element) => {
-     if (element.id == "manual_btn") {
-       manual_recharge_page();
+      if (element.id == "manual_btn") {
+        manual_recharge_page();
       }
     });
- }
+  }
 });
 
 // gateway
@@ -1053,42 +1040,4 @@ function manual_recharge_page() {
   footer.style.zIndex = "-1";
 }
 
-
-
-// ------------------------------------------ countdown ----------------------------------------
-function countdown(req,res) {
-
- 
-  let match_time = document.querySelector('#b_time').innerText; 
-
-// Set the date we're counting down to
-var countDownDate = match_time;
-console.log(countDownDate);
-// Update the count down every 1 second
-var y = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-
-// console.log(hours);
-
-  // Output the result in an element with id="demo"
-    
-  
-  // document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  // + minutes + "m " + seconds + "s ";
-    
-})
-
-  
-}
 

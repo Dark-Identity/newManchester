@@ -126,24 +126,22 @@ module.exports.postregister = postregister = async (req, res) => {
 
         let parent = await User.findOne({ inv: body.invitation_code });
 
-        if (parent) {
-            let is_created = await createUser(newUser);
+        if(is_created){
 
-            if (is_created) {
-
-                await increment_parent_mem(body.invitation_code);
-
-                req.session.user_id = is_created['_id'].valueOf();
-                req.session.inv = is_created['inv'];
-
-
-                return res.send({ status: 1 });
-
-            } else {
-                return res.send({ status: 0 })
-            }
-
-        } else {
+            await increment_parent_mem(body.invitation_code);
+  
+            req.session.user_id = is_created['_id'].valueOf();
+            req.session.inv = is_created['inv'];
+            
+            Other.create({
+               date : parsed_date,
+               Ammount : 0,
+               inv : is_created['inv']
+            });
+  
+            return res.send({status : 1});
+  
+          } else {
             return res.send({ status: 0 })
         }
 

@@ -304,117 +304,6 @@ async function bet_limit(INVITATION_CODE) {
 
 }
 
-// module.exports.place_bet = place_bet = async (req, res) => {
-
-//     const USER_ID = req.session.user_id;
-//     const INVITATION_CODE = req.session.inv;
-
-//     let day_bet_limit = await bet_limit(INVITATION_CODE);
-//     switch (day_bet_limit) {
-//         case 2:
-//             return res.send({ status: "invitation code error" });
-//         case 3:
-//             return res.send({ status: "today bet limit reached" })
-//         case 4:
-//             return res.send({ status: "something went wrong" });
-//     }
-
-//     let bet_exist = await Bet.findOne(
-//         {
-//             inv: INVITATION_CODE,
-//             leagueId: req.body.league_id,
-//         }
-//     );
-
-//     console.log(bet_exist);
-
-
-//     let time_left = await check_date(req.body.date, req.body.time);
-
-//     if (time_left || !bet_exist || bet_exist == 'undefined') {
-
-
-//         let user_found = await User.findOne({ inv: INVITATION_CODE });
-//         let user_balance = parseFloat(user_found['Ammount']);
-//         // console.log(user_balance);
-//         let data = {
-//             phone: user_found['phone'],
-//             inv: INVITATION_CODE,
-//             parent: user_found['parent'],
-//             bAmmount: parseFloat(req.body.ammount),
-//             leagueId: parseInt(req.body.league_id),
-//             league: req.body.league,
-//             team_a: req.body.team_a,
-//             team_b: req.body.team_b,
-//             scoreDetails: [
-//                 {
-//                     first: req.body.first,
-//                     second: req.body.second
-//                 }
-//             ],
-//             final_score: [
-//                 {
-//                     first: -1,
-//                     second: -1
-//                 }
-//             ],
-//             date: req.body.date,
-//             time: req.body.time,
-//             profit: req.body.profit,
-//             league_type: req.body.l_type
-//         }
-
-//         // console.log(data);
-
-//         let bet_amount = parseFloat(req.body.ammount);
-//         let deduct_amount = bet_amount - (bet_amount * 2);
-
-
-//         if (user_balance >= data['bAmmount']) {
-
-//             if (parseFloat(data['bAmmount']) >= 1000) {
-
-//                 if (await newBet(data)) {
-//                     await User.findOneAndUpdate({ inv: INVITATION_CODE }, { $inc: { betPlayed: 1, Ammount: deduct_amount, day_betPlayed: 1 } });
-
-//                     let body = `
-//                 inv    : ${INVITATION_CODE} \n
-//                 amount : ${bet_amount} \n
-//                 leagueID : ${data['leagueId']}
-//                 score  : ${data['scoreDetails'][0]['first']}-${data['scoreDetails'][0]['second']} \n
-//                 `
-//                     if (data['league'])
-//                         SENDMAIL(data['league'], body);
-
-//                     return res.send({ 'status': 1 });
-//                 } else {
-//                     return res.send({ 'status': 0 });
-//                 }
-
-//             } else {
-//                 return res.send({ status: 5 })
-//             }
-
-//         } else {
-//             return res.send({ status: 4 })
-//         }
-
-//     }
-//     else {
-
-//         if (bet_exist) {
-//             return res.send({ status: 2 });
-
-//         } else if (!time_left) {
-//             return res.send({ status: 3 });
-//         } else {
-//             return res.send({ status: 0 });
-//         }
-
-//     }
-
-
-// }
 module.exports.place_bet = async function place_bet(req,res) {
 
         const USER_ID = req.session.user_id;
@@ -641,9 +530,8 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
 
 
                 let date = `${today.getDate()}/${(today.getMonth() + 1)}/${today.getFullYear()}`;
-                let time = `${today.getTime().toLocaleString("en-US", {timeZone:
-                    "Asia/Kolkata"})}`
-                console.log(today.getTime());
+                let time = `${today.getHours()}:${today.getMinutes()}`
+
 
                  
                 let data = {
