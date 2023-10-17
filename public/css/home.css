@@ -1994,11 +1994,11 @@ img {
 
 .set_texts {
     position: absolute;
-    top: 30%;
+    top: 25%;
     left: 15%;
     width: 70%;
     text-align: left;
-    /* padding: 2vw; */
+    padding: 2vw;
 }
 
 #close {

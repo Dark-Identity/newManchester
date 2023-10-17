@@ -529,7 +529,7 @@ function create_match_history(data) {
     <div class="invest-box" data-v-3997c59e="">
         <div class="league flex" data-v-3997c59e="">
             <div class="leftbox" data-v-3997c59e="">
-                <p class="circlet" data-v-3997c59e=""></p>
+                <p class="circlet" data-v-3997c59e="" style=".8vw solid skyblue"></p>
                 <p  class="league_id" id="league_id" style="display:none">${data['fixture_id']}</p>
                 <p class="ellipsis-1 namematch" data-v-3997c59e="">Netherlands
                 ${data['league']}
@@ -540,7 +540,7 @@ function create_match_history(data) {
         <div class="vsmath" data-v-3997c59e="">
             <div class="loadimg" data-v-3997c59e="">
                 <div class="van-image logo-img" data-v-3997c59e=""><img
-                        src="${data['team_b_logo']}"
+                        src="/elephantFootball/football.png"
                         class="van-image__img"><!----><!----></div>
                 <p class="nameu ellipsis-1" data-v-3997c59e="">FC Utrecht (w)</p>
             </div>
@@ -549,7 +549,7 @@ function create_match_history(data) {
             </div>
             <div class="loadimg" data-v-3997c59e="">
                 <div class="van-image logo-img" data-v-3997c59e=""><img
-                        src="${data['team_b_logo']}"
+                        src="/elephantFootball/football.png"
                         class="van-image__img"><!----><!----></div>
                 <p class="nameu ellipsis-1" data-v-3997c59e="">Feyenoord Rotterdam (w)
                 </p>

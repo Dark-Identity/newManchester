@@ -165,7 +165,7 @@ body {
     background: url(../elephantFootball/rulePopup/rules.png) no-repeat center;
     background-size: cover;
     z-index: -1;
-    
+
 }
 
 .accordion {
@@ -625,7 +625,7 @@ body {
 
 }
 
-.parent_div{
+.parent_div {
     height: 100vh;
     overflow-y: scroll;
 }
@@ -633,16 +633,18 @@ body {
 
 .parent_div::-webkit-scrollbar {
     display: none;
-  }
-  
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .parent_div {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.parent_div {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
 
 
-  
+
 
 .outer {
     margin-top: 2vh;
@@ -693,29 +695,31 @@ body {
 /* -------------------------------------------------------------------------------------------------------------------- 
 /* --------------------------------------------------------- download page ------------------------------------------------- */
 
-.download_cantainer{
-   position: absolute;
-   top: 0;
-   left: o;
-   height: 100vh;
-   width: 100vw;
-   background: url('/elephantFootball/minePage/App\ download.jpg') center no-repeat;
-   background-size: cover;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-.download_flex{
+.download_cantainer {
+    position: absolute;
+    top: 0;
+    left: o;
+    height: 100vh;
+    width: 100vw;
+    background: url('/elephantFootball/minePage/App\ download.jpg') center no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.download_flex {
+    display: flex;
+    align-items: center;
     padding: 2vw;
     position: absolute;
-    bottom: 8vh;
+    bottom: 14vh;
+    width: 100vw;
+    justify-content: space-evenly;
 }
 
 
-.install{
+.install {
     position: absolute;
     top: 0;
     left: 0;
@@ -726,12 +730,14 @@ body {
     background-size: cover;
     z-index: -1;
 }
+
 .buttons {
-    width: 41vw;
-    height: 13.066667vw;
+    width: 30vw;
+    height: 10.066667vw;
     border-radius: 6.8vw;
     border: .266667vw solid #8ec0ae;
-    font-weight: 500;
+    font-weight: 800;
+    letter-spacing: 1px;
     color: #fff;
     margin-top: 4vw;
     background: #7bebff;
@@ -742,8 +748,8 @@ body {
 }
 
 
-#install_close{
-    position:absolute;
-    top: 0;
-    left: 0;
+#install_close {
+    position: absolute;
+    top: 4vh;
+    left: 2vw;
 }

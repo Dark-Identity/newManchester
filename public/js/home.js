@@ -274,7 +274,7 @@ function create_match(data) {
   let date = new Date(data['raw_date']);
 
   // console.log(ndate);
-  // console.log(new Date(data['raw_date'].slice(0, -1))));
+  console.log(date);
 
 
   let parent_box = document.querySelector('.collection');
@@ -304,7 +304,7 @@ function create_match(data) {
                                   ${data['team_a']}
                               </p>
                               <div class="teamLogo">
-                                  <img src="${data['team_a_logo']}" alt="" srcset="" id='logo_a'>
+                                  <img src="/elephantFootball/football.png" alt="" srcset="" id='logo_a'>
                               </div>
                           </div>
 
@@ -314,7 +314,7 @@ function create_match(data) {
 
                           <div class="t teamOne">
                               <div class="teamLogo">
-                                  <img src="${data['team_b_logo']}" alt="" srcset="" id="logo_b">
+                                  <img src="/elephantFootball/football.png" alt="" srcset="" id="logo_b">
                               </div>
                               <p class="nameu leftnamei ellipsis-2" data-v-7afa3138=""  id="initial_team_b">
                                   ${data['team_b']}
@@ -322,30 +322,9 @@ function create_match(data) {
                           </div>
                       </div>
 
-                      <p id='initial_time' style="text-align:center;">${date.getHours()}:${date.getMinutes()}</p>
+                      <p id='initial_time' style="text-align:center;color:red;font-weight:800;letter-spacing:2px">${date.getHours()}:${date.getMinutes()}</p>
 
-                      <div class="downbox" data-v-7afa3138="" style="display:none">
-                          <div role="timer" class="van-count-down countdown" data-v-7afa3138="">
-                              <span class="block" data-v-7afa3138="">00</span>
-                              <span class="colon" data-v-7afa3138="">:</span>
-                              <span class="block" data-v-7afa3138="">00</span>
-                              <span class="colon" data-v-7afa3138="">:</span>
-                              <span class="block" data-v-7afa3138="">00</span>
-                          </div>
-                      </div>
-                      </div>
-
-                      <div class="matchResult" style="display:none">
-                          <div class="highuis flex" data-v-7afa3138="" style= "display:none">
-                          <span class="highi" data-v-7afa3138="">
-                            High return</span>
-                            <p class="oddsop" data-v-7afa3138="">0-0<span data-v-7afa3138="">@6.20%</span></p>
-                          </div>
-                          <div class="transty flex" data-v-7afa3138=""><span data-v-7afa3138="" style="font-weight:600">Transaction
-                                  Quantity</span>
-                              <p data-v-7afa3138="">435K</p>
-                          </div>
-                      </div>
+                     
   `;
 
   match_card.innerHTML = body;
@@ -672,12 +651,18 @@ function reload() {
 // --------------------------------------------------- vip page section -------------------------------------------------------
 
 var swiper = new Swiper(".mySwiper", {
-  pagination: {
-    el: ".swiper-pagination",
-    autoplay: "true",
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplay: {
+  delay: 2500,
+  disableOnInteraction: false,
   },
-});
-
+  pagination: {
+  el: ".swiper-pagination",
+  clickable: true,
+  },
+  
+  });
 
 
 

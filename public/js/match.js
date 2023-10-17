@@ -81,7 +81,7 @@ function create_match(data) {
                             </div>
                             <div class="date">
                                 <p>${[date.getFullYear(), date.getMonth() + 1, date.getDate()].join('|')}</p>
-                                <p id='initial_time'>${date.getHours()}:${date.getMinutes()}</p>
+                              
                             </div>
                         </div>
   
@@ -92,7 +92,7 @@ function create_match(data) {
                                     ${data['team_a']}
                                 </p>
                                 <div class="teamLogo">
-                                    <img src="${data['team_a_logo']}" alt="" srcset="" id='logo_a'>
+                                    <img src="/elephantFootball/football.png" alt="" srcset="" id='logo_a'>
                                 </div>
                             </div>
   
@@ -102,7 +102,7 @@ function create_match(data) {
   
                             <div class="t teamOne">
                                 <div class="teamLogo">
-                                    <img src="${data['team_b_logo']}" alt="" srcset="" id="logo_b">
+                                    <img src="/elephantFootball/football.png" alt="" srcset="" id="logo_b">
                                 </div>
                                 <p class="nameu leftnamei ellipsis-2" data-v-7afa3138=""  id="initial_team_b">
                                     ${data['team_b']}
@@ -110,16 +110,8 @@ function create_match(data) {
                             </div>
                         </div>
   
-  
-                        <div class="downbox" data-v-7afa3138="">
-                            <div role="timer" class="van-count-down countdown" data-v-7afa3138="">
-                                <span class="block" data-v-7afa3138="">00</span>
-                                <span class="colon" data-v-7afa3138="">:</span>
-                                <span class="block" data-v-7afa3138="">00</span>
-                                <span class="colon" data-v-7afa3138="">:</span>
-                                <span class="block" data-v-7afa3138="">00</span>
-                            </div>
-                        </div>
+                        <p id='initial_time' style="text-align:center;color:red;font-weight:800;letter-spacing:2px">${date.getHours()}:${date.getMinutes()}</p>
+                        
   
     `;
 
@@ -518,7 +510,6 @@ function create_match_two(data) {
                             </div>
                             <div class="date">
                                 <p>${[date.getFullYear(), date.getMonth() + 1, date.getDate()].join('|')}</p>
-                                <p id='initial_time'>${date.getHours()}:${date.getMinutes()}</p>
                             </div>
                         </div>
   
@@ -529,7 +520,7 @@ function create_match_two(data) {
                                     ${data['team_a']}
                                 </p>
                                 <div class="teamLogo">
-                                    <img src="${data['team_a_logo']}" alt="" srcset="" id='logo_a'>
+                                    <img src="/elephantFootball/football.png" alt="" srcset="" id='logo_a'>
                                 </div>
                             </div>
   
@@ -539,7 +530,7 @@ function create_match_two(data) {
   
                             <div class="t teamOne">
                                 <div class="teamLogo">
-                                    <img src="${data['team_b_logo']}" alt="" srcset="" id="logo_b">
+                                    <img src="/elephantFootball/football.png" alt="" srcset="" id="logo_b">
                                 </div>
                                 <p class="nameu leftnamei ellipsis-2" data-v-7afa3138=""  id="initial_team_b">
                                     ${data['team_b']}
@@ -547,16 +538,8 @@ function create_match_two(data) {
                             </div>
                         </div>
   
-  
-                        <div class="downbox" data-v-7afa3138="">
-                            <div role="timer" class="van-count-down countdown" data-v-7afa3138="">
-                                <span class="block" data-v-7afa3138="">00</span>
-                                <span class="colon" data-v-7afa3138="">:</span>
-                                <span class="block" data-v-7afa3138="">00</span>
-                                <span class="colon" data-v-7afa3138="">:</span>
-                                <span class="block" data-v-7afa3138="">00</span>
-                            </div>
-                        </div>
+                        <p id='initial_time'  style="text-align:center;color:red;font-weight:800;letter-spacing:2px">${date.getHours()}:${date.getMinutes()}</p>
+
   
     `;
 
