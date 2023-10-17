@@ -538,19 +538,18 @@
             <div class="amountBox">
                 <div class="betAmount">
                     <p>Bet amount</p>
-                    <img src="/elephantFootball/underbet_popup.png" alt="" style="width: 100px;">
+                    {{!-- <img src="/elephantFootball/underbet_popup.png" alt="" style="width: 100px;"> --}}
                 </div>
                 <input type="number" placeholder="Please enter the amount" id="bet_amount" style="color: black;">
-                <p style="color: red;">Guaranteed maximum bet amount of RS.10000</p>
             </div>
 
 
             <div class="betvalue">
                 <p>To pay</p>
                 <div class="arrange">
-                    <div class="settingicon"><ion-icon name="settings-outline"></ion-icon></div>
+                    <div class="settingicon" style="display: none;"><ion-icon name="settings-outline"></ion-icon></div>
                     <div class="values">
-                        <span> 600</span>
+                        <span id="All"> All</span>
                         <span> 1000</span>
                         <span>2000</span>
                         <span> 5000</span>

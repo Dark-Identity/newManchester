@@ -133,7 +133,6 @@ async function get_live_bets() {
     let res = await fetch('/get_live_bets');
     res = await res.json();
 
-    console.log("yes match live bets working");
 
     // from here I have to call the store data function by passing the arguments key and array.
 
@@ -143,7 +142,6 @@ async function get_live_bets() {
             percentage[match_data['fixture_id']] = match_data['percentage'];
         }
     }
-    console.log("yes works");
     load_bet_box();
 }
 
@@ -180,7 +178,6 @@ function check_date(date, time) {
     let valid_hour = (hours_now < m_hours);
     let valid_minutes = (minutes_now < m_minutes);
     let equal_hours = (hours_now === m_hours);
-    console.log(hours_now, m_hours, minutes_now, m_minutes);
     let to_return = '';
 
     if (valid_date && valid_hour || equal_hours && valid_minutes) {
@@ -230,7 +227,6 @@ function load_bet_percentages(id) {
 function load_bet_box() {
     document.querySelectorAll(".bet_card").forEach((item, i) => {
         item.addEventListener('click', () => {
-            console.log('works this');
             let league_id = item.querySelector('#league_id').innerText;
             document.querySelector('#final_league_id').innerText = league_id;
 
@@ -317,7 +313,6 @@ document.querySelectorAll('.values > span').forEach((item, i) => {
     item.addEventListener('click', () => {
         if (i !== 5) {
             let value = item.innerText.replace(/\D/, '');
-            // console.log(value);
             document.querySelector('#bet_amount').value = parseFloat(value);
             calc_available();
         } else {
@@ -328,6 +323,16 @@ document.querySelectorAll('.values > span').forEach((item, i) => {
         }
     })
 });
+
+
+const All = document.querySelector('#All');
+All.addEventListener('click',()=>{
+  let text = document.querySelector('.s_balance').innerText;
+  document.querySelector('#bet_amount').value = parseFloat(text);       
+  calc_available();
+});
+
+
 // --------------------------------------------------- place bet section function ends -------------------------------------------------------
 
 
@@ -405,7 +410,6 @@ document.querySelector('#confirm').addEventListener('click', async () => {
 
     let res = await fetch('/placebet', config);
     res = await res.json();
-    console.log(res);
 
     if (res['status'] == 1) {
         popup_tip.innerText = 'Success! Bet Placed ';
@@ -578,3 +582,47 @@ async function get_live_bets_two() {
 
 get_live_bets_two();
 
+
+
+
+
+
+
+
+async function get_user_data() {
+
+    let config = {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }
+  
+    let res = await fetch('/user_data', config);
+    let user_information = await res.json();
+  
+    if (user_information['status'] === 1) {
+      set_user_data(user_information);
+    } else if (user_information['status'] === 2) {
+      window.location.href = window.location.origin + '/login';
+    }
+  
+  }
+  
+  
+  function set_user_data(info) {
+  
+  
+    
+    document.querySelectorAll('.s_balance').forEach((item, i) => {
+      item.innerText = info['balance'].toFixed(2);
+    });
+    
+  
+  
+    
+  
+  
+  }
+  get_user_data();
+  

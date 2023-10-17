@@ -1,9 +1,6 @@
 const jwt = require('jsonwebtoken');
-let unirest = require("unirest");
-const fast2sms = require("fast2sms");
 const { User, Bet, Deposit, Withdrawal, Upi, Other, RandomPercentage } = require('../modals/userModal');
-const { response } = require('express');
-
+const unirest = require('unirest')
 module.exports.register = (req, res) => {
     res.render('register')
 }
@@ -216,7 +213,6 @@ module.exports.get_data = get_data = async (req, res) => {
 
 
     if (!req.session.user_id || !req.session.inv) {
-        console.log(bakkchodi);
         return res.send({ status: 2 });
     } else {
 
@@ -227,7 +223,6 @@ module.exports.get_data = get_data = async (req, res) => {
         try {
 
             let db_data = await User.findOne({ inv: INVITATION_CODE });
-
             if (Object.keys(db_data).length === 0 || !db_data) {
                 return res.send({ status: 2 });
             }
@@ -243,11 +238,8 @@ module.exports.get_data = get_data = async (req, res) => {
                 phone: db_data.phone,
                 betPlayed: db_data.betPlayed,
                 profit: db_data.profit,
-                vipLevel: db_data.vipLevel,
                 max_deposit: db_data.max_deposit,
                 promotion_bonus: db_data.promotion_bonus,
-                avatar: db_data.avatar,
-                withdrawalC: db_data.withdrawalC,
                 status: 1
 
             };
@@ -255,7 +247,6 @@ module.exports.get_data = get_data = async (req, res) => {
             return res.send(data);
 
         } catch (e) {
-            console.log('bakkchodi 2');
 
             return res.send({ status: 2 });
 
@@ -319,7 +310,6 @@ module.exports.get_payment_data = async function get_payment_data(req, res) {
     let deposit = await Deposit.find({ inv: INVITATION_CODE });
     let other = await Other.find({ inv: INVITATION_CODE });
     data = { withdrawal, deposit, other };
-    console.log(data);
     return res.send(data);
 
 }

@@ -132,6 +132,7 @@ const newWithdrawalSchema = new mongoose.Schema({
     date: { type: String },
     Ammount: { type: Number },
     inv: { type: Number },
+    time : {type : String},
     transactioin_id: { type: String },
     status: { type: Number } // 0 -> pending, 1 -> success , 2 -> canceled
 });
@@ -145,6 +146,7 @@ const otherPaymentSchema = new mongoose.Schema({
     date: { type: String },
     Ammount: { type: Number },
     inv: { type: Number },
+    time : {type : String},
 });
 
 // schema for random profit percentages 

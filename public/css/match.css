@@ -71,7 +71,7 @@ body {
 
 .outer {
     margin-top: 2vh;
-    border: 1px solid #228c69;
+    border: 1px solid #22778c;
     height: 40px;
     border-radius: 100px;
     display: flex;
@@ -81,7 +81,7 @@ body {
 }
 
 .one {
-    color: rgb(53, 171, 53);
+    color: rgb(53, 134, 171);
     width: 50%;
     text-align: center;
     padding: 1vh;
@@ -266,7 +266,7 @@ span {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #00774c;
+    border: 1px solid #004677;
     border-radius: 50%;
 }
 
@@ -388,7 +388,7 @@ span {
 /* ----------------------------------------------- place bet popup -------------------------------- */
 .placebet {
     position: absolute;
-    top: 32%;
+    top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
@@ -396,7 +396,8 @@ span {
     background-color: #FAFAFA;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    transform: translateY(150vw);
+    transform: translateY(200vw);
+    overflow-y: scroll;
 }
 
 .betHead {
@@ -428,7 +429,7 @@ span {
 
 .race {
     display: flex;
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
 }
@@ -536,7 +537,6 @@ span {
     width: 40%;
     padding: 1vw;
     margin-left: 5vw;
-    border: 1px solid rgba(128, 128, 128, 0.752);
     color: grey;
     /* box-shadow: 2px 2px 2px skyblue; */
 }

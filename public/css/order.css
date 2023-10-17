@@ -174,3 +174,38 @@ body {
     color: #333;
     font-weight:800;
 }
+
+
+
+.trade_cancel_btn{
+    display: flex;
+    border-radius: 100vw;
+    padding : 0 0.5rem;
+    background : red;
+    width: fit-content;
+    align-items: center;
+    align-self: end;
+    margin-right: 0.2rem;
+    color : white;
+  }
+  
+  .trade_cancel_btn > h3{
+    padding : 0 0.5rem;
+  }
+  .trade_cancel_btn > i{
+    font-size: 1.2rem;
+  }
+  
+  .trade_del_box{
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    width: 80%;
+    background: white;
+    color : black;
+    transform: translate(-50% , -50%);
+    padding : 1rem 0.5rem 2rem 0.5rem;
+    text-align: center;
+  }
+  
+  

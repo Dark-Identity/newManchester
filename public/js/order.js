@@ -5,14 +5,20 @@ const result = document.querySelector('.resultCantain');
 const resultBack = document.querySelector('.van-nav-bar__left');
 
 
+let popup_cancel_btn = document.querySelector('#popup_close_btn');
+let popup_tip = document.querySelector('#popup_tip');
+let popup_page = document.querySelector("#popup_page");
+
+
+
 window.addEventListener('load', () => {
   let scale_object = document.querySelector('.loader');
   scale_object.style.animation = 'shadowPulse 2s linear infinite';
   setTimeout(() => {
-      let elem = document.querySelector('#loading');
-      elem.remove();
+    let elem = document.querySelector('#loading');
+    elem.remove();
   },
-      3000)
+    3000)
 })
 
 
@@ -26,11 +32,6 @@ resultLink.addEventListener('click', () => {
 
 });
 
-resultBack.addEventListener('click', () => {
-  mainContent.style.cssText = `z-index: 1;`;
-  result.style.cssText = `z-index:-1`;
-
-});
 
 
 
@@ -68,7 +69,6 @@ two.addEventListener('click', () => {
   cancelPopup.style.zIndex = "-1";
 })
 
-
 three.addEventListener('click', () => {
   oneP.style.color = ' black';
   twoP.style.color = ' black';
@@ -85,52 +85,98 @@ three.addEventListener('click', () => {
 
 // --------------------------------------------------------------------------------------------------------------------------
 // ---------------------------------- order page which shows place bets -------------------------------------
+// --------------------------------------------------- checking the date -------------------------------------------------------
+function check_date(date, time) {
+
+  const nDate = new Date().toLocaleString('en-US', {
+    timeZone: 'Asia/Calcutta'
+  });
 
 
+  let today = new Date(nDate);
+
+  let match_date = date.split(/\//);
+  let m_time = time.split(/\:/);
+  let m_date = parseInt(match_date[0]);
+  let m_month = parseInt(match_date[1]);
+  let m_hours = parseInt(m_time[0]);
+  let m_minutes = parseInt(m_time[1]);
+
+
+  let minutes_now = parseInt(today.getMinutes());
+  let hours_now = parseInt(today.getHours());
+  minutes_now += 5;
+  if (minutes_now > 60) {
+    minutes_now = minutes_now - 60;
+    hours_now += 1;
+  }
+
+  let valid_date = (parseInt(today.getDate()) == m_date);
+  let valid_hour = (hours_now < m_hours);
+  let valid_minutes = (minutes_now < m_minutes);
+  let equal_hours = (hours_now === m_hours);
+  let to_return = '';
+
+  if (valid_date && valid_hour || equal_hours && valid_minutes) {
+    to_return = `<div class="trade_cancel_btn">
+      <i class="fa-solid fa-angles-up"></i>
+      <h3>CANCEL</h3>
+      </div>`;
+    return to_return;
+  }
+
+  return to_return;
+
+}
 
 function listen_to_cancel_bet() {
-    document.querySelectorAll('.trade_cancel_btn').forEach((item, i) => {
-      item.addEventListener('click' , ()=>{
-        document.querySelector('#del_leagueid').innerText = item.parentElement.querySelector('.trade_league_id').innerText;
+  document.querySelectorAll('.trade_cancel_btn').forEach((item, i) => {
+    item.addEventListener('click', () => {
+      document.querySelector('#del_leagueid').innerText = item.parentElement.querySelector('.trade_league_id').innerText;
+      document.querySelector('.trade_del_box').style.display = 'block';
+    })
+  });
 
-        document.querySelector('.trade_del_box').style.display = 'block';
-      })
-      });
+  document.querySelector('#del_trade').addEventListener('click', async () => {
 
-      document.querySelector('#del_trade').addEventListener('click' , async ()=>{
-
-        popup_page.style.left = '0px';
-        let value = document.querySelector('#del_leagueid').innerText;
-
-        let data = JSON.stringify({value : value});
-        const config = {
-            method : 'POST',
-            headers:{
-                'content-type' : 'application/json'
-              },
-              body : data
-            }
+    popup_page.style.left = '0px';
+    let value = document.querySelector('#del_leagueid').innerText;
+    console.log(value);
+    let data = JSON.stringify({ value: value });
+    const config = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: data,
+    }
 
 
-            let res = await fetch('/delbet' , config);
-            let parsed_response = await res.json();
+    let res = await fetch('/delbet', config);
+    let parsed_response = await res.json();
+    console.log(parsed_response);
 
-            if(parsed_response['status'] == 1){
-              popup_tip.innerText = 'Success! Bet deleted. refresh';
-              popup_cancel_btn.disabled = false;
+    if (parsed_response['status'] == 1) {
+      popup_tip.innerText = 'Success! Bet deleted. refresh';
+      popup_cancel_btn.disabled = false;
 
-            }else if(parsed_response['status'] == 2){
-              popup_tip.innerText = 'Bet cannot be deleted now.';
-              popup_cancel_btn.disabled = false;
+    } else if (parsed_response['status'] == 2) {
+      popup_tip.innerText = 'Bet cannot be deleted now.';
+      popup_cancel_btn.disabled = false;
 
-              return;
-            }else if(parsed_response['status'] == 0){
-              window.location.href = window.location.origin + '/login';
-            }
+      return;
+    } else if (parsed_response['status'] == 0) {
+      window.location.href = window.location.origin + '/login';
+    }
 
-      })
+  })
 
-  }
+}
+document.querySelectorAll('.del_trade_cancel').forEach((item, i) => {
+  item.addEventListener('click', () => {
+    item.parentElement.parentElement.style.display = 'none';
+  })
+});
 
 
 
@@ -148,22 +194,19 @@ async function get_bet_history() {
 
   res = await res.json();
 
-  console.log(res + "response of the get histroy bets");
 
   if (res['status'] === 0) {
     window.location.href = window.location.origin + '/login';
   } else if (res['status'] === 1) {
 
-    console.log(res['unsetteled_bets'] , res['settled_bets']);
 
     if (res['unsetteled_bets']) {
       res['unsetteled_bets'].forEach((item, i) => {
         create_unsettled_bets(item);
-        
+
       });
-      // listen_to_cancel_bet();
+      listen_to_cancel_bet();
     }
-    // console.log(res);
     if (res['setteled_bets']) {
       res['setteled_bets'].forEach((item, i) => {
         create_settled_bets(item);
@@ -175,50 +218,9 @@ async function get_bet_history() {
 }
 
 
-function check_date(date, time) {
-
-  const nDate = new Date().toLocaleString('en-US', {
-    timeZone: 'Asia/Calcutta'
-  });
-  let today = new Date(nDate);
-
-  let match_date = date.split(/\//);
-  let m_time = time.split(/\:/);
-  let m_date = parseInt(match_date[0]);
-  let m_month = parseInt(match_date[1]);
-  let m_hours = parseInt(m_time[0]);
-  let m_minutes = parseInt(m_time[1]);
-
-  let minutes_now = parseInt(today.getMinutes());
-  let hours_now = parseInt(today.getHours());
-  minutes_now += 5;
-  if (minutes_now > 60) {
-    minutes_now = minutes_now - 60;
-    hours_now += 1;
-  }
-
-  let valid_date = (parseInt(today.getDate()) == m_date);
-  let valid_hour = (hours_now < m_hours);
-  let valid_minutes = (minutes_now < m_minutes);
-  let equal_hours = (hours_now === m_hours);
-  // console.log(hours_now , m_hours , minutes_now , m_minutes);
-  let to_return = '';
-
-  if (valid_date && valid_hour || equal_hours && valid_minutes) {
-    to_return = `<div class="trade_cancel_btn">
-        <i class="fa-solid fa-angles-up"></i>
-        <h3>CANCEL</h3>
-        </div>`;
-    return to_return;
-  }
-
-  return to_return;
-
-}
 
 
-function   create_unsettled_bets(data) {
-  console.log(data + "unsettled bets from the backend");
+function create_unsettled_bets(data) {
   let parent = document.querySelector('.orderPopup');
   let child = document.createElement('div');
   child.classList.add('match-card');
@@ -234,6 +236,7 @@ function   create_unsettled_bets(data) {
             <img src="/elephantFootball/homePage/top_games_logo.png" alt="" srcset="">
         </div>
         <p style="color:#5bb2ea">${data['league']}</p>
+        <p style="display : none;" class="trade_league_id">${data['leagueId']}</p>
     </section>
 
 
@@ -285,25 +288,13 @@ function   create_unsettled_bets(data) {
             <p><span class="paisa"> ${((parseFloat(data['bAmmount']) / 100) * parseFloat(data['profit'])).toFixed(2)}</span></p>
         </div>
 
-        <p style="text-align: center;font-size:larger;color:blue;width: 40vw;
-        height: 10.066667vw;
-        border-radius: 6.8vw;
-        border: .266667vw solid #8ec0ae;
-        font-size: 4.8vw;
-        font-weight: 500;
-        color: #fff;
-        margin-top: 4vw;
-        background: #7bebff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-        background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-        "> Cancel </p>
+
 
     </section>
+    ${cut_box}
 
-</div>
+    </div>
+
 `;
 
   child.innerHTML = body;
@@ -313,7 +304,6 @@ function   create_unsettled_bets(data) {
 
 
 function create_settled_bets(data) {
-  console.log(data);
   let parent = document.querySelector('.historicalPopup');
   let child = document.createElement('div');
   child.classList.add('match-card');
@@ -387,52 +377,6 @@ function create_settled_bets(data) {
 }
 
 
-
-// --------------------------------------------------- checking the date -------------------------------------------------------
-function check_date(date, time) {
-
-  const nDate = new Date().toLocaleString('en-US', {
-    timeZone: 'Asia/Calcutta'
-  });
-
-
-  let today = new Date(nDate);
-
-  let match_date = date.split(/\//);
-  let m_time = time.split(/\:/);
-  let m_date = parseInt(match_date[0]);
-  let m_month = parseInt(match_date[1]);
-  let m_hours = parseInt(m_time[0]);
-  let m_minutes = parseInt(m_time[1]);
-
-  console.log(m_hours);
-
-  let minutes_now = parseInt(today.getMinutes());
-  let hours_now = parseInt(today.getHours());
-  minutes_now += 5;
-  if (minutes_now > 60) {
-    minutes_now = minutes_now - 60;
-    hours_now += 1;
-  }
-
-  let valid_date = (parseInt(today.getDate()) == m_date);
-  let valid_hour = (hours_now < m_hours);
-  let valid_minutes = (minutes_now < m_minutes);
-  let equal_hours = (hours_now === m_hours);
-  console.log(hours_now, m_hours, minutes_now, m_minutes);
-  let to_return = '';
-
-  if (valid_date && valid_hour || equal_hours && valid_minutes) {
-    to_return = `<div class="trade_cancel_btn">
-      <i class="fa-solid fa-angles-up"></i>
-      <h3>CANCEL</h3>
-      </div>`;
-    return to_return;
-  }
-
-  return to_return;
-
-}
 
 
 get_bet_history();

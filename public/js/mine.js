@@ -72,11 +72,6 @@ accBtn.addEventListener('click', () => {
     footer.style.zIndex = '-1';
     account.style.zIndex = '1';
 });
-document.querySelector('#accountBack').addEventListener('click', () => {
-    content.style.zIndex = '1';
-    footer.style.zIndex = '1';
-    account.style.zIndex = '-1';
-})
 
 const passwordCantainer = document.querySelector('.passwordCantainer');
 document.querySelector('#password').addEventListener('click', () => {
@@ -106,12 +101,12 @@ document.querySelector('#match_back').addEventListener('click', () => {
 
 
 const install = document.querySelector('.install');
-document.querySelector('#download').addEventListener('click',()=>{
-    install.style.zIndex='1';
+document.querySelector('#download').addEventListener('click', () => {
+    install.style.zIndex = '1';
 });
-document.querySelector('#install_close').addEventListener('click',()=>{
-    install.style.zIndex='-1';
-    content.style.zIndex='1'; 
+document.querySelector('#install_close').addEventListener('click', () => {
+    install.style.zIndex = '-1';
+    content.style.zIndex = '1';
 })
 
 
@@ -165,7 +160,6 @@ async function get_user_data() {
 
     let res = await fetch('/user_data', config);
     let user_information = await res.json();
-    console.log(user_information);
 
     if (user_information['status'] === 1) {
         set_user_data(user_information);
@@ -180,9 +174,9 @@ function set_user_data(info) {
     // selectAll('.s_invitation').forEach((item, i) => {
 
     //     item.value = `${window.location.origin + '/signup' + '?id=' + info['inv']}`;
-    
+
     //   });
-      
+
 
     get_inv(parseInt(info['inv']));
 
@@ -223,7 +217,6 @@ get_user_data();
 document.querySelector('#pbtn').addEventListener('click', async () => {
     let details = document.querySelectorAll('.pass_change');
 
-    console.log(details);
 
     popup_page.style.left = '0px';
     popup_cancel_btn.disabled = true;
@@ -238,7 +231,6 @@ document.querySelector('#pbtn').addEventListener('click', async () => {
         let previous_code = details[0].value;
         let new_code = details[1].value;
 
-        console.log(previous_code);
 
         let data = {
             previous_code, new_code
@@ -266,7 +258,6 @@ document.querySelector('#pbtn').addEventListener('click', async () => {
         }
 
     } else {
-        console.log("else statement works");
         popup_tip.innerText = 'Enter all the details.';
         popup_cancel_btn.disabled = false;
 
@@ -305,14 +296,7 @@ document.querySelector('#logout').addEventListener('click', async () => {
     fetch('/logout', config);
     window.location.href = window.location.origin + '/login';
 })
-
-
 // ------------------------------------------------------------------------ getting the records from the backend -----------------------------------------------------------------------------------
-
-
-
-
-
 
 function create_withdrawal(data) {
 
@@ -350,7 +334,7 @@ function create_withdrawal(data) {
       </span>
      </div>
           <div style="display:flex;justify-content: space-between;margin-top:1vw">
-              <p>${item.date}</p>
+              <p>${item.date}  ${item.time}</p>
               <p>${item.Ammount}</p>
           </div>
       </div>
@@ -372,7 +356,6 @@ function create_deposit(data) {
     let deposit_parent_box = document.querySelector(".deposite_parent");
     if (data && data.length) {
         data.forEach((item, i) => {
-
             let child = document.createElement('div');
             child.classList.add("record_parent_div");
             let status = '';
@@ -389,19 +372,8 @@ function create_deposit(data) {
                 status_type = 'cancelled';
             }
 
-    //         let body = `<div class="pay_card_title">
-    //     <h4>DEPOSIT</h4>
-    //     <span>
-    //       <i style='color : ${status}' class="fa-sharp fa-solid fa-circle"></i>  <h5>${status_type}</h5>
-    //     </span>
-    //   </div>
-    //   <div class="pay_data">
-    //     <h3>${item.Ammount}</h3>
-    //     <h4>${item.transactioin_id}</h4>
-    //     <h3>${item.date}</h3>
-    //   </div>`;
 
-      let body = `
+            let body = `
       <section class="record_parent_div" id="deposite_record">
       <div class="recordss">
           <div style="display:flex;justify-content: space-between;">
@@ -412,7 +384,7 @@ function create_deposit(data) {
               </span>
           </div>
           <div style="display:flex;justify-content: space-between;margin-top:1vw">
-              <p>${item.date}</p>
+              <p>${item.date}  ${item.time}</p>
               <p>${item.Ammount}</p>
           </div>
        </div>
@@ -491,10 +463,9 @@ async function get_payment() {
 
     let res_data = await fetch('/get_payment_data', config);
     res_data = await res_data.json();
-    console.log(res_data + "get payment");
     create_deposit(res_data['deposit']);
     create_withdrawal(res_data['withdrawal']);
-    // create_other_data(res_data['other']);
+    create_other_data(res_data['other']);
     // create_deposit(res_data['deposit']);
 }
 
@@ -516,7 +487,6 @@ const other_parent = document.querySelector('.other_parent');
 
 
 one.addEventListener('click', () => {
-console.log('works');
     secondOuter.style.cssText = `justify-content: start;`;
     withdraw_parent.style.display = "block";
     deposite_parent.style.display = "none";
@@ -525,163 +495,216 @@ console.log('works');
 })
 
 two.addEventListener('click', () => {
-  secondOuter.style.cssText = `justify-content: center;`;
-  withdraw_parent.style.display = "none";
-  deposite_parent.style.display = "block";
-  other_parent.style.display = "none";
+    secondOuter.style.cssText = `justify-content: center;`;
+    withdraw_parent.style.display = "none";
+    deposite_parent.style.display = "block";
+    other_parent.style.display = "none";
 })
 
 
 three.addEventListener('click', () => {
-  secondOuter.style.cssText = `justify-content: end;`;
-  withdraw_parent.style.display = "none";
-  deposite_parent.style.display = "none";
-  other_parent.style.display = "block";
+    secondOuter.style.cssText = `justify-content: end;`;
+    withdraw_parent.style.display = "none";
+    deposite_parent.style.display = "none";
+    other_parent.style.display = "block";
 })
 
 
 
 
 // -------------------------------------------------------------------------------------------------------
+function create_match_history(data) {
+
+    let ndate = new Date(data['raw_date']);
+    let date = new Date(data['raw_date']);
+
+    let parent_box = document.querySelector('.match_history');
+    let match_card = document.createElement('div');
+    match_card.classList.add('list-box');
+    match_card.classList.add('bet_card_two');
+
+
+
+    let body = `<div class="list-box" data-v-3997c59e="">
+    <div class="invest-box" data-v-3997c59e="">
+        <div class="league flex" data-v-3997c59e="">
+            <div class="leftbox" data-v-3997c59e="">
+                <p class="circlet" data-v-3997c59e=""></p>
+                <p  class="league_id" id="league_id" style="display:none">${data['fixture_id']}</p>
+                <p class="ellipsis-1 namematch" data-v-3997c59e="">Netherlands
+                ${data['league']}
+                </p>
+            </div>
+            <p class="matchdata" data-v-3997c59e="">${[date.getFullYear(), date.getMonth() + 1, date.getDate()].join('|')} ${date.getHours()}:${date.getMinutes()}</p>
+        </div>
+        <div class="vsmath" data-v-3997c59e="">
+            <div class="loadimg" data-v-3997c59e="">
+                <div class="van-image logo-img" data-v-3997c59e=""><img
+                        src="${data['team_b_logo']}"
+                        class="van-image__img"><!----><!----></div>
+                <p class="nameu ellipsis-1" data-v-3997c59e="">FC Utrecht (w)</p>
+            </div>
+            <div class="centerz" data-v-3997c59e="">
+                <p class="scorei" data-v-3997c59e="">${data['team_a_goal']} - ${data['team_b_goal']}</p>  
+            </div>
+            <div class="loadimg" data-v-3997c59e="">
+                <div class="van-image logo-img" data-v-3997c59e=""><img
+                        src="${data['team_b_logo']}"
+                        class="van-image__img"><!----><!----></div>
+                <p class="nameu ellipsis-1" data-v-3997c59e="">Feyenoord Rotterdam (w)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+    match_card.innerHTML = body;
+    parent_box.append(match_card);
+}
+
+
+
+
 async function get_history_matches() {
     let res = await fetch('/get_history_matches');
     res = await res.json();
-    console.log(res);
+
+    for (let match_data of res) {
+        create_match_history(match_data);
+    }
+
 }
 get_history_matches();
 
 
 
-document.querySelector('#show').addEventListener('click',()=>{
+document.querySelector('#show').addEventListener('click', () => {
     var x = document.getElementById("myInput");
     let y = document.querySelector('#eye_open')
     let z = document.querySelector('#eye_close')
-  
-     console.log('works');
+
     if (x.type === "password") {
-      z.style.display = 'none';
-      y.style.display = 'block';
-      x.type = "text";
+        z.style.display = 'none';
+        y.style.display = 'block';
+        x.type = "text";
     } else {
-      x.type = "password";
-      y.style.display = 'none';
-      z.style.display = 'block';
+        x.type = "password";
+        y.style.display = 'none';
+        z.style.display = 'block';
     }
-  });
-  
+});
 
 
-  document.querySelector('#show_two').addEventListener('click',()=>{
+
+document.querySelector('#show_two').addEventListener('click', () => {
     var x = document.getElementById("myInput_two");
     let y = document.querySelector('#eye_open_two')
     let z = document.querySelector('#eye_close_two')
-  
+
     if (x.type === "password") {
-      z.style.display = 'none';
-      y.style.display = 'block';
-      x.type = "text";
+        z.style.display = 'none';
+        y.style.display = 'block';
+        x.type = "text";
     } else {
-      x.type = "password";
-      y.style.display = 'none';
-      z.style.display = 'block';
+        x.type = "password";
+        y.style.display = 'none';
+        z.style.display = 'block';
     }
-  });
+});
 
 
-  document.querySelector('#show_three').addEventListener('click',()=>{
+document.querySelector('#show_three').addEventListener('click', () => {
     var x = document.getElementById("myInput_three");
     let y = document.querySelector('#eye_open_three')
     let z = document.querySelector('#eye_close_three')
-  
+
     if (x.type === "password") {
-      z.style.display = 'none';
-      y.style.display = 'block';
-      x.type = "text";
+        z.style.display = 'none';
+        y.style.display = 'block';
+        x.type = "text";
     } else {
-      x.type = "password";
-      y.style.display = 'none';
-      z.style.display = 'block';
+        x.type = "password";
+        y.style.display = 'none';
+        z.style.display = 'block';
     }
-  });
+});
 
 
 
 
 
 
-  
+
 // --------------------------QR CODE GENERATION ---------------------
 
 let qr_code_element = document.querySelector("#qrcode");
 let value = "http://localhost:3500/mine";
 function generate(value) {
-  qr_code_element.style = "";
+    qr_code_element.style = "";
 
-  var qrcode = new QRCode(qr_code_element, {
+    var qrcode = new QRCode(qr_code_element, {
 
-    text: `${value}`,
-    width: 180, //128
-    height: 180,
-    colorDark: "#000000",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-  });
+        text: `${value}`,
+        width: 180, //128
+        height: 180,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
 
 }
 
-async function get_inv(inv_code){
-    let inv = {INV : inv_code};
-    console.log(inv);
-    console.log("working inv code sir ji");
-    if(inv['INV'] !== 0){
-      document.querySelector('.inv_code ').innerText = inv['INV'];
-      document.querySelector('#invitation_link').innerText = `${window.location.origin + '/signup' + '?id=' + inv['INV'] }`;
-      generate(`${window.location.origin + '/signup' + '?id=' + inv['INV'] }`);
-    }else{
-      window.location.href = window.location.origin + "/sign.html";
-      return;
+async function get_inv(inv_code) {
+    let inv = { INV: inv_code };
+    if (inv['INV'] !== 0) {
+        document.querySelector('.inv_code ').innerText = inv['INV'];
+        document.querySelector('#invitation_link').innerText = `${window.location.origin + '/signup' + '?id=' + inv['INV']}`;
+        generate(`${window.location.origin + '/signup' + '?id=' + inv['INV']}`);
+    } else {
+        window.location.href = window.location.origin + "/sign.html";
+        return;
     }
-  
-  }
+
+}
 
 
 
 
-  const accordionContent = document.querySelectorAll(".accordion-content");
+const accordionContent = document.querySelectorAll(".accordion-content");
 
 accordionContent.forEach((item, index) => {
-  let header = item.querySelector("header");
-  header.addEventListener("click", () => {
-    item.classList.toggle("is-open");
+    let header = item.querySelector("header");
+    header.addEventListener("click", () => {
+        item.classList.toggle("is-open");
 
-    let description = item.querySelector(".accordion-content-description");
-    if (item.classList.contains("is-open")) {
-      // Scrollheight property return the height of
-      // an element including padding
-      description.style.height = `${description.scrollHeight}px`;
-      item.querySelector("i").classList.replace("fa-plus", "fa-minus");
-    } else {
-      description.style.height = "0px";
-      item.querySelector("i").classList.replace("fa-minus", "fa-plus");
-    }
-    // function to pass the index number of clicked header
-    removeOpenedContent(index);
-  })
+        let description = item.querySelector(".accordion-content-description");
+        if (item.classList.contains("is-open")) {
+            // Scrollheight property return the height of
+            // an element including padding
+            description.style.height = `${description.scrollHeight}px`;
+            item.querySelector("i").classList.replace("fa-plus", "fa-minus");
+        } else {
+            description.style.height = "0px";
+            item.querySelector("i").classList.replace("fa-minus", "fa-plus");
+        }
+        // function to pass the index number of clicked header
+        removeOpenedContent(index);
+    })
 })
 
 function removeOpenedContent(index) {
-  accordionContent.forEach((item2, index2) => {
-    if (index != index2) {
-      item2.classList.remove("is-open");
-      let descrip = item2.querySelector(".accordion-content-description");
-      descrip.style.height = "0px";
-      item2.querySelector("i").classList.replace("fa-minus", "fa-plus");
-    }
-  })
+    accordionContent.forEach((item2, index2) => {
+        if (index != index2) {
+            item2.classList.remove("is-open");
+            let descrip = item2.querySelector(".accordion-content-description");
+            descrip.style.height = "0px";
+            item2.querySelector("i").classList.replace("fa-minus", "fa-plus");
+        }
+    })
 }
 
 
-document.querySelector('#tirThree').addEventListener('click',()=>{
-   rule.style.zIndex="-1";
-   content.status.zIndex="1";  
+document.querySelector('#tirThree').addEventListener('click', () => {
+    rule.style.zIndex = "-1";
+    content.status.zIndex = "1";
 });

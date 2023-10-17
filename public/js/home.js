@@ -68,31 +68,31 @@ document.querySelector('.onlieser').addEventListener('click', () => {
 
 
 //-------------------------------- carousel eventlistner -----------------------------------------------
-carousel.addEventListener("click", () => {
-  home.style.transform = "translateX(100vw)"
-  vipcantainer.style.transform = "translateX(0)";
-  footer.style.transform = "translateX(100vw)";
+// carousel.addEventListener("click", () => {
+//   home.style.transform = "translateX(100vw)"
+//   vipcantainer.style.transform = "translateX(0)";
+//   footer.style.transform = "translateX(100vw)";
 
 
 
-});
+// });
 
-tir.addEventListener("click", () => {
-  vipcantainer.style.transform = "translateX(100vw)";
-  home.style.transform = "translateX(0)";
-  footer.style.transform = "translateX(0)";
+// tir.addEventListener("click", () => {
+//   vipcantainer.style.transform = "translateX(100vw)";
+//   home.style.transform = "translateX(0)";
+//   footer.style.transform = "translateX(0)";
 
-});
+// });
 
 //-------------------------------- checkbox eventlistner -----------------------------------------------
-const checks = document.querySelector(".checkbox");
-checks.addEventListener("click", () => {
-  home.style.cssText = `
-  transform:translateX(100vw);
-`;
-  footer.style.transform = "translateX(100vw)";
-  vipcantainer.style.transform = "translateX(0)";
-});
+// const checks = document.querySelector(".checkbox");
+// checks.addEventListener("click", () => {
+//   home.style.cssText = `
+//   transform:translateX(100vw);
+// `;
+//   footer.style.transform = "translateX(100vw)";
+//   vipcantainer.style.transform = "translateX(0)";
+// });
 
 
 
@@ -325,7 +325,7 @@ function create_match(data) {
                       </div>
 
 
-                      <div class="downbox" data-v-7afa3138="">
+                      <div class="downbox" data-v-7afa3138="" style="display:none">
                           <div role="timer" class="van-count-down countdown" data-v-7afa3138="">
                               <span class="block" data-v-7afa3138="">00</span>
                               <span class="colon" data-v-7afa3138="">:</span>
@@ -459,9 +459,9 @@ function load_bet_box() {
   document.querySelectorAll(".bet_card").forEach((item, i) => {
 
     item.addEventListener('click', () => {
+      
       let league_id = item.querySelector('#league_id').innerText;
       document.querySelector('#final_league_id').innerText = league_id;
-
       let team_a = item.querySelector('#initial_team_a').innerText;
       let team_b = item.querySelector('#initial_team_b').innerText;
       document.querySelector('#team_a_logo').src = item.querySelector('#logo_a').src;
@@ -469,8 +469,6 @@ function load_bet_box() {
       document.querySelectorAll('.final_league').forEach((item2, i) => {
         item2.innerText = item.querySelector('#final_league_name').innerText;
       });
-
-
       document.querySelector('#b_time').innerText = item.querySelector('#initial_time').innerText;
 
       document.querySelectorAll('.team_a').forEach((item1, i) => {
@@ -484,6 +482,8 @@ function load_bet_box() {
 
       let today = new Date();
       document.querySelector('#b_date').innerText = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
+      countdown();
+
 
       let percentage_array = load_bet_percentages(league_id);
 
@@ -544,12 +544,18 @@ document.querySelectorAll('.values > span').forEach((item, i) => {
     } else {
       let text = document.querySelector('.s_balance').innerText;
       let values = text.match(/[+-]?\d+(\.\d+)?/g);
-      document.querySelector('#bet_amount').value = parseFloat(values[0]);
+      document.querySelector('#bet_amount').value = parseFloat(values[0]);      
       calc_available()
     }
   })
 });
 
+const All = document.querySelector('#All');
+All.addEventListener('click',()=>{
+  let text = document.querySelector('.s_balance').innerText;
+  document.querySelector('#bet_amount').value = parseFloat(text);       
+  calc_available();
+});
 
 
 // --------------------------------------------------- place bet section function ends -------------------------------------------------------
@@ -1042,9 +1048,47 @@ document.querySelector('#recharge_btn').addEventListener('click', () => {
 });
 
 // gateway
-
-
 function manual_recharge_page() {
   yy_pay.style.zIndex = "1";
   footer.style.zIndex = "-1";
 }
+
+
+
+// ------------------------------------------ countdown ----------------------------------------
+function countdown(req,res) {
+
+ 
+  let match_time = document.querySelector('#b_time').innerText; 
+
+// Set the date we're counting down to
+var countDownDate = match_time;
+console.log(countDownDate);
+// Update the count down every 1 second
+var y = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+
+// console.log(hours);
+
+  // Output the result in an element with id="demo"
+    
+  
+  // document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  // + minutes + "m " + seconds + "s ";
+    
+})
+
+  
+}
+

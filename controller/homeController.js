@@ -31,15 +31,15 @@ async function create_random_percents(match_data) {
 
 }
 
-module.exports.history_matches = history_matches = async (req, res)=>{
+module.exports.history_matches = history_matches = async (req, res) => {
     let today = new Date();
- 
+
     // Subtract one day from current time                        
     today.setDate(today.getDate() - 1);
 
     let date = (today.getDate() < 10) ? '0' + today.getDate() : today.getDate();
     let month = (today.getMonth() < 9) ? '0' + ((today.getMonth() + 1)) : (today.getMonth() + 1);
-    let parsed_date = date + '-' + month + '-' + today.getFullYear();
+    let parsed_date = today.getFullYear() + '-' + month + '-' + date;
 
 
     let url = `https://v3.football.api-sports.io/fixtures/?date=${parsed_date}&status=FT`;
@@ -56,7 +56,41 @@ module.exports.history_matches = history_matches = async (req, res)=>{
         })
 
     let matches = await response.json();
-    // console.log(matches);
+
+    let response_to_send = [];
+    count = 0;
+    for (let item of matches['response']) {
+        
+        if (count > 100) {
+            count++;
+            break;
+        }
+
+        let match_date = new Date(item['fixture']['date']).toLocaleString('en-US', {
+            timeZone: 'Asia/Calcutta'
+        });
+
+
+        match_date = new Date(match_date);
+
+
+        let match_data = {
+            date: parsed_date,
+            raw_date: match_date,
+            fixture_id: item['fixture']['id'],
+            team_a: item['teams']['home']['name'],
+            team_b: item['teams']['away']['name'],
+            league: item['league']['name'],
+            team_a_logo: item['teams']['home']['logo'],
+            team_b_logo: item['teams']['away']['logo'],
+            team_a_goal: item['goals']['home'],
+            team_b_goal: item['goals']['away'],
+        };
+
+        count++;
+        response_to_send.push(match_data);
+    }
+    return res.status(200).send(response_to_send);
 }
 
 module.exports.get_live_bets = get_live_bets = async (req, res) => {
@@ -98,9 +132,9 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
         //  iterate live bets and call make new percentages and save it in db
 
         for (let item of matches['response']) {
-         
+
             if (count > 100) {
-               
+
                 break;
             }
 
@@ -243,146 +277,250 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     return res.status(200).send(response_to_send);
 }
 
-
-async function bet_limit(INVITATION_CODE){
+async function bet_limit(INVITATION_CODE) {
     // 1 = valid
     // 2 = invitation not found
     // 3 = invalid;
     // 4 = something went wrong
-    
-    if(!INVITATION_CODE || INVITATION_CODE == undefined){
+
+    if (!INVITATION_CODE || INVITATION_CODE == undefined) {
         return 2;
     }
 
     let today = new Date();
-    let parsed_date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`
+    let parsed_date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
 
     let count = await Bet.find({
-      inv : INVITATION_CODE,
-      settled : false,
-      date : parsed_date
-   }).count();
-  if(count < 2 && count >= 0){
-    return 1;
-  }else{
-    return 3;
-  }
-  return 4;
+        inv: INVITATION_CODE,
+        settled: false,
+        date: parsed_date
+    }).count();
+    if (count < 2 && count >= 0) {
+        return 1;
+    } else {
+        return 3;
+    }
+    return 4;
 
 }
 
+// module.exports.place_bet = place_bet = async (req, res) => {
 
-module.exports.place_bet = place_bet = async (req, res) => {
+//     const USER_ID = req.session.user_id;
+//     const INVITATION_CODE = req.session.inv;
 
-    const USER_ID = req.session.user_id;
-    const INVITATION_CODE = req.session.inv;
+//     let day_bet_limit = await bet_limit(INVITATION_CODE);
+//     switch (day_bet_limit) {
+//         case 2:
+//             return res.send({ status: "invitation code error" });
+//         case 3:
+//             return res.send({ status: "today bet limit reached" })
+//         case 4:
+//             return res.send({ status: "something went wrong" });
+//     }
 
+//     let bet_exist = await Bet.findOne(
+//         {
+//             inv: INVITATION_CODE,
+//             leagueId: req.body.league_id,
+//         }
+//     );
+
+//     console.log(bet_exist);
+
+
+//     let time_left = await check_date(req.body.date, req.body.time);
+
+//     if (time_left || !bet_exist || bet_exist == 'undefined') {
+
+
+//         let user_found = await User.findOne({ inv: INVITATION_CODE });
+//         let user_balance = parseFloat(user_found['Ammount']);
+//         // console.log(user_balance);
+//         let data = {
+//             phone: user_found['phone'],
+//             inv: INVITATION_CODE,
+//             parent: user_found['parent'],
+//             bAmmount: parseFloat(req.body.ammount),
+//             leagueId: parseInt(req.body.league_id),
+//             league: req.body.league,
+//             team_a: req.body.team_a,
+//             team_b: req.body.team_b,
+//             scoreDetails: [
+//                 {
+//                     first: req.body.first,
+//                     second: req.body.second
+//                 }
+//             ],
+//             final_score: [
+//                 {
+//                     first: -1,
+//                     second: -1
+//                 }
+//             ],
+//             date: req.body.date,
+//             time: req.body.time,
+//             profit: req.body.profit,
+//             league_type: req.body.l_type
+//         }
+
+//         // console.log(data);
+
+//         let bet_amount = parseFloat(req.body.ammount);
+//         let deduct_amount = bet_amount - (bet_amount * 2);
+
+
+//         if (user_balance >= data['bAmmount']) {
+
+//             if (parseFloat(data['bAmmount']) >= 1000) {
+
+//                 if (await newBet(data)) {
+//                     await User.findOneAndUpdate({ inv: INVITATION_CODE }, { $inc: { betPlayed: 1, Ammount: deduct_amount, day_betPlayed: 1 } });
+
+//                     let body = `
+//                 inv    : ${INVITATION_CODE} \n
+//                 amount : ${bet_amount} \n
+//                 leagueID : ${data['leagueId']}
+//                 score  : ${data['scoreDetails'][0]['first']}-${data['scoreDetails'][0]['second']} \n
+//                 `
+//                     if (data['league'])
+//                         SENDMAIL(data['league'], body);
+
+//                     return res.send({ 'status': 1 });
+//                 } else {
+//                     return res.send({ 'status': 0 });
+//                 }
+
+//             } else {
+//                 return res.send({ status: 5 })
+//             }
+
+//         } else {
+//             return res.send({ status: 4 })
+//         }
+
+//     }
+//     else {
+
+//         if (bet_exist) {
+//             return res.send({ status: 2 });
+
+//         } else if (!time_left) {
+//             return res.send({ status: 3 });
+//         } else {
+//             return res.send({ status: 0 });
+//         }
+
+//     }
+
+
+// }
+module.exports.place_bet = async function place_bet(req,res) {
+
+        const USER_ID = req.session.user_id;
+        const INVITATION_CODE = req.session.inv;
+
+        
     let day_bet_limit = await bet_limit(INVITATION_CODE);
-    console.log(day_bet_limit);
     switch (day_bet_limit) {
         case 2:
-            return res.send({status : "invitation code error"});
+            return res.send({ status: "invitation code error" });
         case 3:
-            return res.send({status : "today bet limit reached"})
+            return res.send({ status: "today bet limit reached" })
         case 4:
-            return res.send({status : "something went wrong"});
+            return res.send({ status: "something went wrong" });
     }
-
-    let bet_exist = await Bet.findOne(
-        {
-            inv: INVITATION_CODE,
-            leagueId: req.body.league_id,
-        }
-    );
-
-
-    let time_left = await check_date(req.body.date, req.body.time);
-
-    if (time_left || !bet_exist || bet_exist == 'undefined') {
-
-
-        let user_found = await User.findOne({ inv: INVITATION_CODE });
-        let user_balance = parseFloat(user_found['Ammount']);
-        // console.log(user_balance);
-        let data = {
-            phone: user_found['phone'],
-            inv: INVITATION_CODE,
-            parent: user_found['parent'],
-            bAmmount: parseFloat(req.body.ammount),
-            leagueId: parseInt(req.body.league_id),
-            league: req.body.league,
-            team_a: req.body.team_a,
-            team_b: req.body.team_b,
-            scoreDetails: [
-                {
-                    first: req.body.first,
-                    second: req.body.second
-                }
+    
+        let bet_exist = await Bet.findOne(
+          {
+            inv : INVITATION_CODE,
+            leagueId : req.body.league_id,
+          }
+        );
+    
+    
+        let time_left = await check_date( req.body.date , req.body.time);
+    
+        if(time_left && !bet_exist || bet_exist == 'undefined'){
+    
+          let user_found = await User.findOne({inv : INVITATION_CODE});
+          let user_balance = parseFloat(user_found['Ammount']);
+    
+          let data = {
+            phone : user_found['phone'],
+            inv : INVITATION_CODE,
+            parent : user_found['parent'],
+            bAmmount : parseFloat(req.body.ammount),
+            leagueId : parseInt(req.body.league_id),
+            league : req.body.league,
+            team_a :  req.body.team_a,
+            team_b : req.body.team_b,
+            scoreDetails : [
+              {
+                first : req.body.first,
+                second: req.body.second
+              }
             ],
-            final_score: [
-                {
-                    first: -1,
-                    second: -1
-                }
+            final_score : [
+              {
+                first : -1,
+                second : -1
+              }
             ],
-            date: req.body.date,
-            time: req.body.time,
-            profit: req.body.profit,
-            league_type: req.body.l_type
-        }
-
-        // console.log(data);
-
-        let bet_amount = parseFloat(req.body.ammount);
-        let deduct_amount = bet_amount - (bet_amount * 2);
-
-
-        if (user_balance >= data['bAmmount']) {
-
-            if (parseFloat(data['bAmmount']) >= 1000) {
-
-                if (await newBet(data)) {
-                    await User.findOneAndUpdate({ inv: INVITATION_CODE }, { $inc: { betPlayed: 1, Ammount: deduct_amount,day_betPlayed:1} });
-
-                    let body = `
+            date : req.body.date,
+            time : req.body.time,
+            profit : req.body.profit,
+            league_type : req.body.l_type
+          }
+    
+          let bet_amount = parseFloat(req.body.ammount);
+          let deduct_amount = bet_amount - (bet_amount*2);
+    
+    
+          if(user_balance >= data['bAmmount']){
+    
+            if(parseFloat(data['bAmmount']) >= 1000){
+    
+              if(await newBet(data)){
+    
+                await User.findOneAndUpdate( {_id : USER_ID} , {$inc : {betPlayed : 1 , Ammount : deduct_amount} });
+    
+                let body = `
                 inv    : ${INVITATION_CODE} \n
                 amount : ${bet_amount} \n
                 leagueID : ${data['leagueId']}
                 score  : ${data['scoreDetails'][0]['first']}-${data['scoreDetails'][0]['second']} \n
                 `
-                    if (data['league'])
-                        SENDMAIL(data['league'], body);
-
-                    return res.send({ 'status': 1 });
-                } else {
-                    return res.send({ 'status': 0 });
-                }
-
-            } else {
-                return res.send({ status: 5 })
+                if(data['league'])
+                SENDMAIL(data['league'] , body);
+    
+                return  res.send({'status' : 1});
+              }else{
+                return res.send({'status' : 0});
+              }
+    
+            }else{
+              return res.send({status : 5})
             }
-
-        } else {
-            return res.send({ status: 4 })
+    
+          }else{
+            return res.send({status : 4})
+          }
+    
+        }else{
+    
+          if(bet_exist){
+            return res.send({status : 2});
+          }else if(!time_left){
+            return res.send({status : 3});
+          }else{
+            return res.send({status : 0});
+          }
+    
         }
-
-    }
-    else {
-
-        if (bet_exist) {
-            return res.send({ status: 2 });
-
-        } else if (!time_left) {
-            return res.send({ status: 3 });
-        } else {
-            return res.send({ status: 0 });
-        }
-
-    }
-
-
+    
+    
 }
-
 
 
 async function check_date(date, time) {
@@ -439,7 +577,6 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
         timeZone: 'Asia/Calcutta'
     });
     let today = new Date(nDate);
-
     let transactioin_id = crypto.randomBytes(16).toString("hex");
     transactioin_id = transactioin_id.slice(0, 6);
 
@@ -447,36 +584,36 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
 
 
     let unsettled_withdraws = await Withdrawal.findOne({ inv: INVITATION_CODE, status: 0 }).count();
-   
+
     let w_details = parseInt(U_details.BankDetails[0]['withdrawalC']);
     let last_withdrawal = parseInt(U_details['day_withdrawal']);
     let bets_played = parseInt(U_details['betPlayed']);
 
-    if (U_details) {
-        if (U_details['vipLevel'] !== undefined) {
-            let vip_level = parseInt(U_details['vipLevel']);
+    // if (U_details) {
+    //     if (U_details['vipLevel'] !== undefined) {
+    //         let vip_level = parseInt(U_details['vipLevel']);
 
-            if (vip_level === 0 && amount < 200 || vip_level === 0 && amount > 500) {
-                return res.send({ status: "Your vip level is 0 your withdrawal limit is 200 - 500" });
-            } else if (vip_level === 1 && amount < 200 || vip_level === 1 && amount > 1000) {
-                return res.send({ status: "Your vip level is 1 your withdrawal limit is 200 - 1000" });
-            } else if (vip_level === 2 && amount < 200 || vip_level === 2 && amount > 3000) {
-                return res.send({ status: "Your vip level is 2 your withdrawal limit is 200 - 3000" });
-            }
-            else if (vip_level === 3 && amount < 200 || vip_level === 3 && amount > 8000) {
-                return res.send({ status: "Your vip level is 3 your withdrawal limit is 200 - 8000" });
-            }
-            else if (vip_level === 4 && amount < 200 || vip_level === 4 && amount > 27000) {
-                return res.send({ status: "Your vip level is 4 your withdrawal limit is 200 - 27000" });
-            } else if (vip_level === 5 && amount < 200 || vip_level === 5 && amount > 51000) {
-                return res.send({ status: "Your vip level is 5 your withdrawal limit is 200 - 51000" });
-            }
+    //         if (vip_level === 0 && amount < 200 || vip_level === 0 && amount > 500) {
+    //             return res.send({ status: "Your vip level is 0 your withdrawal limit is 200 - 500" });
+    //         } else if (vip_level === 1 && amount < 200 || vip_level === 1 && amount > 1000) {
+    //             return res.send({ status: "Your vip level is 1 your withdrawal limit is 200 - 1000" });
+    //         } else if (vip_level === 2 && amount < 200 || vip_level === 2 && amount > 3000) {
+    //             return res.send({ status: "Your vip level is 2 your withdrawal limit is 200 - 3000" });
+    //         }
+    //         else if (vip_level === 3 && amount < 200 || vip_level === 3 && amount > 8000) {
+    //             return res.send({ status: "Your vip level is 3 your withdrawal limit is 200 - 8000" });
+    //         }
+    //         else if (vip_level === 4 && amount < 200 || vip_level === 4 && amount > 27000) {
+    //             return res.send({ status: "Your vip level is 4 your withdrawal limit is 200 - 27000" });
+    //         } else if (vip_level === 5 && amount < 200 || vip_level === 5 && amount > 51000) {
+    //             return res.send({ status: "Your vip level is 5 your withdrawal limit is 200 - 51000" });
+    //         }
 
-        }
+    //     }
 
-    } else {
-        return res.send({ status: "something went wrong" });
-    }
+    // } else {
+    //     return res.send({ status: "something went wrong" });
+    // }
 
 
     if (unsettled_withdraws > 0) {
@@ -504,15 +641,21 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
 
 
                 let date = `${today.getDate()}/${(today.getMonth() + 1)}/${today.getFullYear()}`;
+                let time = `${today.getTime().toLocaleString("en-US", {timeZone:
+                    "Asia/Kolkata"})}`
+                console.log(today.getTime());
 
-
+                 
                 let data = {
                     date: date,
                     Ammount: amount,
                     inv: INVITATION_CODE,
                     transactioin_id: transactioin_id,
+                    time:time,
                     status: 0
                 }
+
+                 console.log(data);
 
                 if (await newWithdrawal(data)) {
 
@@ -601,7 +744,6 @@ module.exports.add_bank_details = add_bank_details = async (req, res) => {
 // this function saves the new bet user has placed;
 async function newBet(data) {
     let res = await Bet.create(data);
-    console.log(res);
     let what_happened = (!res) ? false : true;
     return what_happened;
 
