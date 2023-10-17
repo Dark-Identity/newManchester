@@ -34,7 +34,6 @@ const announcement = document.querySelector('.announcement');
 function announcement_calling() {
   announcement.style.cssText =
     `transform:translateY(0);
-     transition-delay: 3000ms;
   `;
   home.style.filter = "blur(5px)";
   footer.style.filter = "blur(5px)";
@@ -323,7 +322,7 @@ function create_match(data) {
                           </div>
                       </div>
 
-                      <p id='initial_time' style="text-align:center;font-size:6vw">${date.getHours()}:${date.getMinutes()}</p>
+                      <p id='initial_time' style="text-align:center;">${date.getHours()}:${date.getMinutes()}</p>
 
                       <div class="downbox" data-v-7afa3138="" style="display:none">
                           <div role="timer" class="van-count-down countdown" data-v-7afa3138="">

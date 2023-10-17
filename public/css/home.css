@@ -1980,6 +1980,7 @@ img {
     align-items: center;
     transform: translateY(-100vh);
     z-index: 1;
+    overflow-y: scroll;
 
 }
 
