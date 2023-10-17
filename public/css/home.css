@@ -275,6 +275,7 @@ text {
     overflow: hidden;
     display: flex;
     align-items: center;
+    font-size:12px;
 }
 
 .van-notice-bar>div>img {
@@ -604,7 +605,7 @@ span {
 }
 
 .scroll {
-    animation: scroll 120s linear infinite;
+    animation: scroll 100s linear infinite;
     overflow-x: scroll;
     font-weight: 600;
 
@@ -613,7 +614,7 @@ span {
 @keyframes scroll {
     100% {
         transform: translateX(-5081px);
-        transition-duration: 94.9875s;
+        transition-duration: 74.9875s;
     }
 }
 

@@ -24,6 +24,7 @@ body {
 
 .Content {
     z-index: 1;
+    overflow-x: scroll
 }
 
 .qr {
@@ -713,7 +714,7 @@ body {
     align-items: center;
     padding: 2vw;
     position: absolute;
-    bottom: 14vh;
+    bottom: 17vh;
     width: 100vw;
     justify-content: space-evenly;
 }
