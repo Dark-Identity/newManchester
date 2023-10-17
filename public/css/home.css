@@ -1976,7 +1976,6 @@ img {
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     transform: translateY(-100vh);
     z-index: 1;
