@@ -9,7 +9,6 @@ module.exports.get_forget = get_forget = (req, res) => {
     res.render('forget')
 };
 module.exports.forget_password = forget_password = async (req, res) => {
-    console.log("yes works");
     let INVITATION_CODE = req.session.inv;
     let { phone, password } = req.body;
 

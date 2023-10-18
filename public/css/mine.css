@@ -674,7 +674,7 @@ body {
     align-items: center;
     padding: 2vw;
     position: absolute;
-    bottom: 22vh;
+    bottom: 20vh;
     width: 100vw;
     justify-content: space-evenly;
 }
@@ -692,21 +692,6 @@ body {
     z-index: -1;
 }
 
-.buttons {
-    width: 30vw;
-    height: 10.066667vw;
-    border-radius: 6.8vw;
-    border: .266667vw solid #8ec0ae;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: #fff;
-    margin-top: 4vw;
-    background: #7bebff;
-    display: block;
-    margin: 0 auto;
-    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-    /* padding: 2vw; */
-}
 
 
 #install_close {

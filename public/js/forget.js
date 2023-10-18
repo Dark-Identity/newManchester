@@ -127,18 +127,6 @@ forget_btn.addEventListener('click', async (e) => {
 
     if (res_data) {
 
-        if (res_data.status === 404) { //name already exits
-            popup_tip.innerText = 'Failure! This user name already exists.';
-            popup_close_btn.disabled = false;
-
-        } else if (res_data.status === 101) {
-            //phone number already exits
-            popup_tip.innerText = 'Failure! contact already exists.';
-            popup_close_btn.disabled = false;
-
-        } else if (res_data.status === 0) { //someting went wrong
-            window.location.reload();
-        }
     } else if (res_data.status === 3) { //someting went wrong
         popup_tip.innerText = 'Enter the valid data';
         popup_close_btn.disabled = false;
