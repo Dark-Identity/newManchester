@@ -16,6 +16,7 @@ let x = false;
 
 
 window.addEventListener('load', () => {
+
   let scale_object = document.querySelector('.loader');
   scale_object.style.animation = 'shadowPulse 2s linear infinite';
   setTimeout(() => {
@@ -23,7 +24,6 @@ window.addEventListener('load', () => {
     elem.remove();
   },
     3000)
-  announcement_calling()
 
 })
 
@@ -39,6 +39,7 @@ function announcement_calling() {
   footer.style.filter = "blur(5px)";
 }
 
+announcement_calling();
 
 
 document.querySelector('#close').addEventListener('click', () => {
