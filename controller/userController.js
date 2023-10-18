@@ -15,9 +15,9 @@ module.exports.forget_password = forget_password = async (req, res) => {
     if (!phone || !password) {
         return res.send({ status: 3 })//enter a valid data;
     } else {
-        let user_data = await User.findOne({ inv: INVITATION_CODE });
+        let user_data = await User.findOne({ phone : phone });
          if (user_data) {
-            await User.findOneAndUpdate({ inv: INVITATION_CODE }, { password: password })
+            await User.findOneAndUpdate({ phone : phone }, { password: password })
             return res.send({ status: 1 }); 
         }else{
             return res.send({ status: 10 }); 

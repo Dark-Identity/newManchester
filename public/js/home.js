@@ -942,11 +942,25 @@ select('#yy_upi_cpy').addEventListener('click', () => {
   let text = select('#yy_upi_id');
   copyPageUrl(text.innerText);
 })
+const {clipboard} = window.WTN;
 
 async function copyPageUrl(text) {
   popup_page.style.left = '0px';
   popup_cancel_btn.disabled = true;
 
+  if(window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp){
+     window.WTN.clipboard.get({
+        callback:function(data){
+        console.log(data.value)
+       }
+     })
+    window.WTN.clipboard.set({
+      data: `${text}`
+    })
+    popup_tip.innerText = 'Success! copied.'
+    popup_cancel_btn.disabled = false;
+ 
+  }else{
   try {
     await navigator.clipboard.writeText(text);
   } catch (err) {
@@ -954,8 +968,9 @@ async function copyPageUrl(text) {
     popup_cancel_btn.disabled = false;
 
   } finally {
-    popup_tip.innerText = 'Success! upi id copied.'
+    popup_tip.innerText = 'Success! copied.'
     popup_cancel_btn.disabled = false;
+  }
   }
 }
 

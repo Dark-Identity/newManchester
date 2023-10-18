@@ -37,6 +37,8 @@ minePopup.forEach((element) => {
             content.style.zIndex = '-1';
             footer.style.zIndex = '-1';
             qr.style.zIndex = '1';
+            document.querySelector("#chat-widget-container").style.zIndex = -1;
+
         }
         else if (element.id == 'rule') {
             content.style.zIndex = '-1';
@@ -47,6 +49,7 @@ minePopup.forEach((element) => {
             content.style.zIndex = '-1';
             footer.style.zIndex = '-1';
             service.style.zIndex = '1';
+            document.querySelector("#chat-widget-container").style.zIndex = 2398749;
         }
         else if (element.id == 'reward') {
             content.style.cssText = `    
@@ -405,7 +408,7 @@ function create_deposit(data) {
 
 function create_other_data(data) {
 
-    let deposit_parent_box = document.querySelector("other_parent");
+    let deposit_parent_box = document.querySelector(".other_parent");
     if (data && data.length) {
         data.forEach((item, i) => {
 
@@ -708,3 +711,44 @@ document.querySelector('#tirThree').addEventListener('click', () => {
     rule.style.zIndex = "-1";
     content.status.zIndex = "1";
 });
+
+document.querySelector("#copy_url_btn").addEventListener("click" , ()=>{
+    let text = document.querySelector(".inv_code").innerText;
+    copyPageUrl(text);
+})
+
+document.querySelector("#invitation_link_cpy_btn").addEventListener("click" , ()=>{
+   let text = document.querySelector("#invitation_link").innerText;
+   copyPageUrl(text);
+})
+
+async function copyPageUrl(text) {
+    popup_page.style.left = '0px';
+    popup_cancel_btn.disabled = true;
+  
+    if(window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp){
+       window.WTN.clipboard.get({
+          callback:function(data){
+          console.log(data.value)
+         }
+       })
+      window.WTN.clipboard.set({
+        data: `${text}`
+      })
+      popup_tip.innerText = 'Success! copied.'
+      popup_cancel_btn.disabled = false;
+   
+    }else{
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      popup_tip.innerText = 'Failure! something went wrong.'
+      popup_cancel_btn.disabled = false;
+  
+    } finally {
+      popup_tip.innerText = 'Success! copied.'
+      popup_cancel_btn.disabled = false;
+    }
+    }
+  }
+  
