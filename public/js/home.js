@@ -29,10 +29,13 @@ window.addEventListener('load', () => {
 
 
 
-
+const set_texts = document.querySelector('.set_texts');
 const announcement = document.querySelector('.announcement');
 function announcement_calling() {
   announcement.style.cssText =
+    `transform:translateY(0);
+  `;
+  set_texts.style.cssText =
     `transform:translateY(0);
   `;
   home.style.filter = "blur(5px)";

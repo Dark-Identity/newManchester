@@ -1979,7 +1979,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translateY(-100vh);
+    transform: translateY(-140vh);
     z-index: 100;
     overflow-y: scroll;
 
@@ -2001,6 +2001,8 @@ img {
     width: 70%;
     text-align: left;
     padding: 2vw;
+    transform: translateY(-140vh);
+
 }
 
 #close {
