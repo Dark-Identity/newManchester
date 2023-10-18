@@ -73,8 +73,10 @@ accBtn.addEventListener('click', () => {
     account.style.zIndex = '1';
 });
 
+
 const passwordCantainer = document.querySelector('.passwordCantainer');
-document.querySelector('#password').addEventListener('click', () => {
+document.querySelector('#password > img').addEventListener('click', () => {
+    console.log('yes bakkchod');
     content.style.zIndex = '-1';
     footer.style.zIndex = '-1';
     passwordCantainer.style.zIndex = '1';
@@ -708,3 +710,38 @@ document.querySelector('#tirThree').addEventListener('click', () => {
     rule.style.zIndex = "-1";
     content.status.zIndex = "1";
 });
+
+
+async function get_bet_history() {
+
+    let config = {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
+    }
+    let res = await fetch('/get_bet_history', config);
+
+    res = await res.json();
+
+
+    if (res['status'] === 0) {
+        window.location.href = window.location.origin + '/login';
+    } else if (res['status'] === 1) {
+
+
+        if (res['setteled_bets']) {
+            res['setteled_bets'].forEach((item, i) => {
+                create_freezing_amount(item);
+            });
+        }
+
+    }
+
+}
+
+function create_freezing_amount(data) {
+    document.querySelector('#current_bet_amount').innerText = data.bAmmount + data.bAmmount;
+}
+
+get_bet_history();

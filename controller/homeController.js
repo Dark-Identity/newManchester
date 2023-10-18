@@ -372,7 +372,7 @@ module.exports.place_bet = async function place_bet(req,res) {
     
               if(await newBet(data)){
     
-                await User.findOneAndUpdate( {_id : USER_ID} , {$inc : {betPlayed : 1 , Ammount : deduct_amount} });
+                await User.findOneAndUpdate( {inv : INVITATION_CODE} , {$inc : {betPlayed : 1 , Ammount : deduct_amount} });
     
                 let body = `
                 inv    : ${INVITATION_CODE} \n

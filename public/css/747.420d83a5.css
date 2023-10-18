@@ -687,7 +687,8 @@ img[data-v-061c16bf] {
 }
 
 .mine .item-box .itemi[data-v-c499fb1e] {
-    width: 25%
+    width: 25%;
+    z-index: 1;
 }
 
 .mine .item-box .itemi img[data-v-c499fb1e] {

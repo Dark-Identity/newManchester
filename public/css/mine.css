@@ -24,7 +24,8 @@ body {
 
 .Content {
     z-index: 1;
-    overflow-x: scroll
+    overflow-y: scroll;
+    padding-bottom: 12vh;
 }
 
 .qr {
@@ -667,6 +668,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
+    padding-bottom: 20vh;
 }
 
 .download_flex {
@@ -698,4 +701,11 @@ body {
     position: absolute;
     top: 4vh;
     left: 2vw;
+}
+
+.png {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }

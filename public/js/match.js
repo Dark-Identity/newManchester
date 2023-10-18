@@ -28,9 +28,9 @@ document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
 
 
 const search = () => {
-    const matches = document.querySelectorAll('.bet_card');
     const searchBox = document.querySelector('#teamInput').value.toUpperCase();
     const bet_box = document.querySelector('.collection');  //parent box
+    const matches = document.querySelectorAll('.bet_card');
     const team_a = document.querySelectorAll('.leftnamei');
 
     for (let i = 0; i < team_a.length; i++) {
@@ -318,10 +318,10 @@ document.querySelectorAll('.values > span').forEach((item, i) => {
 
 
 const All = document.querySelector('#All');
-All.addEventListener('click',()=>{
-  let text = document.querySelector('.s_balance').innerText;
-  document.querySelector('#bet_amount').value = parseFloat(text);       
-  calc_available();
+All.addEventListener('click', () => {
+    let text = document.querySelector('.s_balance').innerText;
+    document.querySelector('#bet_amount').value = parseFloat(text);
+    calc_available();
 });
 
 
@@ -575,37 +575,36 @@ get_live_bets_two();
 async function get_user_data() {
 
     let config = {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-      }
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
     }
-  
+
     let res = await fetch('/user_data', config);
     let user_information = await res.json();
-  
+
     if (user_information['status'] === 1) {
-      set_user_data(user_information);
+        set_user_data(user_information);
     } else if (user_information['status'] === 2) {
-      window.location.href = window.location.origin + '/login';
+        window.location.href = window.location.origin + '/login';
     }
-  
-  }
-  
-  
-  function set_user_data(info) {
-  
-  
-    
+
+}
+
+
+function set_user_data(info) {
+
+
+
     document.querySelectorAll('.s_balance').forEach((item, i) => {
-      item.innerText = info['balance'].toFixed(2);
+        item.innerText = info['balance'].toFixed(2);
     });
-    
-  
-  
-    
-  
-  
-  }
-  get_user_data();
-  
+
+
+
+
+
+
+}
+get_user_data();

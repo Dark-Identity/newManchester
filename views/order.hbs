@@ -41,10 +41,10 @@
             <div class="bettingbox" data-v-0fe9eece="">
                 <div class="top flex" data-v-0fe9eece="">
                     <div class="iteming" data-v-0fe9eece=""><span data-v-0fe9eece="">Current bet amount</span>
-                        <p data-v-0fe9eece="">Rs.0</p>
+                        <p data-v-0fe9eece="" id="current_bet_amount">Rs.0</p>
                     </div>
                     <div class="iteming" data-v-0fe9eece=""><span data-v-0fe9eece="">Estimated income</span>
-                        <p class="estima" data-v-0fe9eece="">Rs.0</p>
+                        <p class="estima" data-v-0fe9eece="" id="est_income">Rs.0</p>
                     </div>
                 </div>
             </div>
@@ -136,15 +136,15 @@
 
             </div> --}}
 
-            <div class="trade_del_box" style="display: none;">
-                <p id="del_leagueid" style="display : none"></P>
+            <div class="trade_del_box" >
+                <p id="del_leagueid"></P>
                 <h3>Delete this trade ?.</h3>
                 <div class="confirmation_btns">
-                    <div id="del_trade" class="submit">
-                        REQUEST
+                    <div id="del_trade" class="submit d">
+                        <p>REQUEST</p>
                     </div>
-                    <div class="del_trade_cancel">
-                        CANCEL
+                    <div class="del_trade_cancel d">
+                        <p>CANCEL</p>
                     </div>
                 </div>
             </div>
@@ -231,7 +231,8 @@
 
 
 
-        <div class="cancelPopup" style="">
+        <div class="cancelPopup" style="" style="
+        display:none">
             {{!-- Dyanamic data added --}}
 
             <div
@@ -296,7 +297,7 @@
 
 
             <div class="empty-wrap" data-v-4f44bbea="" data-v-0fe9eece="" style="margin-top: 100px;">
-                <img class="empty" src=" /elephantFootball/empty.43cec754.png" alt="" data-v-4f44bbea="" ">
+                {{!-- <img class="empty" src=" /elephantFootball/empty.43cec754.png" alt="" data-v-4f44bbea="" "> --}}
                 <p class=" text" data-v-4f44bbea="">No content yet!</p>
             </div>
 
@@ -308,6 +309,7 @@
             <button id="popup_close_btn" type="button" autofocus="true">OK</button>
         </div>
     </section>
+
 
 
         <!-- ------------------------------------------------------ footer --------------------------------- -->

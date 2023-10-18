@@ -172,14 +172,12 @@ function listen_to_cancel_bet() {
   })
 
 }
+
 document.querySelectorAll('.del_trade_cancel').forEach((item, i) => {
   item.addEventListener('click', () => {
     item.parentElement.parentElement.style.display = 'none';
   })
 });
-
-
-
 
 
 async function get_bet_history() {
@@ -203,13 +201,13 @@ async function get_bet_history() {
     if (res['unsetteled_bets']) {
       res['unsetteled_bets'].forEach((item, i) => {
         create_unsettled_bets(item);
-
       });
       listen_to_cancel_bet();
     }
     if (res['setteled_bets']) {
       res['setteled_bets'].forEach((item, i) => {
         create_settled_bets(item);
+        create_current_amount(item);
       });
     }
 
@@ -219,6 +217,10 @@ async function get_bet_history() {
 
 
 
+function create_current_amount(data) {
+  document.querySelector('#current_bet_amount').innerText = data.bAmmount + data.bAmmount;
+  document.querySelector('#est_income').innerText = ((parseFloat(data['bAmmount']) / 100) + parseFloat(data['profit'])).toFixed(2) + ((parseFloat(data['bAmmount']) / 100) * parseFloat(data['profit'])).toFixed(2)
+}
 
 function create_unsettled_bets(data) {
   let parent = document.querySelector('.orderPopup');
@@ -303,6 +305,7 @@ function create_unsettled_bets(data) {
 }
 
 
+
 function create_settled_bets(data) {
   let parent = document.querySelector('.historicalPopup');
   let child = document.createElement('div');
@@ -380,3 +383,11 @@ function create_settled_bets(data) {
 
 
 get_bet_history();
+
+
+
+const popup_close_btn = document.querySelector("#popup_close_btn");
+popup_close_btn.addEventListener('click', () => {
+  document.querySelector('#popup_page').style.left = '-100vw';
+  popup_tip.innerText = 'Loading...';
+})

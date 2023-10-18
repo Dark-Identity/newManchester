@@ -1579,7 +1579,7 @@ img {
 .section-box .telbox .btnuis[data-v-7dcec640] {
     width: 22.666667vw;
     height: 8vw;
-    background: #005577;
+    background:#5bb2ea;
     border-radius: 5.333333vw;
     color: #fff;
     font-weight: 500;
@@ -1624,7 +1624,7 @@ img {
 .section-box .onlieser .topline button[data-v-7dcec640] {
     width: 22.666667vw;
     height: 8vw;
-    background: #005177;
+    background: #5bb2ea;
     border-radius: 5.333333vw;
     color: #fff;
     font-weight: 500;
@@ -2177,4 +2177,6 @@ img {
     width: 2rem;
     background-size: contain;
   }
+  
+
   

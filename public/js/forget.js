@@ -69,7 +69,6 @@ forget_btn.addEventListener('click', async (e) => {
     let num = document.querySelector('#num').value;
     let otp = document.querySelector('#otp').value;
     let pass_one = document.querySelector('#pass_one').value;
-    let pass_two = document.querySelector('#pass_two').value;
 
 
     if (num.length !== 10 || num === ' ') {
@@ -82,23 +81,12 @@ forget_btn.addEventListener('click', async (e) => {
         popup_cancel_btn.disabled = false;
         return;
     }
-    else if (pass_one === '') {
+    else if (pass_one === ''|| !pass_one == undefined) {
         popup_tip.innerText = 'Enter the password';
         popup_cancel_btn.disabled = false;
         return;
-    } else if (pass_two === '') {
-        popup_tip.innerText = 'Enter the confirm password';
-        popup_cancel_btn.disabled = false;
-        return;
-    }
-    else if (pass_one === pass_two) {
-        pass_two = 0;
-    } else {
-        popup_tip.innerText = 'password not matched';
-        popup_cancel_btn.disabled = false;
     }
 
-    console.log(num, pass_one, otp);
 
     let data = {
         phone: num,
@@ -124,31 +112,19 @@ forget_btn.addEventListener('click', async (e) => {
 
     console.log(res_data);
 
-
     if (res_data) {
-
-    } else if (res_data.status === 3) { //someting went wrong
-        popup_tip.innerText = 'Enter the valid data';
-        popup_close_btn.disabled = false;
+        if(res_data.status === 1){ //name already exits
+            popup_tip.innerText = 'susuccessfully password changed.';
+            popup_close_btn.disabled = false;
+            window.location.href = window.location.origin + '/home';
+          }else if (res_data.status === 3) {  
+             popup_tip.innerText = 'Enter the valid data.';
+            popup_close_btn.disabled = false;
+          }else{
+            popup_tip.innerText = 'Something went wrong.';
+            popup_close_btn.disabled = false;
+          }
     }
-    else if (res_data.status === 1) { //someting went wrong
-        popup_tip.innerText = 'successfully changed';
-        popup_close_btn.disabled = false;
-    }
-    
-    else if (res_data.status === 10) { //someting went wrong
-        popup_tip.innerText = 'User not exits';
-        popup_close_btn.disabled = false;
-    }
-    else {
-        popup_tip.innerText = res_data['status'];
-        popup_close_btn.disabled = false;
-    }
-
-         
-
-   
-
 
 });
 
