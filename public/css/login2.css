@@ -309,3 +309,35 @@ body {
     border: none;
     background-color: #99c5e8;
 }
+
+.forget_body{
+  width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
+}
+
+.gap > div{
+    border: 1px solid white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    margin: 2vw 0;
+
+}
+
+.gap > div > input{
+    height: 100%;
+    width: 100%;
+    padding:  2vw;
+    background: none;
+    outline: none;
+    border: none;
+
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -274,7 +274,7 @@ function create_match(data) {
   let date = new Date(data['raw_date']);
 
   // console.log(ndate);
-  console.log(date);
+  // console.log(date);
 
 
   let parent_box = document.querySelector('.collection');
@@ -1004,6 +1004,8 @@ document.querySelector('#recharge_btn').addEventListener('click', () => {
   let is_gateway = document.querySelector("#gateway_radio_btn").checked;
   let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
 
+  
+
   if (is_gateway || is_gateway_2) {
     initiate_gateway_recharge();
     return;
@@ -1011,9 +1013,12 @@ document.querySelector('#recharge_btn').addEventListener('click', () => {
 
     let recharge_path = document.querySelectorAll('.radiobtn');
     recharge_path.forEach((element) => {
-      if (element.id == "manual_btn") {
-        manual_recharge_page();
-      }
+      // element.addEventListener('click',()=>{
+        if (element.id == "manual_btn") {
+          manual_recharge_page();
+          return;
+        }
+      // });
     });
   }
 });
@@ -1024,4 +1029,7 @@ function manual_recharge_page() {
   footer.style.zIndex = "-1";
 }
 
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------- validation of payments chanel-----------------------------
 

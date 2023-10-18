@@ -102,3 +102,9 @@ body {
     border-radius: 2.133333vw;
     padding: 3.5vw;
 }
+.hide_two{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #228c69;
+}

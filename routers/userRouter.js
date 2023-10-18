@@ -12,6 +12,7 @@ const {
   get_data,
   get_payment_data,
   change_password,
+  forget_password
 } = require("../controller/userController");
 const {history_matches} = require('../controller/homeController')
 
@@ -59,6 +60,16 @@ userRouter
 userRouter
   .route("/get_otp")
   .post(get_otp);
+
+
+  
+userRouter.use(isAuthenticated);
+userRouter
+  .route('/forget_password')
+  .get(get_forget)
+  .post(forget_password)
+
+
 
 userRouter.use(isAuthenticated);
 userRouter

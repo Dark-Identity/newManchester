@@ -99,14 +99,13 @@ const login_page = document.querySelector('.loginCantainer');
 const forget_page = document.querySelector('.forget_page');
 
 document.querySelector('.forgetbtn').addEventListener('click', () => {
-    console.log('works');
-    login_page.style.zIndex = "-1";
-    forget_page.style.zIndex = "1";
+  window.location.href = "/forget_password"
 })
 document.querySelector('.forget_close').addEventListener('click', () => {
-    login_page.style.zIndex = "1";
-    forget_page.style.zIndex = "-1";
+    // login_page.style.zIndex = "1";
+    // forget_page.style.zIndex = "-1";
 });
+
 
 
 document.querySelector('#otp_btn').addEventListener('click', async () => {

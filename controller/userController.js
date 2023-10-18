@@ -5,6 +5,30 @@ module.exports.register = (req, res) => {
     res.render('register')
 }
 
+module.exports.get_forget = get_forget = (req, res) => {
+    res.render('forget')
+};
+module.exports.forget_password = forget_password = async (req, res) => {
+    console.log("yes works");
+    let INVITATION_CODE = req.session.inv;
+    let { phone, password } = req.body;
+
+    if (!phone || !password) {
+        return res.send({ status: 3 })//enter a valid data;
+    } else {
+        let user_data = await User.findOne({ inv: INVITATION_CODE });
+         if (user_data) {
+            await User.findOneAndUpdate({ inv: INVITATION_CODE }, { password: password })
+            return res.send({ status: 1 }); 
+        }else{
+            return res.send({ status: 10 }); 
+        }
+         
+        
+    }
+}
+
+
 async function generate_inv_code() {
 
     let code_exist = false;

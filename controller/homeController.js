@@ -10,9 +10,9 @@ module.exports.gethome = (req, res) => {
 
 function randomPercent() {
     let percents = [];
-    for (let i = 0; i < 17; i++) {
+    for (let i = 0; i < 16; i++) {
 
-        let random = (Math.random()).toFixed(2);
+        let random = (Math.random()*5).toFixed(2);
         percents.push(random);
     }
     ;
