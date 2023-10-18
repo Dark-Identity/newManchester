@@ -569,11 +569,14 @@ body {
     z-index: -1;
     background-color: #fafafa;
 }
-
+.withdraw_parent > div , 
+.other_parent > div,
+.deposite_parent > div{
+    margin-top : 1.2rem;
+}
 .record_parent_div {
     display: flex;
     justify-content: center;
-    margin-top: 3vh;
 }
 
 .recordss {
@@ -588,7 +591,8 @@ body {
 }
 
 .parent_div {
-    height: 100vh;
+    max-height: 100vh;
+    padding-bottom: 20rem;
     overflow-y: scroll;
 }
 

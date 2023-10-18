@@ -485,7 +485,8 @@ img[data-v-061c16bf] {
 }
 
 .mine[data-v-c499fb1e] {
-    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: scroll;
     background: #fafafa;
     /* padding: 6.666667vw 4vw 20vw; */
 }
@@ -707,6 +708,7 @@ img[data-v-061c16bf] {
     box-shadow: 0 .266667vw .533333vw 0 rgba(51, 51, 51, .1);
     border-radius: 2.666667vw;
     padding: 4vw 3.333333vw .666667vw;
+    padding-bottom: 10rem;
     margin-top: 3.333333vw
 }
 

@@ -1,6 +1,25 @@
 const tiers = document.querySelectorAll('.teamlist');
 const teamPopup = document.querySelector('.teamPopup');
 
+let teams_member_data = {
+  "tierOne" : '',
+  "tierTwo" : '',
+  "tierThree" : '',
+  "tierFour" : '',
+  "tierFive" : '',
+  "tierSix" : ''
+}
+
+let teams_commission_data = {
+  "tierOne" : '',
+  "tierTwo" : '',
+  "tierThree" : '',
+  "tierFour" : '',
+  "tierFive" : '',
+  "tierSix" : ''
+}
+
+
 window.addEventListener('load', () => {
   let scale_object = document.querySelector('.loader');
   scale_object.style.animation = 'shadowPulse 2s linear infinite';
@@ -13,12 +32,19 @@ window.addEventListener('load', () => {
 
 
 const teamMain = document.querySelector('.teamMain');
-tiers.forEach((element) => {
+tiers.forEach((element , i) => {
+  let memember_box = document.querySelector("#van-tab-10");
+  let commission_box = document.querySelector("#van-tab-11");
     element.addEventListener('click', () => {
-        // if (element.id == "tierOne") {
-        teamMain.style.zIndex = "-1";
-        teamPopup.style.zIndex = "1";
-        // }
+        if(element.id){
+          memember_box.innerHTML = "";
+          commission_box.innerHTML = "";
+          document.querySelector("#members_data_title").innerText = `Level ${i+1} Team`;
+          memember_box.insertAdjacentHTML("beforeend" , teams_member_data[element.id]);
+          commission_box.insertAdjacentHTML("beforeend" , teams_commission_data[element.id]);
+          teamMain.style.zIndex = "-1";
+          teamPopup.style.zIndex = "1";
+        }
     });
 });
 
@@ -84,36 +110,14 @@ function create_members(data){
     let total_withdrawal = 0;
 
 
-    if (data['direct_members'].length == 0) {
-      empty_img.style.display = "block"
-    }else{
-      empty_img.style.display = "none"
-    }
-
     for(let item of data['direct_members']){
     // creating the childs to append inside the boxes;
       level1_user_RebadeBonus += parseFloat((item.RebadeBonus).toFixed(2));
-      
-    let tier1_member_child= document.createElement('div');
-    tier1_member_child.classList.add('members_data');
-  
-    let tier1_commission_child= document.createElement('div');
-    tier1_commission_child.classList.add('members_data');
-  
-    let new_tier1_member_body = `  <p>${item.phone}</p>
-                                   <p>${item.profit}</p>`
-    let new_tier1_commission_body =  `<p>${item.phone}</p>
-                                       <p>${item.RebadeBonus}</p>`
+    
+      teams_member_data['tierOne'] += `<div class="members_data"><p>${item.phone}</p><p>${item.profit}</p></div>`
+      teams_commission_data['tierOne'] +=  `<div class="members_data"><p>${item.phone}</p><p>${item.RebadeBonus}</p></div>`
 
-  // setting every data to the child;
-    tier1_member_child.innerHTML = new_tier1_member_body;
-    tier1_commission_child.innerHTML = new_tier1_commission_body;
-
-    // now inserting the data's to the parent box
-    document.querySelector("#van-tab-10").append(tier1_member_child);
-    document.querySelector("#van-tab-11").append(tier1_commission_child);
-  
-    }
+      }
   
     if(data['level2_user'] !== 'undefined' && Array.isArray(data['level2_user'][0]) && data['level2_user'][0].length > 0){
   
@@ -129,28 +133,11 @@ function create_members(data){
         
     // creating the childs to append inside the boxes;
   
-    let tier2_member_child= document.createElement('div');
-    tier2_member_child.classList.add('members_data');
   
-    let tier2_commission_child= document.createElement('div');
-    tier2_commission_child.classList.add('members_data');
-  
-    let new_tier2_member_body = `  <p>${data['level2_user'][i][j]['phone']}</p>
-                                   <p>${data['level2_user'][i][j]['profit']}</p>`
+    teams_member_data['tierTwo'] += `<div class="members_data"><p>${data['level2_user'][i][j]['phone']}</p><p>${data['level2_user'][i][j]['profit']}</p></div>`
 
-    let new_tier2_commission_body =  `<p>${data['level2_user'][i][j]['phone']}</p>
-                                       <p>${data['level2_user'][i][j]['RebadeBonus']}</p>`
-  
-  // setting every data to the child;
-    tier2_member_child.innerHTML = new_tier2_member_body;
-    tier2_commission_child.innerHTML = new_tier2_commission_body;
+    teams_member_data['tierTwo']  +=  `<div class="members_data"><p>${data['level2_user'][i][j]['phone']}</p><p>${data['level2_user'][i][j]['RebadeBonus']}</p></div>`
 
-    // now inserting the data's to the parent box
-    document.querySelector("#van-tab-10").append(tier2_member_child);
-    document.querySelector("#van-tab-11").append(tier2_commission_child);
-  
-  
-  
         }
       }
   
@@ -170,28 +157,9 @@ function create_members(data){
   
         
     // creating the childs to append inside the boxes;
-  
-    let tier3_member_child= document.createElement('div');
-    tier3_member_child.classList.add('members_data');
-  
-    let tier3_commission_child= document.createElement('div');
-    tier3_commission_child.classList.add('members_data');
-  
-    let new_tier3_member_body = `  <p>${data['level3_user'][i][j]['phone']}</p>
-    <p>${data['level3_user'][i][j]['profit']}</p>`
+    teams_member_data['tierThree'] += `<div class="members_data"><p>${data['level3_user'][i][j]['phone']}</p><p>${data['level3_user'][i][j]['profit']}</p></div>`
 
-    let new_tier3_commission_body = `  <p>${data['level3_user'][i][j]['phone']}</p>
-    <p>${data['level3_user'][i][j]['RebadeBonus']}</p>`
-  
-  // setting every data to the child;
-    tier3_member_child.innerHTML = new_tier3_member_body;
-    tier3_commission_child.innerHTML = new_tier3_commission_body;
-
-    // now inserting the data's to the parent box
-    document.querySelector("#van-tab-10").append(tier3_member_child);
-    document.querySelector("#van-tab-11").append(tier3_commission_child);
-  
-  
+    teams_member_data['tierThree']  +=  `<div class="members_data"><p>${data['level3_user'][i][j]['phone']}</p><p>${data['level3_user'][i][j]['RebadeBonus']}</p></div>`
   
         }
       }
@@ -211,27 +179,9 @@ function create_members(data){
   
         
     // creating the childs to append inside the boxes;
-  
-    let tier4_member_child= document.createElement('div');
-    tier4_member_child.classList.add('members_data');
-  
-    let tier4_commission_child= document.createElement('div');
-    tier4_commission_child.classList.add('members_data');
-  
-    let new_tier4_member_body = `  <p>${data['level4_user'][i][j]['phone']}</p>
-    <p>${data['level4_user'][i][j]['profit']}</p>`
+    teams_member_data['tierFour'] += ` <div class="members_data"><p>${data['level4_user'][i][j]['phone']}</p><p>${data['level4_user'][i][j]['profit']}</p></div>`
 
-    let new_tier4_commission_body =  `  <p>${data['level4_user'][i][j]['phone']}</p>
-    <p>${data['level4_user'][i][j]['RebadeBonus']}</p>`
-  
-  // setting every data to the child;
-    tier4_member_child.innerHTML = new_tier4_member_body;
-    tier4_commission_child.innerHTML = new_tier4_commission_body;
-
-    // now inserting the data's to the parent box
-    document.querySelector("#van-tab-10").append(tier4_member_child);
-    document.querySelector("#van-tab-11").append(tier4_commission_child);
-  
+    teams_member_data['tierFour']  +=  ` <div class="members_data"><p>${data['level4_user'][i][j]['phone']}</p><p>${data['level4_user'][i][j]['RebadeBonus']}</p></div>`
   
   
         }
@@ -254,26 +204,10 @@ function create_members(data){
         
     // creating the childs to append inside the boxes;
   
-    let tier5_member_child= document.createElement('div');
-    tier5_member_child.classList.add('members_data');
-  
-    let tier5_commission_child= document.createElement('div');
-    tier5_commission_child.classList.add('members_data');
-  
-    let new_tier5_member_body =`  <p>${data['level5_user'][i][j]['phone']}</p>
-    <p>${data['level5_user'][i][j]['profit']}</p>`
+    teams_member_data['tierFive'] += ` <div class="members_data"><p>${data['level5_user'][i][j]['phone']}</p><p>${data['level5_user'][i][j]['profit']}</p></div>`
 
-    let new_tier5_commission_body = `  <p>${data['level5_user'][i][j]['phone']}</p>
-    <p>${data['level5_user'][i][j]['RebadeBonus']}</p>`
-  
-  // setting every data to the child;
-    tier5_member_child.innerHTML = new_tier5_member_body;
-    tier5_commission_child.innerHTML = new_tier5_commission_body;
+    teams_member_data['tierFive']  +=  ` <div class="members_data"><p>${data['level5_user'][i][j]['phone']}</p><p>${data['level5_user'][i][j]['RebadeBonus']}</p></div>`
 
-    // now inserting the data's to the parent box
-    document.querySelector("#van-tab-10").append(tier5_member_child);
-    document.querySelector("#van-tab-11").append(tier5_commission_child);
-  
   
   
         }
@@ -296,27 +230,9 @@ function create_members(data){
         
     // creating the childs to append inside the boxes;
   
-    let tier6_member_child= document.createElement('div');
-    tier6_member_child.classList.add('members_data');
-  
-    let tier6_commission_child= document.createElement('div');
-    tier6_commission_child.classList.add('members_data');
-  
-    let new_tier6_member_body =`  <p>${data['level6_user'][i][j]['phone']}</p>
-    <p>${data['level6_user'][i][j]['profit']}</p>`
+    teams_member_data['tierSix'] += ` <div class="members_data"><p>${data['level6_user'][i][j]['phone']}</p><p>${data['level6_user'][i][j]['profit']}</p></div>`
 
-    let new_tier6_commission_body = `  <p>${data['level6_user'][i][j]['phone']}</p>
-    <p>${data['level6_user'][i][j]['RebadeBonus']}</p>`
-  
-  // setting every data to the child;
-    tier6_member_child.innerHTML = new_tier6_member_body;
-    tier6_commission_child.innerHTML = new_tier6_commission_body;
-
-    // now inserting the data's to the parent box
-    document.querySelector("#van-tab-10").append(tier6_member_child);
-    document.querySelector("#van-tab-11").append(tier6_commission_child);
-  
-  
+    teams_member_data['tierSix']  +=  ` <div class="members_data"><p>${data['level6_user'][i][j]['phone']}</p><p>${data['level6_user'][i][j]['RebadeBonus']}</p></div>`
   
         }
       }
@@ -348,7 +264,8 @@ function create_members(data){
     document.querySelector("#total_rebate").innerText = total_rebade;
     document.querySelector('#s_tot_profit').innerText = parseFloat(user_profit.toFixed(2));
     document.querySelector('#s_tot_deposit').innerText = parseFloat(user_amount.toFixed(2));
-  
+    
+
     return;
 }
 

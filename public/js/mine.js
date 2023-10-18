@@ -37,6 +37,8 @@ minePopup.forEach((element) => {
             content.style.zIndex = '-1';
             footer.style.zIndex = '-1';
             qr.style.zIndex = '1';
+            document.querySelector("#chat-widget-container").style.zIndex = -1;
+
         }
         else if (element.id == 'rule') {
             content.style.zIndex = '-1';
@@ -47,6 +49,7 @@ minePopup.forEach((element) => {
             content.style.zIndex = '-1';
             footer.style.zIndex = '-1';
             service.style.zIndex = '1';
+            document.querySelector("#chat-widget-container").style.zIndex = 2398749;
         }
         else if (element.id == 'reward') {
             content.style.cssText = `    
@@ -407,7 +410,7 @@ function create_deposit(data) {
 
 function create_other_data(data) {
 
-    let deposit_parent_box = document.querySelector("other_parent");
+    let deposit_parent_box = document.querySelector(".other_parent");
     if (data && data.length) {
         data.forEach((item, i) => {
 
@@ -710,38 +713,3 @@ document.querySelector('#tirThree').addEventListener('click', () => {
     rule.style.zIndex = "-1";
     content.status.zIndex = "1";
 });
-
-
-async function get_bet_history() {
-
-    let config = {
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json'
-        }
-    }
-    let res = await fetch('/get_bet_history', config);
-
-    res = await res.json();
-
-
-    if (res['status'] === 0) {
-        window.location.href = window.location.origin + '/login';
-    } else if (res['status'] === 1) {
-
-
-        if (res['setteled_bets']) {
-            res['setteled_bets'].forEach((item, i) => {
-                create_freezing_amount(item);
-            });
-        }
-
-    }
-
-}
-
-function create_freezing_amount(data) {
-    document.querySelector('#current_bet_amount').innerText = data.bAmmount + data.bAmmount;
-}
-
-get_bet_history();

@@ -14,10 +14,16 @@ module.exports.forget_password = forget_password = async (req, res) => {
     if (!phone || !password) {
         return res.send({ status: 3 })//enter a valid data;
     } else {
+<<<<<<< HEAD
         let user_data = await User.findOne({ inv: INVITATION_CODE });
         if (user_data) {
             await User.findOneAndUpdate({ inv: INVITATION_CODE }, { password: password });
              console.log(await User.findOneAndUpdate({ inv: INVITATION_CODE }, { password: password }));
+=======
+        let user_data = await User.findOne({ phone : phone });
+         if (user_data) {
+            await User.findOneAndUpdate({ phone : phone }, { password: password })
+>>>>>>> 7974842d5caf588210a219949f92f1c18d20510b
             return res.send({ status: 1 }); 
         }else{
             return res.send({ status: 10 }); 
