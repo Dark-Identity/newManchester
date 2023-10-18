@@ -1003,23 +1003,15 @@ const yy_pay = document.querySelector('#yy_pay');
 document.querySelector('#recharge_btn').addEventListener('click', () => {
   let is_gateway = document.querySelector("#gateway_radio_btn").checked;
   let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
-
+  let is_gateway_3 = document.querySelector('#manual_btn').checked;
   
 
   if (is_gateway || is_gateway_2) {
     initiate_gateway_recharge();
     return;
-  } else {
-
-    let recharge_path = document.querySelectorAll('.radiobtn');
-    recharge_path.forEach((element) => {
-      // element.addEventListener('click',()=>{
-        if (element.id == "manual_btn") {
-          manual_recharge_page();
-          return;
-        }
-      // });
-    });
+  } else if (is_gateway_3) {
+    manual_recharge_page();
+    return;
   }
 });
 

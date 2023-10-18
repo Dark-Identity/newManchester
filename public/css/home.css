@@ -951,7 +951,6 @@ img {
     color: skyblue;
 }
 
-.recharge .rechargeBalance .toptotal[data-v-5597067f],
 .withdrawal .rechargeBalance .toptotal[data-v-5597067f] {
     height: 43.066667vw;
     background: url(/elephantFootball/rechargePopup/recharge.jpg) no-repeat;
@@ -964,7 +963,7 @@ img {
 
 .recharge .rechargeBalance .toptotal[data-v-5597067f] {
     height: 43.066667vw;
-    background: url(/elephantFootball/rechargePopup/rechargess.jpg) no-repeat;
+    background: url(/elephantFootball/rechargePopup/deposit.jpg) no-repeat;
     background-size: cover;
     margin: 0 auto;
     padding: 4vw 1.333333vw 0 6.666667vw;
@@ -1143,6 +1142,7 @@ img {
 .recharge .texttype[data-v-5597067f] {
     padding: 0 4vw;
     margin-top: 4vw;
+    padding-bottom: 12vh;
     /* background: #f8f8f8; */
 }
 
@@ -1228,7 +1228,8 @@ img {
     right: 0;
     bottom: 0;
     background-color: white;
-    overflow: hidden;
+    overflow-x: scroll;
+    padding-bottom: 10vh;
 }
 
 .gap {
