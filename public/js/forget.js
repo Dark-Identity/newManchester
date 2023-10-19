@@ -23,7 +23,8 @@ document.querySelector('#otp_btn').addEventListener('click', async () => {
         return;
     }
     if (!contact || contact === undefined) {
-        document.querySelector('#num').style.border = '1px solid red';
+        document.querySelector('.gap > div').style.border = '1px solid red';
+
         popup_cancel_btn.disabled = false;
 
         return;
@@ -136,7 +137,6 @@ document.querySelector('#show').addEventListener('click', () => {
     var x = document.getElementById("pass_one");
     let y = document.querySelector('#eye_open')
     let z = document.querySelector('#eye_close')
-    console.log(x);
     if (x.type === "password") {
         z.style.display = 'none';
         y.style.display = 'block';
