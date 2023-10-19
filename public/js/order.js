@@ -36,51 +36,32 @@ resultLink.addEventListener('click', () => {
 
 
 
-
-const one = document.querySelector('#one');
 const two = document.querySelector('#two');
 const three = document.querySelector('#three');
-const oneP = document.querySelector('#one>p');
-const twoP = document.querySelector('#two>p');
-const threeP = document.querySelector('#three>p');
+const twoP = document.querySelector('.ii');
+const threeP = document.querySelector('.iii');
 const secondOuter = document.querySelector('.secondOuter');
-const orderPopup = document.querySelector('.orderPopup');
-const historicalPopup = document.querySelector('.historicalPopup');
-const cancelPopup = document.querySelector('.cancelPopup');
+const order = document.querySelector('.orderPopup');
+const history = document.querySelector('.historicalPopup');
 
-orderPopup.style.zIndex = "1";
-
-one.addEventListener('click', () => {
-  secondOuter.style.cssText = `justify-content: start;`;
-  oneP.style.color = '#fff';
-  twoP.style.color = ' #333';
-  threeP.style.color = ' #333';
-  orderPopup.style.zIndex = "1";
-  historicalPopup.style.zIndex = "-1";
-  cancelPopup.style.zIndex = "-1";
-
-})
+order.style.zIndex="1";
 
 two.addEventListener('click', () => {
-  oneP.style.color = ' black';
-  threeP.style.color = ' black';
-  secondOuter.style.cssText = `justify-content: center;`;
-  twoP.style.color = '#fff';
-  orderPopup.style.zIndex = "-1";
-  historicalPopup.style.zIndex = "1";
-  cancelPopup.style.zIndex = "-1";
+    secondOuter.style.cssText = `justify-content: start;`;
+    twoP.style.color = "#fff";
+    threeP.style.color = "#0f6997";
+    order.style.zIndex = "1";
+    history.style.zIndex = "-1";
 })
+
 
 three.addEventListener('click', () => {
-  oneP.style.color = ' black';
-  twoP.style.color = ' black';
-  secondOuter.style.cssText = `justify-content: end;`;
-  threeP.style.color = '#fff';
-  orderPopup.style.zIndex = "-1";
-  historicalPopup.style.zIndex = "-1";
-  cancelPopup.style.zIndex = "1";
+    secondOuter.style.cssText = `justify-content: end;`;
+    threeP.style.color = "#fff";
+    twoP.style.color = "#0f6997";
+    order.style.zIndex = "-1";
+    history.style.zIndex = "1";
 })
-
 
 
 
@@ -211,6 +192,8 @@ async function get_bet_history() {
     if (res['setteled_bets']) {
       res['setteled_bets'].forEach((item, i) => {
         create_settled_bets(item);
+        document.querySelector('.empty').style.display="none";
+
       });
     }
 
