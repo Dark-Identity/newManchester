@@ -34,7 +34,7 @@ function announcement_calling() {
   announcement.style.cssText =
     `transform:translateY(0);
   `;
-  
+  document.querySelector('#close').style.display = "block";
   home.style.filter = "blur(5px)";
   footer.style.filter = "blur(5px)";
 }
@@ -46,6 +46,7 @@ document.querySelector('#close').addEventListener('click', () => {
   announcement.style.cssText = `translateY(-120vh);`
   home.style.filter = "blur(0)";
   footer.style.filter = "blur(0)";
+  document.querySelector('#close').style.display = "none";
 });
 
 const popup_close_btn = document.querySelector("#popup_close_btn");

@@ -605,16 +605,14 @@ span {
 }
 
 .scroll {
-    animation: scroll 100s linear infinite;
     overflow-x: scroll;
     font-weight: 600;
-
+    animation: scroll 120s linear 0s infinite;
 }
 
 @keyframes scroll {
     100% {
         transform: translateX(-5081px);
-        transition-duration: 74.9875s;
     }
 }
 
@@ -1979,30 +1977,18 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translateY(-140vh);
+    transform: translateY(-200vh);
     z-index: 1000000010;
     overflow-y: scroll;
 
 }
 
 .textss {
-    z-index: 1;
     position: relative;
 }
 
 .textss>img {
     width: 100%;
-}
-
-.set_texts {
-    position: absolute;
-    top: 25%;
-    left: 15%;
-    width: 70%;
-    text-align: left;
-    padding: 2vw;
-    transform: translateY(-140vh);
-
 }
 
 #close {
@@ -2012,6 +1998,7 @@ img {
     font-size: 10vw;
     display: block;
     color: gray;
+    display: none;
 }
 
 

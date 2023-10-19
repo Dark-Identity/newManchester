@@ -320,13 +320,15 @@ body {
 }
 
 .gap>div {
-    border: 1px solid white;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1vw;
+    padding: 2vw;
     margin: 2vw 0;
+    background: none;
+    border-radius: 1.066667vw;
+    border: .4vw solid #fff;
 
 }
 
@@ -349,7 +351,7 @@ body {
 .footer>button {
     width: 92%;
     height: 13.333333vw;
-    background: #99c5e8;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
     border-radius: 6.8vw;
     margin-top: 6.4vw;
     font-size: 4.8vw;
@@ -357,4 +359,5 @@ body {
     color: #fff;
     border: none;
     margin: 0 auto;
+
 }

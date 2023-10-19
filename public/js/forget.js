@@ -130,3 +130,21 @@ document.querySelector('.forget_close').addEventListener('click',()=>{
     window.location.href = "/login"
 
 });
+
+
+document.querySelector('#show').addEventListener('click', () => {
+    var x = document.getElementById("pass_one");
+    let y = document.querySelector('#eye_open')
+    let z = document.querySelector('#eye_close')
+    console.log(x);
+    if (x.type === "password") {
+        z.style.display = 'none';
+        y.style.display = 'block';
+        x.type = "text";
+    } else {
+        x.type = "password";
+        y.style.display = 'none';
+        z.style.display = 'block';
+    }
+});
+

@@ -48,14 +48,20 @@
                 <span>password</span>
                 <div>
                     <input type="password" name="" id="pass_one" placeholder="Enter the password">
-                    <ion-icon name="eye-off-outline"></ion-icon>
+
+                    <div id="show">
+                        <ion-icon name="eye-off-outline" style="font-size:24px;color:#fff;" id="eye_close"></ion-icon>
+                        <ion-icon name="eye-outline" style="font-size:24px;color:#fff;display:none"
+                            id="eye_open"></ion-icon>
+                    </div>
+
                 </div>
             </div>
 
         </section>
 
         <section class="footer">
-            <button style="color:#fff" id="forget_btn">Request</button>
+            <button style="color:#fff" id="forget_btn">Submit</button>
         </section>
 
     </section>

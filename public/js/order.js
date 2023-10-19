@@ -228,10 +228,11 @@ function create_unsettled_bets(data) {
 
 
     <section class="orders">
+
         <div class="order_teams">
-            <div class="temLogo">
-                <img src="/aelephantFootball/football.png" alt="" srcset="">
-            </div>
+        <div class="teamLogo">
+        <img src="/elephantFootball/football.png" alt="" srcset="">
+    </div>
             <p class="ellipsis-1">${data['team_a']}</p>
         </div>
         
@@ -253,7 +254,7 @@ function create_unsettled_bets(data) {
             <div class="teamLogo">
                 <img src="/elephantFootball/football.png" alt="" srcset="">
             </div>
-            <p class="ellipsis-1">${data['team_a']}</p>
+            <p class="ellipsis-1">${data['team_b']}</p>
         </div>
 
     </section>
@@ -323,8 +324,8 @@ function create_settled_bets(data) {
            margin-bottom: 0;">
 
            <h4>score</h4>
-           <h5 class="lime">${data['scoreDetails'][0]['first']} - ${data['scoreDetails'][0]['second']} </h5>
-           <h5>${data['final_score'][0]['first']}-${data['final_score'][0]['second']}</h5>
+           <h5 class="lime" style:"text-align:center;">${data['scoreDetails'][0]['first']} - ${data['scoreDetails'][0]['second']} </h5>
+           <h5 class="lime lime_two" style:"text-align:center;">${data['final_score'][0]['first']}-${data['final_score'][0]['second']}</h5>
          
       </div>
 
@@ -376,3 +377,6 @@ popup_close_btn.addEventListener('click', () => {
   document.querySelector('#popup_page').style.left = '-100vw';
   popup_tip.innerText = 'Loading...';
 })
+
+
+

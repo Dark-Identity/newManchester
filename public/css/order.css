@@ -133,7 +133,7 @@ body {
 .topGames>p {
     font-size: 4.266667vw;
     font-weight: 500;
-    color: #00774c;
+    color:#3d8af8;
     margin-left: 2vw;
 }
 
@@ -249,4 +249,11 @@ body {
 
 .d > p {
     color: #fff;
+}
+
+.lime{
+    text-align: center;
+}
+.lime_two{
+    color: red;
 }
