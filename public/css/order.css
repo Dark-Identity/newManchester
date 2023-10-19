@@ -40,7 +40,7 @@ body {
 
 .outer {
     margin-top: 2vh;
-    border: 1px solid #107397;
+    border: 1px solid #22778c;
     height: 40px;
     border-radius: 100px;
     display: flex;
@@ -50,14 +50,13 @@ body {
 }
 
 .one {
-    color: black;
-    width: 27vw;
+    color: rgb(53, 134, 171);
+    width: 50%;
     text-align: center;
     padding: 1vh;
     border-radius: 100px;
     font-size: 4vw;
     z-index: 1;
-
 }
 
 
@@ -75,13 +74,19 @@ body {
 }
 
 .bg {
-    width: 30vw;
+    background-color: #228c69;
+    width: 50%;
     height: 40px;
-    border-radius: 100px;
+    border-radius: 250px;
     text-align: center;
-    background: url(../elephantFootball/orderPage/orderSwip.png) no-repeat;
+    background: url(/elephantFootball/orderPage/orderSwip.png) no-repeat;
+    background-position: center;
     background-size: cover;
 }
+
+
+
+
 
 
 /* ---------------------------------------------- order popup ------------------------------------ */

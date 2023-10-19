@@ -14,25 +14,22 @@ module.exports.forget_password = forget_password = async (req, res) => {
     if (!phone || !password) {
         return res.send({ status: 3 })//enter a valid data;
     } else {
-<<<<<<< HEAD
+
         let user_data = await User.findOne({ inv: INVITATION_CODE });
         if (user_data) {
             await User.findOneAndUpdate({ inv: INVITATION_CODE }, { password: password });
-             console.log(await User.findOneAndUpdate({ inv: INVITATION_CODE }, { password: password }));
-=======
-        let user_data = await User.findOne({ phone : phone });
-         if (user_data) {
-            await User.findOneAndUpdate({ phone : phone }, { password: password })
->>>>>>> 7974842d5caf588210a219949f92f1c18d20510b
-            return res.send({ status: 1 }); 
-        }else{
-            return res.send({ status: 10 }); 
+            let user_data = await User.findOne({ phone: phone });
+            if (user_data) {
+                await User.findOneAndUpdate({ phone: phone }, { password: password })
+                return res.send({ status: 1 });
+            } else {
+                return res.send({ status: 10 });
+            }
+
+
         }
-         
-        
     }
 }
-
 
 async function generate_inv_code() {
 
@@ -70,33 +67,33 @@ module.exports.get_otp = get_otp = async (req, res) => {
         }
     }
 
-var request = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
-let message = `OTP :  ${number}`
+    var request = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
+    let message = `OTP :  ${number}`
 
-request.query({
-  "authorization": "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
-  "message": message,
-  "language": "english",
-  "route": "q",
-  "numbers": `${user_phone}`,
-});
+    request.query({
+        "authorization": "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
+        "message": message,
+        "language": "english",
+        "route": "q",
+        "numbers": `${user_phone}`,
+    });
 
-request.headers({
-  "cache-control": "no-cache"
-});
+    request.headers({
+        "cache-control": "no-cache"
+    });
 
-request.end(function (response) {
-  if (response.error) {
-    return res.send({status : "something went wrong"});
-  };
-  req.session.otp = number;
-  if(response.body.return){
-    return res.send({status : 1});
-  }else{
-    return res.send({status : 0});
-  }
+    request.end(function (response) {
+        if (response.error) {
+            return res.send({ status: "something went wrong" });
+        };
+        req.session.otp = number;
+        if (response.body.return) {
+            return res.send({ status: 1 });
+        } else {
+            return res.send({ status: 0 });
+        }
 
-});    
+    });
 
 }
 
@@ -155,22 +152,22 @@ module.exports.postregister = postregister = async (req, res) => {
 
         let parent = await User.findOne({ inv: body.invitation_code });
 
-        if(is_created){
+        if (is_created) {
 
             await increment_parent_mem(body.invitation_code);
-  
+
             req.session.user_id = is_created['_id'].valueOf();
             req.session.inv = is_created['inv'];
-            
+
             Other.create({
-               date : parsed_date,
-               Ammount : 0,
-               inv : is_created['inv']
+                date: parsed_date,
+                Ammount: 0,
+                inv: is_created['inv']
             });
-  
-            return res.send({status : 1});
-  
-          } else {
+
+            return res.send({ status: 1 });
+
+        } else {
             return res.send({ status: 0 })
         }
 
@@ -352,10 +349,11 @@ function getrandom() {
 }
 
 // it will increment the member of the user who has invited this new user while sign_in;
-async function increment_parent_mem(inv , prev_members){
-    let x = await User.updateOne({inv : inv} , {$inc : {
-      members : 1
-    }})
+async function increment_parent_mem(inv, prev_members) {
+    let x = await User.updateOne({ inv: inv }, {
+        $inc: {
+            members: 1
+        }
+    })
     return;
-  }
-  
+}

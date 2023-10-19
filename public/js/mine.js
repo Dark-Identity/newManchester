@@ -713,3 +713,40 @@ document.querySelector('#tirThree').addEventListener('click', () => {
     rule.style.zIndex = "-1";
     content.status.zIndex = "1";
 });
+
+
+function create_current_amount(data) {
+    document.querySelector('#current_bet_amount').innerText = data.bAmmount + data.bAmmount;
+}
+  
+
+async function get_bet_history() {
+
+    let config = {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }
+    let res = await fetch('/get_bet_history', config);
+  
+    res = await res.json();
+  
+  
+    if (res['status'] === 0) {
+      window.location.href = window.location.origin + '/login';
+    } else if (res['status'] === 1) {
+  
+  
+      if (res['unsetteled_bets']) {
+        res['unsetteled_bets'].forEach((item, i) => {
+          create_unsettled_bets(item);
+          create_current_amount(item);
+        });
+      }  
+    }
+  
+  }
+  
+
+  get_bet_history();
