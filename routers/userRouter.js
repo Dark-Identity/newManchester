@@ -99,7 +99,6 @@ userRouter
 
 
   
-userRouter.use(isAuthenticated);
 userRouter
   .route('/forget_password')
   .get(get_forget)
