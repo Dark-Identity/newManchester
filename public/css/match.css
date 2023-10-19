@@ -130,13 +130,13 @@ body {
     margin-top: 1.2vh;
     padding-bottom: 8vh;
     height: 100vh;
+    padding-bottom: 20vh;
 
 
 }
 
 .collection {
     display: block;
-    background: #f8f8f8;
 }
 
 .collection_two {

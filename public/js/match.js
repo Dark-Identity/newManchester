@@ -27,6 +27,7 @@ document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
 
 
 
+
 const search = () => {
     const searchBox = document.querySelector('#teamInput').value.toUpperCase();
     const bet_box = document.querySelector('.collection');  //parent box
@@ -34,8 +35,7 @@ const search = () => {
     const team_a = document.querySelectorAll('.leftnamei');
  
     for (let i = 0; i < team_a.length; i++) {
-        let match = matches[i].querySelector('.leftnamei');
-
+        let match = matches[i].querySelectorAll('.leftnamei')[0];
         if (match) {
             let text_value = match.textContent || match.innerHTML
             if (text_value.toUpperCase().indexOf(searchBox) > -1) {
@@ -48,8 +48,9 @@ const search = () => {
     }
 
 }
-
-
+document.querySelector('#teamInput').addEventListener('keyup',()=>{
+    search();
+});
 
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
