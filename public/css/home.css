@@ -1126,7 +1126,6 @@ img {
     width: 92vw;
     height: 13.066667vw;
     border-radius: 6.8vw;
-    border: .266667vw solid #8ec0ae;
     font-size: 4.8vw;
     font-weight: 500;
     color: #fff;
@@ -1135,7 +1134,7 @@ img {
     display: block;
     margin: 0 auto;
     background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-
+    border: none;
 
 }
 
@@ -1342,7 +1341,6 @@ img {
     width: 92vw;
     height: 13.066667vw;
     border-radius: 6.8vw;
-    border: .266667vw solid #8ec0ae;
     font-size: 4.8vw;
     font-weight: 500;
     color: #fff;
@@ -1351,7 +1349,7 @@ img {
     display: block;
     margin: 0 auto;
     background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-
+    border: none;
 }
 
 .rulee img[data-v-5597067f] {
@@ -1843,16 +1841,18 @@ img {
 
 #confirm {
     width: 92vw;
-    height: 12vw;
-    border-radius: 6.533333vw;
-    border: .266667vw solid #154fe4;
+    height: 13.066667vw;
+    border-radius: 6.8vw;
     font-size: 4.8vw;
     font-weight: 500;
-    color: #154fe4;
-    background: none;
-    background: linear-gradient(180deg, #2e87f4, #154fe4);
-    border-radius: 6.533333vw;
     color: #fff;
+    margin-top: 4vw;
+    background: #7bebff;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+    border: none;
+
 }
 
 .league_id {

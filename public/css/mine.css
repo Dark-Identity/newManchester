@@ -538,7 +538,6 @@ body {
     font-weight: 600;
     color: #fff;
     background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-    box-shadow: 0 0.533333vw 0 0 #50605e;
     border-radius: 6.8vw;
     border: .266667vw solid #8ec0ae;
     z-index: 333;
@@ -648,7 +647,7 @@ body {
 
 }
 
-.bg {
+.bgm{
     width: 30vw;
     height: 40px;
     border-radius: 100px;

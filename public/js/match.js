@@ -18,7 +18,7 @@ window.addEventListener('load', () => {
 
 document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
     betpop.style.cssText = `
-     transform: translateY(150vh);  
+     transform: translateY(200vh);  
      transition: all 1s linear;
      `;
     matchList.style.cssText = `filter: brightness(100%);`;
@@ -287,6 +287,7 @@ document.querySelectorAll('.matchscore').forEach(element => {
 document.querySelector('#betBtn').addEventListener('click',()=>{
     popCantain.style.zIndex='-1'
     matchCantain.style.zIndex='1';
+    footer.style.zIndex = "1";
 });
 
 

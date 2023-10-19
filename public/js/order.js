@@ -44,23 +44,23 @@ const secondOuter = document.querySelector('.secondOuter');
 const order = document.querySelector('.orderPopup');
 const history = document.querySelector('.historicalPopup');
 
-order.style.zIndex="1";
+order.style.zIndex = "1";
 
 two.addEventListener('click', () => {
-    secondOuter.style.cssText = `justify-content: start;`;
-    twoP.style.color = "#fff";
-    threeP.style.color = "#0f6997";
-    order.style.zIndex = "1";
-    history.style.zIndex = "-1";
+  secondOuter.style.cssText = `justify-content: start;`;
+  twoP.style.color = "#fff";
+  threeP.style.color = "#0f6997";
+  order.style.zIndex = "1";
+  history.style.zIndex = "-1";
 })
 
 
 three.addEventListener('click', () => {
-    secondOuter.style.cssText = `justify-content: end;`;
-    threeP.style.color = "#fff";
-    twoP.style.color = "#0f6997";
-    order.style.zIndex = "-1";
-    history.style.zIndex = "1";
+  secondOuter.style.cssText = `justify-content: end;`;
+  threeP.style.color = "#fff";
+  twoP.style.color = "#0f6997";
+  order.style.zIndex = "-1";
+  history.style.zIndex = "1";
 })
 
 
@@ -103,7 +103,7 @@ function check_date(date, time) {
   if (valid_date && valid_hour || equal_hours && valid_minutes) {
     to_return = `<div class="trade_cancel_btn">
       <i class="fa-solid fa-angles-up"></i>
-      <h3>CANCEL</h3>
+      <p >Cancel</p>
       </div>`;
     return to_return;
   }
@@ -111,12 +111,12 @@ function check_date(date, time) {
   return to_return;
 
 }
-
 function listen_to_cancel_bet() {
   document.querySelectorAll('.trade_cancel_btn').forEach((item, i) => {
     item.addEventListener('click', () => {
       document.querySelector('#del_leagueid').innerText = item.parentElement.querySelector('.trade_league_id').innerText;
       document.querySelector('.trade_del_box').style.display = 'block';
+
     })
   });
 
@@ -192,7 +192,7 @@ async function get_bet_history() {
     if (res['setteled_bets']) {
       res['setteled_bets'].forEach((item, i) => {
         create_settled_bets(item);
-        document.querySelector('.empty').style.display="none";
+        document.querySelector('.empty').style.display = "none";
 
       });
     }
@@ -210,8 +210,8 @@ function create_unsettled_bets(data) {
   child.classList.add('match-card');
 
   let cut_box = check_date(data['date'], data['time']);
-  
-  total_estemeted_profit += parseFloat( ((parseFloat(data['bAmmount']) / 100) * parseFloat(data['profit'])).toFixed(2));
+
+  total_estemeted_profit += parseFloat(((parseFloat(data['bAmmount']) / 100) * parseFloat(data['profit'])).toFixed(2));
 
   total_estemeted_income += parseFloat((data['bAmmount']).toFixed(2));
 
@@ -229,8 +229,8 @@ function create_unsettled_bets(data) {
 
     <section class="orders">
         <div class="order_teams">
-            <div class="teamLogo">
-                <img src="/elephantFootball/homePage/top_games_logo.png" alt="" srcset="">
+            <div class="temLogo">
+                <img src="/aelephantFootball/football.png" alt="" srcset="">
             </div>
             <p class="ellipsis-1">${data['team_a']}</p>
         </div>
@@ -251,7 +251,7 @@ function create_unsettled_bets(data) {
 
         <div class="order_teams">
             <div class="teamLogo">
-                <img src="/elephantFootball/homePage/top_games_logo.png" alt="" srcset="">
+                <img src="/elephantFootball/football.png" alt="" srcset="">
             </div>
             <p class="ellipsis-1">${data['team_a']}</p>
         </div>
@@ -311,7 +311,7 @@ function create_settled_bets(data) {
   <section class="orders">
       <div class="order_teams">
           <div class="teamLogo">
-              <img src="" alt="" srcset="">
+              <img src="/elephantFootball/football.png" alt="" srcset="">
           </div>
           <p class="ellipsis-1">${data['team_a']}</p>
       </div>
@@ -330,7 +330,7 @@ function create_settled_bets(data) {
 
       <div class="order_teams">
           <div class="teamLogo">
-              <img src="/elephantFootball/top_games_logo.png" alt="" srcset="">
+              <img src="/elephantFootball/football.png" alt="" srcset="">
           </div>
           <p class="ellipsis-1">${data['team_a']}</p>
       </div>

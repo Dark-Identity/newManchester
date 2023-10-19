@@ -167,6 +167,8 @@ body {
     border: none;
 }
 
+
+
 .register .container .logbtn[data-v-f7c41c52] {
     width: 100%;
     height: 13.333333vw;
@@ -177,7 +179,8 @@ body {
     font-weight: 600;
     color: #ffffffee;
     border: none;
-    background-color: #99c5e8;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+
 }
 
 .register .container .loginregi[data-v-f7c41c52] {
