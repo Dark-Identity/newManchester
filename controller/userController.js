@@ -64,13 +64,12 @@ module.exports.get_otp = get_otp = async (req, res) => {
     }
 
     var request = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
-    let message = `OTP :  ${number}`
+    let message = `${number}`
 
     request.query({
         "authorization": "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
-        "message": message,
-        "language": "english",
-        "route": "q",
+        "variables_values": message,
+        "route": "otp",
         "numbers": `${user_phone}`,
     });
 
