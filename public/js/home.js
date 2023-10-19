@@ -271,7 +271,7 @@ document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
 // --------------------------------------------------- creating the match -------------------------------------------------------
 function create_match(data) {
 
-  let ndate = new Date(data['raw_date']).toLocaleString('en-Us' , {
+  let ndate = new Date(data['raw_date'].slice(0 , -1)).toLocaleString('en-Us' , {
     'timeZone' : "Asia/Calcutta"
   });
   let date = new Date(ndate);
