@@ -271,8 +271,10 @@ document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
 // --------------------------------------------------- creating the match -------------------------------------------------------
 function create_match(data) {
 
-  let ndate = new Date(data['raw_date']);
-  let date = new Date(data['raw_date']);
+  let ndate = new Date(data['raw_date']).toLocaleString('en-Us' , {
+    'timeZone' : "Asia/Calcutta"
+  });
+  let date = new Date(ndate);
 
   // console.log(ndate);
   // console.log(date);
@@ -340,10 +342,15 @@ async function get_live_bets() {
 
 
   // from here I have to call the store data function by passing the arguments key and array.
-
+  let count_matches = 0;
   for (let match_data of res) {
+    if(count_matches === 10){
+      break;
+    }
     if ('percentage' in match_data) {
+     
       create_match(match_data);
+      count_matches++;
       percentage[match_data['fixture_id']] = match_data['percentage'];
     }
   }

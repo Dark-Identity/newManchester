@@ -778,14 +778,13 @@ const request = require('request');
     let {invitation_code , amount , transactioin_id} = req.body;
 
     invitation_code = parseInt(invitation_code);
-    amount = parseFloat(amount);
 
     if(!invitation_code || !amount){
       res.send({status : 2});
     } else {
-
-      let deposit_data = await Deposit.findOne({inv : invitation_code ,Ammount : amount , transactioin_id : transactioin_id , status : 0});
-      console.log(deposit_data);
+      transactioin_id = transactioin_id.trim();
+      let deposit_data = await Deposit.findOne({inv : invitation_code , transactioin_id : transactioin_id , status : 0});
+    
       if(deposit_data !== 'undefined' && deposit_data){
 
         let user_data = await User.findOne({inv : invitation_code} , {Ammount : 1 , inv : 1 , parent : 1 , max_deposit : 1});

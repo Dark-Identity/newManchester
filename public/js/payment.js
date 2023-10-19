@@ -11,6 +11,8 @@ document.querySelector("#submit").addEventListener("click" , async(e)=>{
     post_data.udf1 = 'extradata';
     post_data.udf2 = 'extradata';
     post_data.udf3 = 'extradata';
+
+    alert(post_data.redirect_url);
   
     let config = {
         method: 'POST',

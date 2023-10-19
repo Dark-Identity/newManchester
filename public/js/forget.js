@@ -110,10 +110,8 @@ forget_btn.addEventListener('click', async (e) => {
     let res = await fetch('/forget_password', config); console.log(res);
     let res_data = await res.json();
 
-    console.log(res_data);
-
     if (res_data) {
-        if(res_data.status === 1){ //name already exits
+        if(res_data.status === 1){ 
             popup_tip.innerText = 'susuccessfully password changed.';
             popup_close_btn.disabled = false;
             window.location.href = window.location.origin + '/home';

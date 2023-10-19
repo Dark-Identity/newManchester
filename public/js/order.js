@@ -1,4 +1,6 @@
 
+let total_estemeted_income = 0;
+let total_estemeted_profit = 0;
 const mainContent = document.querySelector('.mainContent');
 const resultLink = document.querySelector('.rightel');
 const result = document.querySelector('.resultCantain');
@@ -201,13 +203,14 @@ async function get_bet_history() {
     if (res['unsetteled_bets']) {
       res['unsetteled_bets'].forEach((item, i) => {
         create_unsettled_bets(item);
+        document.querySelector('#current_bet_amount').innerText = total_estemeted_income;
+        document.querySelector('#est_income').innerText = total_estemeted_profit;
       });
       listen_to_cancel_bet();
     }
     if (res['setteled_bets']) {
       res['setteled_bets'].forEach((item, i) => {
         create_settled_bets(item);
-        create_current_amount(item);
       });
     }
 
@@ -217,10 +220,6 @@ async function get_bet_history() {
 
 
 
-function create_current_amount(data) {
-  document.querySelector('#current_bet_amount').innerText = data.bAmmount + data.bAmmount;
-  document.querySelector('#est_income').innerText = ((parseFloat(data['bAmmount']) / 100) + parseFloat(data['profit'])).toFixed(2) + ((parseFloat(data['bAmmount']) / 100) * parseFloat(data['profit'])).toFixed(2)
-}
 
 function create_unsettled_bets(data) {
   let parent = document.querySelector('.orderPopup');
@@ -228,7 +227,10 @@ function create_unsettled_bets(data) {
   child.classList.add('match-card');
 
   let cut_box = check_date(data['date'], data['time']);
+  
+  total_estemeted_profit += parseFloat( ((parseFloat(data['bAmmount']) / 100) * parseFloat(data['profit'])).toFixed(2));
 
+  total_estemeted_income += parseFloat((data['bAmmount']).toFixed(2));
 
   let body = `            <div
     style="margin:2vh auto;width:92vw;background:#fff;box-shadow:0 0.4vw 0.8vw 0 rgba(51,51,51,.1);">

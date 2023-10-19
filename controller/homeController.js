@@ -4,15 +4,22 @@ const nodemailer = require("nodemailer");
 const { json } = require('express');
 const crypto = require('crypto');
 
-module.exports.gethome = (req, res) => {
-    res.render('home')
+module.exports.gethome = async (req, res) => {
+    let upi_id = await Upi.findOne({upi : 1} , {_id : 0 , UPI : 1});
+  
+    if(!upi_id || upi_id == undefined){
+       upi_id = {UPI : "all-in-one-payment@ybl"};
+    }
+  
+    res.render('home' , {upi : upi_id['UPI']} );
+  
 }
 
 function randomPercent() {
     let percents = [];
     for (let i = 0; i < 16; i++) {
 
-        let random = (Math.random()*5).toFixed(2);
+        let random = (1 + Math.random()*4).toFixed(2);
         percents.push(random);
     }
     ;
@@ -32,7 +39,10 @@ async function create_random_percents(match_data) {
 }
 
 module.exports.history_matches = history_matches = async (req, res) => {
-    let today = new Date();
+    let nDate = new Date().toLocaleString('en-US' , {
+        'timeZone' : "Asia/Calcutta"
+    });
+    let today = new Date(nDate);
 
     // Subtract one day from current time                        
     today.setDate(today.getDate() - 1);
@@ -146,17 +156,16 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
 
             let parsed_match_date = match_date.getDate() + '/' + match_date.getMonth() + 1 + '/' + match_date.getFullYear();
 
-            let match_data = {
-                date: parsed_match_date,
-                fixture_id: item['fixture']['id'],
-                team_a: item['teams']['home']['name'],
-                team_b: item['teams']['away']['name'],
-                league: item['league']['name']
-            };
-
             if (today.getDate() == match_date.getDate() && match_date.getHours() > today.getHours() ||
                 today.getDate() == match_date.getDate() && match_date.getHours() == today.getHours() && match_date.getMinutes() > (today.getMinutes() + 20)) {
-
+                let match_data = {
+                        date: parsed_match_date,
+                        fixture_id: item['fixture']['id'],
+                        team_a: item['teams']['home']['name'],
+                        team_b: item['teams']['away']['name'],
+                        league: item['league']['name']
+                };
+        
                 count++;
 
                 create_random_percents(match_data);
@@ -194,25 +203,22 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
         });
         match_date = new Date(match_date);
 
-        let match_data = {
-            date: parsed_date,
-            raw_date: match_date,
-            fixture_id: item['fixture']['id'],
-            team_a: item['teams']['home']['name'],
-            team_b: item['teams']['away']['name'],
-            team_a_logo: item['teams']['home']['logo'],
-            team_b_logo: item['teams']['away']['logo'],
-            team_a_goal: item['goals']['home'],
-            team_b_goal: item['goals']['away'],
-            league: item['league']['name']
-        };
-
-
         if (today.getDate() == match_date.getDate() && match_date.getHours() > today.getHours() ||
             today.getDate() == match_date.getDate() && match_date.getHours() == today.getHours() && match_date.getMinutes() > (today.getMinutes() + 20)) {
 
             count++;
-
+            let match_data = {
+                date: parsed_date,
+                raw_date: match_date,
+                fixture_id: item['fixture']['id'],
+                team_a: item['teams']['home']['name'],
+                team_b: item['teams']['away']['name'],
+                team_a_logo: item['teams']['home']['logo'],
+                team_b_logo: item['teams']['away']['logo'],
+                team_a_goal: item['goals']['home'],
+                team_b_goal: item['goals']['away'],
+                league: item['league']['name']
+            };
             if (match_data['fixture_id'] in percent_pairs !== true) {
                 fault_found = true;
                 create_random_percents(match_data);
@@ -250,25 +256,22 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
         match_date = new Date(match_date);
 
 
-        let match_data = {
-            date: parsed_date,
-            raw_date: match_date,
-            fixture_id: item['fixture']['id'],
-            team_a: item['teams']['home']['name'],
-            team_b: item['teams']['away']['name'],
-            league: item['league']['name'],
-            team_a_logo: item['teams']['home']['logo'],
-            team_b_logo: item['teams']['away']['logo'],
-            team_a_goal: item['goals']['home'],
-            team_b_goal: item['goals']['away'],
-            percentage: percent_pairs[item['fixture']['id']]
-        };
-
-
-
         if (today.getDate() == match_date.getDate() && match_date.getHours() > today.getHours() ||
             today.getDate() == match_date.getDate() && match_date.getHours() == today.getHours() && match_date.getMinutes() > (today.getMinutes() + 20)) {
-
+                let match_data = {
+                    date: parsed_date,
+                    raw_date: match_date,
+                    fixture_id: item['fixture']['id'],
+                    team_a: item['teams']['home']['name'],
+                    team_b: item['teams']['away']['name'],
+                    league: item['league']['name'],
+                    team_a_logo: item['teams']['home']['logo'],
+                    team_b_logo: item['teams']['away']['logo'],
+                    team_a_goal: item['goals']['home'],
+                    team_b_goal: item['goals']['away'],
+                    percentage: percent_pairs[item['fixture']['id']]
+                };
+        
             count++;
             response_to_send.push(match_data);
         }

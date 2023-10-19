@@ -32,7 +32,7 @@ const search = () => {
     const bet_box = document.querySelector('.collection');  //parent box
     const matches = document.querySelectorAll('.bet_card');
     const team_a = document.querySelectorAll('.leftnamei');
-
+ 
     for (let i = 0; i < team_a.length; i++) {
         let match = matches[i].querySelector('.leftnamei');
 
@@ -104,7 +104,7 @@ function create_match(data) {
                                 <div class="teamLogo">
                                     <img src="/elephantFootball/football.png" alt="" srcset="" id="logo_b">
                                 </div>
-                                <p class="nameu leftnamei ellipsis-2" data-v-7afa3138=""  id="initial_team_b">
+                                <p class="nameu  ellipsis-2" data-v-7afa3138=""  id="initial_team_b">
                                     ${data['team_b']}
                                 </p>
                             </div>
@@ -464,6 +464,7 @@ const tomorrow = document.querySelector('.tomorrow');
 
 
 two.addEventListener('click', () => {
+    document.querySelector('.input-box').style.display = "flex";
     secondOuter.style.cssText = `justify-content: start;`;
     twoP.style.color = "#fff";
     threeP.style.color = "#0f6997";
@@ -473,6 +474,7 @@ two.addEventListener('click', () => {
 
 
 three.addEventListener('click', () => {
+    document.querySelector('.input-box').style.display = "none";
     secondOuter.style.cssText = `justify-content: end;`;
     threeP.style.color = "#fff";
     twoP.style.color = "#0f6997";
@@ -496,9 +498,6 @@ function create_match_two(data) {
     let parent_box = document.querySelector('.collection_two');
     let match_card = document.createElement('div');
     match_card.classList.add('gameBox');
-    match_card.classList.add('bet_card_two');
-
-
 
     let body = `
        <div class="dataDiv">
@@ -516,7 +515,7 @@ function create_match_two(data) {
                         <div class="match">
   
                             <div class="t teamOne">
-                                <p class="nameu leftnamei ellipsis-2" data-v-7afa3138="" id="initial_team_a">
+                                <p class="nameu ellipsis-2" data-v-7afa3138="" id="initial_team_a">
                                     ${data['team_a']}
                                 </p>
                                 <div class="teamLogo">
@@ -532,7 +531,7 @@ function create_match_two(data) {
                                 <div class="teamLogo">
                                     <img src="/elephantFootball/football.png" alt="" srcset="" id="logo_b">
                                 </div>
-                                <p class="nameu leftnamei ellipsis-2" data-v-7afa3138=""  id="initial_team_b">
+                                <p class="nameu  ellipsis-2" data-v-7afa3138=""  id="initial_team_b">
                                     ${data['team_b']}
                                 </p>
                             </div>

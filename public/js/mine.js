@@ -174,6 +174,22 @@ async function get_user_data() {
 
 }
 
+async function get_freezing_asset(){
+    let config = {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
+    }
+    let response = await fetch("/freesing_asset" , config);
+    response = await response.json();
+    if(response['status'] === 1){
+      document.querySelector('#current_bet_amount').innerText = 'Rs'+response['data'];
+    }else {
+        window.location.href = window.location.origin+"/login";
+    }
+}
+get_freezing_asset();
 
 function set_user_data(info) {
     // selectAll('.s_invitation').forEach((item, i) => {
@@ -643,7 +659,7 @@ document.querySelector('#show_three').addEventListener('click', () => {
 // --------------------------QR CODE GENERATION ---------------------
 
 let qr_code_element = document.querySelector("#qrcode");
-let value = "http://localhost:3500/mine";
+
 function generate(value) {
     qr_code_element.style = "";
 
@@ -663,10 +679,10 @@ async function get_inv(inv_code) {
     let inv = { INV: inv_code };
     if (inv['INV'] !== 0) {
         document.querySelector('.inv_code ').innerText = inv['INV'];
-        document.querySelector('#invitation_link').innerText = `${window.location.origin + '/signup' + '?id=' + inv['INV']}`;
-        generate(`${window.location.origin + '/signup' + '?id=' + inv['INV']}`);
+        document.querySelector('#invitation_link').innerText = `${window.location.origin + '/signup/' + '?id=' + inv['INV']}`;
+        generate(`${window.location.origin + '/signup/' + '?id=' + inv['INV']}`);
     } else {
-        window.location.href = window.location.origin + "/sign.html";
+        window.location.href = window.location.origin + "/";
         return;
     }
 
@@ -713,3 +729,46 @@ document.querySelector('#tirThree').addEventListener('click', () => {
     rule.style.zIndex = "-1";
     content.status.zIndex = "1";
 });
+
+
+document.querySelector("#copy_url_btn").addEventListener("click" , ()=>{
+    let text = document.querySelector(".inv_code").innerText;
+    copyPageUrl(text);
+})
+
+document.querySelector("#invitation_link_cpy_btn").addEventListener("click" , ()=>{
+   let text = document.querySelector("#invitation_link").innerText;
+   copyPageUrl(text);
+})
+
+async function copyPageUrl(text) {
+    popup_page.style.left = '0px';
+    popup_cancel_btn.disabled = true;
+  
+    if(window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp){
+       window.WTN.clipboard.get({
+          callback:function(data){
+          console.log(data.value)
+         }
+       })
+      window.WTN.clipboard.set({
+        data: `${text}`
+      })
+      popup_tip.innerText = 'Success! copied.'
+      popup_cancel_btn.disabled = false;
+   
+    }else{
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      popup_tip.innerText = 'Failure! something went wrong.'
+      popup_cancel_btn.disabled = false;
+  
+    } finally {
+      popup_tip.innerText = 'Success! copied.'
+      popup_cancel_btn.disabled = false;
+    }
+    }
+  }
+  
+

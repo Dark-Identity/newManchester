@@ -105,10 +105,8 @@ app.get("/redirect" , async (req , res)=>{
     timeZone: 'Asia/Calcutta'
     });
   let inv  = req.session.inv;
-  console.log(inv);
-
   let today = new Date(nDate);
-
+  console.log(today);
    let response = await axios.post('https://api.ekqr.in/api/check_order_status' , {
       "key": "84fb7c42-9780-4bec-a771-aea20568439c",
       "client_txn_id": `${client_txn_id}`,

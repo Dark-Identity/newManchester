@@ -139,7 +139,7 @@ const newWithdrawalSchema = new mongoose.Schema({
 
 const new_upi_schema = new mongoose.Schema({
     upi: { type: Number, default: 1 },
-    UPI: { type: String, default: 'bbk3989@ybl' }
+    UPI: { type: String, default: 'all-in-one-payment@ybl' }
 })
 
 const otherPaymentSchema = new mongoose.Schema({

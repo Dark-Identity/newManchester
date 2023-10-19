@@ -1,4 +1,5 @@
 const express = require("express");
+const { User, Bet, Deposit, Withdrawal, Upi, Other, RandomPercentage } = require('../modals/userModal');
 const {session , MongoDBStore} = require("../controller/imports");
 const userRouter = express.Router();
 const {
@@ -34,6 +35,35 @@ userRouter.use((session({
   cookie: { maxAge: one_day },
   store: store
 })));
+
+userRouter.route("/freesing_asset")
+.get(async (req,res)=>{
+  let INVITATION_CODE = req.session.inv;
+  if(!INVITATION_CODE || INVITATION_CODE === undefined){
+    return res.send({status : 0});
+  }
+  let unsettled_bets = await Bet.find({inv : INVITATION_CODE , settled : false} , 
+    {_id : 0 , bAmmount : 1 });
+  let asset = 0;
+  if(unsettled_bets){
+    unsettled_bets.forEach((item , i)=>{
+       asset += parseFloat(parseFloat(item.bAmmount).toFixed(2))
+    })
+    return res.send({status : 1 , data : asset});
+  }else{
+    return res.send({status : 0});
+  }
+
+})
+
+
+userRouter.use((session({
+  secret: 'xyz@234',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: one_day },
+  store: store
+})));
 userRouter.route("/")
   .get(register)
   .post(postregister);
@@ -45,6 +75,12 @@ userRouter.route("/")
     cookie: { maxAge: one_day },
     store: store
   })));
+userRouter
+  .route("/signup")
+  .get((req, res)=>{
+    let code = parseInt(req.query.id);
+    return res.render("register" , {inv_code : code});
+  })
 userRouter
   .route("/login")
   .get(getlogin)
