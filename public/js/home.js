@@ -993,7 +993,7 @@ async function initiate_gateway_recharge() {
   post_data.customer_name = "anonymus";
   post_data.customer_email = "gateway@gmail.com";
   post_data.customer_mobile = `${Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000}`;
-  post_data.redirect_url = "http://manchester-football.com/redirect";
+  post_data.redirect_url = "http://www.manchester-football.com/redirect";
   // post_data.udf1 = 'extradata';
   // post_data.udf2 = 'extradata';
   // post_data.udf3 = 'extradata';
