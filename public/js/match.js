@@ -255,18 +255,21 @@ function load_bet_box() {
 
     });
 }
-let betpop = document.querySelector('.placebet');
-let matchList = document.querySelector('.matchPopUp');
+// let betpop = document.querySelector('.placebet');
+// let matchList = document.querySelector('.matchPopUp');
 
-document.querySelector('#betBtn').addEventListener('click', () => {
-    popCantain.style.zIndex = "-1";
-    matchCantain.style.zIndex = "1";
-    footer.style.zIndex = "1";
-});
+// document.querySelector('#betBtn').addEventListener('click', () => {
+//     popCantain.style.zIndex = "-1";
+//     matchCantain.style.zIndex = "1";
+//     footer.style.zIndex = "1";
+// });
 
 
 
 // ---------------------------------------------------  bet pop up function -------------------------------------------------------
+let matchList = document.querySelector('.matchPopUp');
+let betpop = document.querySelector('.placebet');
+
 document.querySelectorAll('.matchscore').forEach(element => {
     element.addEventListener('click', () => {
         matchList.style.cssText = `filter: brightness(50%);`;
@@ -281,8 +284,10 @@ document.querySelectorAll('.matchscore').forEach(element => {
 
     });
 });
-
-
+document.querySelector('#betBtn').addEventListener('click',()=>{
+    popCantain.style.zIndex='-1'
+    matchCantain.style.zIndex='1';
+});
 
 
 // --------------------------------------------------- calc bet function -------------------------------------------------------

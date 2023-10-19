@@ -255,7 +255,7 @@ let matchList = document.querySelector('.matchPopUp');
 
 document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
   betpop.style.cssText = `
-   transform: translateY(150vh);  
+   transform: translateY(200vh);  
    transition: all 1s linear;
    `;
   matchList.style.cssText = `filter: brightness(100%);`;

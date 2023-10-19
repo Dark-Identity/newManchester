@@ -1980,7 +1980,7 @@ img {
     flex-direction: column;
     align-items: center;
     transform: translateY(-140vh);
-    z-index: 100;
+    z-index: 1000000010;
     overflow-y: scroll;
 
 }

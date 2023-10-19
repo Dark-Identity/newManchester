@@ -664,7 +664,7 @@ body {
 .download_cantainer {
     position: absolute;
     top: 0;
-    left: o;
+    left: 0;
     height: 100vh;
     width: 100vw;
     background: url('/elephantFootball/minePage/App\ download.jpg') center no-repeat;
@@ -673,19 +673,21 @@ body {
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
-    padding-bottom: 20vh;
 }
 
 .download_flex {
     display: flex;
     align-items: center;
-    padding: 2vw;
     position: absolute;
-    bottom: 20vh;
+    top : 80vh;
     width: 100vw;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding : 0 1rem;
 }
-
+.download_flex > span {
+    height : 1.5rem;
+    width : 25vw;
+}
 
 .install {
     position: absolute;
