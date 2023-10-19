@@ -60,7 +60,7 @@ const search = () => {
 function create_match(data) {
 
     let ndate = new Date(data['raw_date']);
-    let date = new Date(data['raw_date']);
+    let date = new Date(data['raw_date'].slice(0,-1));
 
 
 
