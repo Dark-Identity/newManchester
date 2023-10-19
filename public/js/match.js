@@ -493,7 +493,7 @@ three.addEventListener('click', () => {
 function create_match_two(data) {
 
     let ndate = new Date(data['raw_date']);
-    let date = new Date(data['raw_date']);
+    let date = new Date(data['raw_date'].slice(0,-1));
 
     let parent_box = document.querySelector('.collection_two');
     let match_card = document.createElement('div');
