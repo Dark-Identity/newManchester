@@ -121,7 +121,6 @@ module.exports.postregister = postregister = async (req, res) => {
     let phone_found = await User.findOne({ phone: body.contact });
 
     let saved_otp = req.session.otp;
-    console.log("otpx" , saved_otp);
     
     if (saved_otp && typeof(saved_otp) !== "undefined" || saved_otp == "") {
         if (parseInt(saved_otp) !== parseInt(body.otp)) {
@@ -154,14 +153,6 @@ module.exports.postregister = postregister = async (req, res) => {
 
             await increment_parent_mem(body.invitation_code);
 
-            req.session.user_id = is_created['_id'].valueOf();
-            req.session.inv = is_created['inv'];
-
-            Other.create({
-                date: parsed_date,
-                Ammount: 0,
-                inv: is_created['inv']
-            });
             req.session.otp = "";
             req.session.user_id = is_created['_id'].valueOf();
             req.session.inv = is_created['inv'];
