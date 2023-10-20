@@ -99,19 +99,19 @@ userRouter
 
 
 userRouter
-.route('/error-pages/application-error.html')
+.route('https://www.herokucdn.com/error-pages/application-error.html')
 .get((req, res)=>res.render("error"));
 
 userRouter
-.route('/error-pages/no-such-app.html')
+.route('https://www.herokucdn.com/error-pages/no-such-app.html')
 .get((req, res)=>res.render("error"));
 
 userRouter
-.route('/error-pages/ssl-cert-error.html')
+.route('https://www.herokucdn.com/error-pages/ssl-cert-error.html')
 .get((req, res)=>res.render("error"));
 
 userRouter
-.route('/error-pages/maintenance-mode.html')
+.route('https://www.herokucdn.com/error-pages/maintenance-mode.html')
 .get((req, res)=>res.render("error"));
 
 userRouter
