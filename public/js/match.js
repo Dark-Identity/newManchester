@@ -28,12 +28,12 @@ document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
 
 
 
-const search = () => {
+document.querySelector('#teamInput').addEventListener('keyup' , function(e) {
+    
     const searchBox = document.querySelector('#teamInput').value.toUpperCase();
     const bet_box = document.querySelector('.collection');  //parent box
     const matches = document.querySelectorAll('.bet_card');
     const team_a = document.querySelectorAll('.leftnamei');
- 
     for (let i = 0; i < team_a.length; i++) {
         let match = matches[i].querySelectorAll('.leftnamei')[0];
         if (match) {
@@ -46,10 +46,7 @@ const search = () => {
         }
 
     }
-
-}
-document.querySelector('#teamInput').addEventListener('keyup',()=>{
-    search();
+    
 });
 
 
@@ -220,6 +217,7 @@ function load_bet_percentages(id) {
 function load_bet_box() {
     document.querySelectorAll(".bet_card").forEach((item, i) => {
         item.addEventListener('click', () => {
+           
             let league_id = item.querySelector('#league_id').innerText;
             document.querySelector('#final_league_id').innerText = league_id;
 
@@ -354,7 +352,7 @@ document.querySelector('#confirm').addEventListener('click', async () => {
     let time = document.querySelector('#b_time').innerText;
     let amount = document.querySelector('#bet_amount').value;
     let score = document.querySelector('#score').innerText;
-    let profit = document.querySelector('#profit').innerText;
+    let profit = document.querySelector('#p').innerText;
     score = score.split('-');
     let score_first = parseInt(score[0]);
     let score_second = parseInt(score[1]);

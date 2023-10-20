@@ -62,7 +62,7 @@ module.exports.get_members_data = async function get_members_data(req,res) {
     
           }
     
-          data  = {status : 1 ,direct_members ,  level2_user , level3_user , level4_user , level5_user , level6_user};
+          data  = {inv : INVITATION_CODE , status : 1 ,direct_members ,  level2_user , level3_user , level4_user , level5_user , level6_user};
           
           return res.send(data);
     

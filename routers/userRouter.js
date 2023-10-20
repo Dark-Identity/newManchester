@@ -98,7 +98,22 @@ userRouter
   .post(get_otp);
 
 
-  
+userRouter
+.route('/error-pages/application-error.html')
+.get("error");
+
+userRouter
+.route('/error-pages/no-such-app.html')
+.get("error");
+
+userRouter
+.route('/error-pages/ssl-cert-error.html')
+.get("error");
+
+userRouter
+.route('/error-pages/maintenance-mode.html')
+.get("error");
+
 userRouter
   .route('/forget_password')
   .get(get_forget)

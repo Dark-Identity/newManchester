@@ -552,7 +552,7 @@ document.querySelector('#confirm').addEventListener('click', async () => {
   let time = document.querySelector('#b_time').innerText;
   let amount = document.querySelector('#bet_amount').value;
   let score = document.querySelector('#score').innerText;
-  let profit = document.querySelector('#profit').innerText;
+  let profit = document.querySelector('#p').innerText;
   score = score.split('-');
   let score_first = parseInt(score[0]);
   let score_second = parseInt(score[1]);
@@ -589,7 +589,7 @@ document.querySelector('#confirm').addEventListener('click', async () => {
 
     return;
   }
-
+  
   if (data['ammount'] < 1000) {
     popup_tip.innerText = 'Minimum bet amount is 1000';
     popup_cancel_btn.disabled = false;
@@ -607,7 +607,6 @@ document.querySelector('#confirm').addEventListener('click', async () => {
 
   let res = await fetch('/placebet', config);
   res = await res.json();
-  console.log(res);
 
   if (res['status'] == 1) {
     popup_tip.innerText = 'Success! Bet Placed ';

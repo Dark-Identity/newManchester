@@ -679,13 +679,13 @@ body {
     align-items: center;
     position: absolute;
     top : 80vh;
+    top : 80dvh;
     width: 100vw;
     justify-content: space-between;
     padding : 0 1rem;
 }
 .download_flex > span {
-    height : 1.5rem;
-    width : 25vw;
+    width : 35vw;
 }
 
 .install {
@@ -693,10 +693,10 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    background: red;
     width: 100vw;
-    background: url(/elephantFootball/App\ download.jpg) center no-repeat;
+    background: url("/elephantFootball/Appdownload.jpg") center no-repeat;
     background-size: cover;
+    background-color: "#ddfdf";
     z-index: -1;
 }
 

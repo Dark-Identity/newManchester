@@ -1,6 +1,12 @@
 const tiers = document.querySelectorAll('.teamlist');
 const teamPopup = document.querySelector('.teamPopup');
+let popup_cancel_btn = document.querySelector('#popup_close_btn');
+let popup_tip = document.querySelector('#popup_tip');
+let popup_page = document.querySelector("#popup_page");
 
+
+
+let invitation_link = "";
 let teams_member_data = {
   "tierOne" : '',
   "tierTwo" : '',
@@ -113,9 +119,10 @@ function create_members(data){
     for(let item of data['direct_members']){
     // creating the childs to append inside the boxes;
       level1_user_RebadeBonus += parseFloat((item.RebadeBonus).toFixed(2));
-    
-      teams_member_data['tierOne'] += `<div class="members_data"><p>${item.phone}</p><p>${item.profit}</p></div>`
-      teams_commission_data['tierOne'] +=  `<div class="members_data"><p>${item.phone}</p><p>${item.RebadeBonus}</p></div>`
+      user_profit += parseFloat((item.profit).toFixed(2));
+      user_amount += parseFloat((item.deposit).toFixed(2));
+      teams_member_data['tierOne'] += `<div class="members_data"><p>${item.phone}</p><p>${(item.profit).toFixed(2)}</p></div>`
+      teams_commission_data['tierOne'] +=  `<div class="members_data"><p>${item.phone}</p><p>${(item.RebadeBonus).toFixed(2)}</p></div>`
 
       }
   
@@ -127,16 +134,14 @@ function create_members(data){
           level2_user_RebadeBonus += parseFloat((data['level2_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level2_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level2_user'][i][j]['deposit']));
-          total_bets_played = parseInt(total_bets_played) + parseInt(data['level2_user'][i][j]['betPlayed']);
-          total_withdrawal = parseInt(total_withdrawal) +  parseInt(data['level2_user'][i][j]['withdrawalAmmount']);
   
         
     // creating the childs to append inside the boxes;
   
   
-    teams_member_data['tierTwo'] += `<div class="members_data"><p>${data['level2_user'][i][j]['phone']}</p><p>${data['level2_user'][i][j]['profit']}</p></div>`
+    teams_member_data['tierTwo'] += `<div class="members_data"><p>${data['level2_user'][i][j]['phone']}</p><p>${data['level2_user'][i][j]['profit'].toFixed(2)}</p></div>`
 
-    teams_member_data['tierTwo']  +=  `<div class="members_data"><p>${data['level2_user'][i][j]['phone']}</p><p>${data['level2_user'][i][j]['RebadeBonus']}</p></div>`
+    teams_commission_data['tierTwo']  +=  `<div class="members_data"><p>${data['level2_user'][i][j]['phone']}</p><p>${(data['level2_user'][i][j]['RebadeBonus']).toFixed(2)}</p></div>`
 
         }
       }
@@ -152,14 +157,12 @@ function create_members(data){
           level3_user_RebadeBonus += parseFloat((data['level3_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level3_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level3_user'][i][j]['deposit']));
-          total_bets_played = parseInt(total_bets_played) + parseInt(data['level3_user'][i][j]['betPlayed']);
-          total_withdrawal = parseInt(total_withdrawal) +  parseInt(data['level3_user'][i][j]['withdrawalAmmount']);
   
         
     // creating the childs to append inside the boxes;
-    teams_member_data['tierThree'] += `<div class="members_data"><p>${data['level3_user'][i][j]['phone']}</p><p>${data['level3_user'][i][j]['profit']}</p></div>`
+    teams_member_data['tierThree'] += `<div class="members_data"><p>${data['level3_user'][i][j]['phone']}</p><p>${data['level3_user'][i][j]['profit'].toFixed(2)}</p></div>`
 
-    teams_member_data['tierThree']  +=  `<div class="members_data"><p>${data['level3_user'][i][j]['phone']}</p><p>${data['level3_user'][i][j]['RebadeBonus']}</p></div>`
+    teams_commission_data['tierThree']  +=  `<div class="members_data"><p>${data['level3_user'][i][j]['phone']}</p><p>${data['level3_user'][i][j]['RebadeBonus'].toFixed(2)}</p></div>`
   
         }
       }
@@ -174,14 +177,12 @@ function create_members(data){
           level4_user_RebadeBonus += parseFloat((data['level4_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level4_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level4_user'][i][j]['deposit']));
-          total_bets_played = parseInt(total_bets_played) + parseInt(data['level4_user'][i][j]['betPlayed']);
-          total_withdrawal = parseInt(total_withdrawal) +  parseInt(data['level4_user'][i][j]['withdrawalAmmount']);
   
         
     // creating the childs to append inside the boxes;
-    teams_member_data['tierFour'] += ` <div class="members_data"><p>${data['level4_user'][i][j]['phone']}</p><p>${data['level4_user'][i][j]['profit']}</p></div>`
+    teams_member_data['tierFour'] += ` <div class="members_data"><p>${data['level4_user'][i][j]['phone']}</p><p>${data['level4_user'][i][j]['profit'].toFixed(2)}</p></div>`
 
-    teams_member_data['tierFour']  +=  ` <div class="members_data"><p>${data['level4_user'][i][j]['phone']}</p><p>${data['level4_user'][i][j]['RebadeBonus']}</p></div>`
+    teams_commission_data['tierFour']  +=  ` <div class="members_data"><p>${data['level4_user'][i][j]['phone']}</p><p>${data['level4_user'][i][j]['RebadeBonus'].toFixed(2)}</p></div>`
   
   
         }
@@ -198,15 +199,13 @@ function create_members(data){
           level5_user_RebadeBonus += parseFloat((data['level5_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level5_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level5_user'][i][j]['deposit']));
-          total_bets_played = parseInt(total_bets_played) + parseInt(data['level5_user'][i][j]['betPlayed']);
-          total_withdrawal = parseInt(total_withdrawal) +  parseInt(data['level5_user'][i][j]['withdrawalAmmount']);
   
         
     // creating the childs to append inside the boxes;
   
-    teams_member_data['tierFive'] += ` <div class="members_data"><p>${data['level5_user'][i][j]['phone']}</p><p>${data['level5_user'][i][j]['profit']}</p></div>`
+    teams_member_data['tierFive'] += ` <div class="members_data"><p>${data['level5_user'][i][j]['phone']}</p><p>${data['level5_user'][i][j]['profit'].toFixed(2)}</p></div>`
 
-    teams_member_data['tierFive']  +=  ` <div class="members_data"><p>${data['level5_user'][i][j]['phone']}</p><p>${data['level5_user'][i][j]['RebadeBonus']}</p></div>`
+    teams_commission_data['tierFive']  +=  ` <div class="members_data"><p>${data['level5_user'][i][j]['phone']}</p><p>${data['level5_user'][i][j]['RebadeBonus'].toFixed(2)}</p></div>`
 
   
   
@@ -224,15 +223,13 @@ function create_members(data){
           level6_user_RebadeBonus += parseFloat((data['level6_user'][i][j]['RebadeBonus']).toFixed(2));
           user_profit = (parseFloat(user_profit) + parseFloat(data['level6_user'][i][j]['profit']));
           user_amount = (parseFloat(user_amount) + parseFloat(data['level6_user'][i][j]['deposit']));
-          total_bets_played = parseInt(total_bets_played) + parseInt(data['level6_user'][i][j]['betPlayed']);
-          total_withdrawal = parseInt(total_withdrawal) +  parseInt(data['level6_user'][i][j]['withdrawalAmmount']);
   
         
     // creating the childs to append inside the boxes;
   
-    teams_member_data['tierSix'] += ` <div class="members_data"><p>${data['level6_user'][i][j]['phone']}</p><p>${data['level6_user'][i][j]['profit']}</p></div>`
+    teams_member_data['tierSix'] += ` <div class="members_data"><p>${data['level6_user'][i][j]['phone']}</p><p>${data['level6_user'][i][j]['profit'].toFixed(2)}</p></div>`
 
-    teams_member_data['tierSix']  +=  ` <div class="members_data"><p>${data['level6_user'][i][j]['phone']}</p><p>${data['level6_user'][i][j]['RebadeBonus']}</p></div>`
+    teams_commission_data['tierSix']  +=  ` <div class="members_data"><p>${data['level6_user'][i][j]['phone']}</p><p>${data['level6_user'][i][j]['RebadeBonus'].toFixed(2)}</p></div>`
   
         }
       }
@@ -270,6 +267,10 @@ function create_members(data){
 }
 
 
+document.querySelector("#invite_btn").addEventListener("click" , ()=>{
+   copyPageUrl(invitation_link);
+})
+
 async function get_all_members(){
   
     let config = {
@@ -283,6 +284,7 @@ async function get_all_members(){
     response = await response.json();
   
     if(response['status'] == 1){
+      invitation_link = window.location.origin + "/signup/?id="+response['inv'];
       create_members(response);
     }else if(response['status'] == 0){
       window.location.href = window.location.origin + '/login';
@@ -293,3 +295,41 @@ async function get_all_members(){
 
 
   get_all_members();
+
+document.querySelector("#popup_close_btn").addEventListener('click', () => {
+    document.querySelector('#popup_page').style.left = '-100vw';
+    popup_tip.innerText = 'Loading...';
+})
+
+
+  const {clipboard} = window.WTN;
+
+async function copyPageUrl(text) {
+  popup_page.style.left = '0px';
+  popup_cancel_btn.disabled = true;
+
+  if(window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp){
+     window.WTN.clipboard.get({
+        callback:function(data){
+        console.log(data.value)
+       }
+     })
+    window.WTN.clipboard.set({
+      data: `${text}`
+    })
+    popup_tip.innerText = 'Success! copied.'
+    popup_cancel_btn.disabled = false;
+ 
+  }else{
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {
+    popup_tip.innerText = 'Failure! something went wrong.'
+    popup_cancel_btn.disabled = false;
+
+  } finally {
+    popup_tip.innerText = 'Success! copied.'
+    popup_cancel_btn.disabled = false;
+  }
+  }
+}

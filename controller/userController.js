@@ -121,16 +121,18 @@ module.exports.postregister = postregister = async (req, res) => {
     let phone_found = await User.findOne({ phone: body.contact });
 
     let saved_otp = req.session.otp;
-
-    if (saved_otp && saved_otp !== undefined) {
+    console.log("otpx" , saved_otp);
+    
+    if (saved_otp && typeof(saved_otp) !== "undefined" || saved_otp == "") {
         if (parseInt(saved_otp) !== parseInt(body.otp)) {
             req.session.destroy();
             return res.send({ status: "invalid OTP" });
         }
+    }else{
+        req.session.destroy();
+        return res.send({status : "invalid OTP"});
     }
-
-
-
+     
 
     let data = {
         password: body.password,
@@ -145,8 +147,9 @@ module.exports.postregister = postregister = async (req, res) => {
 
     if (body.invitation_code !== 0 && !user_found && !phone_found) {
 
-        let parent = await User.findOne({ inv: body.invitation_code });
-
+        let parent = await User.findOne({ inv: body.invitation_code }).count();
+        if(parent){
+        let is_created = await createUser(newUser);
         if (is_created) {
 
             await increment_parent_mem(body.invitation_code);
@@ -159,12 +162,17 @@ module.exports.postregister = postregister = async (req, res) => {
                 Ammount: 0,
                 inv: is_created['inv']
             });
-
+            req.session.otp = "";
+            req.session.user_id = is_created['_id'].valueOf();
+            req.session.inv = is_created['inv'];
             return res.send({ status: 1 });
 
         } else {
             return res.send({ status: 0 })
         }
+       }else{
+        return res.send({status : "wrong invitation code"});
+       }
 
 
     } else if (body.invitation_code == 0 && !user_found && !phone_found) {
@@ -172,11 +180,10 @@ module.exports.postregister = postregister = async (req, res) => {
         let new_user_created = await createUser(newUser);
 
         if (new_user_created) {
-
+            
+            req.session.otp = "";
             req.session.user_id = new_user_created['_id'].valueOf();
             req.session.inv = new_user_created['inv'];
-
-
             return res.send({ status: 1 });
 
         } else {

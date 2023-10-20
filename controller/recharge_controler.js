@@ -94,6 +94,7 @@ module.exports.gateway_deposit = gateway_deposit = async (req , res , data)=>{
         let response = await gateway_deposit_settle(req , res , data);
         if(response.status === 1){
           await newDeposit(deposit_body);
+          
           return(response);
         }else{
           return response;
@@ -257,8 +258,8 @@ async function SENDMAIL(subject, body) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user : 'vkv9162871357@gmail.com',
-          pass : 'kahsizmojovvmsio'
+          user: 'vishwakarma9304411522@gmail.com',
+          pass: 'vigtmiugmomefooi'
         }
     })
 

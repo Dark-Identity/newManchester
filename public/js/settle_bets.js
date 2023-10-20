@@ -189,10 +189,10 @@ document.querySelector('#shit_happened').addEventListener('click' , async ()=>{
   let value = document.querySelector('#shit_league_id').value;
   if(!value || value == 'undefined'){
     popup_tip.innerText =  'Enter a valid data.'
-    popup_tip.disabled = false;
+    popup_cancel_btn.disabled = false;
     return ;
   }
-  let body = {
+  let body = {  
     league_id : parseInt(value)
   }
   const config = {
@@ -208,7 +208,7 @@ document.querySelector('#shit_happened').addEventListener('click' , async ()=>{
 
   document.querySelector('#res_data').innerText = JSON.stringify(res);
   popup_tip.innerText =  'Success!'
-  popup_tip.disabled = false;
+  popup_cancel_btn.disabled = false;
 })
 
 document.querySelector('#virtual_settle').addEventListener('click' , async ()=>{
@@ -267,7 +267,7 @@ document.querySelector("#cancel_withdrawal").addEventListener('click' , async()=
 
   document.querySelector('#res_data').innerText = JSON.stringify(res);
   popup_tip.innerText =  'success';
-  popup_tip.disabled = false;
+  popup_cancel_btn.disabled = false;
 })
 
 document.querySelector('#null_btn').addEventListener('click' , async()=>{
@@ -298,11 +298,11 @@ document.querySelector('#null_btn').addEventListener('click' , async()=>{
     response = await response.json();
     tag.innerText = JSON.stringify(response);
     popup_tip.innerText =  'success'
-    popup_tip.disabled = false;
+    popup_cancel_btn.disabled = false;
 
   }else{    
     popup_tip.innerText =  'something went wrong.'
-    popup_tip.disabled = false;
+    popup_cancel_btn.disabled = false;
   }
 
 })
@@ -329,10 +329,10 @@ document.querySelector('#test_settle_bet').addEventListener('click' , async()=>{
       response = await response.json();
       tag.innerText = JSON.stringify(response);
           popup_tip.innerText =  'success'
-    popup_tip.disabled = false;
+    popup_cancel_btn.disabled = false;
     }else{    
     popup_tip.innerText =  'failure check the id '
-    popup_tip.disabled = false;
+    popup_cancel_btn.disabled = false;
     }
 
   });

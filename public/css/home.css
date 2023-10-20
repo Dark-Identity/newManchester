@@ -1,4 +1,4 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -2159,7 +2159,7 @@ img {
   }
   
   #secure {
-    background: url(../elephantFootball/security.png) center no-repeat;
+    /* background: url(../elephantFootball/security.png) center no-repeat; */
     height: 2rem;
     width: 2rem;
     background-size: contain;

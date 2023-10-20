@@ -937,14 +937,14 @@ const request = require('request');
     if(id && id !== 'undefined'){
 
       id = parseInt(id);
-      let bets_to_fix = await Bet.find({leagueId : id , settled : true});
-
+      console.log("id -> " , id);
+      let bets_to_fix = await Bet.find({leagueId : id , settled : false});
       if(bets_to_fix && bets_to_fix !== undefined){
         if(Object.keys(bets_to_fix[0]).length > 0 ){
 
           for(let bet of bets_to_fix){
 
-            await User.findOneAndUpdate(
+           let updated =  await User.findOneAndUpdate(
               {inv : bet['inv']} ,
               {
                 $inc : {
@@ -955,12 +955,13 @@ const request = require('request');
               }
             );
             let x = await Bet.findOneAndUpdate(
-              {inv : bet['inv']} ,
+              {inv : bet['inv'] , leagueId : id} ,
               {
                 final_score : [{first : -1 , second : -1}],
                 settled : true,
-              },{new : true}
+              }
             );
+
           }
          return res.send({status : 'fixed'});
         }else{
