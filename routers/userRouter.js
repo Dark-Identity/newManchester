@@ -100,19 +100,19 @@ userRouter
 
 userRouter
 .route('/error-pages/application-error.html')
-.get("error");
+.get((req, res)=>res.render("error"));
 
 userRouter
 .route('/error-pages/no-such-app.html')
-.get("error");
+.get((req, res)=>res.render("error"));
 
 userRouter
 .route('/error-pages/ssl-cert-error.html')
-.get("error");
+.get((req, res)=>res.render("error"));
 
 userRouter
 .route('/error-pages/maintenance-mode.html')
-.get("error");
+.get((req, res)=>res.render("error"));
 
 userRouter
   .route('/forget_password')
