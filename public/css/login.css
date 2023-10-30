@@ -232,3 +232,13 @@ img {
     align-items: center;
     height: inherit;
 }
+
+.email_btn {
+    width: 57px;
+    height: 28px;
+    border-radius: 7px;
+    color: #99c5e8;
+    background: #fff;
+    border: none;
+    display: none;
+}

@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -275,7 +275,7 @@ text {
     overflow: hidden;
     display: flex;
     align-items: center;
-    font-size:12px;
+    font-size: 12px;
 }
 
 .van-notice-bar>div>img {
@@ -414,7 +414,7 @@ text {
 .gameBox {
     /* margin-bottom: 2.666667vw; */
     width: 91.466667vw;
-    box-shadow:0 0.666667vw 1.6vw 0.266667vw rgb(0 77 119 / 16%);
+    box-shadow: 0 0.666667vw 1.6vw 0.266667vw rgb(0 77 119 / 16%);
     border-radius: 2.666667vw;
     padding: 0 0 2.666667vw 0;
     margin: 0 auto;
@@ -1009,7 +1009,7 @@ img {
     color: #fff;
 }
 
-.rechargeAmount {
+#cantain_w_amount {
     background-color: #FFF;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -1406,7 +1406,7 @@ img {
     background-size: cover;
     overflow-y: scroll;
     overflow-x: hidden;
-    color:#000
+    color: #000
 }
 
 .accordion {
@@ -1575,7 +1575,7 @@ img {
 .section-box .telbox .btnuis[data-v-7dcec640] {
     width: 22.666667vw;
     height: 8vw;
-    background:#5bb2ea;
+    background: #5bb2ea;
     border-radius: 5.333333vw;
     color: #fff;
     font-weight: 500;
@@ -2017,14 +2017,14 @@ img {
     text-align: center;
     background: #1bb0f4;
     width: 100%;
-  }
-  
-  #yy_pay>div {
+}
+
+#yy_pay>div {
     width: 95%;
     border-radius: 10px;
-  }
-  
-  #yy_pay>.section1 {
+}
+
+#yy_pay>.section1 {
     border-radius: 10px;
     background: white;
     text-align: center;
@@ -2033,137 +2033,418 @@ img {
     padding: 0.25rem;
     place-items: center;
     grid-row-gap: 0.3rem;
-  }
-  
-  .section1>span {
+}
+
+.section1>span {
     height: 100%;
     width: 100%;
     text-align: center;
-  }
-  
-  .section1>span:nth-child(1) {
+}
+
+.section1>span:nth-child(1) {
     background: url(../elephantFootball/paytm1-icon.png)center no-repeat;
     background-size: 50%;
-  }
-  
-  .section1>span:nth-child(3) {
+}
+
+.section1>span:nth-child(3) {
     background: url(../elephantFootball/google-pay1.png)center no-repeat;
     background-size: contain;
-  }
-  
-  .section1>span:nth-child(5) {
+}
+
+.section1>span:nth-child(5) {
     background: url(../elephantFootball/upi-icon1.png)center no-repeat;
     background-size: 50%;
-  }
-  
-  .section1>span:nth-child(even) {
+}
+
+.section1>span:nth-child(even) {
     background: #1bb0f4;
     color: white;
     border-radius: 5px;
     padding: 0.5rem;
-  }
-  
-  .section2 {
+}
+
+.section2 {
     padding: 0.5rem;
     text-align: start;
     background: white;
     border-radius: 10px;
-  }
-  
-  .YY_upi {
+}
+
+.YY_upi {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 0.5rem;
     justify-content: center;
-  }
-  
-  .section3 {
+}
+
+.section3 {
     background: white;
     padding: 0.25rem 0.5rem;
     text-align: start;
     display: grid;
     place-items: center;
-  }
-  
-  .section3>input {
+}
+
+.section3>input {
     width: 98%;
     outline: none;
-    margin : 0.5rem 0;
+    margin: 0.5rem 0;
     padding: 0.25rem;
-  }
-  
-  #yy_upi_cpy {
+}
+
+#yy_upi_cpy {
     padding: 0.25rem;
     background: #1bb0f4;
     color: white;
     border-radius: 5px;
     margin-left: 50%;
-  }
-  
-  #yy_submit {
-    background: green;
+}
+
+#yy_submit {
+    background: #5a8ed3;
     color: white;
     width: 50%;
     border-radius: 5px;
     margin-top: 0.25rem;
     padding: 0.5rem;
     text-align: center;
-  }
-  
-  .logos {
+    border: none;
+}
+
+.logos {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     width: 70% !important;
     grid-column-gap: 0.25rem;
-  }
-  
-  .logos>span {
+}
+
+.logos>span {
     height: 3rem;
     border-radius: 100%;
     background-color: white;
     width: 100%;
-  }
-  
-  .logos>span:nth-child(1) {
+}
+
+.logos>span:nth-child(1) {
     background: url(../elephantFootball/paytm.png) center no-repeat;
     background-size: contain;
-  }
-  
-  .logos>span:nth-child(2) {
+}
+
+.logos>span:nth-child(2) {
     background: url(../elephantFootball/google-pay.png) center no-repeat;
     background-size: contain;
-  }
-  
-  .logos>span:nth-child(3) {
+}
+
+.logos>span:nth-child(3) {
     background: url(../elephantFootball/phonepay.png) center no-repeat;
     background-size: contain;
-  }
-  
-  .logos>span:nth-child(4) {
+}
+
+.logos>span:nth-child(4) {
     background: url(../elephantFootball/upi-icon.png) center no-repeat;
     background-color: white;
     background-size: contain;
-  }
-  
-  .logos>span:nth-child(5) {
+}
+
+.logos>span:nth-child(5) {
     background: url(../elephantFootball/visa.png) center no-repeat;
     background-size: contain;
-  
+
     background-color: white;
-  }
-  
-  .logos>span:nth-child(6) {
+}
+
+.logos>span:nth-child(6) {
     background: url(../elephantFootball/mobikwik-logo-icon.png) center no-repeat;
     background-color: white;
     background-size: contain;
-  }
-  
-  #secure {
+}
+
+#secure {
     /* background: url(../elephantFootball/security.png) center no-repeat; */
     height: 2rem;
     width: 2rem;
     background-size: contain;
-  }
-  
+}
 
-  
+
+/* --------------------------------------------------------------- usdt recharge page ------------------------------------- */
+#usdt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: -1;
+    padding-bottom: 20vh;
+    overflow-y: scroll;
+}
+
+.qr_code_usdt {
+    height: 35vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_qr_box {
+    height: 90%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.network {
+    width: 92vw;
+    margin: 0 auto;
+    padding: 1vw;
+}
+
+.network>h4 {
+    color: #333333c0;
+}
+
+.network>button {
+    padding: 3vw 5vw;
+    margin: 2vw;
+    border: none;
+    border-radius: 10px;
+    background: #5bb2ecd1;
+    color: white;
+}
+
+.link_usdt {
+    margin: 0 auto;
+    padding: 2vw;
+    width: 92vw;
+}
+
+.link_usdt>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link_usdt>div>span {
+    width: 90%;
+    padding: 1vw;
+    text-overflow: clip;
+    overflow: scroll;
+}
+
+.link_usdt>div>p>ion-icon {
+    font-size: 5.6vw;
+    margin-left: 1vw;
+    color: #154fe4;
+}
+
+.tipps {
+    width: 92vw;
+    margin: 0 auto;
+    padding: 2vw;
+    color: gray
+}
+
+.usdt_recharge_panel {
+    width: 92vw;
+    margin: 0 auto;
+}
+
+.usdt_recharge_panel .radiobtn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.transacation_input {
+    margin-top: 2px;
+}
+
+.transacation_input>input {
+    border: none;
+    width: 100%;
+    outline: none;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 2vw;
+    border-radius: 10px;
+}
+
+.usdt_btn {
+    width: 92vw;
+    height: 13.066667vw;
+    border-radius: 6.8vw;
+    font-size: 4.8vw;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 4vw;
+    background: #7bebff;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+    border: none;
+    margin-top: 3vh;
+}
+
+/* ------------------------------------------------------- usdt withdraw page ------------------------------------------ */
+#usdt_withdraw {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    z-index: -1;
+    padding-bottom: 20vh;
+    overflow-y: scroll;
+}
+
+.usdt_w_add {
+    width: 92vw;
+    margin: 0 auto;
+    padding: 2vw;
+}
+
+.usdt_w_add>h3 {
+    color: gray;
+}
+
+.usdt_w_add>input {
+    width: 100%;
+    padding: 4vw;
+    border: none;
+    outline: none;
+    background: rgba(211, 211, 211, 0.253);
+    margin-top: 3vw;
+    border-radius: 10px;
+}
+
+.usdt_amount {
+    margin-top: 3vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(211, 211, 211, 0.253);
+    border-radius: 10px;
+
+}
+
+.usdt_amount span>input {
+    padding: 4vw;
+    width: 65vw;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.ud_input {
+    display: flex;
+    padding: 1vw;
+    font-weight: 700;
+}
+
+.usdt_bal {
+    margin: 3vw auto;
+    width: 92vw;
+
+}
+
+.usdt_ud_bal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 2vw;
+    font-weight: 700;
+    color: #333;
+}
+
+.usdt_w_btn {
+    text-align: center;
+    width: 80px;
+    margin-left: 2vw;
+    padding: 1.5vw 0;
+    border-radius: 20px;
+    background: #f8f8f8;
+}
+
+.btn_options {
+    display: flex;
+    padding: 2vw 0;
+}
+
+.inr_w_form {
+ background: #fff;
+}
+
+.usdt_w_form {
+    width: 100vw;
+    position: absolute;
+    top: 11vw;
+    left: 0;
+    background: #fff;
+    padding-bottom: 12vh;
+    display: none; 
+}
+.addAccount > div{
+    width: 100px;
+    height: inherit;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.usdt_pass_pop{
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 100vw;
+    height: 70vh;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+
+}
+.usdt_set_pass{
+    width: 94vw;
+    height: 100%;
+    background: #f8f8f8;
+    box-shadow: 0 .5333300000000000000003vw .533333vw 0 rgba(51, 51, 51, .1);
+    border-radius: 14px;
+}
+
+.set_usdt_add > input{
+    border: none;
+    outline: none;
+    background: transparent; 
+    padding: 3vw;
+    width: 100%;
+}
+.outer_add_pass{
+    display: flex;
+    justify-content: center;
+    width: 90vw;
+    margin: 0 auto;
+    background: #fff;
+    height: 46px;
+    border-radius: 10px;
+}
+.set_usdt_add {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.usdt_set_pass button {
+    width: 68vw;
+    height: 13.066667vw;
+    border-radius: 6.8vw;
+    font-size: 4.8vw;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 4vw;
+    background: #7bebff;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+    border: none;
+}

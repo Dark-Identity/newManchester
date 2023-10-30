@@ -268,12 +268,11 @@ document.querySelector('.betHead > ion-icon').addEventListener('click', () => {
 
 
 
-
 // --------------------------------------------------- creating the match -------------------------------------------------------
 function create_match(data) {
 
-  let ndate = new Date(data['raw_date'].slice(0 , -1)).toLocaleString('en-Us' , {
-    'timeZone' : "Asia/Calcutta"
+  let ndate = new Date(data['raw_date'].slice(0, -1)).toLocaleString('en-Us', {
+    'timeZone': "Asia/Calcutta"
   });
   let date = new Date(ndate);
 
@@ -345,11 +344,11 @@ async function get_live_bets() {
   // from here I have to call the store data function by passing the arguments key and array.
   let count_matches = 0;
   for (let match_data of res) {
-    if(count_matches === 10){
+    if (count_matches === 10) {
       break;
     }
     if ('percentage' in match_data) {
-     
+
       create_match(match_data);
       count_matches++;
       percentage[match_data['fixture_id']] = match_data['percentage'];
@@ -589,7 +588,7 @@ document.querySelector('#confirm').addEventListener('click', async () => {
 
     return;
   }
-  
+
   if (data['ammount'] < 1000) {
     popup_tip.innerText = 'Minimum bet amount is 1000';
     popup_cancel_btn.disabled = false;
@@ -662,15 +661,15 @@ var swiper = new Swiper(".mySwiper", {
   spaceBetween: 30,
   centeredSlides: true,
   autoplay: {
-  delay: 2500,
-  disableOnInteraction: false,
+    delay: 2500,
+    disableOnInteraction: false,
   },
   pagination: {
-  el: ".swiper-pagination",
-  clickable: true,
+    el: ".swiper-pagination",
+    clickable: true,
   },
-  
-  });
+
+});
 
 
 
@@ -949,35 +948,35 @@ select('#yy_upi_cpy').addEventListener('click', () => {
   let text = select('#yy_upi_id');
   copyPageUrl(text.innerText);
 })
-const {clipboard} = window.WTN;
+const { clipboard } = window.WTN;
 
 async function copyPageUrl(text) {
   popup_page.style.left = '0px';
   popup_cancel_btn.disabled = true;
 
-  if(window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp){
-     window.WTN.clipboard.get({
-        callback:function(data){
+  if (window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp) {
+    window.WTN.clipboard.get({
+      callback: function (data) {
         console.log(data.value)
-       }
-     })
+      }
+    })
     window.WTN.clipboard.set({
       data: `${text}`
     })
     popup_tip.innerText = 'Success! copied.'
     popup_cancel_btn.disabled = false;
- 
-  }else{
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch (err) {
-    popup_tip.innerText = 'Failure! something went wrong.'
-    popup_cancel_btn.disabled = false;
 
-  } finally {
-    popup_tip.innerText = 'Success! copied.'
-    popup_cancel_btn.disabled = false;
-  }
+  } else {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      popup_tip.innerText = 'Failure! something went wrong.'
+      popup_cancel_btn.disabled = false;
+
+    } finally {
+      popup_tip.innerText = 'Success! copied.'
+      popup_cancel_btn.disabled = false;
+    }
   }
 }
 
@@ -1027,13 +1026,16 @@ document.querySelector('#recharge_btn').addEventListener('click', () => {
   let is_gateway = document.querySelector("#gateway_radio_btn").checked;
   let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
   let is_gateway_3 = document.querySelector('#manual_btn').checked;
-  
+  let is_gateway_4 = document.querySelector('#usdt_btn').checked;
 
   if (is_gateway || is_gateway_2) {
     initiate_gateway_recharge();
     return;
   } else if (is_gateway_3) {
     manual_recharge_page();
+    return;
+  } else if (is_gateway_4) {
+    usdt_recharge_page();
     return;
   }
 });
@@ -1043,8 +1045,62 @@ function manual_recharge_page() {
   yy_pay.style.zIndex = "1";
   footer.style.zIndex = "-1";
 }
+const usdt_page = document.querySelector('#usdt');
+function usdt_recharge_page() {
+  usdt_page.style.zIndex = '1';
+  footer.style.zIndex = "-1";
+}
 
-
+document.querySelector('.usdt_back_btn').addEventListener('click', () => {
+  usdt_page.style.zIndex = '-1';
+  footer.style.zIndex = "1";
+});
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------- validation of payments chanel-----------------------------
+
+const inr_btn = document.querySelector('.inr_btn');
+const usdt_btn = document.querySelector('.usdt_btnn')
+const usdt_w_form = document.querySelector('.usdt_w_form');
+const inr_w_form = document.querySelector('.inr_w_form');
+
+usdt_btn.addEventListener('click', () => {
+  usdt_btn.style.background = 'linear-gradient(180deg, #5bb2ecd1, #3d8af8)';
+  usdt_btn.style.color = "#fff";
+  inr_btn.style.color = '#333'
+  inr_btn.style.background = '#f8f8f8';
+  usdt_w_form.style.display = 'block';
+  inr_w_form.style.display = 'none';
+});
+
+inr_btn.addEventListener('click', () => {
+  inr_btn.style.background = 'linear-gradient(180deg, #5bb2ecd1, #3d8af8)';
+  inr_btn.style.color = "#fff";
+  usdt_btn.style.color = '#333'
+  usdt_btn.style.background = '#f8f8f8';
+  usdt_w_form.style.display = 'none';
+  inr_w_form.style.display = 'block';
+});
+
+
+
+function usdt_converter () {
+  let amount = document.querySelector('#usdt_withdraw_amount').value;
+  let calc = amount/80;
+  document.querySelector('#usdt_c').innerText = calc;
+}
+document.querySelector('#usdt_withdraw_amount').addEventListener('keyup',()=>{
+  let usdt = usdt_converter ();
+});
+
+// ------------------------------------------------ usdt popup --------------------------------
+usdt_pass_pop = document.querySelector('.usdt_pass_pop');
+document.querySelector('#usdt_add_address').addEventListener('click',()=>{
+  usdt_pass_pop.style.zIndex="1";
+  withdrawalCantainer.style.filter ="brightness(40%)";
+});
+
+document.querySelector('#close_pass_usdt').addEventListener('click',()=>{
+  usdt_pass_pop.style.zIndex="-1";
+  withdrawalCantainer.style.filter ="brightness(100%)";
+});
 

@@ -13,6 +13,17 @@ const popup_cancel_btn = document.querySelector('#popup_close_btn');
 const popup_close_btn = document.querySelector("#popup_close_btn");
 
 
+document.querySelector('.telbox').addEventListener('click', () => {
+    window.location.href = 'https://t.me/customerservice_CS';
+  })
+  
+  document.querySelector('.onlieser').addEventListener('click', () => {
+    window.location.href = 'https://t.me/MANCHESTER_FOOTBAL';
+  })
+  
+  
+
+
 window.addEventListener('load', () => {
     let scale_object = document.querySelector('.loader');
     scale_object.style.animation = 'shadowPulse 2s linear infinite';

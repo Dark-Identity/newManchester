@@ -8,8 +8,11 @@
   <link rel="shortcut icon" href="/elephantFootball/mainLogo.png" type="image/x-icon">
   <link rel="stylesheet" href="/css/login.css">
   <link rel="stylesheet" href="/css/popupbox.css">
+  <link rel="stylesheet" href="/css/style.css">
   <script defer src="/js/login.js "></script>
   <script src="https://unpkg.com/webtonative@1.0.50/webtonative.min.js"></script>
+  <script defer src="/js/script.js"></script>  
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 </head>
 
 <body>
@@ -29,40 +32,47 @@
           <form>
             <div class="container" data-v-f7c41c52="">
               <!-- --------------------------------------------- number filed ------------------------------- -->
+
               <div class="phonei" data-v-f7c41c52="">
                 <p data-v-f7c41c52="">Phone</p>
               </div>
-              <div class="van-cell van-field input-box" data-v-f7c41c52="">
-                <div class="van-field__left-icon">
-                  <p data-v-f7c41c52="">+91</p>
-                </div>
-                <!---->
-                <div class="van-cell__value van-cell__value--alone van-field__value">
-                  <div class="van-field__body">
-                    <input type="number" inputmode="numeric" placeholder="Please enter phone number" class="num" /
-                      id="contact_num"><!----><!----><!---->
+
+
+
+              <div class="select-box">
+                <div class="selected-option">
+                  <div style="display: flex;padding:2vw">
+                    <span class="iconify" data-icon="flag:in-4x3" style="color:#fff"></span>
+                    <strong style="color: #fff;">+91</strong>
                   </div>
-                  <!----><!---->
+                   <input type="tel" name="tel" placeholder="Phone Number" class="num"  id="contact_num">
                 </div>
-                <!----><!---->
+                <div class="options">
+                  <ol>
+
+                  </ol>
+                </div>
               </div>
+
+
 
               <!-- --------------------------------------------- email filed ------------------------------- -->
               <div class="phonei" data-v-f7c41c52="">
                 <p data-v-f7c41c52="">Email</p>
               </div>
               <div class="van-cell van-field input-box" data-v-f7c41c52="">
-                <!----><!---->
+
                 <div class="van-cell__value van-cell__value--alone van-field__value">
                   <div class="van-field__body">
                     <input type="email" placeholder="Please enter email                         (optional)"
-                      class="email" /><!---->
+                      class="email" />
+                      <button class="email_btn">send</button>
                     <div class="van-field__right-icon"></div>
-                    <!---->
+
                   </div>
-                  <!----><!---->
+
                 </div>
-                <!----><!---->
+
               </div>
 
               <!-- --------------------------------------------- password filed ------------------------------- -->
@@ -89,18 +99,18 @@
               </div>
               <div class="second" data-v-f7c41c52="">
                 <div class="van-cell van-field input-box" data-v-f7c41c52="">
-                  <!----><!---->
+
                   <div class="van-cell__value van-cell__value--alone van-field__value">
                     <div class="van-field__body">
-                      <input type="number" placeholder="Please send verification code" class="verification" /><!---->
+                      <input type="number" placeholder="Please send verification code" class="verification" />
                       <div class="van-field__right-icon">
                         <button type="button">
                           <div class="van-button__content">
-                            <!----><span class="van-button__text" id="otp_btn">Send</span><!---->
+                            <span class="van-button__text" id="otp_btn">Send</span>
                           </div>
                         </button>
                       </div>
-                      <!---->
+
                     </div>
                     <!----><!---->
                   </div>
