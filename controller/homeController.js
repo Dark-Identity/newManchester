@@ -618,6 +618,7 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
       betPlayed: 1,
       Ammount: 1,
       vipLevel: 1,
+      usdt_withdraw_code:1,
       valid_amount: 1,
       valid_deposit: 1,
     }
