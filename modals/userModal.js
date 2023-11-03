@@ -97,8 +97,8 @@ const newUserSchema = new mongoose.Schema({
     default: 0,
   },
   usdt_withdraw_code: {
-    type: Number,
-    default: 0,
+    type: String,
+    default: "0",
   },
   usdt_address: {
     type: String,
