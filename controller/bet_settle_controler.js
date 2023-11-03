@@ -1,1067 +1,1198 @@
-const {User , Bet , Deposit , Withdrawal , Other , Upi} = require('../modals/userModal');
-const request = require('request');
+const {
+  User,
+  Bet,
+  Deposit,
+  Withdrawal,
+  Other,
+  Upi,
+} = require("../modals/userModal");
+const request = require("request");
 
 // settle deposit > inv amount > find the user > send data > confirm data click continue;
 // add teh settle withdrawal function in the app.js and create a section in settle.htmls
 
 // class admin_function{
 
-  // league type = 0 = virtual 
-  // league type = 1 = league
+// league type = 0 = virtual
+// league type = 1 = league
 
-  module.exports.settle_bet = settle_bet = async(req, res)=>{
+module.exports.settle_bet = settle_bet = async (req, res) => {
+  let id = req.body["id"];
+  let nDate = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Calcutta",
+  });
+  let today = new Date(nDate);
+  let parsed_date =
+    today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
 
-    let id = req.body['id'];
-    let nDate = new Date().toLocaleString('en-US' , {
-      timeZone : 'Asia/Calcutta'
+  if (!id || id == "undefined") {
+    return res.send({
+      err: "<h1>SORRY SOMETHING WENT WRONG WITH LEAGUE ID</h1>",
     });
-    let today = new Date(nDate);
-    let parsed_date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-
-    if(!id || id == 'undefined'){
-      return res.send({err : '<h1>SORRY SOMETHING WENT WRONG WITH LEAGUE ID</h1>'});
-    }else{
-
-
+  } else {
     let results = {};
-    let settled = '';
+    let settled = "";
     let bets = {};
 
     // add another querry parameter league id , cause if one user places two bets then he will get double rebade ammount; and this id you will get from user;
 
-    let all_unsettled_bets = await Bet.find({settled : false , league_type : 1 , leagueId : id} , {parent : 1 , bAmmount : 1 , leagueId : 1 , inv : 1 , scoreDetails : 1 , profit : 1 , date : 1 , members : 1 , ammount : 1 , final_score : 1 , rebade_amm : 1});
-
-    if (all_unsettled_bets !== 'undefined' && all_unsettled_bets) {
-      if(Object.keys(all_unsettled_bets).length == 0){
-        return res.send({err : "id not found" })
+    let all_unsettled_bets = await Bet.find(
+      { settled: false, league_type: 1, leagueId: id },
+      {
+        parent: 1,
+        bAmmount: 1,
+        leagueId: 1,
+        inv: 1,
+        scoreDetails: 1,
+        profit: 1,
+        date: 1,
+        members: 1,
+        ammount: 1,
+        final_score: 1,
+        rebade_amm: 1,
       }
-    }else{
-      return res.send({err : 'something went wrong'});
+    );
+
+    if (all_unsettled_bets !== "undefined" && all_unsettled_bets) {
+      if (Object.keys(all_unsettled_bets).length == 0) {
+        return res.send({ err: "id not found" });
+      }
+    } else {
+      return res.send({ err: "something went wrong" });
     }
 
-    if( all_unsettled_bets ){
-
-      let data = await get_settled_bet_byID(parseInt(all_unsettled_bets[0]['leagueId']));
+    if (all_unsettled_bets) {
+      let data = await get_settled_bet_byID(
+        parseInt(all_unsettled_bets[0]["leagueId"])
+      );
       data = await JSON.parse(data);
 
-      if(data && data['response'].length){
-
-        let result_id = parseInt(data['response'][0]['fixture']['id']);
-        let result_obj = data['response'][0]['goals'];
+      if (data && data["response"].length) {
+        let result_id = parseInt(data["response"][0]["fixture"]["id"]);
+        let result_obj = data["response"][0]["goals"];
         results[result_id] = result_obj;
-       
-        if(result_obj['home'] === null || result_obj['away'] === null){
-           return res.send({status : 'settle it using null settlement because the scores are null null'});
+
+        if (result_obj["home"] === null || result_obj["away"] === null) {
+          return res.send({
+            status:
+              "settle it using null settlement because the scores are null null",
+          });
         }
 
         settled += `RESULTS ${result_obj} -- `;
-
-      }else{
-        return res.send(`<h1>Something went wrong try again. after checking the database or league id you entered !!!</h1>`);
+      } else {
+        return res.send(
+          `<h1>Something went wrong try again. after checking the database or league id you entered !!!</h1>`
+        );
       }
-
-    }else{
-      return res.send({err : 'Either their is no bet to settle or you have entered wrong league id'});
+    } else {
+      return res.send({
+        err: "Either their is no bet to settle or you have entered wrong league id",
+      });
     }
 
     // setting things up
-    if(all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0 ){
-
-      for(let item of all_unsettled_bets){
-
-        if( !(item['leagueId'] in results) ){
-         return res.send({err : `<h1>ODD ONE OUT PLEASE ${item['leagueId']}</h1>`});
-        }else{
+    if (all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0) {
+      for (let item of all_unsettled_bets) {
+        if (!(item["leagueId"] in results)) {
+          return res.send({
+            err: `<h1>ODD ONE OUT PLEASE ${item["leagueId"]}</h1>`,
+          });
+        } else {
           //this bets object will help me fin wethere a user has placed bet or not in O(1);
-          bets[item['inv']] = item;
-
+          bets[item["inv"]] = item;
         }
-
       }
-
     }
 
     // analyze all the data
-    if(all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0){
-
-      for(let level0 of all_unsettled_bets){
-        settled += `'giving bonus from ' ${level0['inv'] }`
+    if (all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0) {
+      for (let level0 of all_unsettled_bets) {
+        settled += `'giving bonus from ' ${level0["inv"]}`;
         // console.log(level0);
-        let score0 = results[level0['leagueId']];
+        let score0 = results[level0["leagueId"]];
 
-        let score_a = parseInt(score0['home']);
-        let score_b = parseInt(score0['away']);
+        let score_a = parseInt(score0["home"]);
+        let score_b = parseInt(score0["away"]);
 
-        if(level0['scoreDetails'][0]['first'] !== score_a ||
-        level0['scoreDetails'][0]['second'] !== score_b)
-        {
+        if (
+          level0["scoreDetails"][0]["first"] !== score_a ||
+          level0["scoreDetails"][0]["second"] !== score_b
+        ) {
+          let profit0 = parseFloat(level0["profit"]);
+          let bet_ammount0 = parseFloat(level0["bAmmount"]);
 
-          let profit0 = parseFloat(level0['profit']);
-          let bet_ammount0 = parseFloat(level0['bAmmount']);
+          let new_amount = parseFloat(
+            (bet_ammount0 + (bet_ammount0 / 100) * profit0).toFixed(2)
+          );
+          let new_profit = parseFloat(
+            parseFloat((bet_ammount0 / 100) * profit0).toFixed(3)
+          );
+          let level1_rebade = parseFloat(((new_profit / 100) * 10).toFixed(2));
+          let level2_rebade = parseFloat(((new_profit / 100) * 8).toFixed(2));
+          let level3_rebade = parseFloat(((new_profit / 100) * 4).toFixed(2));
+          let level4_rebade = parseFloat(((new_profit / 100) * 2).toFixed(2));
+          let level_5_6_rebade = parseFloat(
+            ((new_profit / 100) * 1).toFixed(2)
+          );
 
-          let new_amount = parseFloat( ( bet_ammount0 + (bet_ammount0/100 * profit0) ).toFixed(2) );
-          let new_profit = parseFloat(parseFloat(bet_ammount0/100 * profit0).toFixed(3));
-          let level1_rebade = parseFloat( (new_profit/100 * 10).toFixed(2) ) ;
-          let level2_rebade = parseFloat( (new_profit/100 * 8).toFixed(2) ) ;
-          let level3_rebade = parseFloat( (new_profit/100 * 4).toFixed(2) );
-          let level4_rebade = parseFloat( (new_profit/100 * 2).toFixed(2) );
-          let level_5_6_rebade = parseFloat((new_profit/100 * 1).toFixed(2) );
-        
           // ---------- checking if any parent exists -----------
-          if(level0['parent'] && level0['parent'] !== 0){
-            
+          if (level0["parent"] && level0["parent"] !== 0) {
             let level1_user = await User.findOneAndUpdate(
-                { inv : parseInt(level0['parent']) }  ,
-                {
-                  $inc : {
-                    Ammount : level1_rebade,
-                    RebadeBonus : parseFloat(parseFloat(level1_rebade).toFixed(3)),
-                    profit : parseFloat(parseFloat(level1_rebade).toFixed(3))
-                  }
-                },{new : true}
-              );
-              
-              await Other.create({
-                date : parsed_date,
-                Ammount : level1_rebade,
-                inv : parseInt(level0['parent'])
-              });
-              
-               settled += `'1st->' ${level0['parent'] } ,rebade =  ${level1_rebade}`;
-            if(level1_user && level1_user !== undefined){
-                
-              if(level1_user['parent'] !== undefined && level1_user['parent'] !== 0){
-                
-                let level2_user = await User.findOneAndUpdate(
-                  {inv : parseInt(level1_user['parent']) } ,
-                  {
-                    $inc : {
-                      Ammount : level2_rebade,
-                      RebadeBonus : parseFloat(parseFloat(level2_rebade).toFixed(3)),
-                      profit : parseFloat(parseFloat(level2_rebade).toFixed(3))
-                    }
-                  },{new : true}
-                  
-                  );
-                  await Other.create({
-                    date : parsed_date,
-                    Ammount : level2_rebade,
-                    inv : parseInt(level1_user['parent'])
-                  });
-                   settled += `'2nd->' ${level1_user['parent'] } ,rebade =  ${level2_rebade}`;
-                if(level2_user && level2_user !== undefined){
-                   
-                  if(level2_user['parent'] !== undefined && level2_user['parent'] !== 0){
-                
-                    let level3_user = await User.findOneAndUpdate(
-                      {inv : parseInt(level2_user['parent']) } ,
-                      {
-                        $inc : {
-                          Ammount : level3_rebade,
-                          RebadeBonus : parseFloat(parseFloat(level3_rebade).toFixed(3)),
-                          profit : parseFloat(parseFloat(level3_rebade).toFixed(3))
-                        }
-                      },{new : true}
-                            
-                      );
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level3_rebade,
-                        inv : parseInt(level2_user['parent'])
-                      });
-                   settled += `'3rd->' ${level2_user['parent'] } ,rebade =  ${level3_rebade}`;
-                if(level3_user && level3_user !== undefined){
-                   
-                  if(level3_user['parent'] !== undefined && level3_user['parent'] !== 0){
-                
-                    let level4_user = await User.findOneAndUpdate(
-                      {inv : parseInt(level3_user['parent']) } ,
-                      {
-                        $inc : {
-                          Ammount : level4_rebade,
-                          RebadeBonus : parseFloat(parseFloat(level4_rebade).toFixed(3)),
-                          profit : parseFloat(parseFloat(level4_rebade).toFixed(3))
-                        }
-                      },{new : true}
-                      );
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level3_rebade,
-                        inv : parseInt(level3_user['parent'])
-                      });
-                   settled += `'4th->' ${level3_user['parent'] } ,rebade =  ${level4_rebade}`;
-                 if(level4_user && level4_user !== undefined){
-                   
-                  if(level4_user['parent'] !== undefined && level4_user['parent'] !== 0){
-                
-                    let level5_user = await User.findOneAndUpdate(
-                      {inv : parseInt(level4_user['parent']) } ,
-                      {
-                        $inc : {
-                          Ammount : level_5_6_rebade,
-                          RebadeBonus : parseFloat(parseFloat(level_5_6_rebade).toFixed(3)),
-                          profit : parseFloat(parseFloat(level_5_6_rebade).toFixed(3))
-                        }
-                      },{new : true}
-                      );
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level_5_6_rebade,
-                        inv : parseInt(level4_user['parent'])
-                      });
-                   settled += `'5th->' ${level5_user['parent'] } ,rebade =  ${level_5_6_rebade}`;
-
-                if(level5_user && level5_user !== undefined){
-                   
-                  if(level5_user['parent'] !== undefined && level5_user['parent'] !== 0){
-                
-                          await User.findOneAndUpdate(
-                            {inv : parseInt(level5_user['parent']) } ,
-                            {
-                              $inc : {
-                                Ammount : level_5_6_rebade,
-                                RebadeBonus : parseFloat(parseFloat(level_5_6_rebade).toFixed(3)),
-                                profit : parseFloat(parseFloat(level_5_6_rebade).toFixed(3))
-                              }
-                            },{new : true}
-                      );
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level_5_6_rebade,
-                        inv : parseInt(level5_user['parent'])
-                      });
-
-                   settled += `'6th->' ${level5_user['parent'] } ,rebade =  ${level_5_6_rebade}`;
-
-                   }
-
-                }
-
-                   }
-
-                }
-                      
-
-                   }
-
-                }
-                      
-
-                   }
-
-                }
-
-              }
-
-            }
-
-          }
-          
-          // ----------------updating this user's data----------------
-            await User.findOneAndUpdate(
-                {inv : parseInt(level0['inv']) } ,
-                {
-                  $inc : {
-                    Ammount : new_amount,
-                    profit :  new_profit
-                  }
-                }
-                );
+              { inv: parseInt(level0["parent"]) },
+              {
+                $inc: {
+                  Ammount: level1_rebade,
+                  RebadeBonus: parseFloat(parseFloat(level1_rebade).toFixed(3)),
+                  profit: parseFloat(parseFloat(level1_rebade).toFixed(3)),
+                },
+              },
+              { new: true }
+            );
 
             await Other.create({
-              date : parsed_date,
-              Ammount : new_profit,
-              inv : level0['inv']
-           });
+              date: parsed_date,
+              Ammount: level1_rebade,
+              inv: parseInt(level0["parent"]),
+            });
+
+            settled += `'1st->' ${level0["parent"]} ,rebade =  ${level1_rebade}`;
+            if (level1_user && level1_user !== undefined) {
+              if (
+                level1_user["parent"] !== undefined &&
+                level1_user["parent"] !== 0
+              ) {
+                let level2_user = await User.findOneAndUpdate(
+                  { inv: parseInt(level1_user["parent"]) },
+                  {
+                    $inc: {
+                      Ammount: level2_rebade,
+                      RebadeBonus: parseFloat(
+                        parseFloat(level2_rebade).toFixed(3)
+                      ),
+                      profit: parseFloat(parseFloat(level2_rebade).toFixed(3)),
+                    },
+                  },
+                  { new: true }
+                );
+                await Other.create({
+                  date: parsed_date,
+                  Ammount: level2_rebade,
+                  inv: parseInt(level1_user["parent"]),
+                });
+                settled += `'2nd->' ${level1_user["parent"]} ,rebade =  ${level2_rebade}`;
+                if (level2_user && level2_user !== undefined) {
+                  if (
+                    level2_user["parent"] !== undefined &&
+                    level2_user["parent"] !== 0
+                  ) {
+                    let level3_user = await User.findOneAndUpdate(
+                      { inv: parseInt(level2_user["parent"]) },
+                      {
+                        $inc: {
+                          Ammount: level3_rebade,
+                          RebadeBonus: parseFloat(
+                            parseFloat(level3_rebade).toFixed(3)
+                          ),
+                          profit: parseFloat(
+                            parseFloat(level3_rebade).toFixed(3)
+                          ),
+                        },
+                      },
+                      { new: true }
+                    );
+                    await Other.create({
+                      date: parsed_date,
+                      Ammount: level3_rebade,
+                      inv: parseInt(level2_user["parent"]),
+                    });
+                    settled += `'3rd->' ${level2_user["parent"]} ,rebade =  ${level3_rebade}`;
+                    if (level3_user && level3_user !== undefined) {
+                      if (
+                        level3_user["parent"] !== undefined &&
+                        level3_user["parent"] !== 0
+                      ) {
+                        let level4_user = await User.findOneAndUpdate(
+                          { inv: parseInt(level3_user["parent"]) },
+                          {
+                            $inc: {
+                              Ammount: level4_rebade,
+                              RebadeBonus: parseFloat(
+                                parseFloat(level4_rebade).toFixed(3)
+                              ),
+                              profit: parseFloat(
+                                parseFloat(level4_rebade).toFixed(3)
+                              ),
+                            },
+                          },
+                          { new: true }
+                        );
+                        await Other.create({
+                          date: parsed_date,
+                          Ammount: level3_rebade,
+                          inv: parseInt(level3_user["parent"]),
+                        });
+                        settled += `'4th->' ${level3_user["parent"]} ,rebade =  ${level4_rebade}`;
+                        if (level4_user && level4_user !== undefined) {
+                          if (
+                            level4_user["parent"] !== undefined &&
+                            level4_user["parent"] !== 0
+                          ) {
+                            let level5_user = await User.findOneAndUpdate(
+                              { inv: parseInt(level4_user["parent"]) },
+                              {
+                                $inc: {
+                                  Ammount: level_5_6_rebade,
+                                  RebadeBonus: parseFloat(
+                                    parseFloat(level_5_6_rebade).toFixed(3)
+                                  ),
+                                  profit: parseFloat(
+                                    parseFloat(level_5_6_rebade).toFixed(3)
+                                  ),
+                                },
+                              },
+                              { new: true }
+                            );
+                            await Other.create({
+                              date: parsed_date,
+                              Ammount: level_5_6_rebade,
+                              inv: parseInt(level4_user["parent"]),
+                            });
+                            settled += `'5th->' ${level5_user["parent"]} ,rebade =  ${level_5_6_rebade}`;
+
+                            if (level5_user && level5_user !== undefined) {
+                              if (
+                                level5_user["parent"] !== undefined &&
+                                level5_user["parent"] !== 0
+                              ) {
+                                await User.findOneAndUpdate(
+                                  { inv: parseInt(level5_user["parent"]) },
+                                  {
+                                    $inc: {
+                                      Ammount: level_5_6_rebade,
+                                      RebadeBonus: parseFloat(
+                                        parseFloat(level_5_6_rebade).toFixed(3)
+                                      ),
+                                      profit: parseFloat(
+                                        parseFloat(level_5_6_rebade).toFixed(3)
+                                      ),
+                                    },
+                                  },
+                                  { new: true }
+                                );
+                                await Other.create({
+                                  date: parsed_date,
+                                  Ammount: level_5_6_rebade,
+                                  inv: parseInt(level5_user["parent"]),
+                                });
+
+                                settled += `'6th->' ${level5_user["parent"]} ,rebade =  ${level_5_6_rebade}`;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          // ----------------updating this user's data----------------
+          await User.findOneAndUpdate(
+            { inv: parseInt(level0["inv"]) },
+            {
+              $inc: {
+                Ammount: new_amount,
+                profit: new_profit,
+              },
+            }
+          );
+
+          await Other.create({
+            date: parsed_date,
+            Ammount: new_profit,
+            inv: level0["inv"],
+          });
 
           // ----------------settleing this user's bet------------------
-           await Bet.findOneAndUpdate(
-               {inv : level0['inv'] , leagueId : level0['leagueId'] } ,
-               {
-                 settled : true,
-                 final_score : [{first : score_a , second : score_b}]
-               }
-            );
-
-          }else if(level0['scoreDetails'][0]['first'] == score_a &&
-                  level0['scoreDetails'][0]['second'] == score_b){
-              await Bet.findOneAndUpdate(
-                {inv : level0['inv'] , leagueId : level0['leagueId'] } ,
-                {
-                  settled : true,
-                  final_score : [{first : score_a , second : score_b}]
-               }
-            );
-         }
-          settled += '----------HERE ALL THE DATA OF A USER ENDS -----------'
+          await Bet.findOneAndUpdate(
+            { inv: level0["inv"], leagueId: level0["leagueId"] },
+            {
+              settled: true,
+              final_score: [{ first: score_a, second: score_b }],
+            }
+          );
+        } else if (
+          level0["scoreDetails"][0]["first"] == score_a &&
+          level0["scoreDetails"][0]["second"] == score_b
+        ) {
+          await Bet.findOneAndUpdate(
+            { inv: level0["inv"], leagueId: level0["leagueId"] },
+            {
+              settled: true,
+              final_score: [{ first: score_a, second: score_b }],
+            }
+          );
+        }
+        settled += "----------HERE ALL THE DATA OF A USER ENDS -----------";
       }
-
     }
-      return res.send({data : settled});
+    return res.send({ data: settled });
   }
+};
 
-  }
+module.exports.test_settle_bets = test_settle_bets = async (req, res) => {
+  let id = req.body["id"];
 
-  module.exports.test_settle_bets = test_settle_bets = async(req, res)=>{
-
-    let id = req.body['id'];
-
-    if(!id || id == 'undefined'){
-      return res.send({err : '<h1>SORRY SOMETHING WENT WRONG WITH LEAGUE ID</h1>'});
-    }else{
-
-
-    let results = {1014210 : {home : 1 , away : 3}};
-    let settled = '';
+  if (!id || id == "undefined") {
+    return res.send({
+      err: "<h1>SORRY SOMETHING WENT WRONG WITH LEAGUE ID</h1>",
+    });
+  } else {
+    let results = { 1014210: { home: 1, away: 3 } };
+    let settled = "";
     let bets = {};
 
     // add another querry parameter league id , cause if one user places two bets then he will get double rebade ammount; and this id you will get from user;
 
-    let all_unsettled_bets = await Bet.find({settled : false , league_type : 1 , leagueId : id} , {parent : 1 ,bAmmount : 1 , leagueId : 1 , inv : 1 , scoreDetails : 1 , profit : 1 , date : 1 , members : 1 , ammount : 1 , final_score : 1 , rebade_amm : 1});
-
-    if (all_unsettled_bets !== 'undefined' && all_unsettled_bets) {
-      if(Object.keys(all_unsettled_bets).length == 0){
-        return res.send({err : "id not found" })
+    let all_unsettled_bets = await Bet.find(
+      { settled: false, league_type: 1, leagueId: id },
+      {
+        parent: 1,
+        bAmmount: 1,
+        leagueId: 1,
+        inv: 1,
+        scoreDetails: 1,
+        profit: 1,
+        date: 1,
+        members: 1,
+        ammount: 1,
+        final_score: 1,
+        rebade_amm: 1,
       }
-    }else{
-      return res.send({err : 'something went wrong'});
+    );
+
+    if (all_unsettled_bets !== "undefined" && all_unsettled_bets) {
+      if (Object.keys(all_unsettled_bets).length == 0) {
+        return res.send({ err: "id not found" });
+      }
+    } else {
+      return res.send({ err: "something went wrong" });
     }
 
-    if( all_unsettled_bets ){
-
-      let data = await get_settled_bet_byID(parseInt(all_unsettled_bets[0]['leagueId']));
+    if (all_unsettled_bets) {
+      let data = await get_settled_bet_byID(
+        parseInt(all_unsettled_bets[0]["leagueId"])
+      );
       data = await JSON.parse(data);
 
-      if(data && data['response'].length){
-
-        let result_id = parseInt(data['response'][0]['fixture']['id']);
-        let result_obj = data['response'][0]['goals'];
+      if (data && data["response"].length) {
+        let result_id = parseInt(data["response"][0]["fixture"]["id"]);
+        let result_obj = data["response"][0]["goals"];
         results[result_id] = result_obj;
         settled += `RESULTS ${result_obj} -- `;
-        if(result_obj['home'] === null || result_obj['away'] === null){
-           return res.send({status : 'settle it using null settlement because the scores are null null'});
+        if (result_obj["home"] === null || result_obj["away"] === null) {
+          return res.send({
+            status:
+              "settle it using null settlement because the scores are null null",
+          });
         }
-      }else{
-        return res.send(`<h1>Something went wrong try again. after checking the database or league id you entered !!!</h1>`);
+      } else {
+        return res.send(
+          `<h1>Something went wrong try again. after checking the database or league id you entered !!!</h1>`
+        );
       }
-
-    }else{
-      return res.send({err : 'Either their is no bet to settle or you have entered wrong league id'});
+    } else {
+      return res.send({
+        err: "Either their is no bet to settle or you have entered wrong league id",
+      });
     }
 
     // setting things up
-    if(all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0 ){
-
-      for(let item of all_unsettled_bets){
-
-        if( !(item['leagueId'] in results) ){
-         return res.send({err : `<h1>ODD ONE OUT PLEASE ${item['leagueId']}</h1>`});
-        }else{
+    if (all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0) {
+      for (let item of all_unsettled_bets) {
+        if (!(item["leagueId"] in results)) {
+          return res.send({
+            err: `<h1>ODD ONE OUT PLEASE ${item["leagueId"]}</h1>`,
+          });
+        } else {
           //this bets object will help me fin wethere a user has placed bet or not in O(1);
-          bets[item['inv']] = item;
-
+          bets[item["inv"]] = item;
         }
-
       }
-
     }
 
     // analyze all the data
-    if(all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0){
-
-      for(let level0 of all_unsettled_bets){
-        settled += `'giving bonus from ' ${level0['inv'] }`
+    if (all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0) {
+      for (let level0 of all_unsettled_bets) {
+        settled += `'giving bonus from ' ${level0["inv"]}`;
         // console.log(level0);
-        let score0 = results[level0['leagueId']];
+        let score0 = results[level0["leagueId"]];
 
-        let score_a = parseInt(score0['home']);
-        let score_b = parseInt(score0['away']);
+        let score_a = parseInt(score0["home"]);
+        let score_b = parseInt(score0["away"]);
 
-        if(level0['scoreDetails'][0]['first'] !== score_a ||
-        level0['scoreDetails'][0]['second'] !== score_b)
-        {
+        if (
+          level0["scoreDetails"][0]["first"] !== score_a ||
+          level0["scoreDetails"][0]["second"] !== score_b
+        ) {
+          let profit0 = parseFloat(level0["profit"]);
+          let bet_ammount0 = parseFloat(level0["bAmmount"]);
 
-          let profit0 = parseFloat(level0['profit']);
-          let bet_ammount0 = parseFloat(level0['bAmmount']);
+          let new_amount = parseFloat(
+            (bet_ammount0 + (bet_ammount0 / 100) * profit0).toFixed(2)
+          );
+          let new_profit = parseFloat(
+            parseFloat((bet_ammount0 / 100) * profit0).toFixed(3)
+          );
+          let level1_rebade = parseFloat(((new_profit / 100) * 12).toFixed(2));
+          let level2_rebade = parseFloat(((new_profit / 100) * 8).toFixed(2));
+          let level3_rebade = parseFloat(((new_profit / 100) * 5).toFixed(2));
+          let level4_rebade = parseFloat(((new_profit / 100) * 2).toFixed(2));
+          let level_5_6_rebade = parseFloat(
+            ((new_profit / 100) * 1).toFixed(2)
+          );
 
-          let new_amount = parseFloat( ( bet_ammount0 + (bet_ammount0/100 * profit0) ).toFixed(2) );
-          let new_profit = parseFloat(parseFloat(bet_ammount0/100 * profit0).toFixed(3));
-          let level1_rebade = parseFloat( (new_profit/100 * 12).toFixed(2) ) ;
-          let level2_rebade = parseFloat( (new_profit/100 * 8).toFixed(2) ) ;
-          let level3_rebade = parseFloat( (new_profit/100 * 5).toFixed(2) );
-          let level4_rebade = parseFloat( (new_profit/100 * 2).toFixed(2) );
-          let level_5_6_rebade = parseFloat((new_profit/100 * 1).toFixed(2) );
-        
           // ---------- checking if any parent exists -----------
-          if(level0['parent'] && level0['parent'] !== 0){
-            
-            let level1_user = await User.findOne(
-                { inv : parseInt(level0['parent']) }  ,
-               
-              );
-               settled += `'1st->' ${level0['parent'] } ,rebade =  ${level1_rebade}`;
-            if(level1_user && level1_user !== undefined){
-                
-              if(level1_user['parent'] !== undefined && level1_user['parent'] !== 0){
-                
-                let level2_user = await User.findOne(
-                  {inv : parseInt(level1_user['parent']) }
-                  );
-                   settled += `'2nd->' ${level1_user['parent'] } ,rebade =  ${level2_rebade}`;
-                if(level2_user && level2_user !== undefined){
-                   
-                  if(level2_user['parent'] !== undefined && level2_user['parent'] !== 0){
-                
-                    let level3_user = await User.findOne(
-                      {inv : parseInt(level2_user['parent']) } 
-                            
-                      );
-                   settled += `'3rd->' ${level2_user['parent'] } ,rebade =  ${level3_rebade}`;
-                if(level3_user && level3_user !== undefined){
-                   
-                  if(level3_user['parent'] !== undefined && level3_user['parent'] !== 0){
-                
-                    let level4_user = await User.findOne(
-                      {inv : parseInt(level3_user['parent']) }
-                      );
-                   settled += `'4th->' ${level3_user['parent'] } ,rebade =  ${level4_rebade}`;
-                 if(level4_user && level4_user !== undefined){
-                   
-                  if(level4_user['parent'] !== undefined && level4_user['parent'] !== 0){
-                
-                    let level5_user = await User.findOne(
-                      {inv : parseInt(level4_user['parent']) } 
-                      );
-            
-                   settled += `'5th->' ${level5_user['parent'] } ,rebade =  ${level_5_6_rebade}`;
+          if (level0["parent"] && level0["parent"] !== 0) {
+            let level1_user = await User.findOne({
+              inv: parseInt(level0["parent"]),
+            });
+            settled += `'1st->' ${level0["parent"]} ,rebade =  ${level1_rebade}`;
+            if (level1_user && level1_user !== undefined) {
+              if (
+                level1_user["parent"] !== undefined &&
+                level1_user["parent"] !== 0
+              ) {
+                let level2_user = await User.findOne({
+                  inv: parseInt(level1_user["parent"]),
+                });
+                settled += `'2nd->' ${level1_user["parent"]} ,rebade =  ${level2_rebade}`;
+                if (level2_user && level2_user !== undefined) {
+                  if (
+                    level2_user["parent"] !== undefined &&
+                    level2_user["parent"] !== 0
+                  ) {
+                    let level3_user = await User.findOne({
+                      inv: parseInt(level2_user["parent"]),
+                    });
+                    settled += `'3rd->' ${level2_user["parent"]} ,rebade =  ${level3_rebade}`;
+                    if (level3_user && level3_user !== undefined) {
+                      if (
+                        level3_user["parent"] !== undefined &&
+                        level3_user["parent"] !== 0
+                      ) {
+                        let level4_user = await User.findOne({
+                          inv: parseInt(level3_user["parent"]),
+                        });
+                        settled += `'4th->' ${level3_user["parent"]} ,rebade =  ${level4_rebade}`;
+                        if (level4_user && level4_user !== undefined) {
+                          if (
+                            level4_user["parent"] !== undefined &&
+                            level4_user["parent"] !== 0
+                          ) {
+                            let level5_user = await User.findOne({
+                              inv: parseInt(level4_user["parent"]),
+                            });
 
-                if(level5_user && level5_user !== undefined){
-                   
-                  if(level5_user['parent'] !== undefined && level5_user['parent'] !== 0){
-                
-                          await User.findOne(
-                            {inv : parseInt(level5_user['parent']) }
-                      );
-                      
-                   settled += `'6th->' ${level5_user['parent'] } ,rebade =  ${level_5_6_rebade}`;
+                            settled += `'5th->' ${level5_user["parent"]} ,rebade =  ${level_5_6_rebade}`;
 
-                   }
+                            if (level5_user && level5_user !== undefined) {
+                              if (
+                                level5_user["parent"] !== undefined &&
+                                level5_user["parent"] !== 0
+                              ) {
+                                await User.findOne({
+                                  inv: parseInt(level5_user["parent"]),
+                                });
 
+                                settled += `'6th->' ${level5_user["parent"]} ,rebade =  ${level_5_6_rebade}`;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
-
-                   }
-
-                }
-                      
-
-                   }
-
-                }
-                      
-
-                   }
-
-                }
-
               }
-
             }
-
           }
-                 
+
           // ----------------settleing this user's bet------------------
-           await Bet.findOneAndUpdate(
-               {inv : level0['inv'] , leagueId : level0['leagueId'] } ,
-               {
-                 settled : false,
-                 final_score : [{first : score_a , second : score_b}]
-               }
-            );
-
-          }else if(level0['scoreDetails'][0]['first'] == score_a &&
-                  level0['scoreDetails'][0]['second'] == score_b){
-              await Bet.findOneAndUpdate(
-                {inv : level0['inv'] , leagueId : level0['leagueId'] } ,
-                {
-                  settled : false,
-                  final_score : [{first : score_a , second : score_b}]
-               }
-            );
-         }
-          settled += '----------HERE ALL THE DATA OF A USER ENDS -----------'
+          await Bet.findOneAndUpdate(
+            { inv: level0["inv"], leagueId: level0["leagueId"] },
+            {
+              settled: false,
+              final_score: [{ first: score_a, second: score_b }],
+            }
+          );
+        } else if (
+          level0["scoreDetails"][0]["first"] == score_a &&
+          level0["scoreDetails"][0]["second"] == score_b
+        ) {
+          await Bet.findOneAndUpdate(
+            { inv: level0["inv"], leagueId: level0["leagueId"] },
+            {
+              settled: false,
+              final_score: [{ first: score_a, second: score_b }],
+            }
+          );
+        }
+        settled += "----------HERE ALL THE DATA OF A USER ENDS -----------";
       }
-
     }
-      return res.send({data : settled});
+    return res.send({ data: settled });
   }
+};
 
-  }
+module.exports.null_bet = null_bet = async (req, res) => {
+  // let id = req.body['id'];
+  let leagueid = req.body["league"];
+  let s_first = req.body["first"];
+  let s_second = req.body["second"];
 
-  module.exports.null_bet = null_bet = async(req, res)=>{
+  let nDate = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Calcutta",
+  });
+  let today = new Date(nDate);
+  let parsed_date =
+    today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
 
-    // let id = req.body['id'];
-    let leagueid = req.body['league'];
-    let s_first = req.body['first'];
-    let s_second = req.body['second'];
-    
-     let nDate = new Date().toLocaleString('en-US' , {
-      timeZone : 'Asia/Calcutta'
+  if (
+    !leagueid ||
+    leagueid == "undefined" ||
+    !s_first ||
+    s_first == "undefined" ||
+    !s_second ||
+    s_second == "undefined"
+  ) {
+    return res.send({
+      err: "<h1>SORRY SOMETHING WENT WRONG WITH LEAGUE ID</h1>",
     });
-    let today = new Date(nDate);
-    let parsed_date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-
-    if(!leagueid || leagueid == 'undefined' || !s_first || s_first == 'undefined' || !s_second || s_second == 'undefined'){
-      return res.send({err : '<h1>SORRY SOMETHING WENT WRONG WITH LEAGUE ID</h1>'});
-    }else{
-
+  } else {
     leagueid = parseInt(leagueid);
     s_first = parseInt(s_first);
     s_second = parseInt(s_second);
 
     let results = {};
-    let obj = {home : s_first , away : s_second}
+    let obj = { home: s_first, away: s_second };
     results[leagueid] = obj;
-    let settled = '';
+    let settled = "";
     let bets = {};
 
     // add another querry parameter league id , cause if one user places two bets then he will get double rebade ammount; and this id you will get from user;
 
-    let all_unsettled_bets = await Bet.find({settled : false , league_type : 1 , leagueId : leagueid} , {parent : 1 , bAmmount : 1 , leagueId : 1 , inv : 1 , scoreDetails : 1 , profit : 1 , date : 1 , members : 1 , ammount : 1 , final_score : 1 , rebade_amm : 1});
-
-    if (all_unsettled_bets !== 'undefined' && all_unsettled_bets) {
-      if(Object.keys(all_unsettled_bets).length == 0){
-        return res.send({err : "id not found" })
+    let all_unsettled_bets = await Bet.find(
+      { settled: false, league_type: 1, leagueId: leagueid },
+      {
+        parent: 1,
+        bAmmount: 1,
+        leagueId: 1,
+        inv: 1,
+        scoreDetails: 1,
+        profit: 1,
+        date: 1,
+        members: 1,
+        ammount: 1,
+        final_score: 1,
+        rebade_amm: 1,
       }
-    }else{
-      return res.send({err : 'something went wrong'});
+    );
+
+    if (all_unsettled_bets !== "undefined" && all_unsettled_bets) {
+      if (Object.keys(all_unsettled_bets).length == 0) {
+        return res.send({ err: "id not found" });
+      }
+    } else {
+      return res.send({ err: "something went wrong" });
     }
 
-
     // setting things up
-    if(all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0 ){
-
-      for(let item of all_unsettled_bets){
-
-        if( !(item['leagueId'] in results) ){
-         return res.send({err : `<h1>ODD ONE OUT PLEASE ${item['leagueId']}</h1>`});
-        }else{
+    if (all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0) {
+      for (let item of all_unsettled_bets) {
+        if (!(item["leagueId"] in results)) {
+          return res.send({
+            err: `<h1>ODD ONE OUT PLEASE ${item["leagueId"]}</h1>`,
+          });
+        } else {
           //this bets object will help me fin wethere a user has placed bet or not in O(1);
-          bets[item['inv']] = item;
-
+          bets[item["inv"]] = item;
         }
-
       }
-
     }
 
     // analyze all the data
-     if(all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0){
+    if (all_unsettled_bets && Object.keys(all_unsettled_bets[0]).length > 0) {
+      for (let level0 of all_unsettled_bets) {
+        settled += `'giving bonus from ' ${level0["inv"]}`;
+        let score0 = results[level0["leagueId"]];
 
-      for(let level0 of all_unsettled_bets){
-        settled += `'giving bonus from ' ${level0['inv'] }`
-        // console.log(level0);
-        let score0 = results[level0['leagueId']];
+        let score_a = parseInt(score0["home"]);
+        let score_b = parseInt(score0["away"]);
 
-        let score_a = parseInt(score0['home']);
-        let score_b = parseInt(score0['away']);
+        if (
+          level0["scoreDetails"][0]["first"] !== score_a ||
+          level0["scoreDetails"][0]["second"] !== score_b
+        ) {
+          let profit0 = parseFloat(level0["profit"]);
+          let bet_ammount0 = parseFloat(level0["bAmmount"]);
 
-        if(level0['scoreDetails'][0]['first'] !== score_a ||
-        level0['scoreDetails'][0]['second'] !== score_b)
-        {
+          let new_amount = parseFloat(
+            (bet_ammount0 + (bet_ammount0 / 100) * profit0).toFixed(2)
+          );
+          let new_profit = parseFloat(
+            parseFloat((bet_ammount0 / 100) * profit0).toFixed(3)
+          );
+          let level1_rebade = parseFloat(((new_profit / 100) * 10).toFixed(2));
+          let level2_rebade = parseFloat(((new_profit / 100) * 8).toFixed(2));
+          let level3_rebade = parseFloat(((new_profit / 100) * 4).toFixed(2));
+          let level4_rebade = parseFloat(((new_profit / 100) * 2).toFixed(2));
+          let level_5_6_rebade = parseFloat(
+            ((new_profit / 100) * 1).toFixed(2)
+          );
 
-          let profit0 = parseFloat(level0['profit']);
-          let bet_ammount0 = parseFloat(level0['bAmmount']);
-
-          let new_amount = parseFloat( ( bet_ammount0 + (bet_ammount0/100 * profit0) ).toFixed(2) );
-          let new_profit = parseFloat(parseFloat(bet_ammount0/100 * profit0).toFixed(3));
-          let level1_rebade = parseFloat( (new_profit/100 * 10).toFixed(2) ) ;
-          let level2_rebade = parseFloat( (new_profit/100 * 8).toFixed(2) ) ;
-          let level3_rebade = parseFloat( (new_profit/100 * 4).toFixed(2) );
-          let level4_rebade = parseFloat( (new_profit/100 * 2).toFixed(2) );
-          let level_5_6_rebade = parseFloat((new_profit/100 * 1).toFixed(2) );
-        
           // ---------- checking if any parent exists -----------
-          if(level0['parent'] && level0['parent'] !== 0){
-            
+          if (level0["parent"] && level0["parent"] !== 0) {
             let level1_user = await User.findOneAndUpdate(
-                { inv : parseInt(level0['parent']) }  ,
-                {
-                  $inc : {
-                    Ammount : level1_rebade,
-                    RebadeBonus : parseFloat(parseFloat(level1_rebade).toFixed(3)),
-                    profit : parseFloat(parseFloat(level1_rebade).toFixed(3))
-                  }
-                },{new : true}
-              );
-              
-              await Other.create({
-                date : parsed_date,
-                Ammount : level1_rebade,
-                inv : parseInt(level0['parent'])
-              });
+              { inv: parseInt(level0["parent"]) },
+              {
+                $inc: {
+                  Ammount: level1_rebade,
+                  RebadeBonus: parseFloat(parseFloat(level1_rebade).toFixed(3)),
+                  profit: parseFloat(parseFloat(level1_rebade).toFixed(3)),
+                },
+              },
+              { new: true }
+            );
 
-               settled += `'1st->' ${level0['parent'] } ,rebade =  ${level1_rebade}`;
-            if(level1_user && level1_user !== undefined){
-                
-              if(level1_user['parent'] !== undefined && level1_user['parent'] !== 0){
-                
+            await Other.create({
+              date: parsed_date,
+              Ammount: level1_rebade,
+              inv: parseInt(level0["parent"]),
+            });
+
+            settled += `'1st->' ${level0["parent"]} ,rebade =  ${level1_rebade}`;
+            if (level1_user && level1_user !== undefined) {
+              if (
+                level1_user["parent"] !== undefined &&
+                level1_user["parent"] !== 0
+              ) {
                 let level2_user = await User.findOneAndUpdate(
-                  {inv : parseInt(level1_user['parent']) } ,
+                  { inv: parseInt(level1_user["parent"]) },
                   {
-                    $inc : {
-                      Ammount : level2_rebade,
-                      RebadeBonus : parseFloat(parseFloat(level2_rebade).toFixed(3)),
-                      profit : parseFloat(parseFloat(level2_rebade).toFixed(3))
-                    }
-                  },{new : true}
-                  
-                  );
-                  
-              await Other.create({
-                date : parsed_date,
-                Ammount : level2_rebade,
-                inv : parseInt(level1_user['parent'])
-              });
-
-                   settled += `'2nd->' ${level1_user['parent'] } ,rebade =  ${level2_rebade}`;
-                if(level2_user && level2_user !== undefined){
-                   
-                  if(level2_user['parent'] !== undefined && level2_user['parent'] !== 0){
-                
-                    let level3_user = await User.findOneAndUpdate(
-                      {inv : parseInt(level2_user['parent']) } ,
-                      {
-                        $inc : {
-                          Ammount : level3_rebade,
-                          RebadeBonus : parseFloat(parseFloat(level3_rebade).toFixed(3)),
-                          profit : parseFloat(parseFloat(level3_rebade).toFixed(3))
-                        }
-                      },{new : true}
-                            
-                      );
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level3_rebade,
-                        inv : parseInt(level2_user['parent'])
-                      });
-                   settled += `'3rd->' ${level2_user['parent'] } ,rebade =  ${level3_rebade}`;
-                if(level3_user && level3_user !== undefined){
-                   
-                  if(level3_user['parent'] !== undefined && level3_user['parent'] !== 0){
-                
-                    let level4_user = await User.findOneAndUpdate(
-                      {inv : parseInt(level3_user['parent']) } ,
-                      {
-                        $inc : {
-                          Ammount : level4_rebade,
-                          RebadeBonus : parseFloat(parseFloat(level4_rebade).toFixed(3)),
-                          profit : parseFloat(parseFloat(level4_rebade).toFixed(3))
-                        }
-                      },{new : true}
-                      );
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level4_rebade,
-                        inv : parseInt(level3_user['parent'])
-                      });
-                   settled += `'4th->' ${level3_user['parent'] } ,rebade =  ${level4_rebade}`;
-                 if(level4_user && level4_user !== undefined){
-                   
-                  if(level4_user['parent'] !== undefined && level4_user['parent'] !== 0){
-                
-                    let level5_user = await User.findOneAndUpdate(
-                      {inv : parseInt(level4_user['parent']) } ,
-                      {
-                        $inc : {
-                          Ammount : level_5_6_rebade,
-                          RebadeBonus : parseFloat(parseFloat(level_5_6_rebade).toFixed(3)),
-                          profit : parseFloat(parseFloat(level_5_6_rebade).toFixed(3))
-                        }
-                      },{new : true}
-                      );
-
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level_5_6_rebade,
-                        inv : parseInt(level4_user['parent'])
-                      });
-
-                   settled += `'5th->' ${level5_user['parent'] } ,rebade =  ${level_5_6_rebade}`;
-
-                if(level5_user && level5_user !== undefined){
-                   
-                  if(level5_user['parent'] !== undefined && level5_user['parent'] !== 0){
-                
-                          await User.findOneAndUpdate(
-                            {inv : parseInt(level5_user['parent']) } ,
-                            {
-                              $inc : {
-                                Ammount : level_5_6_rebade,
-                                RebadeBonus : parseFloat(parseFloat(level_5_6_rebade).toFixed(3)),
-                                profit : parseFloat(parseFloat(level_5_6_rebade).toFixed(3))
-                              }
-                            },{new : true}
-                      );
-                      await Other.create({
-                        date : parsed_date,
-                        Ammount : level_5_6_rebade,
-                        inv : parseInt(level5_user['parent'])
-                      });
-                   settled += `'6th->' ${level5_user['parent'] } ,rebade =  ${level_5_6_rebade}`;
-
-                   }
-
-                }
-
-                   }
-
-                }
-                      
-
-                   }
-
-                }
-                      
-
-                   }
-
-                }
-
-              }
-
-            }
-
-          }
-          
-          // ----------------updating this user's data----------------
-            await User.findOneAndUpdate(
-                {inv : parseInt(level0['inv']) } ,
-                {
-                  $inc : {
-                    Ammount : new_amount,
-                    profit :  new_profit
-                  }
-                }
+                    $inc: {
+                      Ammount: level2_rebade,
+                      RebadeBonus: parseFloat(
+                        parseFloat(level2_rebade).toFixed(3)
+                      ),
+                      profit: parseFloat(parseFloat(level2_rebade).toFixed(3)),
+                    },
+                  },
+                  { new: true }
                 );
 
-                
-          // ----------------settleing this user's bet------------------
-           await Bet.findOneAndUpdate(
-               {inv : level0['inv'] , leagueId : level0['leagueId'] } ,
-               {
-                 settled : true,
-                 final_score : [{first : score_a , second : score_b}]
-               }
-            );
+                await Other.create({
+                  date: parsed_date,
+                  Ammount: level2_rebade,
+                  inv: parseInt(level1_user["parent"]),
+                });
 
-          }else if(level0['scoreDetails'][0]['first'] == score_a &&
-                  level0['scoreDetails'][0]['second'] == score_b){
-              await Bet.findOneAndUpdate(
-                {inv : level0['inv'] , leagueId : level0['leagueId'] } ,
-                {
-                  settled : true,
-                  final_score : [{first : score_a , second : score_b}]
-               }
-            );
-         }
-          settled += '----------HERE ALL THE DATA OF A USER ENDS -----------'
-      }
+                settled += `'2nd->' ${level1_user["parent"]} ,rebade =  ${level2_rebade}`;
+                if (level2_user && level2_user !== undefined) {
+                  if (
+                    level2_user["parent"] !== undefined &&
+                    level2_user["parent"] !== 0
+                  ) {
+                    let level3_user = await User.findOneAndUpdate(
+                      { inv: parseInt(level2_user["parent"]) },
+                      {
+                        $inc: {
+                          Ammount: level3_rebade,
+                          RebadeBonus: parseFloat(
+                            parseFloat(level3_rebade).toFixed(3)
+                          ),
+                          profit: parseFloat(
+                            parseFloat(level3_rebade).toFixed(3)
+                          ),
+                        },
+                      },
+                      { new: true }
+                    );
+                    await Other.create({
+                      date: parsed_date,
+                      Ammount: level3_rebade,
+                      inv: parseInt(level2_user["parent"]),
+                    });
+                    settled += `'3rd->' ${level2_user["parent"]} ,rebade =  ${level3_rebade}`;
+                    if (level3_user && level3_user !== undefined) {
+                      if (
+                        level3_user["parent"] !== undefined &&
+                        level3_user["parent"] !== 0
+                      ) {
+                        let level4_user = await User.findOneAndUpdate(
+                          { inv: parseInt(level3_user["parent"]) },
+                          {
+                            $inc: {
+                              Ammount: level4_rebade,
+                              RebadeBonus: parseFloat(
+                                parseFloat(level4_rebade).toFixed(3)
+                              ),
+                              profit: parseFloat(
+                                parseFloat(level4_rebade).toFixed(3)
+                              ),
+                            },
+                          },
+                          { new: true }
+                        );
+                        await Other.create({
+                          date: parsed_date,
+                          Ammount: level4_rebade,
+                          inv: parseInt(level3_user["parent"]),
+                        });
+                        settled += `'4th->' ${level3_user["parent"]} ,rebade =  ${level4_rebade}`;
+                        if (level4_user && level4_user !== undefined) {
+                          if (
+                            level4_user["parent"] !== undefined &&
+                            level4_user["parent"] !== 0
+                          ) {
+                            let level5_user = await User.findOneAndUpdate(
+                              { inv: parseInt(level4_user["parent"]) },
+                              {
+                                $inc: {
+                                  Ammount: level_5_6_rebade,
+                                  RebadeBonus: parseFloat(
+                                    parseFloat(level_5_6_rebade).toFixed(3)
+                                  ),
+                                  profit: parseFloat(
+                                    parseFloat(level_5_6_rebade).toFixed(3)
+                                  ),
+                                },
+                              },
+                              { new: true }
+                            );
 
-    }
-      return res.send({ data : settled});
-  }
+                            await Other.create({
+                              date: parsed_date,
+                              Ammount: level_5_6_rebade,
+                              inv: parseInt(level4_user["parent"]),
+                            });
 
-  }
+                            settled += `'5th->' ${level5_user["parent"]} ,rebade =  ${level_5_6_rebade}`;
 
-  module.exports.get_settle_deposit_data = get_settle_deposit_data = async(req, res)=>{
-  
-    let {invitation_code , amount , transactioin_id} = req.body;
+                            if (level5_user && level5_user !== undefined) {
+                              if (
+                                level5_user["parent"] !== undefined &&
+                                level5_user["parent"] !== 0
+                              ) {
+                                await User.findOneAndUpdate(
+                                  { inv: parseInt(level5_user["parent"]) },
+                                  {
+                                    $inc: {
+                                      Ammount: level_5_6_rebade,
+                                      RebadeBonus: parseFloat(
+                                        parseFloat(level_5_6_rebade).toFixed(3)
+                                      ),
+                                      profit: parseFloat(
+                                        parseFloat(level_5_6_rebade).toFixed(3)
+                                      ),
+                                    },
+                                  },
+                                  { new: true }
+                                );
+                                await Other.create({
+                                  date: parsed_date,
+                                  Ammount: level_5_6_rebade,
+                                  inv: parseInt(level5_user["parent"]),
+                                });
+                                settled += `'6th->' ${level5_user["parent"]} ,rebade =  ${level_5_6_rebade}`;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
 
-    invitation_code = parseInt(invitation_code);
-
-    if(!invitation_code || !amount){
-      res.send({status : 2});
-    } else {
-      transactioin_id = transactioin_id.trim();
-      let deposit_data = await Deposit.findOne({inv : invitation_code , transactioin_id : transactioin_id , status : 0});
-    
-      if(deposit_data !== 'undefined' && deposit_data){
-
-        let user_data = await User.findOne({inv : invitation_code} , {Ammount : 1 , inv : 1 , parent : 1 , max_deposit : 1});
-        let parent =  await User.findOne({inv : user_data['parent'] } , {Ammount : 1});
-
-        req.session.max_deposit = user_data['max_deposit'];
-
-        return res.send({parent , user_data , deposit_data});
-
-      }else{
-        return res.send({status : 3}); //data not found
-      }
-
-    }
-
-  }
-
-  module.exports.settle_deposit = settle_deposit = async(req , res) => {
-
-    let {invitation_code , amount , transactioin_id} = req.body;
-    let nDate = new Date().toLocaleString('en-US' , {
-      timeZone : 'Asia/Calcutta'
-    });
-    let today = new Date(nDate);
-    let parsed_date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-
-    if(invitation_code && amount && transactioin_id){
-
-      amount = parseFloat(amount);
-
-      let parent_profit = parseFloat((0.02 * amount).toFixed(2));
-      let user_profit = parseFloat((0.04 * amount).toFixed(2));
-      let vip = 0;
-
-      // update the amount of both user and parent and send the data to admin;
-      let user_data = await User.findOne({inv : invitation_code})
-
-      if( !user_data || user_data == 'undefined' || user_data['first_deposit'] == 'undefined'){
-        return res.send({status : 'DATA NOT FOUND CHECK THE DATABASE '})
-      }
-
-
-      if(user_data['first_deposit'] === true){
-
-        // updating the parent
-        if(user_data['parent'] !== 0){
-
-          let updated_parent = await User.findOneAndUpdate({inv : user_data['parent']} ,
+          // ----------------updating this user's data----------------
+          let valid_amount = parseFloat((bet_ammount0 * 0.2).toFixed(2));
+          await User.findOneAndUpdate(
+            { inv: parseInt(level0["inv"]) },
             {
-             $inc : {
-             Ammount : parent_profit,
-             profit : parent_profit,
-             promotion_bonus: parent_profit
+              $inc: {
+                valid_amount: valid_amount,
+                Ammount: new_amount,
+                profit: new_profit,
               },
-            } , {new : true});
+            }
+          );
 
+          // ----------------settleing this user's bet------------------
+          await Bet.findOneAndUpdate(
+            { inv: level0["inv"], leagueId: level0["leagueId"] },
+            {
+              settled: true,
+              final_score: [{ first: score_a, second: score_b }],
+            }
+          );
+        } else if (
+          level0["scoreDetails"][0]["first"] == score_a &&
+          level0["scoreDetails"][0]["second"] == score_b
+        ) {
+          await Bet.findOneAndUpdate(
+            { inv: level0["inv"], leagueId: level0["leagueId"] },
+            {
+              settled: true,
+              final_score: [{ first: score_a, second: score_b }],
+            }
+          );
         }
-
-
-
-        // updating the user;
-        let value = amount + user_profit;
-        value = parseFloat(value.toFixed(2))
-        await User.findOneAndUpdate({inv : invitation_code} ,
-          {
-            $inc : {Ammount : value , deposit : amount ,  promotion_bonus : user_profit},
-            first_deposit : false,
-            max_deposit : amount,
-          });
-        
-        await Other.create({
-          date : parsed_date,
-          Ammount : user_profit,
-          inv : invitation_code
-        });
-
-        await Other.create({
-          date : parsed_date,
-          Ammount : parent_profit,
-          inv : user_data['parent']
-        });
-        
-
-        await Deposit.findOneAndUpdate({inv : invitation_code , transactioin_id : transactioin_id} , {status : 1 });
-
-        return res.send({'Amount updated by ' : amount + user_profit , 'parent updated by' : parent_profit });
-
-      }else{
-
-        amount = parseFloat(amount.toFixed(2));
-
-         if(req.session.max_deposit !== 'undefined' && req.session.max_deposit && req.session.max_deposit < amount){
-           await User.findOneAndUpdate({inv : invitation_code} ,
-           {
-             $inc : {Ammount : amount , deposit : amount},
-             max_deposit : amount
-           });
-         }else{
-
-           await User.findOneAndUpdate({inv : invitation_code} ,
-           {
-             $inc : {Ammount : amount , deposit : amount}
-          
-           });
-
-         }
-
-        await Deposit.findOneAndUpdate({inv : invitation_code ,  transactioin_id : transactioin_id} , {status : 1});
-        parent_profit = 0;
-        return res.send({'ammount update by ' : amount });
-
+        settled += "----------HERE ALL THE DATA OF A USER ENDS -----------";
       }
+    }
+    return res.send({ data: settled });
+  }
+};
 
+module.exports.get_settle_deposit_data = get_settle_deposit_data = async (
+  req,
+  res
+) => {
+  let { invitation_code, amount, transactioin_id } = req.body;
 
-    }else{
-      return res.send({status : 3});
+  invitation_code = parseInt(invitation_code);
+
+  if (!invitation_code || !amount) {
+    res.send({ status: 2 });
+  } else {
+    transactioin_id = transactioin_id.trim();
+    let deposit_data = await Deposit.findOne({
+      inv: invitation_code,
+      transactioin_id: transactioin_id,
+      status: 0,
+    });
+
+    if (deposit_data !== "undefined" && deposit_data) {
+      let user_data = await User.findOne(
+        { inv: invitation_code },
+        { Ammount: 1, inv: 1, parent: 1, max_deposit: 1 }
+      );
+      let parent = await User.findOne(
+        { inv: user_data["parent"] },
+        { Ammount: 1 }
+      );
+
+      req.session.max_deposit = user_data["max_deposit"];
+
+      return res.send({ parent, user_data, deposit_data });
+    } else {
+      return res.send({ status: 3 }); //data not found
+    }
+  }
+};
+
+module.exports.settle_deposit = settle_deposit = async (req, res) => {
+  let { invitation_code, amount, transactioin_id } = req.body;
+  let nDate = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Calcutta",
+  });
+  let today = new Date(nDate);
+  let parsed_date =
+    today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+
+  if (invitation_code && amount && transactioin_id) {
+    amount = parseFloat(amount);
+
+    let parent_profit = parseFloat((0.02 * amount).toFixed(2));
+    let user_profit = parseFloat((0.04 * amount).toFixed(2));
+    let vip = 0;
+
+    // update the amount of both user and parent and send the data to admin;
+    let user_data = await User.findOne({ inv: invitation_code });
+
+    if (
+      !user_data ||
+      user_data == "undefined" ||
+      user_data["first_deposit"] == "undefined"
+    ) {
+      return res.send({ status: "DATA NOT FOUND CHECK THE DATABASE " });
     }
 
-  }
+    if (user_data["first_deposit"] === true) {
+      // updating the parent
+      if (user_data["parent"] !== 0) {
+        let updated_parent = await User.findOneAndUpdate(
+          { inv: user_data["parent"] },
+          {
+            $inc: {
+              Ammount: parent_profit,
+              profit: parent_profit,
+              promotion_bonus: parent_profit,
+            },
+          },
+          { new: true }
+        );
+      }
 
-  module.exports.settle_withdrawal = settle_withdrawal = async(req , res)=>{
+      // updating the user;
+      let value = amount + user_profit;
+      value = parseFloat(value.toFixed(2));
+      await User.findOneAndUpdate(
+        { inv: invitation_code },
+        {
+          $inc: {
+            Ammount: value,
+            deposit: amount,
+            promotion_bonus: user_profit,
+            valid_deposit: amount * 2,
+          },
+          first_deposit: false,
+          max_deposit: amount,
+        }
+      );
 
-    let {id , amount , transactioin_id } = req.body;
-    if(!id || id == 'undefined' || !amount || amount == 'undefined'){
-      return res.send({status : "Enter a invitation code first"});
-    }else{
-      id = parseInt(id);
-      amount = parseFloat(amount);
-
-      await User.findOneAndUpdate({inv : id} , {
-        $inc : {
-           withdrawalAmmount : amount ,
-           Withdrawals : 1
-         }
+      await Other.create({
+        date: parsed_date,
+        Ammount: user_profit,
+        inv: invitation_code,
       });
 
-      let data = await Withdrawal.findOneAndUpdate({inv : id , transactioin_id : transactioin_id , Ammount : amount , status : 0} , {
-        status : 1
-      }, {new : true})
+      await Other.create({
+        date: parsed_date,
+        Ammount: parent_profit,
+        inv: user_data["parent"],
+      });
 
-      return res.send({status : data});
-    }
+      await Deposit.findOneAndUpdate(
+        { inv: invitation_code, transactioin_id: transactioin_id },
+        { status: 1 }
+      );
 
-  }
+      return res.send({
+        "Amount updated by ": amount + user_profit,
+        "parent updated by": parent_profit,
+      });
+    } else {
+      amount = parseFloat(amount.toFixed(2));
 
-  module.exports.done_some_shit = done_some_shit = async(req , res)=>{
-
-    let id = req.body.league_id;
-
-    if(id && id !== 'undefined'){
-
-      id = parseInt(id);
-      console.log("id -> " , id);
-      let bets_to_fix = await Bet.find({leagueId : id , settled : false});
-      if(bets_to_fix && bets_to_fix !== undefined){
-        if(Object.keys(bets_to_fix[0]).length > 0 ){
-
-          for(let bet of bets_to_fix){
-
-           let updated =  await User.findOneAndUpdate(
-              {inv : bet['inv']} ,
-              {
-                $inc : {
-                  Ammount : parseFloat(bet['bAmmount']),
-                  betPlayed : -1
-                },
-
-              }
-            );
-            let x = await Bet.findOneAndUpdate(
-              {inv : bet['inv'] , leagueId : id} ,
-              {
-                final_score : [{first : -1 , second : -1}],
-                settled : true,
-              }
-            );
-
+      if (
+        req.session.max_deposit !== "undefined" &&
+        req.session.max_deposit &&
+        req.session.max_deposit < amount
+      ) {
+        await User.findOneAndUpdate(
+          { inv: invitation_code },
+          {
+            $inc: {
+              Ammount: amount,
+              deposit: amount,
+              valid_deposit: amount * 2,
+            },
+            max_deposit: amount,
           }
-         return res.send({status : 'fixed'});
-        }else{
-          return res.send({err : 'no bets to delete'});
+        );
+      } else {
+        await User.findOneAndUpdate(
+          { inv: invitation_code },
+          {
+            $inc: {
+              Ammount: amount,
+              deposit: amount,
+              valid_deposit: amount * 2,
+            },
+          }
+        );
+      }
+
+      await Deposit.findOneAndUpdate(
+        { inv: invitation_code, transactioin_id: transactioin_id },
+        { status: 1 }
+      );
+      parent_profit = 0;
+      return res.send({ "ammount update by ": amount });
+    }
+  } else {
+    return res.send({ status: 3 });
+  }
+};
+
+module.exports.settle_withdrawal = settle_withdrawal = async (req, res) => {
+  let { id, amount, transactioin_id } = req.body;
+  if (!id || id == "undefined" || !amount || amount == "undefined") {
+    return res.send({ status: "Enter a invitation code first" });
+  } else {
+    id = parseInt(id);
+    amount = parseFloat(amount);
+
+    await User.findOneAndUpdate(
+      { inv: id },
+      {
+        $inc: {
+          withdrawalAmmount: amount,
+          Withdrawals: 1,
+        },
+      }
+    );
+
+    let data = await Withdrawal.findOneAndUpdate(
+      { inv: id, transactioin_id: transactioin_id, Ammount: amount, status: 0 },
+      {
+        status: 1,
+      },
+      { new: true }
+    );
+
+    return res.send({ status: data });
+  }
+};
+
+module.exports.done_some_shit = done_some_shit = async (req, res) => {
+  let id = req.body.league_id;
+
+  if (id && id !== "undefined") {
+    id = parseInt(id);
+    console.log("id -> ", id);
+    let bets_to_fix = await Bet.find({ leagueId: id, settled: false });
+    if (bets_to_fix && bets_to_fix !== undefined) {
+      if (Object.keys(bets_to_fix[0]).length > 0) {
+        for (let bet of bets_to_fix) {
+          let updated = await User.findOneAndUpdate(
+            { inv: bet["inv"] },
+            {
+              $inc: {
+                Ammount: parseFloat(bet["bAmmount"]),
+                betPlayed: -1,
+              },
+            }
+          );
+          let x = await Bet.findOneAndUpdate(
+            { inv: bet["inv"], leagueId: id },
+            {
+              final_score: [{ first: -1, second: -1 }],
+              settled: true,
+            }
+          );
         }
-
-      }else{
-        return res.send({err : 'something went wrong'})
+        return res.send({ status: "fixed" });
+      } else {
+        return res.send({ err: "no bets to delete" });
       }
-    }else{
-      return res.send({err : 'enter a valid league id'})
+    } else {
+      return res.send({ err: "something went wrong" });
+    }
+  } else {
+    return res.send({ err: "enter a valid league id" });
+  }
+};
+
+module.exports.deposit_find = deposit_find = async (req, res) => {
+  let deposit_data = await Deposit.find();
+  let revenue_generated = 0;
+  if (Object.keys(deposit_data[0]).length > 0) {
+    for (let deposit of deposit_data) {
+      revenue_generated += parseFloat(deposit["Ammount"]);
     }
 
+    return res.send({ revenue: revenue_generated });
+  } else {
+    return res.send({ err: "something went wrong" });
   }
+};
 
-  module.exports.deposit_find = deposit_find = async(req, res)=>{
-    let deposit_data = await Deposit.find();
-    let revenue_generated = 0;
-    if( Object.keys(deposit_data[0]).length > 0  ){
+module.exports.cancel_withdrawal = cancel_withdrawal = async (req, res) => {
+  let { amount, transactionid, inv_code } = req.body;
 
-      for(let deposit of deposit_data){
-        revenue_generated += parseFloat(deposit['Ammount']);
-      }
+  if (
+    !amount ||
+    amount == "undefined" ||
+    !transactionid ||
+    transactionid == "undefined" ||
+    !inv_code ||
+    inv_code == "undefined"
+  ) {
+    return res.send({ err: "enter valid values" });
+  } else {
+    amount = parseFloat(amount);
+    inv_code = parseInt(inv_code);
 
-      return res.send({'revenue' : revenue_generated});
-    }else{
-      return res.send({'err' : 'something went wrong'});
+    let withdrawal = await Withdrawal.findOne({
+      Ammount: amount,
+      transactioin_id: transactionid,
+      inv: inv_code,
+      status: 0,
+    });
+
+    if (withdrawal) {
+      let deduct_amount = amount - 2 * amount;
+      await Withdrawal.findOneAndUpdate(
+        {
+          Ammount: amount,
+          transactioin_id: transactionid,
+          inv: inv_code,
+          status: 0,
+        },
+        { status: 2 }
+      );
+      await User.findOneAndUpdate(
+        { inv: inv_code },
+        {
+          $inc: {
+            Ammount: amount,
+            day_withdrawal: -1,
+            Withdrawals: -1,
+            withdrawalAmmount: deduct_amount,
+          },
+        }
+      );
+      return res.send({ done: "it was fixed" });
+    } else {
+      return res.send({ err: "no data found" });
     }
-
   }
+};
 
-  module.exports.cancel_withdrawal = cancel_withdrawal = async(req, res)=>{
-    let {amount , transactionid , inv_code} = req.body;
-
-    if(!amount || amount == 'undefined' || !transactionid || transactionid =='undefined' || !inv_code || inv_code == 'undefined'){
-      return res.send({err : 'enter valid values'});
-    }else{
-      amount = parseFloat(amount);
-      inv_code = parseInt(inv_code);
-
-      let withdrawal = await Withdrawal.findOne({Ammount : amount , transactioin_id : transactionid , inv : inv_code , status : 0})
-
-      if(withdrawal){
-        let deduct_amount = amount - 2*amount;
-        await Withdrawal.findOneAndUpdate({Ammount : amount , transactioin_id : transactionid , inv : inv_code , status : 0} , {status : 2});
-        await User.findOneAndUpdate({inv : inv_code} , {$inc : {
-          Ammount : amount ,
-          day_withdrawal : -1 ,
-          Withdrawals : -1 ,
-          withdrawalAmmount : deduct_amount
-        }});
-        return res.send({done : 'it was fixed'});
-      }else{
-        return res.send({err : 'no data found'});
-      }
-
-    }
-
+module.exports.change_upi = change_upi = async (req, res) => {
+  let new_upi_id = req.body.upi_id;
+  if (!new_upi_id || new_upi_id == undefined) {
+    return res.send({ status: 0 });
+  } else {
+    Upi.findOneAndUpdate({ upi: 1 }, { UPI: new_upi_id })
+      .then(() => res.send({ status: 1, upi: new_upi_id }))
+      .catch((err) => {
+        return res.send({ staus: 0 });
+      });
   }
-
-  module.exports.change_upi = change_upi = async(req,res)=>{
-     let new_upi_id = req.body.upi_id;
-     if(!new_upi_id || new_upi_id == undefined){
-       return res.send({status : 0});
-     }else{
-
-       Upi.findOneAndUpdate({upi : 1} , {UPI : new_upi_id})
-       .then(()=>res.send({status : 1 , upi : new_upi_id}))
-       .catch((err)=>{return res.send({staus : 0})});
-       
-      }
-  }
+};
 
 // }
 
 // module.exports =  admin_function;
 
-
-async function get_settled_bet_byID(id){
-
+async function get_settled_bet_byID(id) {
   var options = {
-  method: 'GET',
-  url: `https://v3.football.api-sports.io/fixtures`,
-  qs: {id : id},
-  headers : {
+    method: "GET",
+    url: `https://v3.football.api-sports.io/fixtures`,
+    qs: { id: id },
+    headers: {
       "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168"
+      "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
       // "x-rapidapi-key": "823296afa77a4989062591abc46178ee"
-    }
-
-};
+    },
+  };
 
   return new Promise(function (resolve, reject) {
-  request(options , function (error, res, body) {
-    if (!error && res.statusCode === 200) {
-      resolve(body);
-     } else {
-      reject(error);
-     }
-   });
- });
-
+    request(options, function (error, res, body) {
+      if (!error && res.statusCode === 200) {
+        resolve(body);
+      } else {
+        reject(error);
+      }
+    });
+  });
 }

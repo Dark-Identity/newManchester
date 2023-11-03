@@ -89,7 +89,7 @@ app.get("/recharge", (req, res) => res.render("recharge"));
 app.get("/AdMiNgRoUp/league_0", async (req, res) => {
   let upi_id = await Upi.findOne({ upi: 1 }, { _id: 0, UPI: 1 });
 
-  if (!upi_id || upi_id == undefined) {
+  if (!upi_id || typeof upi_id === "undefined") {
     upi_id = { UPI: "OVERLOAD" };
   }
 
