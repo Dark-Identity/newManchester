@@ -577,7 +577,7 @@ function create_match_history(data) {
                 <div class="van-image logo-img" data-v-3997c59e=""><img
                         src="/elephantFootball/football.png"
                         class="van-image__img"><!----><!----></div>
-                <p class="nameu ellipsis-1" data-v-3997c59e="">FC Utrecht (w)</p>
+                <p class="nameu ellipsis-1" data-v-3997c59e="">${data['team_a']}</p>
             </div>
             <div class="centerz" data-v-3997c59e="">
                 <p class="scorei" data-v-3997c59e="">${data['team_a_goal']} - ${data['team_b_goal']}</p>  
@@ -586,7 +586,7 @@ function create_match_history(data) {
                 <div class="van-image logo-img" data-v-3997c59e=""><img
                         src="/elephantFootball/football.png"
                         class="van-image__img"><!----><!----></div>
-                <p class="nameu ellipsis-1" data-v-3997c59e="">Feyenoord Rotterdam (w)
+                <p class="nameu ellipsis-1" data-v-3997c59e="">${data['team_b']}
                 </p>
             </div>
         </div>

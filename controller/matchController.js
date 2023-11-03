@@ -83,9 +83,7 @@ module.exports.get_live_bets_two = get_live_bets_two = async (req, res) => {
             fixture_id: item['fixture']['id'],
             team_a: item['teams']['home']['name'],
             team_b: item['teams']['away']['name'],
-            league: item['league']['name'],
-            team_a_logo: item['teams']['home']['logo'],
-            team_b_logo: item['teams']['away']['logo'],
+            league: item['league']['name'],            
             team_a_goal: item['goals']['home'],
             team_b_goal: item['goals']['away'],
         };

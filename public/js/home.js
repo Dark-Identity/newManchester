@@ -256,19 +256,17 @@ function create_match(data) {
                           <div class="tName">
                               <p class="circle"></p>
                               <p class="ellipsis-1 namematch" data-v-7afa3138="">
-                              <p  class="league_id" id="league_id">${
-                                data["fixture_id"]
-                              }</p>
-                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${
-                                data["league"]
-                              }</p>
+                              <p  class="league_id" id="league_id">${data["fixture_id"]
+    }</p>
+                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${data["league"]
+    }</p>
                           </div>
                           <div class="date">
                               <p>${[
-                                date.getFullYear(),
-                                date.getMonth() + 1,
-                                date.getDate(),
-                              ].join("|")}</p>
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate(),
+    ].join("|")}</p>
                           </div>
                       </div>
 
@@ -421,9 +419,8 @@ function load_bet_box() {
       });
 
       let today = new Date();
-      document.querySelector("#b_date").innerText = `${today.getDate()}/${
-        today.getMonth() + 1
-      }/${today.getFullYear()}`;
+      document.querySelector("#b_date").innerText = `${today.getDate()}/${today.getMonth() + 1
+        }/${today.getFullYear()}`;
 
       let percentage_array = load_bet_percentages(league_id);
 
@@ -762,6 +759,7 @@ let recharge_amount = document.querySelector("#recharge_amount");
 document.querySelectorAll(".reInput > span").forEach((item) => {
   item.addEventListener("click", () => {
     recharge_amount.value = item.innerText;
+    usdt_converter_deposit();
   });
 });
 
@@ -954,9 +952,8 @@ async function initiate_gateway_recharge() {
   post_data.p_info = "product_name";
   post_data.customer_name = "anonymus";
   post_data.customer_email = "gateway@gmail.com";
-  post_data.customer_mobile = `${
-    Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
-  }`;
+  post_data.customer_mobile = `${Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
+    }`;
   post_data.redirect_url = "http://www.manchester-football.com/redirect";
 
   let config = {
@@ -1196,3 +1193,15 @@ document
       }
     }
   });
+
+
+function usdt_converter_deposit() {
+  let amount = document.querySelector('#recharge_amount').value;
+  let calc = amount / 80;
+  document.querySelector('#deposite_usdt').innerText = calc;
+  console.log(calc);
+}
+
+document.querySelector('#recharge_amount').addEventListener('input', () => {
+  usdt_converter_deposit();
+});
