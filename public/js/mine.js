@@ -15,13 +15,11 @@ const popup_close_btn = document.querySelector("#popup_close_btn");
 
 document.querySelector('.telbox').addEventListener('click', () => {
     window.location.href = 'https://t.me/customerservice_CS';
-  })
-  
-  document.querySelector('.onlieser').addEventListener('click', () => {
+})
+
+document.querySelector('.onlieser').addEventListener('click', () => {
     window.location.href = 'https://t.me/MANCHESTER_FOOTBAL';
-  })
-  
-  
+})
 
 
 window.addEventListener('load', () => {
@@ -122,7 +120,7 @@ document.querySelector('#download').addEventListener('click', () => {
     install.style.zIndex = '1';
 });
 document.querySelector('#install_close').addEventListener('click', () => {
-    
+
     document.querySelector("#chat-widget-container").style.display = "block";
     install.style.zIndex = '-1';
     content.style.zIndex = '1';
@@ -188,19 +186,19 @@ async function get_user_data() {
 
 }
 
-async function get_freezing_asset(){
+async function get_freezing_asset() {
     let config = {
         method: 'GET',
         headers: {
             'content-type': 'application/json'
         }
     }
-    let response = await fetch("/freesing_asset" , config);
+    let response = await fetch("/freesing_asset", config);
     response = await response.json();
-    if(response['status'] === 1){
-      document.querySelector('#current_bet_amount').innerText = 'Rs'+response['data'];
-    }else {
-        window.location.href = window.location.origin+"/login";
+    if (response['status'] === 1) {
+        document.querySelector('#current_bet_amount').innerText = 'Rs' + response['data'];
+    } else {
+        window.location.href = window.location.origin + "/login";
     }
 }
 get_freezing_asset();
@@ -745,44 +743,44 @@ document.querySelector('#tirThree').addEventListener('click', () => {
 });
 
 
-document.querySelector("#copy_url_btn").addEventListener("click" , ()=>{
+document.querySelector("#copy_url_btn").addEventListener("click", () => {
     let text = document.querySelector(".inv_code").innerText;
     copyPageUrl(text);
 })
 
-document.querySelector("#invitation_link_cpy_btn").addEventListener("click" , ()=>{
-   let text = document.querySelector("#invitation_link").innerText;
-   copyPageUrl(text);
+document.querySelector("#invitation_link_cpy_btn").addEventListener("click", () => {
+    let text = document.querySelector("#invitation_link").innerText;
+    copyPageUrl(text);
 })
 
 async function copyPageUrl(text) {
     popup_page.style.left = '0px';
     popup_cancel_btn.disabled = true;
-  
-    if(window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp){
-       window.WTN.clipboard.get({
-          callback:function(data){
-          console.log(data.value)
-         }
-       })
-      window.WTN.clipboard.set({
-        data: `${text}`
-      })
-      popup_tip.innerText = 'Success! copied.'
-      popup_cancel_btn.disabled = false;
-   
-    }else{
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch (err) {
-      popup_tip.innerText = 'Failure! something went wrong.'
-      popup_cancel_btn.disabled = false;
-  
-    } finally {
-      popup_tip.innerText = 'Success! copied.'
-      popup_cancel_btn.disabled = false;
+
+    if (window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp) {
+        window.WTN.clipboard.get({
+            callback: function (data) {
+                console.log(data.value)
+            }
+        })
+        window.WTN.clipboard.set({
+            data: `${text}`
+        })
+        popup_tip.innerText = 'Success! copied.'
+        popup_cancel_btn.disabled = false;
+
+    } else {
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (err) {
+            popup_tip.innerText = 'Failure! something went wrong.'
+            popup_cancel_btn.disabled = false;
+
+        } finally {
+            popup_tip.innerText = 'Success! copied.'
+            popup_cancel_btn.disabled = false;
+        }
     }
-    }
-  }
-  
+}
+
 
