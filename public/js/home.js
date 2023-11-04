@@ -979,25 +979,42 @@ async function initiate_gateway_recharge() {
   }
 }
 
+
 const yy_pay = document.querySelector("#yy_pay");
+
 document.querySelector("#recharge_btn").addEventListener("click", () => {
   let is_gateway = document.querySelector("#gateway_radio_btn").checked;
   let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
   let is_gateway_3 = document.querySelector("#manual_btn").checked;
   let is_gateway_4 = document.querySelector("#usdt_btn").checked;
-
+  let recharge_amount = document.querySelector('#recharge_amount').value;
   if (is_gateway || is_gateway_2) {
-    initiate_gateway_recharge();
-    return;
+    if (recharge_amount <= 99) {
+      check_deposit_amount();
+      return;
+    } else {
+      initiate_gateway_recharge();
+    }
   } else if (is_gateway_3) {
-    manual_recharge_page();
-    return;
+    if (recharge_amount < 99) {
+      check_deposit_amount();
+      return;
+    } else {
+      manual_recharge_page();
+      return;
+    }
   } else if (is_gateway_4) {
     document.querySelector("#usdt_amount").innerText = (
       document.querySelector("#recharge_amount").value / 80
     ).toFixed(2);
-    usdt_recharge_page();
-    return;
+    let usdt_amount = document.querySelector('#deposite_usdt').innerText;
+    if (usdt_amount < 9) {
+      usdt_check_amount();
+      return;
+    } else {
+      usdt_recharge_page();
+      return;
+    }
   }
 });
 
@@ -1199,9 +1216,69 @@ function usdt_converter_deposit() {
   let amount = document.querySelector('#recharge_amount').value;
   let calc = amount / 80;
   document.querySelector('#deposite_usdt').innerText = calc;
-  console.log(calc);
 }
 
 document.querySelector('#recharge_amount').addEventListener('input', () => {
   usdt_converter_deposit();
 });
+
+
+
+function check_deposit_amount() {
+  let deposit_amount = document.querySelector('#recharge_amount').value;
+  if (deposit_amount <= 99) {
+    popup_page.style.left = "0px";
+    popup_tip.innerText = "Minimun deposit amount 100";
+    popup_cancel_btn.disabled = false;
+  }
+
+}
+
+function usdt_check_amount() {
+  let usdt_amount = document.querySelector('#deposite_usdt').innerText;
+  if (usdt_amount < 9) {
+    popup_page.style.left = "0px";
+    popup_tip.innerText = "Minimun deposit amount 10 USDT";
+    popup_cancel_btn.disabled = false;
+  }
+}
+
+
+
+
+document.querySelector("#usdt_copy_icon").addEventListener("click", () => {
+  let text = document.querySelector("#usdt_address_copy").innerText;
+  copyPageUrl(text);
+})
+
+async function copyPageUrl(text) {
+  popup_page.style.left = '0px';
+  popup_cancel_btn.disabled = true;
+
+  if (window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp) {
+      window.WTN.clipboard.get({
+          callback: function (data) {
+              console.log(data.value)
+          }
+      })
+      window.WTN.clipboard.set({
+          data: `${text}`
+      })
+      popup_tip.innerText = 'Success! copied.'
+      popup_cancel_btn.disabled = false;
+
+  } else {
+      try {
+          await navigator.clipboard.writeText(text);
+      } catch (err) {
+          popup_tip.innerText = 'Failure! something went wrong.'
+          popup_cancel_btn.disabled = false;
+
+      } finally {
+          popup_tip.innerText = 'Success! copied.'
+          popup_cancel_btn.disabled = false;
+      }
+  }
+}
+
+

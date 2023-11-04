@@ -313,7 +313,7 @@ async function bet_limit(INVITATION_CODE) {
     return 3;
   }
   return 4;
-}
+};
 
 module.exports.place_bet = async function place_bet(req, res) {
   const USER_ID = req.session.user_id;
@@ -852,5 +852,3 @@ async function SENDMAIL(subject, body) {
     }
   });
 }
-
-// qavr typr qziv ruhp
