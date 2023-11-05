@@ -313,7 +313,7 @@ async function bet_limit(INVITATION_CODE) {
     return 3;
   }
   return 4;
-};
+}
 
 module.exports.place_bet = async function place_bet(req, res) {
   const USER_ID = req.session.user_id;
@@ -618,7 +618,7 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
       betPlayed: 1,
       Ammount: 1,
       vipLevel: 1,
-      usdt_withdraw_code:1,
+      usdt_withdraw_code: 1,
       valid_amount: 1,
       valid_deposit: 1,
     }
@@ -629,7 +629,7 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
     status: 0,
   }).count();
 
-  let w_details = parseInt(U_details.usdt_withdraw_code);
+  let w_details = U_details.usdt_withdraw_code;
   let last_withdrawal = parseInt(U_details["day_withdrawal"]);
   let valid_amount = parseFloat(U_details["valid_amount"]);
   let valid_deposit = parseFloat(U_details["valid_deposit"]);
@@ -638,7 +638,7 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
     return res.send({ status: "You already have unsettled withdrawal's" });
   }
 
-  if (w_details == 0 || withdraw_password !== w_details) {
+  if (w_details == 0 || withdraw_password.localeCompare(w_details) !== 0) {
     return res.send({ status: "enter a VALID withdrawal code first" }); //enter withdrawal code first
   }
 
@@ -655,7 +655,11 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
     return res.send({ status: "YOU DONT HAVE ENOUGH BALANCE" });
   }
 
-  if (valid_amount >= valid_deposit) {
+  if (
+    valid_amount >= valid_deposit &&
+    valid_amount !== 0 &&
+    valid_deposit !== 0
+  ) {
     if (last_withdrawal !== today.getDate() || last_withdrawal == 0) {
       if (amount && transactioin_id && withdraw_password) {
         let date = `${today.getDate()}/${

@@ -1022,6 +1022,131 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
   }
 };
 
+module.exports.settle_usdt_deposit = settle_usdt_deposit = async (req, res) => {
+  let { invitation_code, amount, transactioin_id } = req.body;
+  let nDate = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Calcutta",
+  });
+  let today = new Date(nDate);
+  let parsed_date =
+    today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+
+  if (invitation_code && amount && transactioin_id) {
+    amount = parseFloat(amount);
+    amount = amount * 80;
+    let parent_profit = parseFloat((0.02 * amount).toFixed(2));
+    let user_profit = parseFloat((0.04 * amount).toFixed(2));
+    let vip = 0;
+
+    // update the amount of both user and parent and send the data to admin;
+    let user_data = await User.findOne({ inv: invitation_code });
+
+    if (
+      !user_data ||
+      user_data == "undefined" ||
+      user_data["first_deposit"] == "undefined"
+    ) {
+      return res.send({ status: "DATA NOT FOUND CHECK THE DATABASE " });
+    }
+
+    if (user_data["first_deposit"] === true) {
+      // updating the parent
+      if (user_data["parent"] !== 0) {
+        let updated_parent = await User.findOneAndUpdate(
+          { inv: user_data["parent"] },
+          {
+            $inc: {
+              Ammount: parent_profit,
+              profit: parent_profit,
+              promotion_bonus: parent_profit,
+            },
+          },
+          { new: true }
+        );
+      }
+
+      // updating the user;
+      let value = amount + user_profit;
+      value = parseFloat(value.toFixed(2));
+      await User.findOneAndUpdate(
+        { inv: invitation_code },
+        {
+          $inc: {
+            Ammount: value,
+            deposit: amount,
+            promotion_bonus: user_profit,
+            valid_deposit: amount * 2,
+          },
+          first_deposit: false,
+          max_deposit: amount,
+        }
+      );
+
+      await Other.create({
+        date: parsed_date,
+        Ammount: user_profit,
+        inv: invitation_code,
+      });
+
+      await Other.create({
+        date: parsed_date,
+        Ammount: parent_profit,
+        inv: user_data["parent"],
+      });
+
+      await Deposit.findOneAndUpdate(
+        { inv: invitation_code, transactioin_id: transactioin_id },
+        { status: 1 }
+      );
+
+      return res.send({
+        "Amount updated by ": amount + user_profit,
+        "parent updated by": parent_profit,
+      });
+    } else {
+      amount = parseFloat(amount.toFixed(2));
+
+      if (
+        req.session.max_deposit !== "undefined" &&
+        req.session.max_deposit &&
+        req.session.max_deposit < amount
+      ) {
+        await User.findOneAndUpdate(
+          { inv: invitation_code },
+          {
+            $inc: {
+              Ammount: amount,
+              deposit: amount,
+              valid_deposit: amount * 2,
+            },
+            max_deposit: amount,
+          }
+        );
+      } else {
+        await User.findOneAndUpdate(
+          { inv: invitation_code },
+          {
+            $inc: {
+              Ammount: amount,
+              deposit: amount,
+              valid_deposit: amount * 2,
+            },
+          }
+        );
+      }
+
+      await Deposit.findOneAndUpdate(
+        { inv: invitation_code, transactioin_id: transactioin_id },
+        { status: 1 }
+      );
+      parent_profit = 0;
+      return res.send({ "ammount update by ": amount });
+    }
+  } else {
+    return res.send({ status: 3 });
+  }
+};
+
 module.exports.settle_withdrawal = settle_withdrawal = async (req, res) => {
   let { id, amount, transactioin_id } = req.body;
   if (!id || id == "undefined" || !amount || amount == "undefined") {

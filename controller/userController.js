@@ -9,6 +9,8 @@ const {
   RandomPercentage,
 } = require("../modals/userModal");
 const unirest = require("unirest");
+const nodemailer = require("nodemailer");
+
 module.exports.register = (req, res) => {
   res.render("register", { inv_code: "" });
 };
@@ -88,6 +90,43 @@ module.exports.get_otp = get_otp = async (req, res) => {
       return res.send({ status: 1 });
     } else {
       return res.send({ status: 0 });
+    }
+  });
+};
+module.exports.get_otp_email = get_otp_email = async (req, res) => {
+  let body = req.body;
+  let email;
+
+  if (!body["email"] || body["email"] == undefined) {
+    return res.send({ status: "something went wrong" });
+  } else {
+    if (body["email"].includes("@")) {
+      email = body["email"];
+    }
+  }
+  let otp = Math.ceil(Math.random() * 90000 + 1000);
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "vishwakarma9304411522@gmail.com",
+      pass: "vigtmiugmomefooi",
+    },
+  });
+
+  let mailOptions = {
+    from: "vishwakarma9304411522@gmail.com",
+    to: email,
+    subject: "Manchester football",
+    text: `Your OTP for varification is ${otp}`,
+  };
+
+  transporter.sendMail(mailOptions, async (err, info) => {
+    if (err) {
+      req.session["otp"] = "";
+      return res.send({ status: "invalid email" });
+    } else {
+      req.session["otp"] = otp;
+      return res.send({ status: 1 });
     }
   });
 };
@@ -290,12 +329,8 @@ module.exports.get_payment_data = async function get_payment_data(req, res) {
 
 // getting randome otp
 function getrandom() {
-  let x = Math.ceil(Math.random() * 10000);
-  if (x < 1000) {
-    getrandom();
-  } else {
-    return x;
-  }
+  let x = Math.ceil(Math.random() * 90000 + 1000);
+  return x;
 }
 
 // it will increment the member of the user who has invited this new user while sign_in;
