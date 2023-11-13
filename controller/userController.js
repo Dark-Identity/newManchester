@@ -108,13 +108,15 @@ module.exports.get_otp_email = get_otp_email = async (req, res) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "vishwakarma9304411522@gmail.com",
-      pass: "vigtmiugmomefooi",
+      // user: "vishwakarma9304411522@gmail.com",
+      // pass: "vigtmiugmomefooi",
+      user: "officialmanchesterfootball@gmail.com",
+      pass: "fqmqnuomcesaocyg",
     },
   });
 
   let mailOptions = {
-    from: "vishwakarma9304411522@gmail.com",
+    from: "officialmanchesterfootball@gmail.com",
     to: email,
     subject: "Manchester football",
     text: `Your OTP for varification is ${otp}`,
@@ -149,10 +151,17 @@ module.exports.postregister = postregister = async (req, res) => {
     today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
 
   let body = req.body;
-  // console.log(body);
+
   let inv = await generate_inv_code();
 
   let user_found = false;
+
+  if (typeof body.email !== "undefined" && body.email.length > 3) {
+    let res = await User.findOne({ email: body.email });
+    if (res && typeof res !== "undefined") {
+      user_found = true;
+    }
+  }
   let phone_found = await User.findOne({ phone: body.contact });
 
   let saved_otp = req.session.otp;
