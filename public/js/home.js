@@ -256,17 +256,19 @@ function create_match(data) {
                           <div class="tName">
                               <p class="circle"></p>
                               <p class="ellipsis-1 namematch" data-v-7afa3138="">
-                              <p  class="league_id" id="league_id">${data["fixture_id"]
-    }</p>
-                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${data["league"]
-    }</p>
+                              <p  class="league_id" id="league_id">${
+                                data["fixture_id"]
+                              }</p>
+                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${
+                                data["league"]
+                              }</p>
                           </div>
                           <div class="date">
                               <p>${[
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
-    ].join("|")}</p>
+                                date.getFullYear(),
+                                date.getMonth() + 1,
+                                date.getDate(),
+                              ].join("|")}</p>
                           </div>
                       </div>
 
@@ -419,8 +421,9 @@ function load_bet_box() {
       });
 
       let today = new Date();
-      document.querySelector("#b_date").innerText = `${today.getDate()}/${today.getMonth() + 1
-        }/${today.getFullYear()}`;
+      document.querySelector("#b_date").innerText = `${today.getDate()}/${
+        today.getMonth() + 1
+      }/${today.getFullYear()}`;
 
       let percentage_array = load_bet_percentages(league_id);
 
@@ -453,7 +456,7 @@ function calc_available() {
   } else {
     let profit = document.querySelector("#p").innerText.replace(/\d%/, "");
     profit = parseFloat(profit);
-    value = parseFloat(((value / 100) * profit).toFixed(2));
+    value = parseFloat(((Math.floor(value) / 100) * profit).toFixed(2));
     document.querySelector("#available").innerText = value;
   }
 }
@@ -465,13 +468,14 @@ document.querySelectorAll(".values > span").forEach((item, i) => {
   item.addEventListener("click", () => {
     if (i !== 5) {
       let value = item.innerText.replace(/\D/, "");
-      // console.log(value);
       document.querySelector("#bet_amount").value = parseFloat(value);
       calc_available();
     } else {
       let text = document.querySelector(".s_balance").innerText;
       let values = text.match(/[+-]?\d+(\.\d+)?/g);
-      document.querySelector("#bet_amount").value = parseFloat(values[0]);
+      document.querySelector("#bet_amount").value = Math.floor(
+        parseFloat(values[0])
+      );
       calc_available();
     }
   });
@@ -519,7 +523,7 @@ document.querySelector("#confirm").addEventListener("click", async () => {
   data["first"] = score_first;
   data["second"] = score_second;
   data["profit"] = parseFloat(profit.replace(/\b%/, ""));
-  data["ammount"] = parseFloat(amount);
+  data["ammount"] = Math.floor(parseFloat(amount));
   data["l_type"] = parseInt(
     league_name === "virtual" || league_name === "VIRTUAL" ? 0 : 1
   );
@@ -952,8 +956,9 @@ async function initiate_gateway_recharge() {
   post_data.p_info = "product_name";
   post_data.customer_name = "anonymus";
   post_data.customer_email = "gateway@gmail.com";
-  post_data.customer_mobile = `${Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
-    }`;
+  post_data.customer_mobile = `${
+    Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
+  }`;
   post_data.redirect_url = "http://www.manchester-football.com/redirect";
 
   let config = {
@@ -979,7 +984,6 @@ async function initiate_gateway_recharge() {
   }
 }
 
-
 const yy_pay = document.querySelector("#yy_pay");
 
 document.querySelector("#recharge_btn").addEventListener("click", () => {
@@ -987,7 +991,7 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
   let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
   let is_gateway_3 = document.querySelector("#manual_btn").checked;
   let is_gateway_4 = document.querySelector("#usdt_btn").checked;
-  let recharge_amount = document.querySelector('#recharge_amount').value;
+  let recharge_amount = document.querySelector("#recharge_amount").value;
   if (is_gateway || is_gateway_2) {
     if (recharge_amount <= 99) {
       check_deposit_amount();
@@ -1007,7 +1011,7 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
     document.querySelector("#usdt_amount").innerText = (
       document.querySelector("#recharge_amount").value / 80
     ).toFixed(2);
-    let usdt_amount = document.querySelector('#deposite_usdt').innerText;
+    let usdt_amount = document.querySelector("#deposite_usdt").innerText;
     if (usdt_amount < 9) {
       usdt_check_amount();
       return;
@@ -1211,31 +1215,27 @@ document
     }
   });
 
-
 function usdt_converter_deposit() {
-  let amount = document.querySelector('#recharge_amount').value;
+  let amount = document.querySelector("#recharge_amount").value;
   let calc = amount / 80;
-  document.querySelector('#deposite_usdt').innerText = calc;
+  document.querySelector("#deposite_usdt").innerText = calc;
 }
 
-document.querySelector('#recharge_amount').addEventListener('input', () => {
+document.querySelector("#recharge_amount").addEventListener("input", () => {
   usdt_converter_deposit();
 });
 
-
-
 function check_deposit_amount() {
-  let deposit_amount = document.querySelector('#recharge_amount').value;
+  let deposit_amount = document.querySelector("#recharge_amount").value;
   if (deposit_amount <= 99) {
     popup_page.style.left = "0px";
     popup_tip.innerText = "Minimun deposit amount 100";
     popup_cancel_btn.disabled = false;
   }
-
 }
 
 function usdt_check_amount() {
-  let usdt_amount = document.querySelector('#deposite_usdt').innerText;
+  let usdt_amount = document.querySelector("#deposite_usdt").innerText;
   if (usdt_amount < 9) {
     popup_page.style.left = "0px";
     popup_tip.innerText = "Minimun deposit amount 10 USDT";
@@ -1243,42 +1243,39 @@ function usdt_check_amount() {
   }
 }
 
-
-
-
 document.querySelector("#usdt_copy_icon").addEventListener("click", () => {
   let text = document.querySelector("#usdt_address_copy").innerText;
   copyPageUrl(text);
-})
+});
 
 async function copyPageUrl(text) {
-  popup_page.style.left = '0px';
+  popup_page.style.left = "0px";
   popup_cancel_btn.disabled = true;
 
-  if (window.WTN.isNativeApp || window.WTN.isAndroidApp || window.WTN.isIosApp) {
-      window.WTN.clipboard.get({
-          callback: function (data) {
-              console.log(data.value)
-          }
-      })
-      window.WTN.clipboard.set({
-          data: `${text}`
-      })
-      popup_tip.innerText = 'Success! copied.'
-      popup_cancel_btn.disabled = false;
-
+  if (
+    window.WTN.isNativeApp ||
+    window.WTN.isAndroidApp ||
+    window.WTN.isIosApp
+  ) {
+    window.WTN.clipboard.get({
+      callback: function (data) {
+        console.log(data.value);
+      },
+    });
+    window.WTN.clipboard.set({
+      data: `${text}`,
+    });
+    popup_tip.innerText = "Success! copied.";
+    popup_cancel_btn.disabled = false;
   } else {
-      try {
-          await navigator.clipboard.writeText(text);
-      } catch (err) {
-          popup_tip.innerText = 'Failure! something went wrong.'
-          popup_cancel_btn.disabled = false;
-
-      } finally {
-          popup_tip.innerText = 'Success! copied.'
-          popup_cancel_btn.disabled = false;
-      }
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      popup_tip.innerText = "Failure! something went wrong.";
+      popup_cancel_btn.disabled = false;
+    } finally {
+      popup_tip.innerText = "Success! copied.";
+      popup_cancel_btn.disabled = false;
+    }
   }
 }
-
-

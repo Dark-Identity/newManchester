@@ -368,7 +368,7 @@ document.querySelector('#confirm').addEventListener('click', async () => {
     data['first'] = score_first;
     data['second'] = score_second;
     data['profit'] = parseFloat(profit.replace(/\b%/, ''));
-    data['ammount'] = parseFloat(amount);
+    data['ammount'] = Math.floor(parseFloat(amount));
     data['l_type'] = parseInt((league_name === 'virtual' || league_name === 'VIRTUAL') ? 0 : 1);
 
     if (

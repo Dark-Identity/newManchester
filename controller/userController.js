@@ -155,10 +155,9 @@ module.exports.postregister = postregister = async (req, res) => {
   let inv = await generate_inv_code();
 
   let user_found = false;
-
   if (typeof body.email !== "undefined" && body.email.length > 3) {
-    let res = await User.findOne({ email: body.email });
-    if (res && typeof res !== "undefined") {
+    let response = await User.findOne({ email: body.email });
+    if (response && typeof response !== "undefined") {
       user_found = true;
     }
   }
@@ -215,6 +214,7 @@ module.exports.postregister = postregister = async (req, res) => {
       return res.send({ status: 0 });
     }
   } else {
+    req.session["otp"] = "";
     if (user_found) {
       return res.send({ status: 404 });
     } else if (phone_found) {

@@ -378,7 +378,7 @@ function create_deposit(data) {
       <section class="record_parent_div" id="deposite_record">
       <div class="recordss">
           <div style="display:flex;justify-content: space-between;">
-              <p>Deposite</p>
+              <p>Deposit</p>
               <span>
                   <i style='color : ${status};' class="fa-sharp fa-solid fa-circle"></i>
                   <h5>${status_type}</h5>

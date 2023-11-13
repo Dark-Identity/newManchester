@@ -134,8 +134,6 @@ registerbtn.addEventListener("click", async (e) => {
       popup_tip.innerText = "Enter the valid email";
       popup_cancel_btn.disabled = false;
       return;
-    } else {
-      email = "0";
     }
   }
 

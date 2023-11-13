@@ -460,16 +460,19 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
   let transactioin_id = crypto.randomBytes(16).toString("hex");
   transactioin_id = transactioin_id.slice(0, 6);
 
-  let U_details = await User.findOne(
-    { inv: INVITATION_CODE },
-    { day_withdrawal: 1, BankDetails: 1, betPlayed: 1, Ammount: 1, vipLevel: 1 }
-  );
+  let U_details = await User.findOne({ inv: INVITATION_CODE });
 
   let unsettled_withdraws = await Withdrawal.findOne({
     inv: INVITATION_CODE,
     status: 0,
   }).count();
 
+  if (
+    typeof U_details.BankDetails[0] === "undefined" ||
+    typeof U_details.BankDetails[0]["withdrawalC"] === "undefined"
+  ) {
+    return res.send({ status: "You dont have a bank account . " });
+  }
   let w_details = parseInt(U_details.BankDetails[0]["withdrawalC"]);
   let last_withdrawal = parseInt(U_details["day_withdrawal"]);
   let bets_played = parseInt(U_details["betPlayed"]);
@@ -485,7 +488,7 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
   }
 
   if (
-    U_details["BankDetails"] == "undefined" ||
+    typeof U_details["BankDetails"] === "undefined" ||
     !U_details["BankDetails"].length ||
     !U_details["BankDetails"][0] ||
     !U_details["BankDetails"][0]["Name"]
@@ -499,7 +502,11 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
     return res.send({ status: "YOU DONT HAVE ENOUGH BALANCE" });
   }
 
-  if (valid_amount >= valid_deposit) {
+  if (
+    valid_amount >= valid_deposit &&
+    valid_amount !== 0 &&
+    valid_deposit !== 0
+  ) {
     if (last_withdrawal !== today.getDate() || last_withdrawal == 0) {
       if (amount && transactioin_id && withdrawal_code) {
         let date = `${today.getDate()}/${
@@ -515,8 +522,6 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
           time: time,
           status: 0,
         };
-
-        console.log(data);
 
         if (await newWithdrawal(data)) {
           let deduct_amount = parseFloat(data["Ammount"] - 2 * data["Ammount"]);
