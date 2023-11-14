@@ -63,7 +63,6 @@ module.exports.history_matches = history_matches = async (req, res) => {
     headers: {
       "x-rapidapi-host": "v3.football.api-sports.io",
       "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
-      // "x-rapidapi-key": "823296afa77a4989062591abc46178ee"
     },
   });
 
@@ -124,7 +123,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     headers: {
       "x-rapidapi-host": "v3.football.api-sports.io",
       "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
-      // "x-rapidapi-key": "823296afa77a4989062591abc46178ee"
+      // "x-rapidapi-key": "09ef72605818e59d673164a1372a8b54",
     },
   });
 
