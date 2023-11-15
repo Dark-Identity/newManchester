@@ -93,6 +93,7 @@ module.exports.get_otp = get_otp = async (req, res) => {
     }
   });
 };
+
 module.exports.get_otp_email = get_otp_email = async (req, res) => {
   let body = req.body;
   let email;
