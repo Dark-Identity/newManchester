@@ -284,12 +284,12 @@ function create_members(data) {
     parseInt(level5_user_length) +
     parseInt(level6_user_length);
 
-  document.querySelector("#level1_rebate").innerText = level1_user_RebadeBonus;
-  document.querySelector("#level2_rebate").innerText = level2_user_RebadeBonus;
-  document.querySelector("#level3_rebate").innerText = level3_user_RebadeBonus;
-  document.querySelector("#level4_rebate").innerText = level4_user_RebadeBonus;
-  document.querySelector("#level5_rebate").innerText = level5_user_RebadeBonus;
-  document.querySelector("#level6_rebate").innerText = level6_user_RebadeBonus;
+  // document.querySelector("#level1_rebate").innerText = level1_user_RebadeBonus;
+  // document.querySelector("#level2_rebate").innerText = level2_user_RebadeBonus;
+  // document.querySelector("#level3_rebate").innerText = level3_user_RebadeBonus;
+  // document.querySelector("#level4_rebate").innerText = level4_user_RebadeBonus;
+  // document.querySelector("#level5_rebate").innerText = level5_user_RebadeBonus;
+  // document.querySelector("#level6_rebate").innerText = level6_user_RebadeBonus;
 
   document.querySelector("#level1_member").innerText = parseInt(
     data["direct_members"].length
