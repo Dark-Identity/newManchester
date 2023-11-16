@@ -108,8 +108,6 @@ allListner.forEach((element) => {
       withdrawalCantainer.style.transform = "translateX(0)";
 
       document.querySelector("#chat-widget-container").style.display = "none";
-
-      gettimenow();
     } else if (element.id == "three") {
       home.style.cssText = `
       transform:translateX(-120vw);
@@ -242,9 +240,6 @@ function create_match(data) {
     timeZone: "Asia/Calcutta",
   });
   let date = new Date(ndate);
-
-  // console.log(ndate);
-  // console.log(date);
 
   let parent_box = document.querySelector(".collection");
   let match_card = document.createElement("div");
@@ -646,15 +641,19 @@ function gettimenow() {
   var time24 = curr_hour;
 
   if (time24 <= 10 || time24 > 18) {
-    withdraw_btn.disabled = true;
     popup_page.style.left = "0px";
     popup_tip.innerText = "withdraw times up";
     popup_cancel_btn.disabled = false;
+    return false;
   }
+  return true;
 }
 
 const withdraw_btn = document.querySelector("#withdraw_request");
 withdraw_btn.addEventListener("click", async () => {
+  if (!gettimenow()) {
+    return;
+  }
   let amount = document.querySelector("#withdraw_amount").value;
   let withdrawal_code = document.querySelector("#withdrawal_code").value;
 
@@ -667,6 +666,10 @@ withdraw_btn.addEventListener("click", async () => {
     return;
   } else if (amount < 200) {
     popup_tip.innerText = "Minimum withdrawal amount is 200";
+    popup_cancel_btn.disabled = false;
+    return;
+  } else if (amount > 50000) {
+    popup_tip.innerText = "Maximum withdraw amount is 50000";
     popup_cancel_btn.disabled = false;
     return;
   }
