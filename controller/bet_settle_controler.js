@@ -821,7 +821,7 @@ module.exports.null_bet = null_bet = async (req, res) => {
           }
 
           // ----------------updating this user's data----------------
-          let valid_amount = parseFloat((bet_ammount0 * 0.8).toFixed(2));
+          let valid_amount = parseFloat((bet_ammount0 * 0.4).toFixed(2));
           await User.findOneAndUpdate(
             { inv: parseInt(level0["inv"]) },
             {

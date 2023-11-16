@@ -109,7 +109,7 @@ allListner.forEach((element) => {
 
       document.querySelector("#chat-widget-container").style.display = "none";
 
-      // gettimenow();
+      gettimenow();
     } else if (element.id == "three") {
       home.style.cssText = `
       transform:translateX(-120vw);
