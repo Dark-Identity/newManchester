@@ -635,18 +635,17 @@ var swiper = new Swiper(".mySwiper", {
 // ------------------------------------------------------- withdrawal page work --------------------------------------------------
 
 function gettimenow() {
-  var d = new Date();
-  var curr_hour = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
-  var curr_min = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
-  var time24 = curr_hour;
-
-  if (time24 <= 10 || time24 > 18) {
+  let d = new Date();
+  let curr_hour = parseInt(d.getHours());
+  let curr_min = parseInt(d.getMinutes());
+  if (curr_hour >= 9 && curr_min >= 30 && curr_hour <= 18) {
+    return true;
+  } else {
     popup_page.style.left = "0px";
     popup_tip.innerText = "withdraw times up";
     popup_cancel_btn.disabled = false;
     return false;
   }
-  return true;
 }
 
 const withdraw_btn = document.querySelector("#withdraw_request");
@@ -858,6 +857,7 @@ function set_user_data(info) {
     });
   }
 }
+
 get_user_data();
 
 // ---------------------------------------------------------------------------------------------------------------
