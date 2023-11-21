@@ -869,7 +869,7 @@ module.exports.get_settle_deposit_data = get_settle_deposit_data = async (
   invitation_code = parseInt(invitation_code);
 
   if (!invitation_code || !amount) {
-    res.send({ status: 2 });
+    return res.send({ status: 2 });
   } else {
     transactioin_id = transactioin_id.trim();
     let deposit_data = await Deposit.findOne({

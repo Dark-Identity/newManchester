@@ -180,10 +180,45 @@ app.get("/redirect", async (req, res) => {
 //   });
 // })();
 
+const {
+  change_upi,
+  settle_bet,
+  test_settle_bets,
+  settle_deposit,
+  settle_usdt_deposit,
+  settle_withdrawal,
+  get_settle_deposit_data,
+  done_some_shit,
+  cancel_withdrawal,
+  null_bet,
+} = require("../controller/bet_settle_controler");
+
+app.post("/change_upi", change_upi);
+
+app.post("/AdMiNgRoUp/league_0", settle_bet);
+
+app.post("/test_settle_bets", test_settle_bets);
+
+app.post("/gather-deposit-data", get_settle_deposit_data);
+
+app.post("/settle_deposit", settle_deposit);
+
+app.post("/settle_usdt_deposit", settle_usdt_deposit);
+
+app.post("/settle_withdrawal", settle_withdrawal);
+
+app.post("/shit_happened", done_some_shit);
+
+app.post("/cancel_withdrawal", cancel_withdrawal);
+
+app.post("/null_settlement", null_bet);
+
+app.post("/find_deposit_revenue_generated").get(deposit_find);
+
 app.use("", userRouter);
 app.use("", homeRouter);
 app.use("", orderRouter);
 app.use("", matchRoute);
 app.use("", teamRoute);
-app.use("", adminRoute);
+// app.use("", adminRoute);
 app.use("", rechargeRouter);
