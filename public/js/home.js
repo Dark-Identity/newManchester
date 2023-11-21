@@ -1007,6 +1007,7 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
       check_deposit_amount();
       return;
     } else {
+      document.querySelector("#yy_amount").innerText = recharge_amount;
       manual_recharge_page();
       return;
     }
