@@ -138,7 +138,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     //  iterate live bets and call make new percentages and save it in db
 
     for (let item of matches["response"]) {
-      if (count > 200) {
+      if (count > 500) {
         break;
       }
 
@@ -197,7 +197,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
   count = 0;
 
   for (let item of matches["response"]) {
-    if (count > 200) {
+    if (count > 500) {
       count++;
       break;
     }
@@ -246,7 +246,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
   let response_to_send = [];
   count = 0;
   for (let item of matches["response"]) {
-    if (count > 200) {
+    if (count > 500) {
       count++;
       break;
     }
