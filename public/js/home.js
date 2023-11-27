@@ -1148,7 +1148,10 @@ document
 
     popup_page.style.left = "0vw";
     popup_tip.innerText = "loading...";
-
+    if (gettimenow()) {
+      popup_tip.innerText = "Withdraw time out";
+      return;
+    }
     if (!usdt_adress || typeof usdt_adress === "undefined") {
       popup_tip.innerText = "Set up a TRC20 adress first.";
       return;
