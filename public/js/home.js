@@ -638,7 +638,10 @@ function gettimenow() {
   let d = new Date();
   let curr_hour = parseInt(d.getHours());
   let curr_min = parseInt(d.getMinutes());
-  if (curr_hour >= 9 && curr_min >= 30 && curr_hour < 18) {
+  if (
+    (curr_hour > 9 || (curr_hour === 9 && curr_min >= 30)) &&
+    curr_hour < 18
+  ) {
     return true;
   } else {
     popup_page.style.left = "0px";
@@ -1148,7 +1151,7 @@ document
 
     popup_page.style.left = "0vw";
     popup_tip.innerText = "loading...";
-    if (gettimenow()) {
+    if (!gettimenow()) {
       popup_tip.innerText = "Withdraw time out";
       return;
     }
