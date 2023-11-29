@@ -85,7 +85,7 @@ userRouter.use(
   })
 );
 userRouter.route("/signup").get((req, res) => {
-  let code = parseInt(req.query.id);
+  let code = parseInt(req?.query?.id || 0);
   return res.render("register", { inv_code: code });
 });
 userRouter.route("/login").get(getlogin).post(postlogin);
