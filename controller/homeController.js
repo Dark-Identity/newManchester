@@ -54,51 +54,57 @@ module.exports.history_matches = history_matches = async (req, res) => {
   let month =
     today.getMonth() < 9 ? "0" + (today.getMonth() + 1) : today.getMonth() + 1;
   let parsed_date = today.getFullYear() + "-" + month + "-" + date;
+  try {
+    let url = `https://v3.football.api-sports.io/fixtures/?date=${parsed_date}&status=FT`;
+    // let url = `https://v3.football.api-sports.io/fixtures/?date=2022-10-12&status=NS`;
 
-  let url = `https://v3.football.api-sports.io/fixtures/?date=${parsed_date}&status=FT`;
-  // let url = `https://v3.football.api-sports.io/fixtures/?date=2022-10-12&status=NS`;
-
-  let response = await fetch(url, {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
-    },
-  });
-
-  let matches = await response.json();
-
-  let response_to_send = [];
-  count = 0;
-  for (let item of matches["response"]) {
-    if (count > 100) {
-      count++;
-      break;
-    }
-
-    let match_date = new Date(item["fixture"]["date"]).toLocaleString("en-US", {
-      timeZone: "Asia/Calcutta",
+    let response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
+      },
     });
+    response = await response.json();
 
-    match_date = new Date(match_date);
+    if (!response || !response?.response) {
+      return res.send({ status: 0 });
+    }
+    let response_to_send = [];
+    count = 0;
 
-    let match_data = {
-      date: parsed_date,
-      raw_date: match_date,
-      fixture_id: item["fixture"]["id"],
-      team_a: item["teams"]["home"]["name"],
-      team_b: item["teams"]["away"]["name"],
-      league: item["league"]["name"],
-      team_a_logo: item["teams"]["home"]["logo"],
-      team_b_logo: item["teams"]["away"]["logo"],
-      team_a_goal: item["goals"]["home"],
-      team_b_goal: item["goals"]["away"],
-    };
+    for (let item of response.response) {
+      if (count > 100) {
+        break;
+      }
 
-    count++;
-    response_to_send.push(match_data);
+      let match_date = new Date(item?.fixture?.date).toLocaleString("en-US", {
+        timeZone: "Asia/Calcutta",
+      });
+
+      match_date = new Date(match_date);
+
+      let match_data = {
+        date: parsed_date,
+        raw_date: match_date,
+        fixture_id: item?.fixture?.id,
+        team_a: item?.teams?.home?.name,
+        team_b: item?.teams?.away?.name,
+        league: item?.league?.name,
+        team_a_logo: item?.teams?.home?.logo,
+        team_b_logo: item?.teams?.away?.logo,
+        team_a_goal: item?.goals?.home,
+        team_b_goal: item?.goals?.away,
+      };
+
+      count++;
+      response_to_send.push(match_data);
+    }
+    return res.status(200).send(response_to_send);
+  } catch (error) {
+    console.log(error);
+    return res.send({ status: 0 });
   }
-  return res.status(200).send(response_to_send);
 };
 
 module.exports.get_live_bets = get_live_bets = async (req, res) => {

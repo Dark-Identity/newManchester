@@ -180,6 +180,21 @@ app.get("/redirect", async (req, res) => {
 //   });
 // })();
 
+// (async function () {
+//   let leagueid = 1104166;
+//   let matches = await Bet.find({ leagueId: leagueid });
+//   for (let match of matches) {
+//     await Bet.findOneAndUpdate(
+//       { leagueId: leagueid, inv: match.inv },
+//       {
+//         settled: true,
+//         final_score: [{ first: -1, second: -1 }],
+//       }
+//     );
+//   }
+//   console.log("done");
+// })();
+
 const {
   change_upi,
   settle_bet,

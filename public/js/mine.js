@@ -550,8 +550,12 @@ async function get_history_matches() {
   let res = await fetch("/get_history_matches");
   res = await res.json();
 
-  for (let match_data of res) {
-    create_match_history(match_data);
+  if (res?.status) {
+    for (let match_data of res) {
+      create_match_history(match_data);
+    }
+  } else {
+    window.location.href = window.location.origin + "/login";
   }
 }
 get_history_matches();
