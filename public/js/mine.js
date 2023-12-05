@@ -555,7 +555,7 @@ async function get_history_matches() {
       create_match_history(match_data);
     }
   } else {
-    // window.location.href = window.location.origin + "/login";
+    window.location.href = window.location.origin + "/login";
   }
 }
 get_history_matches();

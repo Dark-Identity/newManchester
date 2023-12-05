@@ -1155,16 +1155,6 @@ module.exports.settle_withdrawal = settle_withdrawal = async (req, res) => {
     id = parseInt(id);
     amount = parseFloat(amount);
 
-    await User.findOneAndUpdate(
-      { inv: id },
-      {
-        $inc: {
-          withdrawalAmmount: amount,
-          Withdrawals: 1,
-        },
-      }
-    );
-
     let data = await Withdrawal.findOneAndUpdate(
       { inv: id, transactioin_id: transactioin_id, Ammount: amount, status: 0 },
       {
