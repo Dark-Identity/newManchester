@@ -548,7 +548,7 @@ module.exports.test_settle_bets = test_settle_bets = async (req, res) => {
   }
 };
 
-module.exports.null_bet = null_bet = async (req, res) => {
+module.exports.null_bets = null_bet = async (req, res) => {
   // let id = req.body['id'];
   let leagueid = req.body["league"];
   let s_first = req.body["first"];
@@ -1285,10 +1285,6 @@ module.exports.change_upi = change_upi = async (req, res) => {
   }
 };
 
-// }
-
-// module.exports =  admin_function;
-
 async function get_settled_bet_byID(id) {
   var options = {
     method: "GET",
@@ -1310,4 +1306,150 @@ async function get_settled_bet_byID(id) {
       }
     });
   });
+}
+
+// phone 6*10 am2814 ->  phone 7*10 -> 799225 am 1025.
+
+// test -----------------------------
+let settled;
+module.exports.null_bet = async (req, res) => {
+  try {
+    const leagueid = parseInt(req.body["league"]);
+    const s_first = parseInt(req.body["first"]);
+    const s_second = parseInt(req.body["second"]);
+
+    const nDate = new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Calcutta",
+    });
+    const today = new Date(nDate);
+    const parsed_date =
+      today.getDate() +
+      "/" +
+      (today.getMonth() + 1) +
+      "/" +
+      today.getFullYear();
+
+    if (!leagueid || !s_first || !s_second) {
+      return res.status(400).json({ err: "Invalid request parameters" });
+    }
+
+    const results = { [leagueid]: { home: s_first, away: s_second } };
+    const allUnsettledBets = await Bet.find(
+      { settled: false, league_type: 1, leagueId: leagueid },
+      "parent bAmmount leagueId inv scoreDetails profit date members ammount final_score rebade_amm"
+    );
+
+    if (!allUnsettledBets || allUnsettledBets.length === 0) {
+      return res.status(404).json({ err: "No unsettled bets found" });
+    }
+
+    for (const item of allUnsettledBets) {
+      if (!(item.leagueId in results)) {
+        return res
+          .status(400)
+          .json({ err: `Invalid leagueId: ${item.leagueId}` });
+      }
+
+      await processUserBet(item, results, parsed_date);
+    }
+
+    return res.json({ data: settled });
+  } catch (error) {
+    console.error("Error in null_bet function:", error);
+    return res.status(500).json({ err: "Internal Server Error" });
+  }
+};
+
+async function processUserBet(item, results, parsed_date) {
+  const score0 = results[item.leagueId];
+  const score_a = parseInt(score0.home);
+  const score_b = parseInt(score0.away);
+
+  if (
+    item.scoreDetails[0].first !== score_a ||
+    item.scoreDetails[0].second !== score_b
+  ) {
+    const betAmount = parseFloat(item.bAmmount);
+    const profit = parseFloat(item.profit);
+    const newAmount = parseFloat(
+      (betAmount + (betAmount / 100) * profit).toFixed(2)
+    );
+    const newProfit = parseFloat((betAmount / 100) * profit.toFixed(3));
+
+    const rebadePercentages = [10, 8, 4, 2, 1, 1];
+    let totalRebade = 0;
+    await processRebadeForLevel(item.parent, rebade, parsed_date, i + 1);
+
+    // Updating the user's data
+    await updateUser(item.inv, newAmount, newProfit);
+
+    // Settling the user's bet
+    await Bet.findOneAndUpdate(
+      { inv: item.inv, leagueId: item.leagueId },
+      {
+        settled: true,
+        final_score: [{ first: score_a, second: score_b }],
+      }
+    );
+
+    settled += "----------HERE ALL THE DATA OF A USER ENDS -----------";
+  } else {
+    // Settling the user's bet if the scores match
+    await Bet.findOneAndUpdate(
+      { inv: item.inv, leagueId: item.leagueId },
+      {
+        settled: true,
+        final_score: [{ first: score_a, second: score_b }],
+      }
+    );
+  }
+}
+
+async function processRebadeForLevel(parentId, rebade, parsed_date, level) {
+  let currentParentId = parentId;
+
+  for (let i = 0; i < 5; i++) {
+    const rebatePercentage = [10, 8, 4, 2, 1, 1];
+    const rebadeForLevel = parseFloat(
+      ((rebade / 100) * rebatePercentage[i]).toFixed(2)
+    );
+
+    const user = await User.findOneAndUpdate(
+      { inv: parseInt(currentParentId) },
+      {
+        $inc: {
+          Ammount: rebadeForLevel,
+          RebadeBonus: parseFloat(rebadeForLevel.toFixed(3)),
+          profit: parseFloat(rebadeForLevel.toFixed(3)),
+        },
+      },
+      { new: true }
+    );
+
+    if (user) {
+      await Other.create({
+        date: parsed_date,
+        Ammount: rebadeForLevel,
+        inv: parseInt(currentParentId),
+      });
+
+      settled += `${level}th-> ${currentParentId}, rebade = ${rebadeForLevel}; `;
+    }
+
+    // Move to the next parent in the hierarchy
+    currentParentId = user ? user.parent : null;
+  }
+}
+
+async function updateUser(inv, newAmount, newProfit) {
+  await User.findOneAndUpdate(
+    { inv: parseInt(inv) },
+    {
+      $inc: {
+        valid_amount: parseFloat((newAmount * 0.4).toFixed(2)),
+        Ammount: newAmount,
+        profit: newProfit,
+      },
+    }
+  );
 }

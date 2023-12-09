@@ -181,18 +181,11 @@ app.get("/redirect", async (req, res) => {
 // })();
 
 // (async function () {
-//   let leagueid = 1104166;
-//   let matches = await Bet.find({ leagueId: leagueid });
-//   for (let match of matches) {
-//     await Bet.findOneAndUpdate(
-//       { leagueId: leagueid, inv: match.inv },
-//       {
-//         settled: true,
-//         final_score: [{ first: -1, second: -1 }],
-//       }
-//     );
+//   let date = "15/11/2023";
+//   for (let i = 15; i <= 30; i++) {
+//     let deleted = await Bet.deleteMany({ date: `${i}/11/2023` });
+//     console.log(deleted?.deletedCount);
 //   }
-//   console.log("done");
 // })();
 
 const {
