@@ -548,7 +548,7 @@ module.exports.test_settle_bets = test_settle_bets = async (req, res) => {
   }
 };
 
-module.exports.null_bets = null_bet = async (req, res) => {
+module.exports.null_bet = null_bet = async (req, res) => {
   // let id = req.body['id'];
   let leagueid = req.body["league"];
   let s_first = req.body["first"];
