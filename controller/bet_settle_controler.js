@@ -1312,7 +1312,7 @@ async function get_settled_bet_byID(id) {
 
 // test -----------------------------
 let settled;
-module.exports.null_bet = async (req, res) => {
+module.exports.null_bets = async (req, res) => {
   try {
     const leagueid = parseInt(req.body["league"]);
     const s_first = parseInt(req.body["first"]);
