@@ -1332,7 +1332,7 @@ module.exports.null_bet = async (req, res) => {
 
     if (!Unsettled_bets || Unsettled_bets?.length < 1)
       throw new Error("No unsettled bets found.");
-    console.log(Unsettled_bets.length);
+
     for (let bet of Unsettled_bets) {
       let bet_amount = Number(bet?.bAmmount);
       let bet_profit = Number(bet?.profit);
