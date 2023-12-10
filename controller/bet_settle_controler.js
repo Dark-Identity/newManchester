@@ -1311,145 +1311,157 @@ async function get_settled_bet_byID(id) {
 // phone 6*10 am2814 ->  phone 7*10 -> 799225 am 1025.
 
 // test -----------------------------
-let settled;
+const { bulkWrite } = require("mongoose");
+
 module.exports.null_bet = async (req, res) => {
+  const leagueid = parseInt(req.body["league"]);
+  const s_first = parseInt(req.body["first"]);
+  const s_second = parseInt(req.body["second"]);
+  let create_other_data = [];
+  let update_user = [];
+  let update_bet = [];
+
+  if (!leagueid || isNaN(s_first) || isNaN(s_second))
+    return res.send({ err: "Enter all the fields" });
+
   try {
-    const leagueid = parseInt(req.body["league"]);
-    const s_first = parseInt(req.body["first"]);
-    const s_second = parseInt(req.body["second"]);
-
-    const nDate = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Calcutta",
-    });
-    const today = new Date(nDate);
-    const parsed_date =
-      today.getDate() +
-      "/" +
-      (today.getMonth() + 1) +
-      "/" +
-      today.getFullYear();
-
-    if (!leagueid || !s_first || !s_second) {
-      return res.status(400).json({ err: "Invalid request parameters" });
-    }
-
-    const results = { [leagueid]: { home: s_first, away: s_second } };
-    const allUnsettledBets = await Bet.find(
-      { settled: false, league_type: 1, leagueId: leagueid },
-      "parent bAmmount leagueId inv scoreDetails profit date members ammount final_score rebade_amm"
+    let Unsettled_bets = await Bet.find(
+      { settled: false, leagueId: Number(leagueid) },
+      { _id: 0, date: 0, time: 0 }
     );
 
-    if (!allUnsettledBets || allUnsettledBets.length === 0) {
-      return res.status(404).json({ err: "No unsettled bets found" });
-    }
+    if (!Unsettled_bets || Unsettled_bets?.length < 1)
+      throw new Error("No unsettled bets found.");
+    console.log(Unsettled_bets.length);
+    for (let bet of Unsettled_bets) {
+      let bet_amount = Number(bet?.bAmmount);
+      let bet_profit = Number(bet?.profit);
+      let bet_score_first = Number(bet?.scoreDetails[0]?.first);
+      let bet_score_second = Number(bet?.scoreDetails[0]?.second);
+      let user_profit = (bet_amount / 100) * bet_profit;
+      if (!bet_amount || !bet_profit) throw new Error("something went wrong ");
 
-    for (const item of allUnsettledBets) {
-      if (!(item.leagueId in results)) {
-        return res
-          .status(400)
-          .json({ err: `Invalid leagueId: ${item.leagueId}` });
+      if (bet_score_first === s_first && bet_score_second === s_second) {
+        // now user has lost this bet and will loose;
+        update_bet.push({
+          updateOne: {
+            filter: { leagueId: leagueid, inv: bet?.inv },
+            update: {
+              $set: {
+                settled: true,
+                final_score: [{ first: s_first, second: s_second }],
+              },
+            },
+          },
+        });
+        continue;
       }
 
-      await processUserBet(item, results, parsed_date);
+      let new_amount = parseFloat(
+        (bet_amount + (bet_amount / 100) * bet_profit).toFixed(2)
+      );
+      let new_profit = parseFloat(
+        parseFloat((bet_amount / 100) * bet_profit).toFixed(2)
+      );
+
+      if (Number(bet?.parent) !== 0) {
+        // search for parents and give their rebates;
+        await update_parents(
+          Number(bet?.parent),
+          user_profit,
+          create_other_data,
+          update_user
+        );
+      }
+
+      // update the user that placed the bet;
+      update_user.push({
+        updateOne: {
+          filter: { inv: Number(bet?.inv) },
+          update: {
+            $inc: {
+              valid_amount: Number((bet_amount * 0.4).toFixed(2)),
+              Ammount: new_amount,
+              profit: new_profit,
+            },
+          },
+        },
+      });
+      // settle current bet of the user;
+      update_bet.push({
+        updateOne: {
+          filter: { leagueId: leagueid, inv: bet?.inv },
+          update: {
+            $set: {
+              settled: true,
+              final_score: [{ first: s_first, second: s_second }],
+            },
+          },
+        },
+      });
     }
 
-    return res.json({ data: settled });
+    // here every bet is settled , now we can write it in database;
+    await User.bulkWrite(update_user);
+    await Bet.bulkWrite(update_bet);
+    await Other.bulkWrite(create_other_data);
+
+    return res.send({
+      update_user: update_user,
+    });
   } catch (error) {
-    console.error("Error in null_bet function:", error);
-    return res.status(500).json({ err: "Internal Server Error" });
+    return res.json({ err: error?.message || "something went wrong" });
   }
 };
 
-async function processUserBet(item, results, parsed_date) {
-  const score0 = results[item.leagueId];
-  const score_a = parseInt(score0.home);
-  const score_b = parseInt(score0.away);
-
-  if (
-    item.scoreDetails[0].first !== score_a ||
-    item.scoreDetails[0].second !== score_b
-  ) {
-    const betAmount = parseFloat(item.bAmmount);
-    const profit = parseFloat(item.profit);
-    const newAmount = parseFloat(
-      (betAmount + (betAmount / 100) * profit).toFixed(2)
-    );
-    const newProfit = parseFloat((betAmount / 100) * profit.toFixed(3));
-
-    const rebadePercentages = [10, 8, 4, 2, 1, 1];
-    let totalRebade = 0;
-    await processRebadeForLevel(item.parent, rebade, parsed_date, i + 1);
-
-    // Updating the user's data
-    await updateUser(item.inv, newAmount, newProfit);
-
-    // Settling the user's bet
-    await Bet.findOneAndUpdate(
-      { inv: item.inv, leagueId: item.leagueId },
-      {
-        settled: true,
-        final_score: [{ first: score_a, second: score_b }],
-      }
-    );
-
-    settled += "----------HERE ALL THE DATA OF A USER ENDS -----------";
-  } else {
-    // Settling the user's bet if the scores match
-    await Bet.findOneAndUpdate(
-      { inv: item.inv, leagueId: item.leagueId },
-      {
-        settled: true,
-        final_score: [{ first: score_a, second: score_b }],
-      }
-    );
-  }
-}
-
-async function processRebadeForLevel(parentId, rebade, parsed_date, level) {
-  let currentParentId = parentId;
-
-  for (let i = 0; i < 5; i++) {
-    const rebatePercentage = [10, 8, 4, 2, 1, 1];
-    const rebadeForLevel = parseFloat(
-      ((rebade / 100) * rebatePercentage[i]).toFixed(2)
-    );
-
-    const user = await User.findOneAndUpdate(
-      { inv: parseInt(currentParentId) },
-      {
-        $inc: {
-          Ammount: rebadeForLevel,
-          RebadeBonus: parseFloat(rebadeForLevel.toFixed(3)),
-          profit: parseFloat(rebadeForLevel.toFixed(3)),
-        },
-      },
-      { new: true }
-    );
-
-    if (user) {
-      await Other.create({
-        date: parsed_date,
-        Ammount: rebadeForLevel,
-        inv: parseInt(currentParentId),
-      });
-
-      settled += `${level}th-> ${currentParentId}, rebade = ${rebadeForLevel}; `;
-    }
-
-    // Move to the next parent in the hierarchy
-    currentParentId = user ? user.parent : null;
-  }
-}
-
-async function updateUser(inv, newAmount, newProfit) {
-  await User.findOneAndUpdate(
-    { inv: parseInt(inv) },
-    {
-      $inc: {
-        valid_amount: parseFloat((newAmount * 0.4).toFixed(2)),
-        Ammount: newAmount,
-        profit: newProfit,
-      },
-    }
+async function update_parents(
+  parent,
+  user_profit,
+  create_other_data,
+  update_user
+) {
+  let rebade_percent = [10, 8, 4, 2, 1, 1];
+  let level = 1;
+  let today = new Date(
+    new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Calcutta",
+    })
   );
+  while (level <= 6 && parent !== 0) {
+    try {
+      let rebade = Number(
+        ((user_profit / 100) * rebade_percent[level - 1]).toFixed(2)
+      );
+      update_user.push({
+        updateOne: {
+          filter: { inv: parent },
+          update: {
+            $inc: {
+              Ammount: rebade,
+              RebadeBonus: rebade,
+              profit: rebade,
+            },
+          },
+        },
+      });
+      create_other_data.push({
+        insertOne: {
+          document: {
+            date: `${today.getDate()}/${
+              today.getMonth() + 1
+            }/${today.getFullYear()}`,
+            Ammount: rebade,
+            inv: parent,
+          },
+        },
+      });
+      let new_parent = await User.findOne({ inv: parent }, { parent: 1 });
+      if (!new_parent) throw new Error("something went wrong");
+      parent = Number(new_parent?.parent);
+    } catch (error) {
+      throw new Error(error?.message || error);
+    } finally {
+      level++;
+    }
+  }
 }
