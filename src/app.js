@@ -181,11 +181,39 @@ app.get("/redirect", async (req, res) => {
 // })();
 
 // (async function () {
-//   let date = "15/11/2023";
-//   for (let i = 15; i <= 30; i++) {
-//     let deleted = await Bet.deleteMany({ date: `${i}/11/2023` });
-//     console.log(deleted?.deletedCount);
+//   let league = 1050664;
+//   let session = await mongoose.startSession();
+//   session = session.startTransaction();
+//   let bets = await Bet.find({ settled: false, leagueId: league });
+//   for (let bet of bets) {
+//     let updated_bet = await Bet.findOneAndUpdate(
+//       { leagueId: league, settled: false, inv: bet.inv },
+//       {
+//         $set: {
+//           settled: true,
+//           final_score: [
+//             {
+//               first: -1,
+//               second: -1,
+//             },
+//           ],
+//         },
+//       }
+//     );
+//     if (updated_bet) {
+//       await User.findOneAndUpdate(
+//         { inv: bet.inv },
+//         {
+//           $inc: {
+//             Ammount: Number(bet.bAmmount),
+//           },
+//         }
+//       );
+//     } else {
+//       console.log("i fucked up");
+//     }
 //   }
+//   console.log("done");
 // })();
 
 const {

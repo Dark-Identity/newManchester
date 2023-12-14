@@ -133,6 +133,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     },
   });
 
+  if (!response) return res.send({ status: 0 });
   let matches = await response.json();
   // console.log(matches)
 

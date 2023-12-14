@@ -447,6 +447,7 @@ async function get_payment() {
   };
 
   let res_data = await fetch("/get_payment_data", config);
+
   res_data = await res_data.json();
   create_deposit(res_data["deposit"]);
   create_withdrawal(res_data["withdrawal"]);
