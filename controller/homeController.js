@@ -114,38 +114,103 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     timeZone: "Asia/Calcutta",
   });
 
-  let today = new Date(nDate);
+  try {
+    let today = new Date(nDate);
 
-  let date = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
-  let month =
-    today.getMonth() < 9 ? "0" + (today.getMonth() + 1) : today.getMonth() + 1;
-  let parsed_date = date + "/" + month + "/" + today.getFullYear();
+    let date = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
+    let month =
+      today.getMonth() < 9
+        ? "0" + (today.getMonth() + 1)
+        : today.getMonth() + 1;
+    let parsed_date = date + "/" + month + "/" + today.getFullYear();
 
-  let url = `https://v3.football.api-sports.io/fixtures/?date=${today.getFullYear()}-${month}-${date}&status=NS`;
-  // let url = `https://v3.football.api-sports.io/fixtures/?date=2022-10-12&status=NS`;
+    let url = `https://v3.football.api-sports.io/fixtures/?date=${today.getFullYear()}-${month}-${date}&status=NS`;
+    // let url = `https://v3.football.api-sports.io/fixtures/?date=2022-10-12&status=NS`;
 
-  let response = await fetch(url, {
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
-      // "x-rapidapi-key": "09ef72605818e59d673164a1372a8b54",
-    },
-  });
+    let response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
+        // "x-rapidapi-key": "09ef72605818e59d673164a1372a8b54",
+      },
+    });
 
-  if (!response) return res.send({ status: 0 });
-  let matches = await response.json();
-  // console.log(matches)
+    if (!response) return res.send({ status: 0 });
+    let matches = await response.json();
+    // console.log(matches)
 
-  //getting previous percentages
+    //getting previous percentages
 
-  let previous_percentages = await RandomPercentage.find({ date: parsed_date });
+    let previous_percentages = await RandomPercentage.find({
+      date: parsed_date,
+    });
 
-  if (previous_percentages == undefined || !previous_percentages) {
-    //  iterate live bets and call make new percentages and save it in db
+    if (previous_percentages == undefined || !previous_percentages) {
+      //  iterate live bets and call make new percentages and save it in db
+
+      for (let item of matches["response"]) {
+        if (count > 500) {
+          break;
+        }
+
+        let match_date = new Date(item["fixture"]["date"]).toLocaleString(
+          "en-US",
+          {
+            timeZone: "Asia/Calcutta",
+          }
+        );
+        match_date = new Date(match_date);
+
+        let parsed_match_date =
+          match_date.getDate() +
+          "/" +
+          match_date.getMonth() +
+          1 +
+          "/" +
+          match_date.getFullYear();
+
+        if (
+          (today.getDate() == match_date.getDate() &&
+            match_date.getHours() > today.getHours()) ||
+          (today.getDate() == match_date.getDate() &&
+            match_date.getHours() == today.getHours() &&
+            match_date.getMinutes() > today.getMinutes() + 20)
+        ) {
+          let match_data = {
+            date: parsed_match_date,
+            fixture_id: item["fixture"]["id"],
+            team_a: item["teams"]["home"]["name"],
+            team_b: item["teams"]["away"]["name"],
+            league: item["league"]["name"],
+          };
+
+          count++;
+
+          create_random_percents(match_data);
+        }
+      }
+    }
+
+    // if some previous percentages exist or new were created then recheck them ;
+    let new_previous_percentages = await RandomPercentage.find({
+      date: parsed_date,
+    });
+
+    // creating key value pairs of these percentage;
+    let percent_pairs = {};
+
+    for (let percentages of new_previous_percentages) {
+      percent_pairs[percentages["league"]] = percentages["percentage"];
+    }
+
+    // iterating live bets and rechecking them
+    let fault_found = false;
+    count = 0;
 
     for (let item of matches["response"]) {
       if (count > 500) {
+        count++;
         break;
       }
 
@@ -157,13 +222,58 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
       );
       match_date = new Date(match_date);
 
-      let parsed_match_date =
-        match_date.getDate() +
-        "/" +
-        match_date.getMonth() +
-        1 +
-        "/" +
-        match_date.getFullYear();
+      if (
+        (today.getDate() == match_date.getDate() &&
+          match_date.getHours() > today.getHours()) ||
+        (today.getDate() == match_date.getDate() &&
+          match_date.getHours() == today.getHours() &&
+          match_date.getMinutes() > today.getMinutes() + 20)
+      ) {
+        count++;
+        let match_data = {
+          date: parsed_date,
+          raw_date: match_date,
+          fixture_id: item["fixture"]["id"],
+          team_a: item["teams"]["home"]["name"],
+          team_b: item["teams"]["away"]["name"],
+          team_a_logo: item["teams"]["home"]["logo"],
+          team_b_logo: item["teams"]["away"]["logo"],
+          team_a_goal: item["goals"]["home"],
+          team_b_goal: item["goals"]["away"],
+          league: item["league"]["name"],
+        };
+        if (match_data["fixture_id"] in percent_pairs !== true) {
+          fault_found = true;
+          create_random_percents(match_data);
+        }
+      }
+    }
+
+    // console.log(matches['response']);
+
+    if (fault_found) {
+      let final_percentages = await RandomPercentage.find({ date: date });
+      for (let percentages of new_previous_percentages) {
+        percent_pairs[percentages["league"]] = percentages["percentage"];
+      }
+    }
+
+    let response_to_send = [];
+    count = 0;
+    for (let item of matches["response"]) {
+      if (count > 500) {
+        count++;
+        break;
+      }
+
+      let match_date = new Date(item["fixture"]["date"]).toLocaleString(
+        "en-US",
+        {
+          timeZone: "Asia/Calcutta",
+        }
+      );
+
+      match_date = new Date(match_date);
 
       if (
         (today.getDate() == match_date.getDate() &&
@@ -173,124 +283,27 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
           match_date.getMinutes() > today.getMinutes() + 20)
       ) {
         let match_data = {
-          date: parsed_match_date,
+          date: parsed_date,
+          raw_date: match_date,
           fixture_id: item["fixture"]["id"],
           team_a: item["teams"]["home"]["name"],
           team_b: item["teams"]["away"]["name"],
           league: item["league"]["name"],
+          team_a_logo: item["teams"]["home"]["logo"],
+          team_b_logo: item["teams"]["away"]["logo"],
+          team_a_goal: item["goals"]["home"],
+          team_b_goal: item["goals"]["away"],
+          percentage: percent_pairs[item["fixture"]["id"]],
         };
 
         count++;
-
-        create_random_percents(match_data);
+        response_to_send.push(match_data);
       }
     }
+    return res.status(200).send(response_to_send);
+  } catch (error) {
+    return res.status(300).send({ status: 0 });
   }
-
-  // if some previous percentages exist or new were created then recheck them ;
-  let new_previous_percentages = await RandomPercentage.find({
-    date: parsed_date,
-  });
-
-  // creating key value pairs of these percentage;
-  let percent_pairs = {};
-
-  for (let percentages of new_previous_percentages) {
-    percent_pairs[percentages["league"]] = percentages["percentage"];
-  }
-
-  // iterating live bets and rechecking them
-  let fault_found = false;
-  count = 0;
-
-  for (let item of matches["response"]) {
-    if (count > 500) {
-      count++;
-      break;
-    }
-
-    let match_date = new Date(item["fixture"]["date"]).toLocaleString("en-US", {
-      timeZone: "Asia/Calcutta",
-    });
-    match_date = new Date(match_date);
-
-    if (
-      (today.getDate() == match_date.getDate() &&
-        match_date.getHours() > today.getHours()) ||
-      (today.getDate() == match_date.getDate() &&
-        match_date.getHours() == today.getHours() &&
-        match_date.getMinutes() > today.getMinutes() + 20)
-    ) {
-      count++;
-      let match_data = {
-        date: parsed_date,
-        raw_date: match_date,
-        fixture_id: item["fixture"]["id"],
-        team_a: item["teams"]["home"]["name"],
-        team_b: item["teams"]["away"]["name"],
-        team_a_logo: item["teams"]["home"]["logo"],
-        team_b_logo: item["teams"]["away"]["logo"],
-        team_a_goal: item["goals"]["home"],
-        team_b_goal: item["goals"]["away"],
-        league: item["league"]["name"],
-      };
-      if (match_data["fixture_id"] in percent_pairs !== true) {
-        fault_found = true;
-        create_random_percents(match_data);
-      }
-    }
-  }
-
-  // console.log(matches['response']);
-
-  if (fault_found) {
-    let final_percentages = await RandomPercentage.find({ date: date });
-    for (let percentages of new_previous_percentages) {
-      percent_pairs[percentages["league"]] = percentages["percentage"];
-    }
-  }
-
-  let response_to_send = [];
-  count = 0;
-  for (let item of matches["response"]) {
-    if (count > 500) {
-      count++;
-      break;
-    }
-
-    let match_date = new Date(item["fixture"]["date"]).toLocaleString("en-US", {
-      timeZone: "Asia/Calcutta",
-    });
-
-    match_date = new Date(match_date);
-
-    if (
-      (today.getDate() == match_date.getDate() &&
-        match_date.getHours() > today.getHours()) ||
-      (today.getDate() == match_date.getDate() &&
-        match_date.getHours() == today.getHours() &&
-        match_date.getMinutes() > today.getMinutes() + 20)
-    ) {
-      let match_data = {
-        date: parsed_date,
-        raw_date: match_date,
-        fixture_id: item["fixture"]["id"],
-        team_a: item["teams"]["home"]["name"],
-        team_b: item["teams"]["away"]["name"],
-        league: item["league"]["name"],
-        team_a_logo: item["teams"]["home"]["logo"],
-        team_b_logo: item["teams"]["away"]["logo"],
-        team_a_goal: item["goals"]["home"],
-        team_b_goal: item["goals"]["away"],
-        percentage: percent_pairs[item["fixture"]["id"]],
-      };
-
-      count++;
-      response_to_send.push(match_data);
-    }
-  }
-
-  return res.status(200).send(response_to_send);
 };
 
 async function bet_limit(INVITATION_CODE) {
