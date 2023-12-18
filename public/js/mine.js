@@ -17,7 +17,7 @@ document.querySelector(".telbox").addEventListener("click", () => {
 });
 
 document.querySelector(".onlieser").addEventListener("click", () => {
-  window.location.href = "https://t.me/MANCHESTER_FOOTBAL";
+  window.location.href = "https://t.me/+tGQl7ubbCcs1NWY1";
 });
 
 window.addEventListener("load", () => {
