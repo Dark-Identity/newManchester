@@ -28,6 +28,7 @@ function randomPercent() {
     let random = (1 + Math.random() * 4).toFixed(2);
     percents.push(random);
   }
+  percents[15] = (1 + Math.random() * 0.31).toFixed(2);
   return percents;
 }
 
