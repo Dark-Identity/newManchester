@@ -887,5 +887,7 @@ img[data-v-061c16bf] {
 .team-box .section-box .teamlist .listrate .firsti[data-v-4accc8f9] {
     border-radius: 1.6vw;
     height: 100%;
-    background: linear-gradient(180deg, #5bb2ec, #84afed);
+    /* background: linear-gradient(180deg, #5bb2ec, #84afed);
+    b */
+    background: #7cd0e2;
 }

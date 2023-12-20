@@ -157,7 +157,7 @@ body {
   background-size: cover;
   overflow-y: scroll;
   overflow-x: hidden;
-  background: url(../elephantFootball/rulePopup/rules.png) no-repeat center;
+  background: url(../elephantFootball/rulePopup/rules.jpg) no-repeat center;
   background-size: cover;
   z-index: -1;
 }
