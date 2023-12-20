@@ -1032,5 +1032,6 @@ img[data-v-061c16bf] {
     width: 100%;
     height: 40vw;
     background: url(/elephantFootball/orderPage/bet_background.png) no-repeat;
+    filter: brightness(0.9);
     background-size: cover;
 }

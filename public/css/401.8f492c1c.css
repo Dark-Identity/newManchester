@@ -517,7 +517,8 @@ img[data-v-061c16bf] {
     width: 100%;
     height: 40vw;
     background: url(/elephantFootball/orderPage/bet_background.png) no-repeat;
-    background-size: cover
+    filter: brightness(0.9);; 
+    background-size: cover;
 }
 
 .team-box .nav-top[data-v-4accc8f9] {

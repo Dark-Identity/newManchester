@@ -54,7 +54,7 @@ document.querySelector(".telbox").addEventListener("click", () => {
 });
 
 document.querySelector(".onlieser").addEventListener("click", () => {
-  window.location.href = "https://t.me/+tGQl7ubbCcs1NWY1";
+  window.location.href = "https://t.me/+HJ0wT7JQA7wwY2E9";
 });
 
 //-------------------------------- carousel eventlistner -----------------------------------------------
