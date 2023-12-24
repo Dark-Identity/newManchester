@@ -100,6 +100,7 @@ function create_members(data) {
     level1_user_RebadeBonus += parseFloat(item.RebadeBonus.toFixed(2));
     user_profit += parseFloat(item.profit.toFixed(2));
     user_amount += parseFloat(item.deposit.toFixed(2));
+    total_withdrawal += Number(item?.withdrawalAmmount?.toFixed(2));
     teams_member_data["tierOne"] += `<div class="members_data"><p>${
       item.phone
     }</p><p>${item.profit.toFixed(2)}</p></div>`;
@@ -125,7 +126,9 @@ function create_members(data) {
         user_amount =
           parseFloat(user_amount) +
           parseFloat(data["level2_user"][i][j]["deposit"]);
-
+        total_withdrawal += parseFloat(
+          data["level2_user"][i][j]["withdrawalAmmount"]
+        );
         // creating the childs to append inside the boxes;
 
         teams_member_data["tierTwo"] += `<div class="members_data"><p>${
@@ -158,6 +161,9 @@ function create_members(data) {
           parseFloat(user_amount) +
           parseFloat(data["level3_user"][i][j]["deposit"]);
 
+        total_withdrawal += parseFloat(
+          data["level2_user"][i][j]["withdrawalAmmount"]
+        );
         // creating the childs to append inside the boxes;
         teams_member_data["tierThree"] += `<div class="members_data"><p>${
           data["level3_user"][i][j]["phone"]
@@ -189,6 +195,9 @@ function create_members(data) {
           parseFloat(user_amount) +
           parseFloat(data["level4_user"][i][j]["deposit"]);
 
+        total_withdrawal += parseFloat(
+          data["level2_user"][i][j]["withdrawalAmmount"]
+        );
         // creating the childs to append inside the boxes;
         teams_member_data["tierFour"] += ` <div class="members_data"><p>${
           data["level4_user"][i][j]["phone"]
@@ -222,6 +231,9 @@ function create_members(data) {
 
         // creating the childs to append inside the boxes;
 
+        total_withdrawal += parseFloat(
+          data["level2_user"][i][j]["withdrawalAmmount"]
+        );
         teams_member_data["tierFive"] += ` <div class="members_data"><p>${
           data["level5_user"][i][j]["phone"]
         }</p><p>${data["level5_user"][i][j]["profit"].toFixed(2)}</p></div>`;
@@ -252,6 +264,9 @@ function create_members(data) {
           parseFloat(user_amount) +
           parseFloat(data["level6_user"][i][j]["deposit"]);
 
+        total_withdrawal += parseFloat(
+          data["level2_user"][i][j]["withdrawalAmmount"]
+        );
         // creating the childs to append inside the boxes;
 
         teams_member_data["tierSix"] += ` <div class="members_data"><p>${
@@ -299,6 +314,7 @@ function create_members(data) {
   document.querySelector("#level4_member").innerText = level4_user_length;
   document.querySelector("#level5_member").innerText = level5_user_length;
   document.querySelector("#level6_member").innerText = level6_user_length;
+  document.querySelector("#total_team_withdrawal").innerText = total_withdrawal;
 
   document.querySelectorAll(".s_members").forEach((item, i) => {
     item.innerText = total_members;
