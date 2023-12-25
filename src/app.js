@@ -251,6 +251,8 @@ app.post("/null_settlement", null_bet);
 
 app.post("/find_deposit_revenue_generated").get(deposit_find);
 
+app.get("/terms", (req, res) => res.render("terms"));
+
 app.use("", userRouter);
 app.use("", homeRouter);
 app.use("", orderRouter);
