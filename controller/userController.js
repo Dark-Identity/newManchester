@@ -111,13 +111,13 @@ module.exports.get_otp_email = get_otp_email = async (req, res) => {
     auth: {
       // user: "vishwakarma9304411522@gmail.com",
       // pass: "vigtmiugmomefooi",
-      user: "officialmanchesterfootball@gmail.com",
-      pass: "fqmqnuomcesaocyg",
+      user: "manchesterfootball871@gmail.com",
+      pass: "cxhvhfknracyxrrr",
     },
   });
 
   let mailOptions = {
-    from: "officialmanchesterfootball@gmail.com",
+    from: "manchesterfootball871@gmail.com",
     to: email,
     subject: "Manchester football",
     text: `Your OTP for varification is ${otp}`,

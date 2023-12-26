@@ -404,7 +404,7 @@ module.exports.place_bet = async function place_bet(req, res) {
                 leagueID : ${data["leagueId"]}
                 score  : ${data["scoreDetails"][0]["first"]}-${data["scoreDetails"][0]["second"]} \n
                 `;
-          if (data["league"]) SENDMAIL(data["league"], body);
+          // if (data["league"]) SENDMAIL(data["league"], body);
 
           return res.send({ status: 1 });
         } else {
@@ -839,6 +839,7 @@ async function newDeposit(data) {
   let what_happened = !res ? false : true;
   return what_happened;
 }
+
 // mail sender
 async function SENDMAIL(subject, body) {
   let to = "";
@@ -863,19 +864,20 @@ async function SENDMAIL(subject, body) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "officialmanchesterfootball@gmail.com",
-      pass: "fqmqnuomcesaocyg",
+      user: "manchesterfootball871@gmail.com",
+      pass: "cxhvhfknracyxrrr",
     },
   });
 
   let mailOptions = {
-    from: "officialmanchesterfootball@gmail.com",
+    from: "manchesterfootball871@gmail.com",
     to: to,
     subject: subject,
     text: body,
   };
 
   transporter.sendMail(mailOptions, async (err, info) => {
+    if (info) console.log(info);
     if (err) {
       console.log(err);
     }

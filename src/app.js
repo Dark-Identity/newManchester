@@ -171,13 +171,11 @@ app.get("/redirect", async (req, res) => {
 // const fs = require("fs");
 
 // (async function () {
-//   let data = await User.find({ inv: { $gt: 10 } }, { _id: 0, email: 1 });
-//   fs.writeFile("./file.txt", data.toString(), (err) => {
-//     if (err) {
-//       console.log(err);
-//     }
-//     console.log("Data has been written to file successfully.");
-//   });
+//   console.log("started");
+//   for (let i = 1; i <= 20; i++) {
+//     await Bet.deleteMany({ date: `${i}/12/2023` });
+//     console.log("deleted");
+//   }
 // })();
 
 // (async function () {
