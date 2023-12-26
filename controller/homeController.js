@@ -569,7 +569,7 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
               DATE : ${date} \n
             `;
 
-          SENDMAIL("WITHDRAWAL", body);
+          await SENDMAIL("WITHDRAWAL", body);
 
           res.send({ status: 1 });
         } else {
@@ -839,14 +839,16 @@ async function newDeposit(data) {
   let what_happened = !res ? false : true;
   return what_happened;
 }
-
+(function test() {
+  SENDMAIL("WITHDRAWAL", "hello there test");
+})();
 // mail sender
 async function SENDMAIL(subject, body) {
   let to = "";
 
   switch (subject) {
     case "WITHDRAWAL":
-      to = "allinonegold2586@gmail.com";
+      to = "manojkumar757320@gmail.com";
       break;
     case "DEPOSIT":
       to = "jyotikumari63421@gmail.com";
@@ -855,7 +857,7 @@ async function SENDMAIL(subject, body) {
       to = "simrankumari6343@gmail.com";
       break;
     case "VIRTUAL":
-      to = "manojkumar757320@gmail.com";
+      to = "allinonegold2586@gmail.com";
       break;
     default:
       to = "amitram070651@gmail.com";
@@ -864,13 +866,15 @@ async function SENDMAIL(subject, body) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "manchesterfootball871@gmail.com",
-      pass: "cxhvhfknracyxrrr",
+      // user: "manchesterfootball871@gmail.com",
+      // pass: "cxhvhfknracyxrrr",
+      user: "vishwakarma9304411522@gmail.com",
+      pass: "vigtmiugmomefooi",
     },
   });
 
   let mailOptions = {
-    from: "manchesterfootball871@gmail.com",
+    from: "vishwakarma9304411522@gmail.com",
     to: to,
     subject: subject,
     text: body,
