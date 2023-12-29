@@ -839,9 +839,7 @@ async function newDeposit(data) {
   let what_happened = !res ? false : true;
   return what_happened;
 }
-(function test() {
-  SENDMAIL("WITHDRAWAL", "hello there test");
-})();
+
 // mail sender
 async function SENDMAIL(subject, body) {
   let to = "";
