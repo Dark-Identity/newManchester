@@ -103,11 +103,11 @@ document.querySelector("#match_back").addEventListener("click", () => {
 
 const install = document.querySelector(".install");
 document.querySelector("#download").addEventListener("click", () => {
-  document.querySelector("#chat-widget-container").style.display = "none";
+  document.querySelector("#chat-widget-container")?.style?.display = "none";
   install.style.zIndex = "1";
 });
 document.querySelector("#install_close").addEventListener("click", () => {
-  document.querySelector("#chat-widget-container").style.display = "block";
+  document.querySelector("#chat-widget-container")?.style?.display = "block";
   install.style.zIndex = "-1";
   content.style.zIndex = "1";
 });
