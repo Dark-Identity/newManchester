@@ -1099,12 +1099,16 @@
          position: absolute;
          top: 0;
          left: 0;
+         bottom:0;
+         right:0;
          width: 100vw;
          height: 100vh;
          background: white;
-         z-index: -1;
-         overflow: hidden;
+         z-index: 10;
+          overflow-y: scroll;
         ">
+
+
 
             <div style="height: 7vh;display: flex; justify-content: center;align-items: center; margin-top:4vh;">
                 <div>
@@ -1113,100 +1117,108 @@
                      position: absolute;
                       left: 3%;
                       top: 2%;
-                    "
-                    id="payment_channel_four_back_btn"
-                     
-                    ></ion-icon>
+                    " id="payment_channel_four_back_btn"></ion-icon>
                     <img src="elephantFootball/payment_three.png" alt="" srcset="" style="width:60vw;height: 6vh;">
                 </div>
             </div>
 
-            <div id="pay_chanel_four_data"
-                style="display: flex; justify-content: center; align-items: center;margin-top:4vh">
-                <div style="
-    width: 70vw;
-    height: 40vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 3vw 4vw 4vw 4vw;
-    background: white;
-    box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);
-    border-radius: 8px;
+            <div
+             style="
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    height: max-content;
+                    padding: 2vw 0;
+             "
+            >
 
-">
+                <div id="pay_chanel_four_data"
+                    style="display: flex; justify-content: center; align-items: center;margin-top:4vh">
+                    <div style="
+                       width: 70vw;
+                        height: max-content;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: 3vw 4vw 4vw 4vw;
+                        background: white;
+                        box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);
+                        border-radius: 8px;">
 
 
-                    <div class="design_circle"></div>
-                    <div class="design_circle_two"></div>
+                        <div class="design_circle"></div>
+                        <div class="design_circle_two"></div>
 
-                    <div style="">
-                        <p style="margin: 1vw 0 ;">Account Name</p>
-                        <div style=" border-radius: 5px;" class="p_f_b">
-                            <input type="text" value="000" class="pay_chanel_four" readonly="readonly"
-                                id="payment_four_acName"
-                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
-                            <ion-icon name="copy-outline" class="copy_payment_reference"
-                                style="font-size:4vw; color:white"></ion-icon>
+                        <div style="">
+                            <p style="margin: 1vw 0 ;">Account Name</p>
+                            <div style=" border-radius: 5px;" class="p_f_b">
+                                <input type="text" value="000" class="pay_chanel_four" readonly="readonly"
+                                    id="payment_four_acName"
+                                    style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                                <ion-icon name="copy-outline" class="copy_payment_reference"
+                                    style="font-size:4vw; color:white"></ion-icon>
+                            </div>
                         </div>
+
+                        <div style=" ">
+                            <p style="margin: 1vw 0 ;">Bank Name</p>
+                            <div style="border-radius: 5px;" class="p_f_b">
+                                <input type="text" value="00000" class="pay_chanel_four" readonly="readonly"
+                                    id="payment_four_bankName"
+                                    style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                                <ion-icon name="copy-outline" class="copy_payment_reference"
+                                    style="font-size:4vw;color:white"></ion-icon>
+                            </div>
+                        </div>
+
+                        <div style="">
+                            <p style="margin: 1vw 0 ;">Account Number</p>
+                            <div style="border-radius: 5px;" class="p_f_b">
+                                <input type="number" value="000000000" class="pay_chanel_four" readonly="readonly"
+                                    id="payment_four_acNumber"
+                                    style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                                <ion-icon name="copy-outline" class="copy_payment_reference"
+                                    style="font-size:4vw;color:white"></ion-icon>
+                            </div>
+                        </div>
+
+                        <div style="">
+                            <p style="margin: 1vw 0 ;">IFSC Code</p>
+                            <div style="border-radius: 5px;" class="p_f_b">
+                                <input type="text" value="0000" class="pay_chanel_four" readonly="readonly"
+                                    id="payment_four_IFSC"
+                                    style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                                <ion-icon name="copy-outline" class="copy_payment_reference"
+                                    style="font-size:4vw;color:white"></ion-icon>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div style=" ">
-                        <p style="margin: 1vw 0 ;">Bank Name</p>
-                        <div style="border-radius: 5px;" class="p_f_b">
-                            <input type="text" value="00000" class="pay_chanel_four" readonly="readonly"
-                                id="payment_four_bankName"
-                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
-                            <ion-icon name="copy-outline" class="copy_payment_reference"
-                                style="font-size:4vw;color:white"></ion-icon>
-                        </div>
-                    </div>
 
-                    <div style="">
-                        <p style="margin: 1vw 0 ;">Account Number</p>
-                        <div style="border-radius: 5px;" class="p_f_b">
-                            <input type="number" value="000000000" class="pay_chanel_four" readonly="readonly"
-                                id="payment_four_acNumber"
-                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
-                            <ion-icon name="copy-outline" class="copy_payment_reference"
-                                style="font-size:4vw;color:white"></ion-icon>
-                        </div>
-                    </div>
 
-                    <div style="">
-                        <p style="margin: 1vw 0 ;">IFSC Code</p>
-                        <div style="border-radius: 5px;" class="p_f_b">
-                            <input type="text" value="0000" class="pay_chanel_four" readonly="readonly"
-                                id="payment_four_IFSC"
-                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
-                            <ion-icon name="copy-outline" class="copy_payment_reference"
-                                style="font-size:4vw;color:white"></ion-icon>
-                        </div>
-                    </div>
 
                 </div>
 
-
-
-
-            </div>
-
-            <div id="reference_number"
-                style="padding: 3vw; width:70vw; margin:0 auto;margin-top: 3vh;background-color: #ec1c2c; border-radius: 15px;position: relative;box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);">
-                <p style="margin: 1.5vw 0;">Submit Reference Number</p>
-                <div style="border-radius: 5px;">
-                    <input type="number" id="channel_four_ref_input" placeholder="12 Digit Referance Number"
-                        class="pay_chanel_four"
-                        style="padding: 3vw; width: 100%;text-align : center; outline:none;border:none;background:#a6141f ;color:white;border-radius: 10px;">
+                <div id="reference_number"
+                    style="padding: 3vw; width:70vw; margin:0 auto;margin-top: 3vh;background-color: #ec1c2c; border-radius: 15px;position: relative;box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);">
+                    <p style="margin: 1.5vw 0;">Submit Reference Number</p>
+                    <div style="border-radius: 5px;">
+                        <input type="number" id="channel_four_ref_input" placeholder="12 Digit Referance Number"
+                            class="pay_chanel_four"
+                            style="padding: 3vw; width: 100%;text-align : center; outline:none;border:none;background:#a6141f ;color:white;border-radius: 10px;">
+                    </div>
                 </div>
-            </div>
 
-            <div style="display: flex; justify-content: center;align-items: center;margin-top: 5vh;" class="circle_two">
-                <button class="p_f_submit" id="payment_channel_four_submit">
-                    <h4 style="word-spacing: 2vw;">Complete Order ₹<span id="channel_4_amount">0</span></h4>
-                </button>
-            </div>
+                <div style="display: flex; justify-content: center;align-items: center;margin-top: 5vh;"
+                    class="circle_two">
+                    <button class="p_f_submit" id="payment_channel_four_submit">
+                        <h4 style="word-spacing: 2vw;">Complete Order ₹<span id="channel_4_amount">0</span></h4>
+                    </button>
+                </div>
 
+
+            </div>
 
 
             <div style="display: flex; justify-content: center;align-items: center;">
