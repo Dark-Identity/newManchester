@@ -899,20 +899,26 @@
                     </div>
 
                     <div class="payment">
-                        <div  class="radiobtn gateway_pay_btn">
+                        <div class="radiobtn gateway_pay_btn">
                             <p>System Payment Chanel 1</p>
                             <input id="gateway_radio_btn" type="radio" name="pay">
                         </div>
 
-                        <div  class="radiobtn">
+                        <div class="radiobtn">
                             <p>System Payment Chanel 2</p>
                             <input id="gateway_radio_btn2" type="radio" name="pay">
                         </div>
 
                         <div class="radiobtn">
                             <p>System Payment Chanel 3</p>
-                            <input type="radio" name="pay" id="manual_btn">
+                            <input type="radio" name="pay" id="manual_btn_two">
                         </div>
+
+                        <div class="radiobtn" style="display: none;">
+                            <p>System Payment Chanel 4</p>
+                            <input type="radio" name="pay" id="channel_four_btn">
+                        </div>
+
 
                         <div class="radiobtn gateway_pay_btn">
                             <p>Recharge with USDT</p>
@@ -1044,8 +1050,8 @@
                 <div class="main_qr_box">
                     <img src="/elephantFootball/usdt_scanner.png" alt="" srcset="" style="width: 200px;">
                 </div>
-                <p style="color:gray"> Scan or use the usdt adress to pay <span
-                        style="font-weight : bold;" id="usdt_amount"></span> USDT</p>
+                <p style="color:gray"> Scan or use the usdt adress to pay <span style="font-weight : bold;"
+                        id="usdt_amount"></span> USDT</p>
             </div>
 
             <div class="network">
@@ -1088,6 +1094,112 @@
 
         </section>
 
+
+        <section id="payment_chanel_four" style="
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100vw;
+         height: 100vh;
+         background: white;
+         z-index: -1;
+        ">
+
+            <div style="height: 20vh;display: flex; justify-content: center;align-items: center;">
+                <div>
+                    <img src="elephantFootball/payment_three.png" alt="" srcset="" style="width:60vw;height: 8vh;">
+                </div>
+            </div>
+
+            <div id="pay_chanel_four_data" style="display: flex; justify-content: center; align-items: center;">
+                <div style="
+    width: 70vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3vw 4vw 4vw 4vw;
+    background: white;
+    box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);
+    border-radius: 8px;
+
+">
+
+
+                    <div class="design_circle"></div>
+                    <div class="design_circle_two"></div>
+
+                    <div style="">
+                        <p style="margin: 1vw 0 ;">Account Name</p>
+                        <div style=" border-radius: 5px;" class="p_f_b">
+                            <input type="text" value="xyz sharma" class="pay_chanel_four" readonly="readonly" id="payment_four_acName"
+                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                            <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw; color:white"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div style=" ">
+                        <p style="margin: 1vw 0 ;">Bank Name</p>
+                        <div style="border-radius: 5px;" class="p_f_b">
+                            <input type="text" value="xyz sharma" class="pay_chanel_four" readonly="readonly" id="payment_four_bankName"
+                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                            <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw;color:white"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div style="">
+                        <p style="margin: 1vw 0 ;">Account Number</p>
+                        <div style="border-radius: 5px;" class="p_f_b">
+                            <input type="number" value="96312548025" class="pay_chanel_four" readonly="readonly" id="payment_four_acNumber"
+                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                            <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw;color:white"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div style="">
+                        <p style="margin: 1vw 0 ;">IFSC Code</p>
+                        <div style="border-radius: 5px;" class="p_f_b">
+                            <input type="text" value="xyz sharma" class="pay_chanel_four" readonly="readonly" id="payment_four_IFSC"
+                                style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
+                            <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw;color:white"></ion-icon>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+            <div id="reference_number"
+                style="padding: 3vw; width:70vw; margin:0 auto;margin-top: 3vh;background-color: #ec1c2c; border-radius: 15px;position: relative;box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);">
+                <p style="margin: 1.5vw 0;">Submit Reference Number</p>
+                <div style="border-radius: 5px;">
+                    <input type="number" placeholder="xyz sharma " class="pay_chanel_four"
+                        style="padding: 3vw; width: 100%; outline:none;border:none;background:#a6141f ;color:white;border-radius: 10px;">
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center;align-items: center;margin-top: 5vh;" class="circle_two">
+                <button class="p_f_submit">
+                    <h4 style="word-spacing: 2vw;">Complete Order</h4>
+                </button>
+            </div>
+
+
+
+            <div style="display: flex; justify-content: center;align-items: center;">
+                <div>
+                    <img src="elephantFootball/payment_four.png" alt="" srcset="" style="width:60vw;height: 12vh;">
+                </div>
+            </div>
+
+
+        </section>
 
     </section>
 
@@ -1240,8 +1352,11 @@
                             1. Withdraw from 9:30-18:00 every day. <br>
                             2. Minimum withdrawal amount Rs.200, Maximum withdrawal amount 50000. <br>
                             3. 10% handling fee. <br>
-                            4. Valid betting amount must be 2 times of the recharged account amount before cash can be withdrawn experience coupon betting are not counted, and balance betting breakeven all score is calculated at 40%. <br>
-                            5.Strict policy: Self-betting is prohibited. Engaging in self-betting will result in the loss of your wagered amount.<br>
+                            4. Valid betting amount must be 2 times of the recharged account amount before cash can be
+                            withdrawn experience coupon betting are not counted, and balance betting breakeven all score
+                            is calculated at 40%. <br>
+                            5.Strict policy: Self-betting is prohibited. Engaging in self-betting will result in the
+                            loss of your wagered amount.<br>
                             6. If you have any questions, please contact our customer service staff to help you.
                         </p>
                     </div>
@@ -1346,7 +1461,9 @@
                             4. Withdraw from 9:30-18:00 every day. <br>
                             5. Minimum withdrawal amount Rs.500 ( In INR ), Maximum withdrawal amount 50000 ( In INR ).
                             <br>
-                            6. Valid betting amount must be 2 times of the recharged account amount before cash can be withdrawn experience coupon betting are not counted, and balance betting breakeven all score is calculated at 40%. <br>
+                            6. Valid betting amount must be 2 times of the recharged account amount before cash can be
+                            withdrawn experience coupon betting are not counted, and balance betting breakeven all score
+                            is calculated at 40%. <br>
                             7. Self betting is prohibited. <br>
                             8. If you have any questions, please contact our customer service staff to help you. <br>
 
@@ -1587,7 +1704,10 @@
                     <i class="fa-solid fa-plus"></i>
                 </header>
                 <p class="accordion-content-description">
-                   Experience risk-free bets with Manchester Football's exclusive Telegram and WhatsApp groups. Enjoy nearly 3% of daily plans with one match in the day and another at night. Elevate your gaming strategy with secure bets and exciting matches. Join our groups for a unique and rewarding betting experience.
+                    Experience risk-free bets with Manchester Football's exclusive Telegram and WhatsApp groups. Enjoy
+                    nearly 3% of daily plans with one match in the day and another at night. Elevate your gaming
+                    strategy with secure bets and exciting matches. Join our groups for a unique and rewarding betting
+                    experience.
                 </p>
             </div>
 
@@ -1606,7 +1726,8 @@
                     2. You will get benefits from the registration, recharge, and betting of team members<br>
                     3. The stronger your team is, the more income you will earn. Hard work will definitely pay off. If
                     you
-                    encounter problems or need cooperative support, please contact customer service. "Manchester Football"
+                    encounter problems or need cooperative support, please contact customer service. "Manchester
+                    Football"
                     will not
                     disappoint anyone who works hard
                 </p>
@@ -1624,16 +1745,16 @@
                     <i class="fa-solid fa-plus"></i>
                 </header>
                 <p class="accordion-content-description">
-                     1. After successful recharge, there is a 4% of rewards.
-                            <br>
-                            2. You can get 26% rebate by inviting recharge.
-                            <br>
-                            3. In order to ensure that the recharge arrives, please obtain the latest bank account
-                            recharge in real time.
-                            <br>
-                            4. Please wait for 5-10 minutes after the recharge is successful. If it has not been added
-                            to your account balance, please contact customer service
-                            <br>
+                    1. After successful recharge, there is a 4% of rewards.
+                    <br>
+                    2. You can get 26% rebate by inviting recharge.
+                    <br>
+                    3. In order to ensure that the recharge arrives, please obtain the latest bank account
+                    recharge in real time.
+                    <br>
+                    4. Please wait for 5-10 minutes after the recharge is successful. If it has not been added
+                    to your account balance, please contact customer service
+                    <br>
                 </p>
             </div>
 
@@ -1655,9 +1776,12 @@
                     3. 10% handling fee.
                     <br>
 
-                    4. Valid betting amount must be 2 times of the recharged account amount before cash can be withdrawn experience coupon betting are not counted, and balance betting breakeven all score is calculated at 40%.
+                    4. Valid betting amount must be 2 times of the recharged account amount before cash can be withdrawn
+                    experience coupon betting are not counted, and balance betting breakeven all score is calculated at
+                    40%.
                     <br>
-                    5.Strict policy: Self-betting is prohibited. Engaging in self-betting will result in the loss of your wagered amount. Please adhere to our guidelines for a fair and enjoyable gaming experience.
+                    5.Strict policy: Self-betting is prohibited. Engaging in self-betting will result in the loss of
+                    your wagered amount. Please adhere to our guidelines for a fair and enjoyable gaming experience.
                     <br>
 
                     6. If you have any questions, please contact our customer service staff to help you.
@@ -2101,8 +2225,7 @@
                         <p class="line" data-v-9336a864=""></p>
                         <div class="btnbete" data-v-9336a864="">
                             <p data-v-9336a864="">To bet</p>
-                            <img
-                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAARVJREFUWEftlk1uAjEMRp8l1CMUrkBRt4g9dNcrtxdgAbTH6M8FWHzIUhYIITIzISggz3bszMuzx4nR+GON8xGApRUKg2Gw1EBpfvRgGBxqQNIa2APvZvY/dJ1qPSjpC3gFNsCbmf0NgawJOAE+gSmwBVZDIKsBui1Jx5A7YNkXsipgghwnky+AQ7rJ367lrg54BtJ70012grwJ4BHkBzADHNJN/uRM3gwwQT6ncjvkdzJ5ETILKMl3vcjttMf7EfCU4tdmNr+Ue/+APcxkQyVdv8TZr3YMkOTjps2fJMH5qeKzsK0xcwLX1qBu+qg7gWvvsnAP1622L6wdp082LHuSZFeoHBCApYLDYBgsNVCaHz348AYP5OVqKRxCMFMAAAAASUVORK5CYII="
                                 alt="" data-v-9336a864="">
                         </div>
                     </div>
@@ -2305,14 +2428,15 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <!-- Start of LiveChat (www.livechat.com) code -->
-<script>
-    window.__lc = window.__lc || {};
-    window.__lc.license = 16860597;
-    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<noscript><a href="https://www.livechat.com/chat-with/16860597/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-<!-- End of LiveChat code -->
+    <!-- Start of LiveChat (www.livechat.com) code -->
+    <script>
+        window.__lc = window.__lc || {};
+        window.__lc.license = 16860597;
+        ; (function (n, t, c) { function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) } var e = { _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () { i(["once", c.call(arguments)]) }, off: function () { i(["off", c.call(arguments)]) }, get: function () { if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); return i(["get", c.call(arguments)]) }, call: function () { i(["call", c.call(arguments)]) }, init: function () { var n = t.createElement("script"); n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n) } }; !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e }(window, document, [].slice))
+    </script>
+    <noscript><a href="https://www.livechat.com/chat-with/16860597/" rel="nofollow">Chat with us</a>, powered by <a
+            href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+    <!-- End of LiveChat code -->
 
 
 </body>
