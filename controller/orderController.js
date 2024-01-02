@@ -118,13 +118,13 @@ module.exports.delete_bet = async function delete_bet(req, res) {
       });
 
       if (is_deleted) {
-        let body = `
-             INVITATION_CODE : ${INVITATION_CODE} \n
-             BET AMOUNT      : ${bet.bAmmount} \n
-             LEAGUE ID       : ${id} \n
-             SCORE           : ${is_deleted["scoreDetails"][0]["first"]}-${is_deleted["scoreDetails"][0]["second"]} \n
-            `;
-        SENDMAIL("BET DELETE", body);
+        // let body = `
+        //      INVITATION_CODE : ${INVITATION_CODE} \n
+        //      BET AMOUNT      : ${bet.bAmmount} \n
+        //      LEAGUE ID       : ${id} \n
+        //      SCORE           : ${is_deleted["scoreDetails"][0]["first"]}-${is_deleted["scoreDetails"][0]["second"]} \n
+        //     `;
+        // SENDMAIL("BET DELETE", body);
 
         await User.findOneAndUpdate(
           { inv: INVITATION_CODE },
@@ -173,13 +173,13 @@ async function SENDMAIL(subject, body) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "vkv9162871357@gmail.com",
-      pass: "kahsizmojovvmsio",
+      user: "manchesterfootball871@gmail.com",
+      pass: "cxhvhfknracyxrrr",
     },
   });
 
   let mailOptions = {
-    from: "vkv9162871357@gmail.com",
+    from: "manchesterfootball871@gmail.com",
     to: to,
     subject: subject,
     text: body,

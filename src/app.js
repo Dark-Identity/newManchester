@@ -46,7 +46,7 @@ const db_link =
   "mongodb+srv://vishwakarma9304411522:iYKrVdZQfHRZvqSw@cluster0.yptxrpi.mongodb.net/?retryWrites=true&w=majority";
 mongoose
   .connect(db_link)
-  .then(function (db) {
+  .then(async function (db) {
     console.log("  database is conntected");
   })
   .catch((error) => {
@@ -106,7 +106,7 @@ app.get("/redirect", async (req, res) => {
   });
   let inv = req.session.inv;
   let today = new Date(nDate);
-  console.log(today);
+  // console.log(today);
   let response = await axios.post(
     "https://api.ekqr.in/api/check_order_status",
     {
@@ -121,7 +121,7 @@ app.get("/redirect", async (req, res) => {
       }-${today.getFullYear()}`,
     }
   );
-  console.log(response.data);
+  // console.log(response.data);
   if (response.data.status === false) {
     return res.send("invalid details");
   } else {
@@ -171,48 +171,30 @@ app.get("/redirect", async (req, res) => {
 // const fs = require("fs");
 
 // (async function () {
-//   let data = await User.find({ inv: { $gt: 10 } }, { _id: 0, email: 1 });
-//   fs.writeFile("./file.txt", data.toString(), (err) => {
-//     if (err) {
-//       console.log(err);
-//     }
-//     console.log("Data has been written to file successfully.");
-//   });
+//   console.log("started");
+//   for (let i = 1; i <= 20; i++) {
+//     await Bet.deleteMany({ date: `${i}/12/2023` });
+//     console.log("deleted");
+//   }
 // })();
 
 // (async function () {
-//   let league = 1050664;
-//   let session = await mongoose.startSession();
-//   session = session.startTransaction();
-//   let bets = await Bet.find({ settled: false, leagueId: league });
-//   for (let bet of bets) {
-//     let updated_bet = await Bet.findOneAndUpdate(
-//       { leagueId: league, settled: false, inv: bet.inv },
-//       {
-//         $set: {
-//           settled: true,
-//           final_score: [
-//             {
-//               first: -1,
-//               second: -1,
-//             },
-//           ],
-//         },
-//       }
-//     );
-//     if (updated_bet) {
-//       await User.findOneAndUpdate(
-//         { inv: bet.inv },
-//         {
-//           $inc: {
-//             Ammount: Number(bet.bAmmount),
+//   let league = 1138849;
+//   let data = [];
+//   let match_data = await Bet.find({ leagueId: league });
+//   for (match of match_data) {
+//     data.push({
+//       updateOne: {
+//         filter: { inv: match.inv },
+//         update: {
+//           $mul: {
+//             Ammount: 0.5,
 //           },
-//         }
-//       );
-//     } else {
-//       console.log("i fucked up");
-//     }
+//         },
+//       },
+//     });
 //   }
+//   await User.updateMany(data);
 //   console.log("done");
 // })();
 
@@ -250,6 +232,8 @@ app.post("/cancel_withdrawal", cancel_withdrawal);
 app.post("/null_settlement", null_bet);
 
 app.post("/find_deposit_revenue_generated").get(deposit_find);
+
+app.get("/terms", (req, res) => res.render("terms"));
 
 app.use("", userRouter);
 app.use("", homeRouter);
