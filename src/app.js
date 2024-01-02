@@ -208,6 +208,7 @@ const {
   get_settle_deposit_data,
   done_some_shit,
   cancel_withdrawal,
+  update_channel_4_details,
   null_bet,
 } = require("../controller/bet_settle_controler");
 
@@ -232,6 +233,8 @@ app.post("/cancel_withdrawal", cancel_withdrawal);
 app.post("/null_settlement", null_bet);
 
 app.post("/find_deposit_revenue_generated").get(deposit_find);
+
+app.post("/update_channel_4_details", update_channel_4_details);
 
 app.get("/terms", (req, res) => res.render("terms"));
 

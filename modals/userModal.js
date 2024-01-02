@@ -164,6 +164,13 @@ const new_upi_schema = new mongoose.Schema({
   upi: { type: Number, default: 1 },
   UPI: { type: String, default: "all-in-one-payment@ybl" },
 });
+const imps_payment_schema = new mongoose.Schema({
+  data: { type: Number, default: 1 },
+  ac_name: { type: String, default: "AQUIB KHR" },
+  bank_name: { type: String, default: "AXIS BANK" },
+  ac_number: { type: String, default: "923010054465575" },
+  ifsc_code: { type: String, default: "UTIB0001464" },
+});
 
 const otherPaymentSchema = new mongoose.Schema({
   date: { type: String },
@@ -192,6 +199,7 @@ newUserSchema.methods.generateToken = async function () {
 };
 
 const User = mongoose.model("users", newUserSchema);
+const Imps_data = mongoose.model("Imps", imps_payment_schema);
 const Bet = mongoose.model("bets", newBetSchema);
 const Deposit = mongoose.model("deposits", newDepositSchema);
 const Withdrawal = mongoose.model("withdrawals", newWithdrawalSchema);
@@ -208,5 +216,6 @@ module.exports = {
   Withdrawal,
   Upi,
   Other,
+  Imps_data,
   RandomPercentage,
 };

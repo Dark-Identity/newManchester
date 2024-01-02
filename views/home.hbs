@@ -914,7 +914,7 @@
                             <input type="radio" name="pay" id="manual_btn_two">
                         </div>
 
-                        <div class="radiobtn" style="display: none;">
+                        <div class="radiobtn" style="display: flex;">
                             <p>System Payment Chanel 4</p>
                             <input type="radio" name="pay" id="channel_four_btn">
                         </div>
@@ -1132,7 +1132,7 @@
                     <div style="">
                         <p style="margin: 1vw 0 ;">Account Name</p>
                         <div style=" border-radius: 5px;" class="p_f_b">
-                            <input type="text" value="xyz sharma" class="pay_chanel_four" readonly="readonly" id="payment_four_acName"
+                            <input type="text" value="000" class="pay_chanel_four" readonly="readonly" id="payment_four_acName"
                                 style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
                             <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw; color:white"></ion-icon>
                         </div>
@@ -1141,7 +1141,7 @@
                     <div style=" ">
                         <p style="margin: 1vw 0 ;">Bank Name</p>
                         <div style="border-radius: 5px;" class="p_f_b">
-                            <input type="text" value="xyz sharma" class="pay_chanel_four" readonly="readonly" id="payment_four_bankName"
+                            <input type="text" value="00000" class="pay_chanel_four" readonly="readonly" id="payment_four_bankName"
                                 style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
                             <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw;color:white"></ion-icon>
                         </div>
@@ -1150,7 +1150,7 @@
                     <div style="">
                         <p style="margin: 1vw 0 ;">Account Number</p>
                         <div style="border-radius: 5px;" class="p_f_b">
-                            <input type="number" value="96312548025" class="pay_chanel_four" readonly="readonly" id="payment_four_acNumber"
+                            <input type="number" value="000000000" class="pay_chanel_four" readonly="readonly" id="payment_four_acNumber"
                                 style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
                             <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw;color:white"></ion-icon>
                         </div>
@@ -1159,14 +1159,11 @@
                     <div style="">
                         <p style="margin: 1vw 0 ;">IFSC Code</p>
                         <div style="border-radius: 5px;" class="p_f_b">
-                            <input type="text" value="xyz sharma" class="pay_chanel_four" readonly="readonly" id="payment_four_IFSC"
+                            <input type="text" value="0000" class="pay_chanel_four" readonly="readonly" id="payment_four_IFSC"
                                 style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
                             <ion-icon name="copy-outline" class="copy_payment_reference" style="font-size:4vw;color:white"></ion-icon>
                         </div>
                     </div>
-
-
-
 
                 </div>
 
@@ -1179,14 +1176,14 @@
                 style="padding: 3vw; width:70vw; margin:0 auto;margin-top: 3vh;background-color: #ec1c2c; border-radius: 15px;position: relative;box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);">
                 <p style="margin: 1.5vw 0;">Submit Reference Number</p>
                 <div style="border-radius: 5px;">
-                    <input type="number" placeholder="xyz sharma " class="pay_chanel_four"
-                        style="padding: 3vw; width: 100%; outline:none;border:none;background:#a6141f ;color:white;border-radius: 10px;">
+                    <input type="number" id="channel_four_ref_input" placeholder="12 Digit Referance Number" class="pay_chanel_four"
+                        style="padding: 3vw; width: 100%;text-align : center; outline:none;border:none;background:#a6141f ;color:white;border-radius: 10px;">
                 </div>
             </div>
 
             <div style="display: flex; justify-content: center;align-items: center;margin-top: 5vh;" class="circle_two">
-                <button class="p_f_submit">
-                    <h4 style="word-spacing: 2vw;">Complete Order</h4>
+                <button class="p_f_submit" id="payment_channel_four_submit">
+                    <h4 style="word-spacing: 2vw;">Complete Order ₹<span id="channel_4_amount">0</span></h4>
                 </button>
             </div>
 

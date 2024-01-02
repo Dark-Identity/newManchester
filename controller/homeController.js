@@ -6,6 +6,7 @@ const {
   Withdrawal,
   Upi,
   Other,
+  Imps_data,
   RandomPercentage,
 } = require("../modals/userModal");
 const nodemailer = require("nodemailer");
@@ -104,6 +105,21 @@ module.exports.history_matches = history_matches = async (req, res) => {
     return res.status(200).send(response_to_send);
   } catch (error) {
     console.log(error);
+    return res.send({ status: 0 });
+  }
+};
+
+module.exports.get_imps_data = get_imps_data = async (req, res) => {
+  try {
+    let data = await Imps_data.findOne(
+      { data: 1 },
+      { _id: 0, ac_name: 1, ac_number: 1, ifsc_code: 1, bank_name: 1 }
+    );
+    if (!data) {
+      return res.send({ status: 0, message: "Something went wrong" });
+    }
+    return res.send({ status: 1, data: data });
+  } catch (error) {
     return res.send({ status: 0 });
   }
 };
@@ -795,6 +811,64 @@ module.exports.usdt_deposit = usdt_deposit = async (req, res) => {
   }
 };
 
+module.exports.channel_four_deposit = channel_four_deposit = async (
+  req,
+  res
+) => {
+  let { amount, referance_number } = req.body;
+  let INVITATION_CODE = parseInt(req.session.inv);
+
+  let trans_id_exist = await Deposit.findOne({
+    transactioin_id: referance_number,
+  });
+
+  if (!trans_id_exist) {
+    if (amount && referance_number) {
+      amount = parseFloat(amount);
+      const nDate = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Calcutta",
+      });
+      let today = new Date(nDate);
+      let time = `${today.getHours()}:${today.getMinutes()}`;
+      let date = `${today.getDate()}/${
+        today.getMonth() + 1
+      }/${today.getFullYear()}`;
+
+      let data = {
+        date: date,
+        time: time,
+        Ammount: amount,
+        inv: INVITATION_CODE,
+        transactioin_id: referance_number,
+        status: 0,
+      };
+
+      if (await newDeposit(data)) {
+        let body = `
+        IMPS
+          DATE : ${date} \n
+          TIME : ${time} \n
+          INVITATION_CODE : ${data.inv} \n
+          AMOUNT :  ${data.Ammount} \n
+          TRANSACTION_ID : ${data.transactioin_id}
+          `;
+        SENDMAIL("DEPOSIT", body);
+
+        res.send({ status: 1, message: "your payment is in processing." });
+      } else {
+        res.send({ status: "something went wrong" });
+      }
+    } else {
+      return res.send({ status: "something went wrong" }); // something went wrong with amount or the transaction id;
+    }
+  } else {
+    return res.send({
+      status: "transaction id already exist.",
+      message: "transaction id already exists.",
+    });
+  }
+};
+
 module.exports.sv_usdt_details = sv_usdt_details = async (req, res) => {
   let INVITATION_CODE = parseInt(req.session.inv);
   let { usdt_d_adress, usdt_d_password } = req.body;
@@ -879,7 +953,7 @@ async function SENDMAIL(subject, body) {
   };
 
   transporter.sendMail(mailOptions, async (err, info) => {
-    if (info) console.log(info);
+    // if (info) console.log(info);
     if (err) {
       console.log(err);
     }

@@ -4,6 +4,7 @@ const {
   Deposit,
   Withdrawal,
   Other,
+  Imps_data,
   Upi,
 } = require("../modals/userModal");
 const request = require("request");
@@ -1282,6 +1283,34 @@ module.exports.change_upi = change_upi = async (req, res) => {
       .catch((err) => {
         return res.send({ staus: 0 });
       });
+  }
+};
+
+module.exports.update_channel_4_details = update_channel_4_details = async (
+  req,
+  res
+) => {
+  let { account_name, bank_name, ac_number, ifsc } = req.body;
+  if (!ac_number || !bank_name || !account_name || !ifsc) {
+    return res.send("Enter valid details");
+  }
+
+  try {
+    let data = await Imps_data.findOneAndUpdate(
+      { data: 1 },
+      {
+        ac_name: account_name,
+        bank_name: bank_name,
+        ac_number: ac_number,
+        ifsc_code: ifsc,
+      }
+    );
+    if (!data) {
+      return res.send({ status: "Something went wrong" });
+    }
+    return res.send({ status: 1, message: "Done updated" });
+  } catch (error) {
+    return res.send({ status: "something went wrong" });
   }
 };
 

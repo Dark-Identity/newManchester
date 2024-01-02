@@ -418,3 +418,35 @@ document.querySelector("#new_upi_id").addEventListener("click", async () => {
     }
   }
 });
+
+document
+  .querySelector("#update_imps_details")
+  .addEventListener("click", async () => {
+    let account_name = document.querySelector("#account_name").value;
+    let bank_name = document.querySelector("#bank_name").value;
+    let ac_number = document.querySelector("#ac_number").value;
+    let ifsc = document.querySelector("#ifsc").value;
+
+    let config = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        ac_number,
+        bank_name,
+        ac_number,
+        ifsc,
+        account_name,
+      }),
+    };
+    popup_page.style.left = 0;
+    let res = await fetch("/update_channel_4_details", config);
+    res = await res.json();
+    if (res.status === 1) {
+      popup_tip.innerText = "UPDATED";
+      return;
+    }
+    popup_tip.innerText = "SOMETHING WENT WRONG";
+    return;
+  });

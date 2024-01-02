@@ -997,9 +997,9 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
   let is_gateway_2 = document.querySelector("#gateway_radio_btn2").checked;
   let is_gateway_3 = document.querySelector("#manual_btn_two").checked;
   let is_gateway_4 = document.querySelector("#usdt_btn").checked;
-  let payment_four = document.querySelector('#channel_four_btn').checked;
+  let payment_four = document.querySelector("#channel_four_btn").checked;
   let recharge_amount = document.querySelector("#recharge_amount").value;
-  
+
   if (is_gateway || is_gateway_2) {
     if (recharge_amount <= 99) {
       check_deposit_amount();
@@ -1028,12 +1028,12 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
       usdt_recharge_page();
       return;
     }
-  }else if (payment_four) {
+  } else if (payment_four) {
     if (recharge_amount < 99) {
       check_deposit_amount();
       return;
     } else {
-       channel_four();   
+      channel_four(recharge_amount);
       return;
     }
   }
@@ -1054,10 +1054,6 @@ document.querySelector(".usdt_back_btn").addEventListener("click", () => {
   usdt_page.style.zIndex = "-1";
   footer.style.zIndex = "1";
 });
-
-
-
-
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------- validation of payments chanel-----------------------------
@@ -1273,38 +1269,37 @@ document.querySelector("#usdt_copy_icon").addEventListener("click", () => {
   copyPageUrl(text);
 });
 
-async function copyPageUrl(text) {
-  popup_page.style.left = "0px";
-  popup_cancel_btn.disabled = true;
+// async function copyPageUrl(text) {
+//   popup_page.style.left = "0px";
+//   popup_cancel_btn.disabled = true;
 
-  if (
-    window.WTN.isNativeApp ||
-    window.WTN.isAndroidApp ||
-    window.WTN.isIosApp
-  ) {
-    window.WTN.clipboard.get({
-      callback: function (data) {
-        console.log(data.value);
-      },
-    });
-    window.WTN.clipboard.set({
-      data: `${text}`,
-    });
-    popup_tip.innerText = "Success! copied.";
-    popup_cancel_btn.disabled = false;
-  } else {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch (err) {
-      popup_tip.innerText = "Failure! something went wrong.";
-      popup_cancel_btn.disabled = false;
-    } finally {
-      popup_tip.innerText = "Success! copied.";
-      popup_cancel_btn.disabled = false;
-    }
-  }
-}
-
+//   if (
+//     window.WTN.isNativeApp ||
+//     window.WTN.isAndroidApp ||
+//     window.WTN.isIosApp
+//   ) {
+//     window.WTN.clipboard.get({
+//       callback: function (data) {
+//         console.log(data.value);
+//       },
+//     });
+//     window.WTN.clipboard.set({
+//       data: `${text}`,
+//     });
+//     popup_tip.innerText = "Success! copied.";
+//     popup_cancel_btn.disabled = false;
+//   } else {
+//     try {
+//       await navigator.clipboard.writeText(text);
+//     } catch (err) {
+//       popup_tip.innerText = "Failure! something went wrong.";
+//       popup_cancel_btn.disabled = false;
+//     } finally {
+//       popup_tip.innerText = "Success! copied.";
+//       popup_cancel_btn.disabled = false;
+//     }
+//   }
+// }
 
 // ------------------------------- copy the payment details ------------------------------
 
@@ -1340,21 +1335,78 @@ async function copyPageUrl(text) {
   }
 }
 
-const chanel_four_details = (idx) =>{
+const chanel_four_details = (idx) => {
   let inputs = document.querySelectorAll(".pay_chanel_four");
   let text = inputs[idx].value;
-  console.log(text);
   copyPageUrl(text);
   // let text = document.querySelector('');
-}
+};
 
-document.querySelectorAll('.copy_payment_reference').forEach((element  , i) =>{
-  element.addEventListener('click',()=>{
+document.querySelectorAll(".copy_payment_reference").forEach((element, i) => {
+  element.addEventListener("click", () => {
     chanel_four_details(i);
-  })
-})
+  });
+});
 
 // -------------------------------------------------------------------------
-function channel_four () {
-  document.querySelector('#payment_chanel_four').style.zIndex = "1";
+function channel_four(amount) {
+  // get the amount;
+  document.querySelector("#channel_4_amount").innerText = amount;
+  document.querySelector("#payment_chanel_four").style.zIndex = "1";
 }
+
+document
+  .querySelector("#payment_channel_four_submit")
+  .addEventListener("click", channel_four_submit);
+async function channel_four_submit() {
+  let referance_number = document.querySelector(
+    "#channel_four_ref_input"
+  ).value;
+
+  let amount = document.querySelector("#channel_4_amount").innerText;
+
+  popup_page.style.left = 0;
+  popup_tip.innerText = "Loading...";
+  popup_close_btn.disabled = true;
+
+  if (!referance_number) {
+    popup_tip.innerText = "Enter a valid referance number.";
+    popup_close_btn.disabled = false;
+    return;
+  }
+
+  try {
+    let config = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ referance_number, amount }),
+    };
+    let res = await fetch("/chanel_four_deposit", config);
+    res = await res.json();
+    if (!res || res?.status !== 1) {
+      popup_tip.innerText = res?.message || "something went wrong.";
+    }
+    popup_tip.innerText = "Your payment is in processing";
+    popup_close_btn.disabled = false;
+  } catch (error) {
+    popup_tip.innerText = "something went wrong";
+    window.location.href = window.location.origin + "/login";
+  }
+}
+
+(async function get_imps_data() {
+  let res = await fetch("/get_imps_data");
+  res = await res.json();
+
+  if (res.status === 1) {
+    let inputs = document.querySelectorAll(".pay_chanel_four");
+    inputs[0].value = res?.data?.ac_name;
+    inputs[1].value = res?.data?.bank_name;
+    inputs[2].value = res?.data?.ac_number;
+    inputs[3].value = res?.data?.ifsc_code;
+  } else {
+    window.location.href = window.location.origin + "/login";
+  }
+})();
