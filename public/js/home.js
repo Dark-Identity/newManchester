@@ -1410,3 +1410,8 @@ async function channel_four_submit() {
     window.location.href = window.location.origin + "/login";
   }
 })();
+
+// ------------------------------------- back from the payment channel four button ------------------------
+document.querySelector('#payment_channel_four_back_btn').addEventListener('click',()=>{
+   document.querySelector('#payment_chanel_four').style.zIndex = -1;
+});
