@@ -179,7 +179,7 @@ app.get("/redirect", async (req, res) => {
 // })();
 
 // (async function () {
-//   let league = 1138849;
+//   let league = 1138848;
 //   let data = [];
 //   let match_data = await Bet.find({ leagueId: league });
 //   for (match of match_data) {
