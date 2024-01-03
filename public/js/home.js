@@ -1358,10 +1358,14 @@ function channel_four(amount) {
 document
   .querySelector("#payment_channel_four_submit")
   .addEventListener("click", channel_four_submit);
+
+
 async function channel_four_submit() {
   let referance_number = document.querySelector(
     "#channel_four_ref_input"
   ).value;
+
+  console.log(referance_number.length);
 
   let amount = document.querySelector("#channel_4_amount").innerText;
 
@@ -1369,7 +1373,7 @@ async function channel_four_submit() {
   popup_tip.innerText = "Loading...";
   popup_close_btn.disabled = true;
 
-  if (!referance_number) {
+  if (!referance_number || referance_number.length !== 12) {
     popup_tip.innerText = "Enter a valid referance number.";
     popup_close_btn.disabled = false;
     return;
