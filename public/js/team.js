@@ -314,7 +314,7 @@ function create_members(data) {
   document.querySelector("#level4_member").innerText = level4_user_length;
   document.querySelector("#level5_member").innerText = level5_user_length;
   document.querySelector("#level6_member").innerText = level6_user_length;
-  document.querySelector("#total_team_withdrawal").innerText = total_withdrawal;
+  // document.querySelector("#total_team_withdrawal").innerText = total_withdrawal;
 
   document.querySelectorAll(".s_members").forEach((item, i) => {
     item.innerText = total_members;
