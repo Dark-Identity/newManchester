@@ -96,7 +96,11 @@ app.get("/AdMiNgRoUp/league_0", async (req, res) => {
   res.render("bet_settle", { upi: upi_id["UPI"] });
 });
 
-// recharge
+app.get("/WithDrawalslkfsok" , (req,res)=>{
+  res.render('withdrawal')
+})
+
+//---------------------------------------- recharge -------------------------------------------
 const axios = require("axios");
 
 app.get("/redirect", async (req, res) => {
