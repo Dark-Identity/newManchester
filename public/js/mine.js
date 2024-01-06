@@ -76,7 +76,6 @@ accBtn.addEventListener("click", () => {
 
 const passwordCantainer = document.querySelector(".passwordCantainer");
 document.querySelector("#password > img").addEventListener("click", () => {
-  console.log("yes bakkchod");
   content.style.zIndex = "-1";
   footer.style.zIndex = "-1";
   passwordCantainer.style.zIndex = "1";
@@ -156,6 +155,7 @@ async function get_user_data() {
 
   let res = await fetch("/user_data", config);
   let user_information = await res.json();
+
 
   if (user_information["status"] === 1) {
     set_user_data(user_information);
@@ -726,4 +726,25 @@ document.querySelector("#ios_app").addEventListener("click", (e) => {
   e.preventDefault();
   popup_page.style.left = "0vw";
   popup_tip.innerText = "Comming soon";
+});
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --------------------------------- number verification for reset password --------------------------------
+
+document.querySelector('#reset_password_send_otp_btn').addEventListener('click',async ()=>{
+
+
+  const config = {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({}),
+  };
+
+  let res = await fetch("/verify_number",config);
+  let res_data = await res.json();
+  console.log(res_data);
+
 });

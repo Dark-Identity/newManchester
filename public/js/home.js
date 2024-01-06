@@ -251,19 +251,17 @@ function create_match(data) {
                           <div class="tName">
                               <p class="circle"></p>
                               <p class="ellipsis-1 namematch" data-v-7afa3138="">
-                              <p  class="league_id" id="league_id">${
-                                data["fixture_id"]
-                              }</p>
-                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${
-                                data["league"]
-                              }</p>
+                              <p  class="league_id" id="league_id">${data["fixture_id"]
+    }</p>
+                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${data["league"]
+    }</p>
                           </div>
                           <div class="date">
                               <p>${[
-                                date.getFullYear(),
-                                date.getMonth() + 1,
-                                date.getDate(),
-                              ].join("|")}</p>
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate(),
+    ].join("|")}</p>
                           </div>
                       </div>
 
@@ -305,6 +303,7 @@ function create_match(data) {
 async function get_live_bets() {
   let res = await fetch("/get_live_bets");
   res = await res.json();
+
 
   // from here I have to call the store data function by passing the arguments key and array.
   let count_matches = 0;
@@ -416,9 +415,8 @@ function load_bet_box() {
       });
 
       let today = new Date();
-      document.querySelector("#b_date").innerText = `${today.getDate()}/${
-        today.getMonth() + 1
-      }/${today.getFullYear()}`;
+      document.querySelector("#b_date").innerText = `${today.getDate()}/${today.getMonth() + 1
+        }/${today.getFullYear()}`;
 
       let percentage_array = load_bet_percentages(league_id);
 
@@ -962,9 +960,8 @@ async function initiate_gateway_recharge() {
   post_data.p_info = "product_name";
   post_data.customer_name = "anonymus";
   post_data.customer_email = "gateway@gmail.com";
-  post_data.customer_mobile = `${
-    Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
-  }`;
+  post_data.customer_mobile = `${Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
+    }`;
   post_data.redirect_url = "http://www.manchester-football.com/redirect";
 
   let config = {
@@ -998,6 +995,8 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
   let is_gateway_3 = document.querySelector("#manual_btn_two").checked;
   let is_gateway_4 = document.querySelector("#usdt_btn").checked;
   let payment_four = document.querySelector("#channel_four_btn").checked;
+  let payment_five = document.querySelector("#channel_five_btn").checked;
+
   let recharge_amount = document.querySelector("#recharge_amount").value;
 
   if (is_gateway || is_gateway_2) {
@@ -1028,15 +1027,27 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
       usdt_recharge_page();
       return;
     }
-  } else if (payment_four) {
+  }
+   else if (payment_four) {
     if (recharge_amount < 99) {
       check_deposit_amount();
       return;
     } else {
       channel_four(recharge_amount);
+      console.log("yes");
       return;
     }
   }
+  else if (payment_five) {
+    if (recharge_amount < 99) {
+      check_deposit_amount();
+      return;
+    } else {
+      channel_five(recharge_amount);
+      return;
+    }
+  }
+  
 });
 
 // gateway
@@ -1355,6 +1366,13 @@ function channel_four(amount) {
   document.querySelector("#payment_chanel_four").style.zIndex = "1";
 }
 
+function channel_five(amount) {
+  // get the amount;
+  document.querySelector("#channel_5_amount").innerText = amount;
+  document.querySelector("#payment_chanel_five").style.zIndex = "1";
+}
+
+
 document
   .querySelector("#payment_channel_four_submit")
   .addEventListener("click", channel_four_submit);
@@ -1416,6 +1434,10 @@ async function channel_four_submit() {
 })();
 
 // ------------------------------------- back from the payment channel four button ------------------------
-document.querySelector('#payment_channel_four_back_btn').addEventListener('click',()=>{
-   document.querySelector('#payment_chanel_four').style.zIndex = -1;
+document.querySelector('#payment_channel_four_back_btn').addEventListener('click', () => {
+  document.querySelector('#payment_chanel_four').style.zIndex = -1;
+});
+
+document.querySelector('#payment_channel_five_back_btn').addEventListener('click', () => {
+  document.querySelector('#payment_chanel_five').style.zIndex = -1;
 });

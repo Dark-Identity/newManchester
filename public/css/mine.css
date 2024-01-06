@@ -105,7 +105,7 @@ body {
   justify-content: center;
 }
 
-.qrCode > span {
+.qrCode>span {
   margin-bottom: 2vh;
   font-size: 4.8vw;
   font-weight: 600;
@@ -189,11 +189,11 @@ body {
   text-align: left;
 }
 
-.accordion-content header > i {
+.accordion-content header>i {
   margin-right: 4vw;
 }
 
-.accordion-content header > span > img {
+.accordion-content header>span>img {
   width: 5vw;
   margin: 0 2vw;
 }
@@ -459,7 +459,7 @@ body {
   left: 45%;
 }
 
-.cut > img {
+.cut>img {
   width: 10vw;
 }
 
@@ -480,6 +480,10 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: -1;
+  overflow-y: scroll;
+}
+.passwordCantainer::-webkit-scrollbar {
+  display: none;
 }
 
 .pass_gap {
@@ -495,7 +499,7 @@ body {
   border-radius: 4px;
 }
 
-.pI > input {
+.pI>input {
   text-transform: capitalize;
 }
 
@@ -512,7 +516,7 @@ body {
 }
 
 .btnrech {
-  margin: 8vh 0;
+  margin: 1.2rem 0 0 0 ;
   width: 92vw;
   height: 13.066667vw;
   font-size: 4.666667vw;
@@ -542,11 +546,13 @@ body {
   z-index: -1;
   background-color: #fafafa;
 }
-.withdraw_parent > div,
-.other_parent > div,
-.deposite_parent > div {
+
+.withdraw_parent>div,
+.other_parent>div,
+.deposite_parent>div {
   margin-top: 1.2rem;
 }
+
 .record_parent_div {
   display: flex;
   justify-content: center;
@@ -631,8 +637,7 @@ body {
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: url("/elephantFootball/minePage/App\ download.jpg") center
-    no-repeat;
+  background: url("/elephantFootball/minePage/App\ download.jpg") center no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -650,7 +655,8 @@ body {
   justify-content: space-between;
   padding: 0 1rem;
 }
-.download_flex > a {
+
+.download_flex>a {
   width: 35vw;
 }
 
@@ -677,4 +683,24 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+.two_factor_auth {
+  width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
+  margin: 0 0 0 1vh;
+}
+.password_verify_btn > button {
+  border: 1px solid;
+  word-spacing: 2px;
+  border: none;
+  outline: none;
+  margin: 0.6rem 0.5rem 0 0;
+  border-radius: 5px;
+ padding: .5rem .3rem;
+}
+.password_verify_btn > button > p{
+  font-weight: 600;
+  color:#fafafad6;
 }

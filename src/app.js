@@ -242,6 +242,9 @@ app.post("/update_channel_4_details", update_channel_4_details);
 
 app.get("/terms", (req, res) => res.render("terms"));
 
+
+
+
 app.use("", userRouter);
 app.use("", homeRouter);
 app.use("", orderRouter);

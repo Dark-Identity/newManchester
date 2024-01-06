@@ -152,9 +152,12 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
         // "x-rapidapi-key": "09ef72605818e59d673164a1372a8b54",
       },
     });
+    // console.log("yes working");
+    // console.log(response);
 
     if (!response) return res.send({ status: 0 });
     let matches = await response.json();
+
     // console.log(matches)
 
     //getting previous percentages
@@ -266,7 +269,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
       }
     }
 
-    // console.log(matches['response']);
+    console.log(matches['response'] + "backend data");
 
     if (fault_found) {
       let final_percentages = await RandomPercentage.find({ date: date });
@@ -319,6 +322,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     }
     return res.status(200).send(response_to_send);
   } catch (error) {
+    console.log(error);
     return res.status(300).send({ status: 0 });
   }
 };

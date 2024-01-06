@@ -56,6 +56,7 @@ module.exports.get_otp = get_otp = async (req, res) => {
   let body = req.body;
   let user_phone, stat;
 
+
   if (!body["contact"] || body["contact"] == undefined) {
     return res.send({ status: "something went wrong" });
   } else {
@@ -357,4 +358,11 @@ async function increment_parent_mem(inv, prev_members) {
     }
   );
   return;
+}
+
+module.exports.verify_number = async function verify_number (req,res) {
+  let body = req.body;
+  console.log(req.session);
+  
+  
 }

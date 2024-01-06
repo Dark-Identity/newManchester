@@ -450,7 +450,7 @@ document.querySelector('#confirm').addEventListener('click', async () => {
 function reload() {
     setTimeout(() => {
         window.location.reload();
-    }, 3 * 1000)
+    }, 0.25 * 1000)
 }
 
 

@@ -899,12 +899,12 @@
                     </div>
 
                     <div class="payment">
-                        <div class="radiobtn gateway_pay_btn" >
+                        <div class="radiobtn gateway_pay_btn">
                             <p>System Payment Chanel 1</p>
                             <input id="gateway_radio_btn" type="radio" name="pay">
                         </div>
 
-                        <div class="radiobtn" >
+                        <div class="radiobtn">
                             <p>System Payment Chanel 2</p>
                             <input id="gateway_radio_btn2" type="radio" name="pay">
                         </div>
@@ -917,6 +917,11 @@
                         <div class="radiobtn" style="display: flex;">
                             <p>System Payment Chanel 4</p>
                             <input type="radio" name="pay" id="channel_four_btn">
+                        </div>
+
+                        <div class="radiobtn" style="display: flex;">
+                            <p>System Payment Chanel 5</p>
+                            <input type="radio" name="pay" id="channel_five_btn">
                         </div>
 
 
@@ -1118,19 +1123,17 @@
                       left: 3%;
                       top: 2%;
                     " id="payment_channel_four_back_btn"></ion-icon>
-                    <img src="elephantFootball/payment_three.png" alt="" srcset="" style="width:60vw;height: 6vh;">
+                    <img src="elephantFootball/payment_three.png" alt="" srcset="" style="width:60vw;height: 3.5rem;">
                 </div>
             </div>
 
-            <div
-             style="
+            <div style="
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     height: max-content;
                     padding: 2vw 0;
-             "
-            >
+             ">
 
                 <div id="pay_chanel_four_data"
                     style="display: flex; justify-content: center; align-items: center;margin-top:4vh">
@@ -1223,12 +1226,63 @@
 
             <div style="display: flex; justify-content: center;align-items: center;">
                 <div>
-                    <img src="elephantFootball/payment_four.png" alt="" srcset="" style="width:60vw;height: 12vh;">
+                    <img src="elephantFootball/payment_four.png" alt="" srcset="" style="width:60vw;height: 6rem;">
                 </div>
             </div>
 
 
         </section>
+
+        <section id="payment_chanel_five">
+
+            <div class="payment_chanel_five_content">
+
+                <ion-icon name="chevron-back-outline" style="
+                     font-size: 6vw;
+                     position: absolute;
+                      left: 3%;
+                      top: 2%;
+                    " id="payment_channel_five_back_btn"></ion-icon>
+
+                <div class="payment_chanel_five_header"></div>
+
+                <div class="payment_chanel_five_qrCode_box">
+                    <div class="payment_chanel_five_qrCode_box_outer_div">
+                        <div class="bhim_img"></div>
+                        <div class="upi_img"></div>
+                    </div>
+                    <div class="payment_five_qrCode"> </div>
+                    <h4 style="text-align: center; margin-top:2rem">SCAN & PAY WITH ANY UPI APP.</h4>
+                </div>
+
+                <div
+                    style="padding: 3vw; width:70vw; margin:0 auto;background-color: white; border-radius: 15px;position: relative;box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);">
+                    <p style="margin: 1.5vw 0;text-align: center;">Submit Reference Number</p>
+                    <div style="border-radius: 5px;">
+                        <input type="number" id="channel_four_ref_input" placeholder="12 Digit Referance Number"
+                            style="padding: 3vw; width: 100%;text-align : center; outline:none;border:none;border-radius: 10px;background:#f7f7f7 ;">
+
+                    </div>
+                </div>
+
+
+                <div style="display: flex; justify-content: center;align-items: center;margin-top: 1.5rem;">
+                    <button style="width: 100%;padding: .8rem;background: #3395ff;border-radius: 8px;border:none">
+                        <h4 style="color:rgba(255, 255, 255, 0.913)">Recharge of RS.<span id="channel_5_amount">0</span>
+                        </h4>
+                    </button>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+        </section>
+
 
     </section>
 
@@ -1363,6 +1417,53 @@
                                 </div>
 
                             </div>
+
+
+                            <div class="gap">
+
+                                <div class="pass_gap">
+                                    <h4 style="color: grey;">Two-Factor Authentication (2FA),Choose anyone</h4>
+                                    <div class="pI addAccount"
+                                        style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;" >
+                                        <input type="number" placeholder="Phone Verification"
+                                            style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;">
+                                    </div>
+
+                                    <div class="password_verify_btn">
+                                        <button style="background:#7cd0e2;" id="reset_password_verify_btn">
+                                            <p style="">Verify OTP</p>
+                                        </button>
+                                        <button style="background:#fac069;" id="reset_password_send_otp_btn">
+                                            <p style="">Resend OTP</p>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="pass_gap">
+                                    <div class="pI addAccount "
+                                        style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;">
+                                        <input type="email" placeholder="Email Verification"
+                                            style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;padding: .5rem;">
+                                    </div>
+
+                                    <div class="password_verify_btn">
+                                        <button style="background:#7cd0e2;">
+                                            <p style="">Verify OTP</p>
+                                        </button>
+                                        <button style="background:#fac069;">
+                                            <p style="">Resend OTP</p>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
 
                         </div>
                     </section>
@@ -1627,7 +1728,7 @@
                 <button class="btnrech" data-v-1a0e7463="" id="sv_bank_details">Confirm</button>
 
                 <img class="imguis" src="/elephantFootball/withdrawalPopup/account_img.png" alt="" data-v-1a0e7463=""
-                    style="">
+                    style="display: none;">
             </section>
         </div>
     </section>

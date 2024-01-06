@@ -1103,6 +1103,7 @@ img {
 .payment .radiobtn {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .payment .radiobtn>p {
@@ -1335,21 +1336,20 @@ img {
     font-weight: 500;
 }
 
-.withdrawal button {
+#withdraw_request {
     width: 92vw;
     height: 13.066667vw;
     border-radius: 6.8vw;
     font-size: 4.8vw;
     font-weight: 500;
     color: #fff;
-    margin-top: 4vw;
     background: #7bebff;
     display: block;
     margin: 0 auto;
     background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
     border: none;
+    margin-top: 3rem;
 }
-
 .rulee img[data-v-5597067f] {
     width: 5.333333vw;
     height: 5.333333vw;
@@ -2374,7 +2374,7 @@ img {
 }
 
 .inr_w_form {
- background: #fff;
+    background: #fff;
 }
 
 .usdt_w_form {
@@ -2384,9 +2384,10 @@ img {
     left: 0;
     background: #fff;
     padding-bottom: 12vh;
-    display: none; 
+    display: none;
 }
-.addAccount > div{
+
+.addAccount>div {
     width: 100px;
     height: inherit;
     text-align: center;
@@ -2394,7 +2395,7 @@ img {
     align-items: center;
 }
 
-.usdt_pass_pop{
+.usdt_pass_pop {
     position: absolute;
     top: 15%;
     left: 0;
@@ -2405,7 +2406,8 @@ img {
     justify-content: center;
 
 }
-.usdt_set_pass{
+
+.usdt_set_pass {
     width: 94vw;
     height: 100%;
     background: #f8f8f8;
@@ -2413,14 +2415,15 @@ img {
     border-radius: 14px;
 }
 
-.set_usdt_add > input{
+.set_usdt_add>input {
     border: none;
     outline: none;
-    background: transparent; 
+    background: transparent;
     padding: 3vw;
     width: 100%;
 }
-.outer_add_pass{
+
+.outer_add_pass {
     display: flex;
     justify-content: center;
     width: 90vw;
@@ -2429,11 +2432,13 @@ img {
     height: 46px;
     border-radius: 10px;
 }
+
 .set_usdt_add {
     display: flex;
     align-items: center;
     width: 100%;
 }
+
 .usdt_set_pass button {
     width: 68vw;
     height: 13.066667vw;
@@ -2449,15 +2454,18 @@ img {
     border: none;
 }
 
-.pay_chanel_four::placeholder{
-    color:white
+.pay_chanel_four::placeholder {
+    color: white
 }
-.p_f_b{
-    background: linear-gradient(270deg, rgba(0,0,0,1) 23%, rgba(227,30,37,1) 100%);  
+
+.p_f_b {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 1) 23%, rgba(227, 30, 37, 1) 100%);
 }
-#pay_chanel_four_data{
-    position: relative;  
+
+#pay_chanel_four_data {
+    position: relative;
 }
+
 #pay_chanel_four_data::before {
     content: '';
     position: absolute;
@@ -2479,6 +2487,7 @@ img {
     background: red;
     z-index: -1;
 }
+
 .design_circle {
     position: absolute;
     width: 20px;
@@ -2488,6 +2497,7 @@ img {
     background: red;
     border-radius: 100%;
 }
+
 .design_circle_two {
     position: absolute;
     width: 13px;
@@ -2497,6 +2507,7 @@ img {
     background: red;
     border-radius: 100%;
 }
+
 #reference_number::before {
     position: absolute;
     content: '';
@@ -2508,6 +2519,7 @@ img {
     background: red;
     z-index: -1;
 }
+
 .p_f_submit {
     width: 66vw;
     display: block;
@@ -2521,10 +2533,12 @@ img {
     box-shadow: 0 0 12px 5px rgba(47, 46, 46, 0.2);
 
 }
-.circle_two{
+
+.circle_two {
     position: relative;
 }
-.circle_two::after{
+
+.circle_two::after {
     content: '';
     width: 25px;
     height: 25px;
@@ -2532,14 +2546,104 @@ img {
     top: 54%;
     right: 13%;
     border-radius: 100%;
-    background: red;
-   z-index: -1;
+    z-index: -1;
 }
 
 
-@media only screen and (max-width: 430px) and (max-height:400px){
-    input:focus{
+@media only screen and (max-width: 430px) and (max-height:400px) {
+    input:focus {
         position: fixed;
-        top:50px;
+        top: 50px;
     }
 }
+
+#payment_chanel_five {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 100dvw;
+    background: #fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+    /* align-items: center; */
+}
+
+.payment_chanel_five_content {
+    width: 70dvw;
+    min-height: 40rem;
+}
+
+.payment_chanel_five_header {
+    height: 4.5rem;
+    background: url(../elephantFootball/rechargePopup/chanel_five_header.png) center no-repeat;
+    background-size: 13rem;
+    margin-top: 1rem;
+}
+
+.payment_chanel_five_qrCode_box {
+    min-height: 25rem;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);
+    border-radius: 8px;
+    background: #f7f7f7;
+}
+
+.payment_chanel_five_qrCode_box_outer_div {
+    height: 3rem;
+    display: flex;
+}
+
+.bhim_img {
+    width: 50%;
+    height: 100%;
+    background: url(../elephantFootball/rechargePopup/chanel_five_upi_img_two.png) center no-repeat;
+    background-size: 6rem;
+}
+
+.upi_img {
+    width: 50%;
+    height: 100%;
+    background: url(../elephantFootball/rechargePopup/chanel_five_upi_img.png) center no-repeat;
+    background-size: 6rem;
+}
+
+.withdrawal_reset_btn {
+    word-spacing: 2px;
+    border: none;
+    outline: none;
+    margin: 0.6rem 0.5rem 0 0;
+    border-radius: 5px;
+    padding: .5rem .3rem;
+}
+.password_withdrawal{
+    display: flex;
+    border: 1px solid;
+}
+
+
+.two_factor_auth {
+    width: 92vw;
+    margin: 0 auto;
+    padding: 2vw;
+    margin: 0 0 0 1vh;
+  }
+  .password_verify_btn > button {
+    border: 1px solid;
+    word-spacing: 2px;
+    border: none;
+    outline: none;
+    margin: 0.6rem 0.5rem 0 0;
+    border-radius: 5px;
+   padding: .5rem .3rem;
+   margin-left: 6px;
+  }
+  .password_verify_btn > button > p{
+    font-weight: 600;
+    color:#fafafad6;
+  }

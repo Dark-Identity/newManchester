@@ -22,6 +22,7 @@ const {
   get_payment_data,
   change_password,
   forget_password,
+  verify_number,
 } = require("../controller/userController");
 const { history_matches } = require("../controller/homeController");
 
@@ -144,5 +145,10 @@ userRouter.route("/get_payment_data").get(get_payment_data);
 
 userRouter.use(isAuthenticated);
 userRouter.route("/get_history_matches").get(history_matches);
+
+userRouter.use(isAuthenticated)
+userRouter
+.route('/verify_number')
+.post(verify_number)
 
 module.exports = userRouter;
