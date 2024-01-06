@@ -156,7 +156,6 @@ async function get_user_data() {
   let res = await fetch("/user_data", config);
   let user_information = await res.json();
 
-
   if (user_information["status"] === 1) {
     set_user_data(user_information);
   } else if (user_information["status"] === 2) {
@@ -228,12 +227,81 @@ get_user_data();
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------- password function ----------------------------------------------------------------------------------------
 
+async function getEmailOtp() {
+  popup_cancel_btn.disabled = true;
+  popup_page.style.left = "0vw";
+
+  let config = {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  };
+  let response = await fetch("/get_withdraw_email_otp", config);
+  response = await response.json();
+
+  if (response["status"] == 1) {
+    popup_tip.innerText = "Success! otp sent wait 30sec to send again.";
+    popup_close_btn.disabled = false;
+  } else if (response["status"] === 2) {
+    popup_tip.innerText = "wait 30 sec before trying again.";
+    popup_close_btn.disabled = false;
+  } else {
+    popup_tip.innerText =
+      "Failure! something went wrong try again after 30sec.";
+    popup_close_btn.disabled = false;
+  }
+}
+async function getPhoneOtp() {
+  popup_cancel_btn.disabled = true;
+  popup_page.style.left = "0vw";
+
+  let config = {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  };
+  let response = await fetch("/get_withdraw_phone_otp", config);
+  response = await response.json();
+
+  if (response["status"] == 1) {
+    popup_tip.innerText = "Success! otp sent wait 30sec to send again.";
+    popup_close_btn.disabled = false;
+  } else if (response["status"] === 2) {
+    popup_tip.innerText = "wait 30 sec before trying again.";
+    popup_close_btn.disabled = false;
+  } else {
+    popup_tip.innerText =
+      "Failure! something went wrong try again after 30sec.";
+    popup_close_btn.disabled = false;
+  }
+}
+
+document.querySelector("#get_email_otp").addEventListener("click", async () => {
+  document.querySelector("#get_email_otp").disabled = true;
+  await getEmailOtp();
+  document.querySelector("#get_email_otp").disabled = false;
+});
+
+document.querySelector("#get_phone_otp").addEventListener("click", async () => {
+  document.querySelector("#get_phone_otp").disabled = true;
+  await getPhoneOtp();
+  document.querySelector("#get_phone_otp").disabled = false;
+});
+
 document.querySelector("#pbtn").addEventListener("click", async () => {
   let details = document.querySelectorAll(".pass_change");
-
+  let phone_otp = document.querySelector("#phone_otp").value;
+  let email_otp = document.querySelector("#email_otp").value;
   popup_page.style.left = "0px";
-  popup_cancel_btn.disabled = true;
 
+  if (!((!phone_otp && email_otp) || (!email_otp && phone_otp))) {
+    popup_tip.innerText = "Enter only one Otp";
+    return;
+  }
+  popup_cancel_btn.disabled = true;
+  let otp = phone_otp || email_otp;
   if (
     details[1].value !== "" &&
     details[2].value !== "" &&
@@ -251,6 +319,7 @@ document.querySelector("#pbtn").addEventListener("click", async () => {
     let data = {
       previous_code,
       new_code,
+      otp,
     };
     const config = {
       method: "POST",
@@ -728,23 +797,20 @@ document.querySelector("#ios_app").addEventListener("click", (e) => {
   popup_tip.innerText = "Comming soon";
 });
 
-
 // ---------------------------------------------------------------------------------------------------------------------
 // --------------------------------- number verification for reset password --------------------------------
 
-document.querySelector('#reset_password_send_otp_btn').addEventListener('click',async ()=>{
+document
+  .querySelector("#reset_password_send_otp_btn")
+  .addEventListener("click", async () => {
+    const config = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({}),
+    };
 
-
-  const config = {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({}),
-  };
-
-  let res = await fetch("/verify_number",config);
-  let res_data = await res.json();
-  console.log(res_data);
-
-});
+    let res = await fetch("/verify_number", config);
+    let res_data = await res.json();
+  });

@@ -741,15 +741,15 @@
                 <h5 style="color: grey;">Two-Factor Authentication (2FA),Choose anyone</h5>
                 <div class="pI"
                     style="display: flex;justify-content: space-between;align-items: center;border:1px solid;margin:2vw 0  0 0;height:5vh">
-                    <input type="number" placeholder="Phone Verification"
+                    <input id="phone_otp" type="number" placeholder="Phone Verification"
                         style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;">
                 </div>
 
                 <div class="password_verify_btn">
-                    <button style="background: #7cd0e2;" id="reset_password_verify_btn">
+                    {{!-- <button style="background: #7cd0e2;" id="reset_password_verify_btn">
                         <p style="">Verify OTP</p>
-                    </button>
-                    <button style="background:#fac069;" id="reset_password_send_otp_btn">
+                    </button> --}}
+                    <button id="get_phone_otp" style="background:#fac069;" id="reset_password_send_otp_btn">
                         <p style="">Resend OTP</p>
                     </button>
                 </div>
@@ -761,15 +761,15 @@
             <div class="pass_gap">
                 <div class="pI"
                     style="display: flex;justify-content: space-between;align-items: center;border:1px solid;margin:2vw 0  0 0;height:5vh">
-                    <input type="email" placeholder="Email Verification"
+                    <input id="email_otp" type="email" placeholder="Email Verification"
                         style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;">
                 </div>
 
                 <div class="password_verify_btn">
-                    <button style="background: #7cd0e2;">
+                    {{!-- <button style="background: #7cd0e2;">
                         <p style="">Verify OTP</p>
-                    </button>
-                    <button style="background:#fac069;">
+                    </button> --}}
+                    <button id="get_email_otp" style="background:#fac069;">
                         <p style="">Resend OTP</p>
                     </button>
                 </div>

@@ -20,16 +20,24 @@ module.exports.get_forget = get_forget = (req, res) => {
 };
 module.exports.forget_password = forget_password = async (req, res) => {
   let INVITATION_CODE = req.session.inv;
-  let { phone, password } = req.body;
-  if (!phone || !password) {
+  let { phone, password, otp } = req.body;
+  if (!phone || !password || !otp) {
     return res.send({ status: 3 }); //enter a valid data;
   } else {
-    let user_data = await User.findOne({ phone: phone });
-    if (user_data) {
-      await User.findOneAndUpdate({ phone: phone }, { password: password });
-      return res.send({ status: 1 });
-    } else {
-      return res.send({ status: 10 });
+    try {
+      if (Number(otp) !== req?.session?.otp) {
+        return res.send({ status: "Enter a valid otp" });
+      }
+      let user_data = await User.findOne({ phone: phone });
+      if (user_data) {
+        await User.findOneAndUpdate({ phone: phone }, { password: password });
+        return res.send({ status: 1 });
+      } else {
+        return res.send({ status: 10 });
+      }
+    } catch (error) {
+      console.log(error);
+      return res.send({ status: "Something went wrong" });
     }
   }
 };
@@ -400,22 +408,29 @@ async function createUser(data) {
 
 module.exports.change_password = async function change_password(req, res) {
   let INVITATION_CODE = req.session.inv;
-  let { previous_code, new_code } = req.body;
+  let { previous_code, new_code, otp } = req.body;
 
-  if (!previous_code || !new_code) {
+  if (!previous_code || !new_code || !otp) {
     return res.send({ status: 3 }); //enter a valid data;
   } else {
-    let user_data = await User.findOne({ inv: INVITATION_CODE });
-    if (previous_code === user_data["password"]) {
-      await User.findOneAndUpdate(
-        { inv: INVITATION_CODE },
-        { password: new_code }
-      );
-      return res.send({ status: 1 });
-    } else {
-      return res.send({
-        status: "previous password not matched contact CS . ",
-      });
+    try {
+      if (Number(otp) !== Number(req?.session?.otp)) {
+        return res.send({ status: "Enter a valid otp" });
+      }
+      let user_data = await User.findOne({ inv: INVITATION_CODE });
+      if (previous_code === user_data["password"]) {
+        await User.findOneAndUpdate(
+          { inv: INVITATION_CODE },
+          { password: new_code }
+        );
+        return res.send({ status: 1 });
+      } else {
+        return res.send({
+          status: "previous password not matched contact CS . ",
+        });
+      }
+    } catch (error) {
+      return res.send({ status: 0 });
     }
   }
 };

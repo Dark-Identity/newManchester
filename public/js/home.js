@@ -748,6 +748,7 @@ withdraw_btn.addEventListener("click", async () => {
   popup_page.style.left = "0px";
   if (!((!phone_otp && email_otp) || (phone_otp && !email_otp))) {
     popup_tip.innerText = "Enter any one otp";
+    return;
   }
   otp = phone_otp || email_otp;
   if (amount == "" || !amount || !withdrawal_code || withdrawal_code == "") {
@@ -1273,6 +1274,7 @@ document
     }
     if (!((!phone_otp && email_otp) || (!email_otp && phone_otp))) {
       popup_tip.innerText = "Enter any one otp";
+      return;
     }
     let otp = phone_otp || email_otp;
     if (!usdt_adress || typeof usdt_adress === "undefined") {
@@ -1478,8 +1480,6 @@ async function channel_four_submit() {
   let referance_number = document.querySelector(
     "#channel_four_ref_input"
   ).value;
-
-  console.log(referance_number.length);
 
   let amount = document.querySelector("#channel_4_amount").innerText;
 
