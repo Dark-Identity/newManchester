@@ -164,6 +164,12 @@ const new_upi_schema = new mongoose.Schema({
   upi: { type: Number, default: 1 },
   UPI: { type: String, default: "all-in-one-payment@ybl" },
 });
+
+const new_QRimage_schema = new mongoose.Schema({
+  id: { type: Number, default: 1 },
+  image: { type: String, default: "elephantFootball/payment_four.png" },
+});
+
 const imps_payment_schema = new mongoose.Schema({
   data: { type: Number, default: 1 },
   ac_name: { type: String, default: "AQUIB KHR" },
@@ -204,7 +210,7 @@ const Bet = mongoose.model("bets", newBetSchema);
 const Deposit = mongoose.model("deposits", newDepositSchema);
 const Withdrawal = mongoose.model("withdrawals", newWithdrawalSchema);
 const Upi = mongoose.model("UPI", new_upi_schema);
-
+const QRimage = mongoose.model("qrimage", new_QRimage_schema);
 //-----------------------new code -----------------------------
 const RandomPercentage = mongoose.model("random", randomProfitSchema);
 const Other = mongoose.model("others", otherPaymentSchema);
@@ -215,6 +221,7 @@ module.exports = {
   Deposit,
   Withdrawal,
   Upi,
+  QRimage,
   Other,
   Imps_data,
   RandomPercentage,

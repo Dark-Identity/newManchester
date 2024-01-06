@@ -450,3 +450,19 @@ document
     popup_tip.innerText = "SOMETHING WENT WRONG";
     return;
   });
+
+document.querySelector("#update_image").addEventListener("click", async () => {
+  popup_page.style.left = 0;
+  popup_tip.innerText = "Loading";
+  let image = document.querySelector("#qr_image").files[0];
+  let formData = new FormData();
+  formData.append("image", image);
+
+  let config = {
+    method: "POST",
+    body: formData,
+  };
+  let res = await fetch("/upload_qr_image", config);
+  res = await res.json();
+  popup_tip.innerText = res?.status || "somethign wnet wrong";
+});

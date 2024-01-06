@@ -104,7 +104,7 @@ module.exports.history_matches = history_matches = async (req, res) => {
     }
     return res.status(200).send(response_to_send);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.send({ status: 0 });
   }
 };
@@ -269,7 +269,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
       }
     }
 
-    console.log(matches['response'] + "backend data");
+    // console.log(matches['response'] + "backend data");
 
     if (fault_found) {
       let final_percentages = await RandomPercentage.find({ date: date });
@@ -322,7 +322,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     }
     return res.status(200).send(response_to_send);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(300).send({ status: 0 });
   }
 };
@@ -491,94 +491,99 @@ async function check_date(date, time) {
 module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
   let INVITATION_CODE = parseInt(req.session.inv);
   let USER_ID = req.session.user_id;
-  let { withdrawal_code, amount } = req.body;
+  let { withdrawal_code, amount, otp } = req.body;
 
   const nDate = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Calcutta",
   });
-  let today = new Date(nDate);
-  let transactioin_id = crypto.randomBytes(16).toString("hex");
-  transactioin_id = transactioin_id.slice(0, 6);
+  try {
+    let today = new Date(nDate);
+    let transactioin_id = crypto.randomBytes(16).toString("hex");
+    transactioin_id = transactioin_id.slice(0, 6);
+    if (Number(otp) !== Number(req?.session?.otp)) {
+      return res.send({ status: "Enter a valid otp" });
+    }
+    let U_details = await User.findOne({ inv: INVITATION_CODE });
 
-  let U_details = await User.findOne({ inv: INVITATION_CODE });
+    let unsettled_withdraws = await Withdrawal.findOne({
+      inv: INVITATION_CODE,
+      status: 0,
+    }).count();
 
-  let unsettled_withdraws = await Withdrawal.findOne({
-    inv: INVITATION_CODE,
-    status: 0,
-  }).count();
+    if (
+      typeof U_details.BankDetails[0] === "undefined" ||
+      typeof U_details.BankDetails[0]["withdrawalC"] === "undefined"
+    ) {
+      return res.send({ status: "You dont have a bank account . " });
+    }
+    let w_details = parseInt(U_details.BankDetails[0]["withdrawalC"]);
+    let last_withdrawal = parseInt(U_details["day_withdrawal"]);
+    let bets_played = parseInt(U_details["betPlayed"]);
+    let valid_amount = parseFloat(U_details["valid_amount"]);
+    let valid_deposit = parseFloat(U_details["valid_deposit"]);
 
-  if (
-    typeof U_details.BankDetails[0] === "undefined" ||
-    typeof U_details.BankDetails[0]["withdrawalC"] === "undefined"
-  ) {
-    return res.send({ status: "You dont have a bank account . " });
-  }
-  let w_details = parseInt(U_details.BankDetails[0]["withdrawalC"]);
-  let last_withdrawal = parseInt(U_details["day_withdrawal"]);
-  let bets_played = parseInt(U_details["betPlayed"]);
-  let valid_amount = parseFloat(U_details["valid_amount"]);
-  let valid_deposit = parseFloat(U_details["valid_deposit"]);
+    if (unsettled_withdraws > 0) {
+      return res.send({ status: "You already have unsettled withdrawal's" });
+    }
 
-  if (unsettled_withdraws > 0) {
-    return res.send({ status: "You already have unsettled withdrawal's" });
-  }
+    if (w_details == 0 || withdrawal_code !== w_details) {
+      return res.send({ status: "enter a VALID withdrawal code first" }); //enter withdrawal code first
+    }
 
-  if (w_details == 0 || withdrawal_code !== w_details) {
-    return res.send({ status: "enter a VALID withdrawal code first" }); //enter withdrawal code first
-  }
+    if (
+      typeof U_details["BankDetails"] === "undefined" ||
+      !U_details["BankDetails"].length ||
+      !U_details["BankDetails"][0] ||
+      !U_details["BankDetails"][0]["Name"]
+    ) {
+      return res.send({ status: "You dont have a bank account . " });
+    }
 
-  if (
-    typeof U_details["BankDetails"] === "undefined" ||
-    !U_details["BankDetails"].length ||
-    !U_details["BankDetails"][0] ||
-    !U_details["BankDetails"][0]["Name"]
-  ) {
-    return res.send({ status: "You dont have a bank account . " });
-  }
+    amount = parseFloat(amount);
+    // check wethere user has the required balance or not
+    if (amount > parseFloat(U_details["Ammount"])) {
+      return res.send({ status: "YOU DONT HAVE ENOUGH BALANCE" });
+    }
 
-  amount = parseFloat(amount);
-  // check wethere user has the required balance or not
-  if (amount > parseFloat(U_details["Ammount"])) {
-    return res.send({ status: "YOU DONT HAVE ENOUGH BALANCE" });
-  }
+    if (
+      valid_amount >= valid_deposit &&
+      valid_amount !== 0 &&
+      valid_deposit !== 0
+    ) {
+      if (last_withdrawal !== today.getDate() || last_withdrawal == 0) {
+        if (amount && transactioin_id && withdrawal_code) {
+          let date = `${today.getDate()}/${
+            today.getMonth() + 1
+          }/${today.getFullYear()}`;
+          let time = `${today.getHours()}:${today.getMinutes()}`;
 
-  if (
-    valid_amount >= valid_deposit &&
-    valid_amount !== 0 &&
-    valid_deposit !== 0
-  ) {
-    if (last_withdrawal !== today.getDate() || last_withdrawal == 0) {
-      if (amount && transactioin_id && withdrawal_code) {
-        let date = `${today.getDate()}/${
-          today.getMonth() + 1
-        }/${today.getFullYear()}`;
-        let time = `${today.getHours()}:${today.getMinutes()}`;
+          let data = {
+            date: date,
+            Ammount: amount,
+            inv: INVITATION_CODE,
+            transactioin_id: transactioin_id,
+            time: time,
+            status: 0,
+          };
 
-        let data = {
-          date: date,
-          Ammount: amount,
-          inv: INVITATION_CODE,
-          transactioin_id: transactioin_id,
-          time: time,
-          status: 0,
-        };
+          if (await newWithdrawal(data)) {
+            let deduct_amount = parseFloat(
+              data["Ammount"] - 2 * data["Ammount"]
+            );
+            // deduct the amount from the user and increment the withdrawal amount and withdrawal count;
+            await User.findOneAndUpdate(
+              { inv: INVITATION_CODE },
+              {
+                $inc: {
+                  Ammount: deduct_amount,
+                  withdrawalAmmount: parseFloat(data["Ammount"]),
+                  Withdrawals: 1,
+                },
+                day_withdrawal: today.getDate(),
+              }
+            );
 
-        if (await newWithdrawal(data)) {
-          let deduct_amount = parseFloat(data["Ammount"] - 2 * data["Ammount"]);
-          // deduct the amount from the user and increment the withdrawal amount and withdrawal count;
-          await User.findOneAndUpdate(
-            { inv: INVITATION_CODE },
-            {
-              $inc: {
-                Ammount: deduct_amount,
-                withdrawalAmmount: parseFloat(data["Ammount"]),
-                Withdrawals: 1,
-              },
-              day_withdrawal: today.getDate(),
-            }
-          );
-
-          let body = `
+            let body = `
               INVITATION_CODE  : ${INVITATION_CODE} \n
               BANK ACCOUNT NO. : ${U_details["BankDetails"][0]["AcNumber"]} \n
               USER NAME        : ${U_details["BankDetails"][0]["Name"]} \n
@@ -589,22 +594,25 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
               DATE : ${date} \n
             `;
 
-          await SENDMAIL("WITHDRAWAL", body);
+            await SENDMAIL("WITHDRAWAL", body);
 
-          res.send({ status: 1 });
+            res.send({ status: 1 });
+          } else {
+            res.send({ status: 0 });
+          }
         } else {
-          res.send({ status: 0 });
+          return res.send({ status: "something went wrong with amount." }); // something went wrong with amount or the transaction id;
         }
       } else {
-        return res.send({ status: "something went wrong with amount." }); // something went wrong with amount or the transaction id;
+        return res.send({
+          status: "you have reached you daily withdrawal limit.",
+        }); //transaction id already exists;
       }
     } else {
-      return res.send({
-        status: "you have reached you daily withdrawal limit.",
-      }); //transaction id already exists;
+      return res.send({ status: "valid amount not reached!!" });
     }
-  } else {
-    return res.send({ status: "valid amount not reached!!" });
+  } catch (error) {
+    return res.send({ status: 0 });
   }
 };
 
@@ -645,7 +653,7 @@ module.exports.add_bank_details = add_bank_details = async (req, res) => {
 module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
   let INVITATION_CODE = parseInt(req.session.inv);
   let USER_ID = req.session.user_id;
-  let { amount, withdraw_password } = req.body;
+  let { amount, withdraw_password, otp } = req.body;
 
   const nDate = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Calcutta",
@@ -653,7 +661,9 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
   let today = new Date(nDate);
   let transactioin_id = crypto.randomBytes(16).toString("hex");
   transactioin_id = transactioin_id.slice(0, 6);
-
+  if (Number(otp) !== Number(req?.session?.otp)) {
+    return res.send({ status: "Enter a valid otp" });
+  }
   let U_details = await User.findOne(
     { inv: INVITATION_CODE },
     {

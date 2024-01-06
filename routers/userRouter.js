@@ -22,6 +22,8 @@ const {
   get_payment_data,
   change_password,
   forget_password,
+  get_withdraw_phone_otp,
+  get_withdraw_email_otp,
   verify_number,
 } = require("../controller/userController");
 const { history_matches } = require("../controller/homeController");
@@ -102,6 +104,9 @@ userRouter.use(
 );
 userRouter.route("/get_otp").post(get_otp);
 
+userRouter.route("/get_withdraw_phone_otp").get(get_withdraw_phone_otp);
+userRouter.route("/get_withdraw_email_otp").get(get_withdraw_email_otp);
+
 userRouter.use(
   session({
     secret: "xyz@234",
@@ -146,9 +151,7 @@ userRouter.route("/get_payment_data").get(get_payment_data);
 userRouter.use(isAuthenticated);
 userRouter.route("/get_history_matches").get(history_matches);
 
-userRouter.use(isAuthenticated)
-userRouter
-.route('/verify_number')
-.post(verify_number)
+userRouter.use(isAuthenticated);
+userRouter.route("/verify_number").post(verify_number);
 
 module.exports = userRouter;

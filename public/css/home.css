@@ -1,2649 +1,2573 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --grey: #4e596e;
-    --grey_dark: #242a32;
-    --blue: #5a8ed3;
-    --background: #f1f1f6;
-    --white: #ffffff;
+  --grey: #4e596e;
+  --grey_dark: #242a32;
+  --blue: #5a8ed3;
+  --background: #f1f1f6;
+  --white: #ffffff;
 }
 
 html,
 body {
-    font-size: 14px;
-    background: #fff;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
+  font-size: 14px;
+  background: #fff;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
-
+#get_withdraw_phone_usdt_otp:disabled,
+#get_withdraw_email_usdt_otp:disabled,
+#get_withdraw_phone_otp:disabled,
+#get_withdraw_email_otp:disabled {
+  background: hsla(0, 0%, 100%, 0.65);
+}
 body::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
 
 /* --------------------------------------------------------------------------------------------------- */
 .tirs {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .tirs ion-icon {
-    color: gray;
+  color: gray;
 }
-
-
 
 /* -------------------------------------------------------------------------------------------------- */
 .app {
-    width: 100vw;
-    min-height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    /* transform: translate(100vw); */
+  width: 100vw;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* transform: translate(100vw); */
 }
 
 .app::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
 
 .Homei {
-    width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    background: #fff;
-    /* background-color: #000; */
-    z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  background: #fff;
+  /* background-color: #000; */
+  z-index: -1;
 }
 
 .Homei::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
 
-
 .VIPbox {
-    width: 100vw;
-    min-height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    transform: translate(100vw);
-    display: none;
+  width: 100vw;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: translate(100vw);
+  display: none;
 }
 
 .VIPbox::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
 
 .vipDiv {
-    padding: 20px 0 0 0;
-    position: relative;
-    height: 100vh;
-    overflow-y: scroll;
-    background: #333;
+  padding: 20px 0 0 0;
+  position: relative;
+  height: 100vh;
+  overflow-y: scroll;
+  background: #333;
 }
 
 .vipDiv::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
 
-
-
 .recharge {
-    overflow-x: hidden;
-    transform: translateX(-120vw);
+  overflow-x: hidden;
+  transform: translateX(-120vw);
 }
 
 .recharge::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
-
 
 .recoPopup {
-    overflow-x: hidden;
-    transform: translateX(-120vw);
+  overflow-x: hidden;
+  transform: translateX(-120vw);
 }
 
-
 .withdrawalCantainer {
-    transform: translateX(-120vw);
+  transform: translateX(-120vw);
 }
 
 .withdrawal::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
 
 .footerCantainer {
-    /* transform: translateX(-120vw); */
+  /* transform: translateX(-120vw); */
 }
 
 .ruleCantainer {
-    transform: translateX(-120vw);
-    overflow: hidden;
+  transform: translateX(-120vw);
+  overflow: hidden;
 }
 
 .serviceCantainer {
-    background: #FFF;
-    transform: translateX(120vw);
+  background: #fff;
+  transform: translateX(120vw);
 }
 
 /* ----------------------------------------------------------------------------------------- */
 
 .Homei::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
+  display: none;
+  overflow: hidden;
 }
 
-
 .homeHeader {
-    height: 20vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    color: #fff;
-    background: url(../elephantFootball/homePage/header.png);
-    border-bottom-left-radius: 40%;
-    border-bottom-right-radius: 40%;
+  height: 20vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+  background: url(../elephantFootball/homePage/header.png);
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%;
 }
 
 .top-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: top;
-    height: 100%;
-    padding: 2vw;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  height: 100%;
+  padding: 2vw;
 }
 
 /* ----------------------------------- header ------------------------------ */
 
 path {
-    fill: transparent;
+  fill: transparent;
 }
 
 text {
-    fill: #FF9800;
+  fill: #ff9800;
 }
 
 .crouselCantainer {
-    position: relative;
-    top: -12vh;
+  position: relative;
+  top: -12vh;
 }
 
 .swiper {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2.5vw;
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5vw;
 }
 
 .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 .swiper-pagination-bullet {
-    background: white !important;
+  background: white !important;
 }
 
 .flex,
 .flex-start {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vw;
 }
 
 .top-box .leftlogo p[data-v-7afa3138] {
-    color: #00af83;
-    font-size: 6.066667vw;
-    transform: skew(-10deg);
-    font-weight: 600;
-    text-align: left;
-    font-family: li;
+  color: #00af83;
+  font-size: 6.066667vw;
+  transform: skew(-10deg);
+  font-weight: 600;
+  text-align: left;
+  font-family: li;
 }
 
 .van-swipe {
-    border: 1px solid;
-    position: relative;
-    overflow: hidden;
-    transform: translateZ(0);
-    cursor: -webkit-grab;
-    cursor: grab;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  cursor: -webkit-grab;
+  cursor: grab;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .van-image__error,
 .van-image__img,
 .van-image__loading {
-    display: block;
-    width: 100%;
-    height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* -------------------- alert box ------------------- */
 [data-v-7afa3138] .bar-box {
-    margin-top: 2vw;
-    background: none;
-    background: #fff;
-    box-shadow: 0 .533333vw .533333vw 0 rgba(51, 51, 51, .1);
-    border-radius: 1.066667vw;
+  margin-top: 2vw;
+  background: none;
+  background: #fff;
+  box-shadow: 0 0.533333vw 0.533333vw 0 rgba(51, 51, 51, 0.1);
+  border-radius: 1.066667vw;
 }
 
 .van-notice-bar {
-    width: 92vw;
-    margin: 0 auto;
-    filter: drop-shadow(0 2px 2px #5555551c);
-    border-radius: 5px;
+  width: 92vw;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 2px #5555551c);
+  border-radius: 5px;
 }
 
 .van-notice-bar div {
-    padding: 2px 7px 2px 0px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
+  padding: 2px 7px 2px 0px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
 }
 
-.van-notice-bar>div>img {
-    width: 5.333333vw;
-    height: 5.333333vw;
-    margin-left: 2vw;
+.van-notice-bar > div > img {
+  width: 5.333333vw;
+  height: 5.333333vw;
+  margin-left: 2vw;
 }
-
 
 /* --------------------------------------------- checkbox css file added ------------------------------------------*/
 .item-box {
-    margin-top: 1vh;
+  margin-top: 1vh;
 }
 
 .itemuis {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .item-box .itemuis img[data-v-7afa3138] {
-    width: 12.533333vw;
-    height: 12.533333vw;
+  width: 12.533333vw;
+  height: 12.533333vw;
 }
 
 /* --------------------------------------------- checkbox css file added ------------------------------------------*/
 .checkBoxCantainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .checkBoxCantainer .checkbox[data-v-7afa3138] {
-    width: 92vw;
-    height: 22.666667vw;
-    background: url(/elephantFootball/homePage/check.png) center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 3.333333vw;
-    padding: 1.666667vw 0;
+  width: 92vw;
+  height: 22.666667vw;
+  background: url(/elephantFootball/homePage/check.png) center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 3.333333vw;
+  padding: 1.666667vw 0;
 }
 
 .checkBoxCantainer .checkbox .bottomi p[data-v-7afa3138] {
-    width: 45.333333vw;
-    font-size: 3.2vw;
-    color: #fff;
-    text-align: left;
-    font-weight: 500;
+  width: 45.333333vw;
+  font-size: 3.2vw;
+  color: #fff;
+  text-align: left;
+  font-weight: 500;
 }
 
 .checkBoxCantainer .checkbox .balance p[data-v-7afa3138] {
-    font-size: 6.4vw;
-    color: #e2ad85;
-    font-weight: 600;
+  font-size: 6.4vw;
+  color: #e2ad85;
+  font-weight: 600;
 }
 
 .checkBoxCantainer .checkbox .balance span[data-v-7afa3138] {
-    font-size: 3.466667vw;
-    font-weight: 500;
-    color: #fff;
+  font-size: 3.466667vw;
+  font-weight: 500;
+  color: #fff;
 }
 
 .checkBoxCantainer .checkbox .bottomi button[data-v-7afa3138] {
-    background: linear-gradient(135deg, #fff3e9, #da9b6b);
-    box-shadow: 0 .266667vw .533333vw 0 rgba(0, 0, 0, .8), inset 0 -.266667vw .666667vw 0 hsla(0, 0%, 100%, .65);
-    border-radius: 4.533333vw;
-    padding: 1.333333vw 4vw;
-    font-size: 3.733333vw;
-    font-weight: 500;
-    color: #6b3810;
-    border: 1px solid #fff;
+  background: linear-gradient(135deg, #fff3e9, #da9b6b);
+  box-shadow: 0 0.266667vw 0.533333vw 0 rgba(0, 0, 0, 0.8),
+    inset 0 -0.266667vw 0.666667vw 0 hsla(0, 0%, 100%, 0.65);
+  border-radius: 4.533333vw;
+  padding: 1.333333vw 4vw;
+  font-size: 3.733333vw;
+  font-weight: 500;
+  color: #6b3810;
+  border: 1px solid #fff;
 }
 
 .checkbox .bottomi p span[data-v-7afa3138] {
-    color: #ffe221;
-    font-weight: 600;
-    font-size: 3.2vw;
+  color: #ffe221;
+  font-weight: 600;
+  font-size: 3.2vw;
 }
-
-
 
 /* ------------------------------------------------- winners showing css style--------------------------------- */
 .winners {
-    width: 92vw;
-    margin: 0 auto;
-    margin-top: 1vh;
-    overflow-y: scroll;
+  width: 92vw;
+  margin: 0 auto;
+  margin-top: 1vh;
+  overflow-y: scroll;
 }
 
 /* ---------------------------------------------------- */
 .listi {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .5vh 1vw;
-    background-color: #00af83;
-    height: 37px;
-    overflow-y: scroll;
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5vh 1vw;
+  background-color: #00af83;
+  height: 37px;
+  overflow-y: scroll;
+  z-index: 1;
 }
 
 .showWinner {
-    display: flex;
-    flex-direction: column;
-    animation: upper 1000ms linear infinite;
-    height: 37px;
-
+  display: flex;
+  flex-direction: column;
+  animation: upper 1000ms linear infinite;
+  height: 37px;
 }
 
-
-.listi>img {
-    width: 5.333333vw;
-    height: 5.333333vw;
-    margin-left: 2vw;
+.listi > img {
+  width: 5.333333vw;
+  height: 5.333333vw;
+  margin-left: 2vw;
 }
 
 .topGames {
-    display: flex;
-    align-items: center;
-    width: 92vw;
-    margin: 0 auto;
-    padding: 3vw 0;
+  display: flex;
+  align-items: center;
+  width: 92vw;
+  margin: 0 auto;
+  padding: 3vw 0;
 }
 
-.topGames .gamesLogo>img {
-    width: 5.6vw;
-    height: 5.6vw;
+.topGames .gamesLogo > img {
+  width: 5.6vw;
+  height: 5.6vw;
 }
 
-.topGames>p {
-    font-size: 4.266667vw;
-    font-weight: 500;
-    color: #00774c;
-    margin-left: 2vw;
+.topGames > p {
+  font-size: 4.266667vw;
+  font-weight: 500;
+  color: #00774c;
+  margin-left: 2vw;
 }
 
 .gameBox {
-    /* margin-bottom: 2.666667vw; */
-    width: 91.466667vw;
-    box-shadow: 0 0.666667vw 1.6vw 0.266667vw rgb(0 77 119 / 16%);
-    border-radius: 2.666667vw;
-    padding: 0 0 2.666667vw 0;
-    margin: 0 auto;
-    background: linear-gradient(180deg, #fff, #eff8fe);
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 2vh;
+  /* margin-bottom: 2.666667vw; */
+  width: 91.466667vw;
+  box-shadow: 0 0.666667vw 1.6vw 0.266667vw rgb(0 77 119 / 16%);
+  border-radius: 2.666667vw;
+  padding: 0 0 2.666667vw 0;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #fff, #eff8fe);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2vh;
 }
 
 .tName {
-    margin-left: 1vw;
+  margin-left: 1vw;
 }
 
 .circle {
-    width: 12px;
-    height: 11px;
-    background: #fff;
-    border: .8vw solid skyblue;
-    border-radius: 50%;
-    margin-right: 2vw;
+  width: 12px;
+  height: 11px;
+  background: #fff;
+  border: 0.8vw solid skyblue;
+  border-radius: 50%;
+  margin-right: 2vw;
 }
 
 .dataDiv {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
 }
 
 .dataDiv .tName {
-    width: 53.333333vw;
-    font-size: 3.733333vw;
-    font-weight: 500;
-    color: #333;
-    text-align: left;
-
+  width: 53.333333vw;
+  font-size: 3.733333vw;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
 }
 
 .ellipsis-1,
 .ellipsis-2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ellipsis-1 {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 p,
 span {
-    font-size: 3.733333vw;
+  font-size: 3.733333vw;
 }
 
-.dataDiv>div {
-    display: flex;
-    align-items: center;
-    text-transform: capitalize;
-    padding: 1vw;
+.dataDiv > div {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  padding: 1vw;
 }
 
 .date {
-    justify-content: space-between;
-    width: 33%;
-    margin: 0 5px;
+  justify-content: space-between;
+  width: 33%;
+  margin: 0 5px;
 }
 
 .match {
-    margin: 2vw 2vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  margin: 2vw 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .teamOne {
-    display: flex;
-    align-items: center;
-    width: 40%;
-    text-transform: capitalize;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  width: 40%;
+  text-transform: capitalize;
+  justify-content: center;
+  text-align: center;
 }
 
 .vs {
-    margin: 0 1.333333vw;
+  margin: 0 1.333333vw;
 }
 
 .match .teamOne .nameu {
-    flex: 1;
-    font-size: 3.466667vw;
-    font-weight: 600;
-    color: #333;
-    margin-right: 1.333333vw;
+  flex: 1;
+  font-size: 3.466667vw;
+  font-weight: 600;
+  color: #333;
+  margin-right: 1.333333vw;
 }
 
 .ellipsis-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .teamLogo {
-    width: 10.133333vw;
-    height: 10.133333vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #5ab2ea;
-    border-radius: 50%;
+  width: 10.133333vw;
+  height: 10.133333vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #5ab2ea;
+  border-radius: 50%;
 }
 
-.teamLogo>img {
-    width: 6.666667vw;
-    height: 6.666667vw;
+.teamLogo > img {
+  width: 6.666667vw;
+  height: 6.666667vw;
 }
 
 .vs p[data-v-7afa3138] {
-    background: linear-gradient(180deg, #00af83, #00774c);
-    -webkit-background-clip: text;
-    color: transparent;
-    font-size: 4.8vw;
-    font-weight: 600;
+  background: linear-gradient(180deg, #00af83, #00774c);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 4.8vw;
+  font-weight: 600;
 }
 
 .gameBox .downbox[data-v-7afa3138] {
-    margin-top: 1.333333vw;
-    display: flex;
-    justify-content: center;
+  margin-top: 1.333333vw;
+  display: flex;
+  justify-content: center;
 }
 
 [data-v-7afa3138] .countdown .block {
-    font-size: 4vw;
-    font-weight: 600;
-    border-radius: .8vw;
-    line-height: 6vw;
-    color: #ef0000;
+  font-size: 4vw;
+  font-weight: 600;
+  border-radius: 0.8vw;
+  line-height: 6vw;
+  color: #ef0000;
 }
 
 .matchResult {
-    padding: 1vh 2.666667vh;
-    margin-top: 1.333333vw;
-    /* height: 5vh; */
-    /* background: #fafafa; */
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: #FAFAFA;
-
+  padding: 1vh 2.666667vh;
+  margin-top: 1.333333vw;
+  /* height: 5vh; */
+  /* background: #fafafa; */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #fafafa;
 }
 
 .highi[data-v-7afa3138] {
-    font-size: 3.2vw;
-    color: #999;
+  font-size: 3.2vw;
+  color: #999;
 }
 
 .highuis .oddsop[data-v-7afa3138] {
-    font-size: 3.733333vw;
-    font-weight: 500;
-    color: #333;
+  font-size: 3.733333vw;
+  font-weight: 500;
+  color: #333;
 }
 
 .transty[data-v-7afa3138] {
-    padding: 0 2.666667vw;
-    margin-top: .666667vw;
+  padding: 0 2.666667vw;
+  margin-top: 0.666667vw;
 }
 
 .transty span[data-v-7afa3138] {
-    font-size: 3.2vw;
-    color: #999;
+  font-size: 3.2vw;
+  color: #999;
 }
 
 .transty p[data-v-7afa3138] {
-    font-size: 3.733333vw;
-    font-weight: 500;
-    color: #ff7600;
+  font-size: 3.733333vw;
+  font-weight: 500;
+  color: #ff7600;
 }
 
 .highuis .oddsop span[data-v-7afa3138] {
-    color: #00cf08;
+  color: #00cf08;
 }
 
 .collection {
-    margin-top: 1.2vh;
-    padding-bottom: 8vh;
+  margin-top: 1.2vh;
+  padding-bottom: 8vh;
 }
 
 .collection::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .scroll {
-    overflow-x: scroll;
-    font-weight: 600;
-    animation: scroll 120s linear 0s infinite;
+  overflow-x: scroll;
+  font-weight: 600;
+  animation: scroll 120s linear 0s infinite;
 }
 
 @keyframes scroll {
-    100% {
-        transform: translateX(-5081px);
-    }
+  100% {
+    transform: translateX(-5081px);
+  }
 }
 
 /* <!-- --------------------------------------------- vip Cantainer ----------------------------------------- -->    */
 
-
 .vipHeader {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    height: 46px;
-    color: white;
-    justify-content: center;
-    align-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  height: 46px;
+  color: white;
+  justify-content: center;
+  align-content: space-evenly;
 }
 
 .vipHeader div:nth-child(1) {
-    display: flex;
-    padding: 16px;
-    font-size: 6vw;
-    font-weight: 900;
+  display: flex;
+  padding: 16px;
+  font-size: 6vw;
+  font-weight: 900;
 }
 
 .vipHeader div:nth-child(2) {
-    font-size: 4.66vw;
-    font-weight: 500;
+  font-size: 4.66vw;
+  font-weight: 500;
 }
 
 .vipHeader div:nth-child(3) {
-    font-size: 3.66vw;
-    display: flex;
-    justify-content: flex-end;
-    padding: 16px;
-    text-decoration: none;
-
+  font-size: 3.66vw;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+  text-decoration: none;
 }
 
-.vipHeader div:nth-child(3)>a {
-    color: white;
+.vipHeader div:nth-child(3) > a {
+  color: white;
 }
-
 
 .vipDiv .crouselCantainer .swiper .swiper-slide {
-    display: flex;
+  display: flex;
 }
 
-.vipDiv .crouselCantainer .swiper .swiper-slide>img {
-    width: 95vw;
-    position: relative;
-    border: 1px solid yellow;
+.vipDiv .crouselCantainer .swiper .swiper-slide > img {
+  width: 95vw;
+  position: relative;
+  border: 1px solid yellow;
 }
 
 .imgvip {
-    position: absolute;
-    top: 5vw;
-    left: 1vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
+  position: absolute;
+  top: 5vw;
+  left: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
 }
 
 .imgvip img[data-v-613a8d0e] {
-    width: 10.666667vw;
-    height: 10.666667vw;
-    margin-right: .666667vw;
+  width: 10.666667vw;
+  height: 10.666667vw;
+  margin-right: 0.666667vw;
 }
 
 .vipDiv .imgvip .namei[data-v-613a8d0e] {
-    font-size: 6.4vw;
-    background: linear-gradient(126deg, #dd986b, #ad6f52);
-    -webkit-background-clip: text;
-    color: transparent;
-    font-weight: 900;
-    text-align: left;
+  font-size: 6.4vw;
+  background: linear-gradient(126deg, #dd986b, #ad6f52);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  text-align: left;
 }
 
 .vipDiv .swiper-slide {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .rs {
-    position: absolute;
-    top: 8vw;
-    right: 10vw;
-    font-size: 3.733333vw;
-    color: #9b5014;
-    font-weight: 700;
+  position: absolute;
+  top: 8vw;
+  right: 10vw;
+  font-size: 3.733333vw;
+  color: #9b5014;
+  font-weight: 700;
 }
 
-.rs>p {
-    font-size: 3.2vw;
-    font-weight: 500;
+.rs > p {
+  font-size: 3.2vw;
+  font-weight: 500;
 }
 
 .userRsdata {
-    position: absolute;
-    top: 19vw;
-    left: 10vw;
-    display: flex;
-    align-items: center;
-    margin-top: 3.733333vw;
-    font-size: 3.2vw;
-    color: #c68959;
-    font-weight: 500;
-    margin-right: 1.333333vw;
-    text-transform: capitalize;
+  position: absolute;
+  top: 19vw;
+  left: 10vw;
+  display: flex;
+  align-items: center;
+  margin-top: 3.733333vw;
+  font-size: 3.2vw;
+  color: #c68959;
+  font-weight: 500;
+  margin-right: 1.333333vw;
+  text-transform: capitalize;
 }
 
-.userRsdata>p>span {
-    font-weight: 700;
+.userRsdata > p > span {
+  font-weight: 700;
 }
 
 .upgrade {
-    position: absolute;
-    top: 23vw;
-    left: 10vw;
-    margin-top: 3.733333vw;
-    color: #c68959;
-    font-weight: 500;
+  position: absolute;
+  top: 23vw;
+  left: 10vw;
+  margin-top: 3.733333vw;
+  color: #c68959;
+  font-weight: 500;
 }
 
-.upgrade>p {
-    font-size: 3.2vw;
-    font-weight: 500;
+.upgrade > p {
+  font-size: 3.2vw;
+  font-weight: 500;
 }
 
 .checkIn {
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .vipDiv .checkIn .check p {
-    font-size: 4.8vw;
-    font-weight: 900;
-    color: #ffdec7;
-    margin: 0 2vw;
+  font-size: 4.8vw;
+  font-weight: 900;
+  color: #ffdec7;
+  margin: 0 2vw;
 }
 
 .vipDiv .checkIn .checkImg img {
-    width: 8.533333vw;
-    height: 2.533333vw;
-
+  width: 8.533333vw;
+  height: 2.533333vw;
 }
 
 img {
-    overflow-clip-margin: content-box;
-    overflow: clip;
+  overflow-clip-margin: content-box;
+  overflow: clip;
 }
 
 .vipDiv .checkbox[data-v-613a8d0e] {
-    width: 92vw;
-    height: 22.133333vw;
-    background: url(/elephantFootball/vip_page/xyz.png) no-repeat;
-    background-size: cover;
-    margin: 2.666667vw auto 2.666667vw;
-    padding: 1.6vw 2.666667vw;
+  width: 92vw;
+  height: 22.133333vw;
+  background: url(/elephantFootball/vip_page/xyz.png) no-repeat;
+  background-size: cover;
+  margin: 2.666667vw auto 2.666667vw;
+  padding: 1.6vw 2.666667vw;
 }
 
 .vipDiv .checkbox .current[data-v-613a8d0e] {
-    text-align: left;
+  text-align: left;
 }
 
 .vipDiv .checkbox .current .level[data-v-613a8d0e] {
-    font-size: 4.266667vw;
-    font-weight: 500;
-    color: #333;
+  font-size: 4.266667vw;
+  font-weight: 500;
+  color: #333;
 }
 
 .vipDiv .checkbox .current .canget[data-v-613a8d0e] {
-    font-size: 3.733333vw;
-    color: #8f5324;
+  font-size: 3.733333vw;
+  color: #8f5324;
 }
 
 .vipDiv .checkbox .current .canget span[data-v-613a8d0e] {
-    font-size: 4.266667vw;
-    color: #ef2a00;
-    font-weight: 500;
+  font-size: 4.266667vw;
+  color: #ef2a00;
+  font-weight: 500;
 }
 
 .vipDiv .checkbox img[data-v-613a8d0e] {
-    width: 18vw;
-    height: auto;
-    margin-left: 2.666667vw;
+  width: 18vw;
+  height: auto;
+  margin-left: 2.666667vw;
 }
 
 .vipDiv .vipB .innearVip {
-    width: 94.666667vw;
-    height: 87.466667vw;
-    /* background: url(/elephant_Football/innearVip.png); */
-    background-size: cover;
-    margin: 1.333333vw auto 0;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-
+  width: 94.666667vw;
+  height: 87.466667vw;
+  /* background: url(/elephant_Football/innearVip.png); */
+  background-size: cover;
+  margin: 1.333333vw auto 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .vipDiv .vipB .innearVip .leftVip {
-    background: url(/elephantFootball/vip_page/side_vip_left.png);
-    width: 21.866667vw;
-    height: 15.2vw;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    justify-content: center;
+  background: url(/elephantFootball/vip_page/side_vip_left.png);
+  width: 21.866667vw;
+  height: 15.2vw;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .vipDiv .vipB .innearVip .leftVip img {
-    width: 17.2vw;
-    height: auto;
+  width: 17.2vw;
+  height: auto;
 }
 
 .rightVip {
-    width: 63.066667vw;
-    height: 15.2vw;
-    background: url(/elephantFootball/vip_page/side_vip.png) no-repeat;
-    background-size: cover;
-    text-align: right;
-    padding: 1.6vw 1.6vw 1.6vw 7.333333vw;
+  width: 63.066667vw;
+  height: 15.2vw;
+  background: url(/elephantFootball/vip_page/side_vip.png) no-repeat;
+  background-size: cover;
+  text-align: right;
+  padding: 1.6vw 1.6vw 1.6vw 7.333333vw;
 }
 
 .rightVip p {
-    font-size: 4vw;
-    font-weight: 500;
-    color: #a86a38;
-    text-align: start;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 4vw;
+  font-weight: 500;
+  color: #a86a38;
+  text-align: start;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 .rightVip span {
-    padding-right: 1vw;
+  padding-right: 1vw;
 }
 
-#Img>img {
-    width: 9.866667vw;
-    height: auto;
-    transform: translateX(-1.333333vw);
+#Img > img {
+  width: 9.866667vw;
+  height: auto;
+  transform: translateX(-1.333333vw);
 }
 
 .vipDiv .tipsui[data-v-613a8d0e] {
-    margin: 2.666667vw 0 2.666667vw;
-    display: flex;
-    align-items: center;
-    padding-left: 4vw;
+  margin: 2.666667vw 0 2.666667vw;
+  display: flex;
+  align-items: center;
+  padding-left: 4vw;
 }
 
 .vipDiv .tipsui img[data-v-613a8d0e] {
-    width: 5.333333vw;
-    height: 5.333333vw;
-    margin-right: 1.333333vw;
+  width: 5.333333vw;
+  height: 5.333333vw;
+  margin-right: 1.333333vw;
 }
 
 .vipDiv .tipsui p[data-v-613a8d0e] {
-    font-size: 4.266667vw;
-    font-weight: 600;
-    color: #f8bc85;
+  font-size: 4.266667vw;
+  font-weight: 600;
+  color: #f8bc85;
 }
 
 .vipDiv .textips[data-v-613a8d0e] {
-    padding: 0 4vw;
-    font-size: 3.733333vw;
-    color: #fff;
-    text-align: left;
-    background: #333;
-
+  padding: 0 4vw;
+  font-size: 3.733333vw;
+  color: #fff;
+  text-align: left;
+  background: #333;
 }
-
 
 /* <!-- --------------------------------------------- recharge Cantainer ----------------------------------------- -->    */
 
 .recharge {
-    min-height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0 0 5.333333vw;
-    background: #f8f8f8;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 0 5.333333vw;
+  background: #f8f8f8;
 }
-
 
 .rechargeHead {
-    display: grid;
-    grid-template-columns: 25vw 50vw 25vw;
-    align-items: end;
-    justify-items: center;
-    height: 8vh;
-    color: white;
-    color: #000;
-    background: #f8f8f8;
+  display: grid;
+  grid-template-columns: 25vw 50vw 25vw;
+  align-items: end;
+  justify-items: center;
+  height: 8vh;
+  color: white;
+  color: #000;
+  background: #f8f8f8;
 }
 
-.rechargeHead div:nth-child(1)>ion-icon,
-.withdrawalHead div:nth-child(1)>ion-icon {
-    display: flex;
-    height: 46px;
-    font-size: 6vw;
-    padding-left: 2vw;
+.rechargeHead div:nth-child(1) > ion-icon,
+.withdrawalHead div:nth-child(1) > ion-icon {
+  display: flex;
+  height: 46px;
+  font-size: 6vw;
+  padding-left: 2vw;
 }
 
-.rechargeHead div:nth-child(2)>p,
-.withdrawalHead div:nth-child(2)>p {
-    padding-bottom: 2vw;
-    font-size: 4.6vw;
-
+.rechargeHead div:nth-child(2) > p,
+.withdrawalHead div:nth-child(2) > p {
+  padding-bottom: 2vw;
+  font-size: 4.6vw;
 }
 
 .rechargeHead .reco {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding-right: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 3vw;
 }
 
-.rechargeHead .reco>ion-icon {
-    font-size: 20px;
+.rechargeHead .reco > ion-icon {
+  font-size: 20px;
 }
 
-.reco>div {
-    display: flex;
-    flex-direction: column;
-    height: 46px;
-    align-items: center;
-    padding-bottom: 1vw;
-    color: skyblue;
+.reco > div {
+  display: flex;
+  flex-direction: column;
+  height: 46px;
+  align-items: center;
+  padding-bottom: 1vw;
+  color: skyblue;
 }
 
 .withdrawal .rechargeBalance .toptotal[data-v-5597067f] {
-    height: 43.066667vw;
-    background: url(/elephantFootball/rechargePopup/recharge.jpg) no-repeat;
-    background-size: cover;
-    margin: 0 auto;
-    padding: 4vw 1.333333vw 0 6.666667vw;
-    position: relative;
-    overflow-x: hidden;
+  height: 43.066667vw;
+  background: url(/elephantFootball/rechargePopup/recharge.jpg) no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  padding: 4vw 1.333333vw 0 6.666667vw;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .recharge .rechargeBalance .toptotal[data-v-5597067f] {
-    height: 43.066667vw;
-    background: url(/elephantFootball/rechargePopup/deposit.jpg) no-repeat;
-    background-size: cover;
-    margin: 0 auto;
-    padding: 4vw 1.333333vw 0 6.666667vw;
-    position: relative;
-    overflow-x: hidden;
+  height: 43.066667vw;
+  background: url(/elephantFootball/rechargePopup/deposit.jpg) no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  padding: 4vw 1.333333vw 0 6.666667vw;
+  position: relative;
+  overflow-x: hidden;
 }
-
 
 .recharge .rechargeBalance .toptotal .totalbalace[data-v-5597067f],
 .withdrawal .rechargeBalance .toptotal[data-v-5597067f] {
-    text-align: left;
+  text-align: left;
 }
 
 .recharge .rechargeBalance .toptotal .totalbalace span[data-v-5597067f],
 .withdrawal.rechargeBalance .toptotal .totalbalace span[data-v-5597067f] {
-    font-size: 3.2vw;
-    color: #fff;
-    font-weight: 500;
+  font-size: 3.2vw;
+  color: #fff;
+  font-weight: 500;
 }
 
 .recharge .rechargeBalance .toptotal .totalbalace p[data-v-5597067f],
 .withdrawal .rechargeBalance .toptotal .totalbalace p[data-v-5597067f] {
-    font-size: 5.4vw;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 1.333333vw;
+  font-size: 5.4vw;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.333333vw;
 }
 
 .recharge .rechargeBalance .toptotal .rightcord[data-v-5597067f],
 .withdrawal .rechargeBalance .toptotal .totalbalace p[data-v-5597067f] {
-    margin-top: 1.333333vw;
-    text-align: left;
-    border-radius: 6.666667vw;
+  margin-top: 1.333333vw;
+  text-align: left;
+  border-radius: 6.666667vw;
 }
 
 .recharge .rechargeBalance .toptotal .rightcord img[data-v-5597067f] {
-    width: 10vw;
-    height: 10vw;
-    margin-right: 1.333333vw;
-
+  width: 10vw;
+  height: 10vw;
+  margin-right: 1.333333vw;
 }
 
-.recharge .rechargeBalance .toptotal .rightcord>p,
+.recharge .rechargeBalance .toptotal .rightcord > p,
 .withdrawal .rechargeBalance .toptotal .totalbalace p[data-v-5597067f] {
-    color: #fff;
+  color: #fff;
 }
 
 #cantain_w_amount {
-    background-color: #FFF;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    transform: translateY(-3.666667vw);
+  background-color: #fff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transform: translateY(-3.666667vw);
 }
 
 .recharge .rechargeAmount .methodtype[data-v-5597067f],
 .withdrawal .rechargeAmount .methodtype[data-v-5597067f] {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .recharge .rechargeAmount .methodtype[data-v-5597067f] {
-    padding: 2vh;
+  padding: 2vh;
 }
 
 .recharge .rechargeAmount .methodtype img[data-v-5597067f] {
-    width: 5.333333vw;
-    height: 5.333333vw;
-    margin-right: 2vw;
+  width: 5.333333vw;
+  height: 5.333333vw;
+  margin-right: 2vw;
 }
 
-.recharge .rechargeAmount .methodtype>p,
-.withdrawal .rechargeAmount .methodtype>p {
-    margin-left: 2vw;
+.recharge .rechargeAmount .methodtype > p,
+.withdrawal .rechargeAmount .methodtype > p {
+  margin-left: 2vw;
 }
 
 .reInput {
-    width: 92vw;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 23vw 23vw 23vw 23vw;
-    grid-template-rows: 5vh 5vh;
-    grid-row-gap: 10px;
+  width: 92vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 23vw 23vw 23vw 23vw;
+  grid-template-rows: 5vh 5vh;
+  grid-row-gap: 10px;
 }
 
-.reInput>span {
-    border: none;
-    outline: none;
-    background-color: #f8f8f8;
-    text-align: center;
-    width: 84px;
-    height: 38px;
-    color: rgba(0, 0, 0, 0.733);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.reInput > span {
+  border: none;
+  outline: none;
+  background-color: #f8f8f8;
+  text-align: center;
+  width: 84px;
+  height: 38px;
+  color: rgba(0, 0, 0, 0.733);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Input {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5vh;
 }
 
-.Input>div {
-    width: 92vw;
-    background-color: #f8f8f8;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5vh;
-
-
+.Input > div {
+  width: 92vw;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5vh;
 }
 
-.Input>div>span {
-    font-size: 20px;
+.Input > div > span {
+  font-size: 20px;
 }
 
-.Input>div>input {
-    width: 95%;
-    border: none;
-    outline: none;
-    background: transparent;
+.Input > div > input {
+  width: 95%;
+  border: none;
+  outline: none;
+  background: transparent;
 }
 
 .Line {
-    margin-top: 2vh;
-    height: 3vh;
-    background: #f8f8f8;
+  margin-top: 2vh;
+  height: 3vh;
+  background: #f8f8f8;
 }
 
 .payment {
-    width: 92vw;
-    margin: 1vh auto;
-
+  width: 92vw;
+  margin: 1vh auto;
 }
 
 .payment .radiobtn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.payment .radiobtn>p {
-    font-size: 3.733333vw;
-    font-weight: 500;
-    color: #333333c0;
-    padding: 2vw 2.666667vw;
-    margin-right: 2vw;
+.payment .radiobtn > p {
+  font-size: 3.733333vw;
+  font-weight: 500;
+  color: #333333c0;
+  padding: 2vw 2.666667vw;
+  margin-right: 2vw;
 }
 
-.payment .radiobtn>input[type='radio'] {
-    width: 20px;
-    height: 17px;
-    color: #333333c0;
-
+.payment .radiobtn > input[type="radio"] {
+  width: 20px;
+  height: 17px;
+  color: #333333c0;
 }
 
 .recharge .btnrech[data-v-5597067f] {
-    width: 92vw;
-    height: 13.066667vw;
-    border-radius: 6.8vw;
-    font-size: 4.8vw;
-    font-weight: 500;
-    color: #fff;
-    margin-top: 4vw;
-    background: #7bebff;
-    display: block;
-    margin: 0 auto;
-    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-    border: none;
-
+  width: 92vw;
+  height: 13.066667vw;
+  border-radius: 6.8vw;
+  font-size: 4.8vw;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 4vw;
+  background: #7bebff;
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+  border: none;
 }
 
 .recharge .texttype[data-v-5597067f] {
-    padding: 0 4vw;
-    margin-top: 4vw;
-    padding-bottom: 12vh;
-    /* background: #f8f8f8; */
+  padding: 0 4vw;
+  margin-top: 4vw;
+  padding-bottom: 12vh;
+  /* background: #f8f8f8; */
 }
 
-.recharge .texttype[data-v-5597067f]>p {
-    text-align: left;
+.recharge .texttype[data-v-5597067f] > p {
+  text-align: left;
 }
-
 
 .recoPopup {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    overflow: hidden;
-    min-height: 100vh;
-    background: #f8f8f8;
-    padding: 6vw 0 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: 6vw 0 0;
 }
 
 .recopop {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: end;
-    height: 8vh;
-    color: white;
-    color: #000;
-    background: #f8f8f8;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  height: 8vh;
+  color: white;
+  color: #000;
+  background: #f8f8f8;
 }
 
 [data-v-1feab1ca] .nav-bar .van-nav-bar__content .van-nav-bar__title {
-    font-size: 4.666667vw;
-    color: #333;
-    font-weight: 500;
+  font-size: 4.666667vw;
+  color: #333;
+  font-weight: 500;
 }
 
-
-
 .recoHeader {
-    display: grid;
-    grid-template-columns: 20vw 60vw 20vw;
-    grid-template-rows: 6vh;
-    justify-items: center;
-    align-items: center;
-
+  display: grid;
+  grid-template-columns: 20vw 60vw 20vw;
+  grid-template-rows: 6vh;
+  justify-items: center;
+  align-items: center;
 }
 
 .recoHeader div:nth-child(1) {
-    width: 56px;
-    height: 30px;
-    color: gray;
-    display: flex;
-    align-items: center;
+  width: 56px;
+  height: 30px;
+  color: gray;
+  display: flex;
+  align-items: center;
 }
 
-.recoHeader div:nth-child(1)>ion-icon {
-    font-size: 6vw;
+.recoHeader div:nth-child(1) > ion-icon {
+  font-size: 6vw;
 }
 
-.recordss>p {
-    font-size: 4.666667vw;
-    color: #333;
-    font-weight: 500;
+.recordss > p {
+  font-size: 4.666667vw;
+  color: #333;
+  font-weight: 500;
 }
 
 .recoPopup .recoImg img {
-    width: 53.333333vw;
-    height: 53.333333vw;
-    margin: 0 auto;
+  width: 53.333333vw;
+  height: 53.333333vw;
+  margin: 0 auto;
 }
-
-
 
 /* ---------------------------------------------------------------- Withdrawal cantainer -------------------------------------------- */
 
-
-
-
 .withdrawalCantainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-    overflow-x: scroll;
-    padding-bottom: 10vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  overflow-x: scroll;
+  padding-bottom: 10vh;
 }
 
 .gap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .withdrawalHead {
-    display: grid;
-    grid-template-columns: 25vw 50vw 25vw;
-    justify-items: center;
-    align-items: end;
-    height: 8vh;
-    color: white;
-    color: #000;
-    background: #f8f8f8;
-
+  display: grid;
+  grid-template-columns: 25vw 50vw 25vw;
+  justify-items: center;
+  align-items: end;
+  height: 8vh;
+  color: white;
+  color: #000;
+  background: #f8f8f8;
 }
 
-
-
 .withdrawalInput {
-    margin: 0 auto;
-    width: 92vw;
+  margin: 0 auto;
+  width: 92vw;
 }
 
 .withdrawalInput .addAccount {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1vw;
-    background: #f8f8f8dd;
-    color: rgba(128, 128, 128, 0.871);
-    height: 46px;
-    border-radius: 5px;
-    color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1vw;
+  background: #f8f8f8dd;
+  color: rgba(128, 128, 128, 0.871);
+  height: 46px;
+  border-radius: 5px;
+  color: gray;
 }
 
 .withdrawalInput .addAccount p {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.withdrawalInput .addAccount p>img {
-    width: 6vw;
-    height: 6vw;
+.withdrawalInput .addAccount p > img {
+  width: 6vw;
+  height: 6vw;
 }
 
 .withdrawalInput .addAccount ::placeholder {
-    font-size: 4.22vw;
+  font-size: 4.22vw;
 }
 
-.withdrawalInput .addAccount p>ion-icon {
-    font-size: 4.222vw;
+.withdrawalInput .addAccount p > ion-icon {
+  font-size: 4.222vw;
 }
 
 .withdrawalInput .addAccount a {
-    font-size: 5vw;
+  font-size: 5vw;
 }
 
 .withdrawalInput .addAccount span {
-    display: flex;
-    height: inherit;
-    align-items: center;
+  display: flex;
+  height: inherit;
+  align-items: center;
 }
 
-.withdrawalInput .addAccount span>p {
-    font-size: 20px;
-    padding: 1vw;
-    color: skyblue;
-    font-weight: 500;
+.withdrawalInput .addAccount span > p {
+  font-size: 20px;
+  padding: 1vw;
+  color: skyblue;
+  font-weight: 500;
 }
 
-.withdrawalInput .addAccount span>input {
-    outline: none;
-    border: none;
-    background: transparent;
-    padding-left: 1vw;
+.withdrawalInput .addAccount span > input {
+  outline: none;
+  border: none;
+  background: transparent;
+  padding-left: 1vw;
 }
 
 .gap .methodtype {
-    margin-bottom: 1.5vh;
+  margin-bottom: 1.5vh;
 }
 
 .withdrawal .rechargeAmount .gap .methodtype img[data-v-5597067f] {
-    width: 5.333333vw;
-    height: 5.333333vw;
-    margin-right: 2vw;
+  width: 5.333333vw;
+  height: 5.333333vw;
+  margin-right: 2vw;
 }
 
 .gap {
-    padding: 1vh;
+  padding: 1vh;
 }
 
 .withdrawalInput .addAccount input {
-    border: none;
-    outline: none;
-    padding-left: 2vw;
-    width: 90%;
-    background: transparent;
-    height: inherit;
+  border: none;
+  outline: none;
+  padding-left: 2vw;
+  width: 90%;
+  background: transparent;
+  height: inherit;
 }
 
-.methodtype>p {
-    font-weight: 500;
+.methodtype > p {
+  font-weight: 500;
 }
 
 #withdraw_request {
-    width: 92vw;
-    height: 13.066667vw;
-    border-radius: 6.8vw;
-    font-size: 4.8vw;
-    font-weight: 500;
-    color: #fff;
-    background: #7bebff;
-    display: block;
-    margin: 0 auto;
-    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-    border: none;
-    margin-top: 3rem;
+  width: 92vw;
+  height: 13.066667vw;
+  border-radius: 6.8vw;
+  font-size: 4.8vw;
+  font-weight: 500;
+  color: #fff;
+  background: #7bebff;
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+  border: none;
+  margin-top: 3rem;
 }
 .rulee img[data-v-5597067f] {
-    width: 5.333333vw;
-    height: 5.333333vw;
-    margin-right: 2vw;
+  width: 5.333333vw;
+  height: 5.333333vw;
+  margin-right: 2vw;
 }
 
 .texttype {
-    margin-top: 2vh;
+  margin-top: 2vh;
 }
 
 .texttips {
-    width: 92vw;
-    margin: 0 auto;
-    text-align: left;
-    color: rgba(128, 128, 128, 0.871);
+  width: 92vw;
+  margin: 0 auto;
+  text-align: left;
+  color: rgba(128, 128, 128, 0.871);
 }
 
 .rulee {
-    display: flex;
-    margin: 5px auto;
-    width: 92vw;
-    align-items: center;
+  display: flex;
+  margin: 5px auto;
+  width: 92vw;
+  align-items: center;
 }
-
-
-
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------- Add Account style -------------------------------------------------------------------------------------- */
 #Account {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: translateX(100vw);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateX(100vw);
 }
-
-
-
-
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* ----------------------------------- ruleCantainer style ------------------------------- */
 
-
 .ruleCantainer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: url(/elephantFootball/rulePopup/rules.jpg) center no-repeat;
-    background-size: cover;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    color: #000
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: url(/elephantFootball/rulePopup/rules.jpg) center no-repeat;
+  background-size: cover;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: #000;
 }
 
 .accordion {
-    margin: 5px auto;
-    width: 92vw;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin: 5px auto;
+  width: 92vw;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .accordion .accordion-content {
-    margin: 10px 0;
-    border-radius: 5px;
-    overflow: hidden;
-    background: skyblue;
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  background: skyblue;
 }
 
 .accordion-content.is-open {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .accordion-content header {
-    display: flex;
-    justify-content: space-between;
-    min-height: 44px;
-    align-items: center;
-    transition: all 2s linear;
-    text-align: left;
+  display: flex;
+  justify-content: space-between;
+  min-height: 44px;
+  align-items: center;
+  transition: all 2s linear;
+  text-align: left;
 }
 
-.accordion-content header>i {
-    margin-right: 4vw;
+.accordion-content header > i {
+  margin-right: 4vw;
 }
 
-.accordion-content header>span>img {
-    width: 5vw;
-    margin: 0 2vw;
+.accordion-content header > span > img {
+  width: 5vw;
+  margin: 0 2vw;
 }
 
 .accordion-content header .accordion-content.is-open header {
-    min-height: 35px;
-    border: 1px solid red;
+  min-height: 35px;
+  border: 1px solid red;
 }
 
 .accordion-content-title {
-    font-size: 4vw;
-    font-weight: 600;
-    color: #fff;
-    display: flex;
-    align-items: center;
+  font-size: 4vw;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
 
-
 .accordion-content-description {
-    height: 0;
-    font-size: 15px;
-    color: gray;
-    font-weight: 600;
-    padding: 0 4vw;
-    margin-top: 2vh;
+  height: 0;
+  font-size: 15px;
+  color: gray;
+  font-weight: 600;
+  padding: 0 4vw;
+  margin-top: 2vh;
 }
 
 .ruleHead {
-    display: grid;
-    grid-template-columns: 25vw 50vw 25vw;
-    align-items: end;
-    justify-items: center;
-    height: 8vh;
-    color: white;
-    color: #000;
-    padding-left: 4vw;
+  display: grid;
+  grid-template-columns: 25vw 50vw 25vw;
+  align-items: end;
+  justify-items: center;
+  height: 8vh;
+  color: white;
+  color: #000;
+  padding-left: 4vw;
 }
-
-
-
-
-
-
-
 
 /*-------------------------- -----  customer services  ------------------------------------------------------------------------------------------------------ */
 .serviceCantainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 .customermHead {
-    height: 8vh;
-    display: grid;
-    grid-template-columns: 25vw 50vw 25vw;
-    align-content: center;
-    justify-items: center;
-    padding-top: 6vh;
-
+  height: 8vh;
+  display: grid;
+  grid-template-columns: 25vw 50vw 25vw;
+  align-content: center;
+  justify-items: center;
+  padding-top: 6vh;
 }
 
 .backbtn {
-    width: 100%;
-    padding-left: 2vw;
-    font-size: 20px;
+  width: 100%;
+  padding-left: 2vw;
+  font-size: 20px;
 }
 
 #backgd {
-    height: 56vw;
-    background: url(/elephantFootball/minePage/telegram.jpg) center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  height: 56vw;
+  background: url(/elephantFootball/minePage/telegram.jpg) center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #backgd span {
-    display: block;
-    margin: auto 0;
-    padding-left: 10vw;
+  display: block;
+  margin: auto 0;
+  padding-left: 10vw;
 }
 
 .connect {
-    display: flex;
-    justify-content: center;
-    margin-top: 5vh;
-
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
 }
 
 .section-box[data-v-7dcec640] {
-    padding: 0 4vw;
-    margin-top: 4vw;
+  padding: 0 4vw;
+  margin-top: 4vw;
 }
 
 .section-box .telbox[data-v-7dcec640] {
-    margin-top: 4vw;
-    background: #fff;
-    box-shadow: 1px .266667vw .533333vw 1px rgba(51, 51, 51, .15);
-    border-radius: 2.666667vw;
-    padding: 2.666667vw 3.333333vw;
+  margin-top: 4vw;
+  background: #fff;
+  box-shadow: 1px 0.266667vw 0.533333vw 1px rgba(51, 51, 51, 0.15);
+  border-radius: 2.666667vw;
+  padding: 2.666667vw 3.333333vw;
 }
 
 .section-box .telbox .left[data-v-7dcec640] {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .section-box .telbox .left img[data-v-7dcec640] {
-    width: 10.666667vw;
-    height: auto;
-    margin-right: 2.666667vw;
+  width: 10.666667vw;
+  height: auto;
+  margin-right: 2.666667vw;
 }
 
 .section-box .telbox .left .phonei[data-v-7dcec640] {
-    text-align: left;
+  text-align: left;
 }
 
 .section-box .telbox .left .phonei p[data-v-7dcec640] {
-    font-size: 4vw;
-    color: #333;
-    font-weight: 500;
-    margin-bottom: .666667vw;
+  font-size: 4vw;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 0.666667vw;
 }
 
 .section-box .telbox .btnuis[data-v-7dcec640] {
-    width: 22.666667vw;
-    height: 8vw;
-    background: #5bb2ea;
-    border-radius: 5.333333vw;
-    color: #fff;
-    font-weight: 500;
-    border: none;
+  width: 22.666667vw;
+  height: 8vw;
+  background: #5bb2ea;
+  border-radius: 5.333333vw;
+  color: #fff;
+  font-weight: 500;
+  border: none;
 }
 
 .section-box .onlieser[data-v-7dcec640] {
-    padding: 3.2vw 3.333333vw;
-    background: #fff;
-    box-shadow: 1px .266667vw .533333vw 1px rgba(51, 51, 51, .15);
-    border-radius: 2.666667vw;
-    margin-top: 4vw;
+  padding: 3.2vw 3.333333vw;
+  background: #fff;
+  box-shadow: 1px 0.266667vw 0.533333vw 1px rgba(51, 51, 51, 0.15);
+  border-radius: 2.666667vw;
+  margin-top: 4vw;
 }
 
 .section-box .onlieser .linei[data-v-7dcec640] {
-    height: 1px;
-    background: rgba(0, 0, 0, .3);
-    width: 100%;
-    margin: 2.666667vw 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  margin: 2.666667vw 0;
 }
 
 .section-box .onlieser .problems[data-v-7dcec640] {
-    font-size: 3.466667vw;
-    color: #fff;
-    display: flex;
-    align-items: center;
+  font-size: 3.466667vw;
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .section-box .onlieser .problems img[data-v-7dcec640] {
-    width: 10.533333vw;
-    height: auto;
-    margin-right: 2.666667vw;
+  width: 10.533333vw;
+  height: auto;
+  margin-right: 2.666667vw;
 }
 
 .section-box .onlieser .problems p[data-v-7dcec640] {
-    font-size: 3.466667vw;
-    text-align: left;
-    color: #666;
-    font-weight: 600;
+  font-size: 3.466667vw;
+  text-align: left;
+  color: #666;
+  font-weight: 600;
 }
 
 .section-box .onlieser .topline button[data-v-7dcec640] {
-    width: 22.666667vw;
-    height: 8vw;
-    background: #5bb2ea;
-    border-radius: 5.333333vw;
-    color: #fff;
-    font-weight: 500;
-    border: none;
+  width: 22.666667vw;
+  height: 8vw;
+  background: #5bb2ea;
+  border-radius: 5.333333vw;
+  color: #fff;
+  font-weight: 500;
+  border: none;
 }
 
 .section-box .customers[data-v-7dcec640] {
-    font-size: 3.466667vw;
-    color: #666;
-    text-align: left;
-    margin-top: 4.8vw;
+  font-size: 3.466667vw;
+  color: #666;
+  text-align: left;
+  margin-top: 4.8vw;
 }
-
-
 
 /* -------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------------- bet --------------------------------------- */
 .popCantain {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: -1;
-    min-height: 100vh;
-    width: 100vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  min-height: 100vh;
+  width: 100vw;
 }
 
 .matchPopUp {
-    width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
 }
-
-
-
 
 /* --------------------------------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------- place bet popup -------------------------------- */
 .placebet {
-    position: absolute;
-    top: 20%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    background-color: #FAFAFA;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    transform: translateY(150vw);
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: #fafafa;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  transform: translateY(150vw);
 }
 
 .betHead {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    place-content: center;
-    align-items: center;
-    justify-items: center;
-    margin-top: 1vh;
-    color: gray;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-content: center;
+  align-items: center;
+  justify-items: center;
+  margin-top: 1vh;
+  color: gray;
 }
 
 .leaguebox {
-    width: 92vw;
-    margin: 1vh auto;
-    padding: 4vw 3vw;
-    box-shadow: 0 0.266667vw 0.533333vw 0 rgba(51, 51, 51, .1);
-    background: #fff;
-    border-radius: 10px;
+  width: 92vw;
+  margin: 1vh auto;
+  padding: 4vw 3vw;
+  box-shadow: 0 0.266667vw 0.533333vw 0 rgba(51, 51, 51, 0.1);
+  background: #fff;
+  border-radius: 10px;
 }
 
 .leaguebox span {
-    display: flex;
+  display: flex;
 }
 
 .leaguebox span p {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .race {
-    display: flex;
-    width: 90%;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .betdetail {
-    margin-bottom: 1vw;
-    color: rgba(128, 128, 128, 0.767);
+  margin-bottom: 1vw;
+  color: rgba(128, 128, 128, 0.767);
 }
 
 .race span {
-    background: #fff;
-    box-shadow: 0 0 .533333vw 0 rgba(51, 51, 51, .15);
-    border-radius: 5.333333vw;
-    border: 1px solid #f3f3f3;
-    margin: 0 2.133333vw 0 2.666667vw;
-    padding: .4vw 2vw;
-    font-size: 4vw;
-    font-weight: 900;
-    color: #ef0000;
+  background: #fff;
+  box-shadow: 0 0 0.533333vw 0 rgba(51, 51, 51, 0.15);
+  border-radius: 5.333333vw;
+  border: 1px solid #f3f3f3;
+  margin: 0 2.133333vw 0 2.666667vw;
+  padding: 0.4vw 2vw;
+  font-size: 4vw;
+  font-weight: 900;
+  color: #ef0000;
 }
 
-.race>p {
-    background: #fff;
-    box-shadow: 0 0 .533333vw 0 rgba(51, 51, 51, .15);
-    border-radius: 5.333333vw;
-    border: 1px solid #f3f3f3;
-    margin: 0 2.133333vw 0 2.666667vw;
-    padding: .4vw 2vw;
-    font-size: 4vw;
-    font-weight: 900;
-    color: #ef0000;
+.race > p {
+  background: #fff;
+  box-shadow: 0 0 0.533333vw 0 rgba(51, 51, 51, 0.15);
+  border-radius: 5.333333vw;
+  border: 1px solid #f3f3f3;
+  margin: 0 2.133333vw 0 2.666667vw;
+  padding: 0.4vw 2vw;
+  font-size: 4vw;
+  font-weight: 900;
+  color: #ef0000;
 }
 
 .xyz {
-    display: grid;
+  display: grid;
 }
 
-.xyz>div {
-    display: flex;
-    justify-content: space-between;
-
+.xyz > div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .betvalue {
-    width: 92vw;
-    margin: 0 auto;
+  width: 92vw;
+  margin: 0 auto;
 }
 
 .amountBox {
-    width: 92vw;
-    margin: 5vw auto;
+  width: 92vw;
+  margin: 5vw auto;
 }
 
 .betAmount {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2vw;
 }
 
-.amountBox>input {
-    width: 100%;
-    padding: 2vw;
-    outline: none;
-    height: 5.5vh;
-    border: 2px solid rgba(128, 128, 128, 0.273);
-    border-radius: 5px;
-
+.amountBox > input {
+  width: 100%;
+  padding: 2vw;
+  outline: none;
+  height: 5.5vh;
+  border: 2px solid rgba(128, 128, 128, 0.273);
+  border-radius: 5px;
 }
 
 .arrange {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2vw;
 }
 
 .values {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
-.values>span {
-    text-align: center;
-    width: 100%;
-    padding: 2.4vw 0;
-    margin: 0 1vw;
-    background: #fff;
-    border-radius: 1.066667vw;
-    border: 1px solid #999;
-    color: #666;
+.values > span {
+  text-align: center;
+  width: 100%;
+  padding: 2.4vw 0;
+  margin: 0 1vw;
+  background: #fff;
+  border-radius: 1.066667vw;
+  border: 1px solid #999;
+  color: #666;
 }
 
 .settingicon {
-    font-size: 5vw;
-    display: flex;
-    border: 1px solid;
-    padding: 2vw;
-    border: 1px solid #999;
+  font-size: 5vw;
+  display: flex;
+  border: 1px solid;
+  padding: 2vw;
+  border: 1px solid #999;
 }
 
 .voletbox {
-    display: grid;
-    width: 40%;
-    padding: 1vw;
-    margin-left: 5vw;
-    border: 1px solid rgba(128, 128, 128, 0.752);
-    color: grey;
-    /* box-shadow: 2px 2px 2px skyblue; */
+  display: grid;
+  width: 40%;
+  padding: 1vw;
+  margin-left: 5vw;
+  border: 1px solid rgba(128, 128, 128, 0.752);
+  color: grey;
+  /* box-shadow: 2px 2px 2px skyblue; */
 }
 
 .incomeBox {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .btnss {
-    margin-top: 3vw;
-    display: flex;
-    justify-content: space-around;
+  margin-top: 3vw;
+  display: flex;
+  justify-content: space-around;
 }
 
 #recharge {
-    width: 40vw;
-    height: 12vw;
-    border-radius: 6.533333vw;
-    border: .266667vw solid #154fe4;
-    font-size: 4.8vw;
-    font-weight: 500;
-    color: #154fe4;
-    background: none;
+  width: 40vw;
+  height: 12vw;
+  border-radius: 6.533333vw;
+  border: 0.266667vw solid #154fe4;
+  font-size: 4.8vw;
+  font-weight: 500;
+  color: #154fe4;
+  background: none;
 }
 
 #confirm {
-    width: 92vw;
-    height: 13.066667vw;
-    border-radius: 6.8vw;
-    font-size: 4.8vw;
-    font-weight: 500;
-    color: #fff;
-    margin-top: 4vw;
-    background: #7bebff;
-    display: block;
-    margin: 0 auto;
-    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-    border: none;
-
+  width: 92vw;
+  height: 13.066667vw;
+  border-radius: 6.8vw;
+  font-size: 4.8vw;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 4vw;
+  background: #7bebff;
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+  border: none;
 }
 
 .league_id {
-    position: absolute;
-    display: none;
+  position: absolute;
+  display: none;
 }
 
 .match {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-
-
-
-
-
 
 /* --------------------------------------------------------------------------------------------------------------------------------- */
 
 .profile_pops {
-    position: absolute;
-    left: 100vw;
-    right: 0;
-    top: 0;
+  position: absolute;
+  left: 100vw;
+  right: 0;
+  top: 0;
 }
-
 
 #funds_pop {
-    overflow-y: scroll;
-    background: #dadadc;
+  overflow-y: scroll;
+  background: #dadadc;
 }
 
-#funds_pop>.withdrawal_sec,
+#funds_pop > .withdrawal_sec,
 .deposits_sec {
-    min-height: 50%;
-    background: transparent;
+  min-height: 50%;
+  background: transparent;
 }
 
 .deposits_sec {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
 .funds_title {
-    border-radius: 100vw;
-    width: 80%;
-    padding: 0.5rem 1.5rem;
-    background: var(--white);
-    text-align: center;
-    margin: 1rem auto;
+  border-radius: 100vw;
+  width: 80%;
+  padding: 0.5rem 1.5rem;
+  background: var(--white);
+  text-align: center;
+  margin: 1rem auto;
 }
 
-.funds_title>h2 {
-    padding: 0 1rem;
-    border-radius: 100vw;
-    text-align: center;
-    color: white;
-    background: var(--grey_dark);
+.funds_title > h2 {
+  padding: 0 1rem;
+  border-radius: 100vw;
+  text-align: center;
+  color: white;
+  background: var(--grey_dark);
 }
 
 .funds_data_box {
-    border-radius: 1rem;
-    margin-top: 2rem;
-    min-height: 20rem;
-    overflow-y: scroll;
-    ;
-    border-top-right-radius: 1.5rem;
-    border-top-left-radius: 1.5rem;
-    background: var(--background);
-    padding: 1rem 0;
-    padding-bottom: 70px;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  min-height: 20rem;
+  overflow-y: scroll;
+  border-top-right-radius: 1.5rem;
+  border-top-left-radius: 1.5rem;
+  background: var(--background);
+  padding: 1rem 0;
+  padding-bottom: 70px;
 }
 
 .pay_card {
-    border-radius: 1rem;
-    box-shadow: 0 0 10px var(--grey);
-    width: 75%;
-    padding: 0.5rem;
-    margin: 0.5rem auto;
-    background: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px var(--grey);
+  width: 75%;
+  padding: 0.5rem;
+  margin: 0.5rem auto;
+  background: var(--white);
 }
 
 .pay_card_title {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-.pay_card_title>h4 {
-    background: var(--grey_dark);
-    color: white;
-    padding: 0 0.5rem;
-    border-radius: 100vw;
-    text-align: center;
+.pay_card_title > h4 {
+  background: var(--grey_dark);
+  color: white;
+  padding: 0 0.5rem;
+  border-radius: 100vw;
+  text-align: center;
 }
 
-.pay_card_title>span {
-    display: flex;
+.pay_card_title > span {
+  display: flex;
 }
 
-.pay_card_title>span>h5 {
-    padding: 0 0.5rem;
+.pay_card_title > span > h5 {
+  padding: 0 0.5rem;
 }
 
 .pay_data {
-    padding: 0.2rem 0;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr;
-    place-content: center;
-    place-items: center;
+  padding: 0.2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  place-content: center;
+  place-items: center;
 }
 
 #deposit_status {
-    color: lime;
+  color: lime;
 }
 
 .announcement {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: translateY(-200vh);
-    z-index: 1000000010;
-    overflow-y: scroll;
-
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-200vh);
+  z-index: 1000000010;
+  overflow-y: scroll;
 }
 
 .textss {
-    position: relative;
+  position: relative;
 }
 
-.textss>img {
-    width: 100%;
+.textss > img {
+  width: 100%;
 }
 
 #close {
-    position: absolute;
-    bottom: 0.5vw;
-    left: 45vw;
-    font-size: 10vw;
-    display: block;
-    color: gray;
-    display: none;
+  position: absolute;
+  bottom: 0.5vw;
+  left: 45vw;
+  font-size: 10vw;
+  display: block;
+  color: gray;
+  display: none;
 }
-
 
 /* ------------------------------------------------------- */
 
 #yy_pay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background: white;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    background: #1bb0f4;
-    width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: white;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: #1bb0f4;
+  width: 100%;
 }
 
-#yy_pay>div {
-    width: 95%;
-    border-radius: 10px;
+#yy_pay > div {
+  width: 95%;
+  border-radius: 10px;
 }
 
-#yy_pay>.section1 {
-    border-radius: 10px;
-    background: white;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0.25rem;
-    place-items: center;
-    grid-row-gap: 0.3rem;
+#yy_pay > .section1 {
+  border-radius: 10px;
+  background: white;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.25rem;
+  place-items: center;
+  grid-row-gap: 0.3rem;
 }
 
-.section1>span {
-    height: 100%;
-    width: 100%;
-    text-align: center;
+.section1 > span {
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 
-.section1>span:nth-child(1) {
-    background: url(../elephantFootball/paytm1-icon.png)center no-repeat;
-    background-size: 50%;
+.section1 > span:nth-child(1) {
+  background: url(../elephantFootball/paytm1-icon.png) center no-repeat;
+  background-size: 50%;
 }
 
-.section1>span:nth-child(3) {
-    background: url(../elephantFootball/google-pay1.png)center no-repeat;
-    background-size: contain;
+.section1 > span:nth-child(3) {
+  background: url(../elephantFootball/google-pay1.png) center no-repeat;
+  background-size: contain;
 }
 
-.section1>span:nth-child(5) {
-    background: url(../elephantFootball/upi-icon1.png)center no-repeat;
-    background-size: 50%;
+.section1 > span:nth-child(5) {
+  background: url(../elephantFootball/upi-icon1.png) center no-repeat;
+  background-size: 50%;
 }
 
-.section1>span:nth-child(even) {
-    background: #1bb0f4;
-    color: white;
-    border-radius: 5px;
-    padding: 0.5rem;
+.section1 > span:nth-child(even) {
+  background: #1bb0f4;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
 }
 
 .section2 {
-    padding: 0.5rem;
-    text-align: start;
-    background: white;
-    border-radius: 10px;
+  padding: 0.5rem;
+  text-align: start;
+  background: white;
+  border-radius: 10px;
 }
 
 .YY_upi {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-column-gap: 0.5rem;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 0.5rem;
+  justify-content: center;
 }
 
 .section3 {
-    background: white;
-    padding: 0.25rem 0.5rem;
-    text-align: start;
-    display: grid;
-    place-items: center;
+  background: white;
+  padding: 0.25rem 0.5rem;
+  text-align: start;
+  display: grid;
+  place-items: center;
 }
 
-.section3>input {
-    width: 98%;
-    outline: none;
-    margin: 0.5rem 0;
-    padding: 0.25rem;
+.section3 > input {
+  width: 98%;
+  outline: none;
+  margin: 0.5rem 0;
+  padding: 0.25rem;
 }
 
 #yy_upi_cpy {
-    padding: 0.25rem;
-    background: #1bb0f4;
-    color: white;
-    border-radius: 5px;
-    margin-left: 50%;
+  padding: 0.25rem;
+  background: #1bb0f4;
+  color: white;
+  border-radius: 5px;
+  margin-left: 50%;
 }
 
 #yy_submit {
-    background: #5a8ed3;
-    color: white;
-    width: 50%;
-    border-radius: 5px;
-    margin-top: 0.25rem;
-    padding: 0.5rem;
-    text-align: center;
-    border: none;
+  background: #5a8ed3;
+  color: white;
+  width: 50%;
+  border-radius: 5px;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  text-align: center;
+  border: none;
 }
 
 .logos {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    width: 70% !important;
-    grid-column-gap: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 70% !important;
+  grid-column-gap: 0.25rem;
 }
 
-.logos>span {
-    height: 3rem;
-    border-radius: 100%;
-    background-color: white;
-    width: 100%;
+.logos > span {
+  height: 3rem;
+  border-radius: 100%;
+  background-color: white;
+  width: 100%;
 }
 
-.logos>span:nth-child(1) {
-    background: url(../elephantFootball/paytm.png) center no-repeat;
-    background-size: contain;
+.logos > span:nth-child(1) {
+  background: url(../elephantFootball/paytm.png) center no-repeat;
+  background-size: contain;
 }
 
-.logos>span:nth-child(2) {
-    background: url(../elephantFootball/google-pay.png) center no-repeat;
-    background-size: contain;
+.logos > span:nth-child(2) {
+  background: url(../elephantFootball/google-pay.png) center no-repeat;
+  background-size: contain;
 }
 
-.logos>span:nth-child(3) {
-    background: url(../elephantFootball/phonepay.png) center no-repeat;
-    background-size: contain;
+.logos > span:nth-child(3) {
+  background: url(../elephantFootball/phonepay.png) center no-repeat;
+  background-size: contain;
 }
 
-.logos>span:nth-child(4) {
-    background: url(../elephantFootball/upi-icon.png) center no-repeat;
-    background-color: white;
-    background-size: contain;
+.logos > span:nth-child(4) {
+  background: url(../elephantFootball/upi-icon.png) center no-repeat;
+  background-color: white;
+  background-size: contain;
 }
 
-.logos>span:nth-child(5) {
-    background: url(../elephantFootball/visa.png) center no-repeat;
-    background-size: contain;
+.logos > span:nth-child(5) {
+  background: url(../elephantFootball/visa.png) center no-repeat;
+  background-size: contain;
 
-    background-color: white;
+  background-color: white;
 }
 
-.logos>span:nth-child(6) {
-    background: url(../elephantFootball/mobikwik-logo-icon.png) center no-repeat;
-    background-color: white;
-    background-size: contain;
+.logos > span:nth-child(6) {
+  background: url(../elephantFootball/mobikwik-logo-icon.png) center no-repeat;
+  background-color: white;
+  background-size: contain;
 }
 
 #secure {
-    /* background: url(../elephantFootball/security.png) center no-repeat; */
-    height: 2rem;
-    width: 2rem;
-    background-size: contain;
+  /* background: url(../elephantFootball/security.png) center no-repeat; */
+  height: 2rem;
+  width: 2rem;
+  background-size: contain;
 }
-
 
 /* --------------------------------------------------------------- usdt recharge page ------------------------------------- */
 #usdt {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #fff;
-    z-index: -1;
-    padding-bottom: 20vh;
-    overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  z-index: -1;
+  padding-bottom: 20vh;
+  overflow-y: scroll;
 }
 
 .qr_code_usdt {
-    height: 35vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 35vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .main_qr_box {
-    height: 85%;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 85%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .network {
-    width: 92vw;
-    margin: 0 auto;
-    padding: 1vw;
+  width: 92vw;
+  margin: 0 auto;
+  padding: 1vw;
 }
 
-.network>h4 {
-    color: #333333c0;
+.network > h4 {
+  color: #333333c0;
 }
 
-.network>button {
-    padding: 3vw 5vw;
-    margin: 2vw;
-    border: none;
-    border-radius: 10px;
-    background: #5bb2ecd1;
-    color: white;
+.network > button {
+  padding: 3vw 5vw;
+  margin: 2vw;
+  border: none;
+  border-radius: 10px;
+  background: #5bb2ecd1;
+  color: white;
 }
 
 .link_usdt {
-    margin: 0 auto;
-    padding: 2vw;
-    width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
+  width: 92vw;
 }
 
-.link_usdt>div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.link_usdt > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.link_usdt>div>span {
-    width: 90%;
-    padding: 1vw;
-    text-overflow: clip;
-    overflow: scroll;
+.link_usdt > div > span {
+  width: 90%;
+  padding: 1vw;
+  text-overflow: clip;
+  overflow: scroll;
 }
 
-.link_usdt>div>p>ion-icon {
-    font-size: 5.6vw;
-    margin-left: 1vw;
-    color: #154fe4;
+.link_usdt > div > p > ion-icon {
+  font-size: 5.6vw;
+  margin-left: 1vw;
+  color: #154fe4;
 }
 
 .tipps {
-    width: 92vw;
-    margin: 0 auto;
-    padding: 2vw;
-    color: gray
+  width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
+  color: gray;
 }
 
 .usdt_recharge_panel {
-    width: 92vw;
-    margin: 0 auto;
+  width: 92vw;
+  margin: 0 auto;
 }
 
 .usdt_recharge_panel .radiobtn {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .transacation_input {
-    margin-top: 2px;
+  margin-top: 2px;
 }
 
-.transacation_input>input {
-    border: none;
-    width: 100%;
-    outline: none;
-    background: rgba(255, 255, 255, 0.4);
-    padding: 2vw;
-    border-radius: 10px;
+.transacation_input > input {
+  border: none;
+  width: 100%;
+  outline: none;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 2vw;
+  border-radius: 10px;
 }
 
 .usdt_btn {
-    width: 92vw;
-    height: 13.066667vw;
-    border-radius: 6.8vw;
-    font-size: 4.8vw;
-    font-weight: 500;
-    color: #fff;
-    margin-top: 4vw;
-    background: #7bebff;
-    display: block;
-    margin: 0 auto;
-    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-    border: none;
-    margin-top: 3vh;
+  width: 92vw;
+  height: 13.066667vw;
+  border-radius: 6.8vw;
+  font-size: 4.8vw;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 4vw;
+  background: #7bebff;
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+  border: none;
+  margin-top: 3vh;
 }
 
 /* ------------------------------------------------------- usdt withdraw page ------------------------------------------ */
 #usdt_withdraw {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #fff;
-    z-index: -1;
-    padding-bottom: 20vh;
-    overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  z-index: -1;
+  padding-bottom: 20vh;
+  overflow-y: scroll;
 }
 
 .usdt_w_add {
-    width: 92vw;
-    margin: 0 auto;
-    padding: 2vw;
+  width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
 }
 
-.usdt_w_add>h3 {
-    color: gray;
+.usdt_w_add > h3 {
+  color: gray;
 }
 
-.usdt_w_add>input {
-    width: 100%;
-    padding: 4vw;
-    border: none;
-    outline: none;
-    background: rgba(211, 211, 211, 0.253);
-    margin-top: 3vw;
-    border-radius: 10px;
+.usdt_w_add > input {
+  width: 100%;
+  padding: 4vw;
+  border: none;
+  outline: none;
+  background: rgba(211, 211, 211, 0.253);
+  margin-top: 3vw;
+  border-radius: 10px;
 }
 
 .usdt_amount {
-    margin-top: 3vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(211, 211, 211, 0.253);
-    border-radius: 10px;
-
+  margin-top: 3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(211, 211, 211, 0.253);
+  border-radius: 10px;
 }
 
-.usdt_amount span>input {
-    padding: 4vw;
-    width: 65vw;
-    border: none;
-    background: none;
-    outline: none;
+.usdt_amount span > input {
+  padding: 4vw;
+  width: 65vw;
+  border: none;
+  background: none;
+  outline: none;
 }
 
 .ud_input {
-    display: flex;
-    padding: 1vw;
-    font-weight: 700;
+  display: flex;
+  padding: 1vw;
+  font-weight: 700;
 }
 
 .usdt_bal {
-    margin: 3vw auto;
-    width: 92vw;
-
+  margin: 3vw auto;
+  width: 92vw;
 }
 
 .usdt_ud_bal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 2vw;
-    font-weight: 700;
-    color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2vw;
+  font-weight: 700;
+  color: #333;
 }
 
 .usdt_w_btn {
-    text-align: center;
-    width: 80px;
-    margin-left: 2vw;
-    padding: 1.5vw 0;
-    border-radius: 20px;
-    background: #f8f8f8;
+  text-align: center;
+  width: 80px;
+  margin-left: 2vw;
+  padding: 1.5vw 0;
+  border-radius: 20px;
+  background: #f8f8f8;
 }
 
 .btn_options {
-    display: flex;
-    padding: 2vw 0;
+  display: flex;
+  padding: 2vw 0;
 }
 
 .inr_w_form {
-    background: #fff;
+  background: #fff;
 }
 
 .usdt_w_form {
-    width: 100vw;
-    position: absolute;
-    top: 11vw;
-    left: 0;
-    background: #fff;
-    padding-bottom: 12vh;
-    display: none;
+  width: 100vw;
+  position: absolute;
+  top: 11vw;
+  left: 0;
+  background: #fff;
+  padding-bottom: 12vh;
+  display: none;
 }
 
-.addAccount>div {
-    width: 100px;
-    height: inherit;
-    text-align: center;
-    display: flex;
-    align-items: center;
+.addAccount > div {
+  width: 100px;
+  height: inherit;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .usdt_pass_pop {
-    position: absolute;
-    top: 15%;
-    left: 0;
-    width: 100vw;
-    height: 70vh;
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 100vw;
+  height: 70vh;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
 }
 
 .usdt_set_pass {
-    width: 94vw;
-    height: 100%;
-    background: #f8f8f8;
-    box-shadow: 0 .5333300000000000000003vw .533333vw 0 rgba(51, 51, 51, .1);
-    border-radius: 14px;
+  width: 94vw;
+  height: 100%;
+  background: #f8f8f8;
+  box-shadow: 0 0.5333300000000000000003vw 0.533333vw 0 rgba(51, 51, 51, 0.1);
+  border-radius: 14px;
 }
 
-.set_usdt_add>input {
-    border: none;
-    outline: none;
-    background: transparent;
-    padding: 3vw;
-    width: 100%;
+.set_usdt_add > input {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 3vw;
+  width: 100%;
 }
 
 .outer_add_pass {
-    display: flex;
-    justify-content: center;
-    width: 90vw;
-    margin: 0 auto;
-    background: #fff;
-    height: 46px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  margin: 0 auto;
+  background: #fff;
+  height: 46px;
+  border-radius: 10px;
 }
 
 .set_usdt_add {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .usdt_set_pass button {
-    width: 68vw;
-    height: 13.066667vw;
-    border-radius: 6.8vw;
-    font-size: 4.8vw;
-    font-weight: 500;
-    color: #fff;
-    margin-top: 4vw;
-    background: #7bebff;
-    display: block;
-    margin: 0 auto;
-    background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
-    border: none;
+  width: 68vw;
+  height: 13.066667vw;
+  border-radius: 6.8vw;
+  font-size: 4.8vw;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 4vw;
+  background: #7bebff;
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+  border: none;
 }
 
 .pay_chanel_four::placeholder {
-    color: white
+  color: white;
 }
 
 .p_f_b {
-    background: linear-gradient(270deg, rgba(0, 0, 0, 1) 23%, rgba(227, 30, 37, 1) 100%);
+  background: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 1) 23%,
+    rgba(227, 30, 37, 1) 100%
+  );
 }
 
 #pay_chanel_four_data {
-    position: relative;
+  position: relative;
 }
 
 #pay_chanel_four_data::before {
-    content: '';
-    position: absolute;
-    top: 17%;
-    left: 0;
-    width: 100%;
-    height: 22%;
-    background: red;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 17%;
+  left: 0;
+  width: 100%;
+  height: 22%;
+  background: red;
+  z-index: -1;
 }
 
 #pay_chanel_four_data::after {
-    content: '';
-    position: absolute;
-    bottom: 16%;
-    left: 0;
-    width: 100%;
-    height: 22%;
-    background: red;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  bottom: 16%;
+  left: 0;
+  width: 100%;
+  height: 22%;
+  background: red;
+  z-index: -1;
 }
 
 .design_circle {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 46%;
-    right: 7%;
-    background: red;
-    border-radius: 100%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 46%;
+  right: 7%;
+  background: red;
+  border-radius: 100%;
 }
 
 .design_circle_two {
-    position: absolute;
-    width: 13px;
-    height: 13px;
-    top: -12%;
-    left: -9%;
-    background: red;
-    border-radius: 100%;
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: -12%;
+  left: -9%;
+  background: red;
+  border-radius: 100%;
 }
 
 #reference_number::before {
-    position: absolute;
-    content: '';
-    top: 54%;
-    left: -10%;
-    width: 65px;
-    height: 65px;
-    border-radius: 100%;
-    background: red;
-    z-index: -1;
+  position: absolute;
+  content: "";
+  top: 54%;
+  left: -10%;
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  background: red;
+  z-index: -1;
 }
 
 .p_f_submit {
-    width: 66vw;
-    display: block;
-    background: black;
-    padding: 3vw;
-    color: white;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 0 12px 5px rgba(47, 46, 46, 0.2);
-
+  width: 66vw;
+  display: block;
+  background: black;
+  padding: 3vw;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 0 12px 5px rgba(47, 46, 46, 0.2);
 }
 
 .circle_two {
-    position: relative;
+  position: relative;
 }
 
 .circle_two::after {
-    content: '';
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 54%;
-    right: 13%;
-    border-radius: 100%;
-    z-index: -1;
+  content: "";
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 54%;
+  right: 13%;
+  border-radius: 100%;
+  z-index: -1;
 }
 
-
-@media only screen and (max-width: 430px) and (max-height:400px) {
-    input:focus {
-        position: fixed;
-        top: 50px;
-    }
+@media only screen and (max-width: 430px) and (max-height: 400px) {
+  input:focus {
+    position: fixed;
+    top: 50px;
+  }
 }
 
 #payment_chanel_five {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    width: 100dvw;
-    background: #fff;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding-bottom: 4rem;
-    display: flex;
-    justify-content: center;
-    z-index: -1;
-    /* align-items: center; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100dvw;
+  background: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+  z-index: -1;
+  /* align-items: center; */
 }
 
 .payment_chanel_five_content {
-    width: 70dvw;
-    min-height: 40rem;
+  width: 70dvw;
+  min-height: 40rem;
 }
 
 .payment_chanel_five_header {
-    height: 4.5rem;
-    background: url(../elephantFootball/rechargePopup/chanel_five_header.png) center no-repeat;
-    background-size: 13rem;
-    margin-top: 1rem;
+  height: 4.5rem;
+  background: url(../elephantFootball/rechargePopup/chanel_five_header.png)
+    center no-repeat;
+  background-size: 13rem;
+  margin-top: 1rem;
 }
 
 .payment_chanel_five_qrCode_box {
-    min-height: 25rem;
-    margin-top: .5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);
-    border-radius: 8px;
-    background: #f7f7f7;
+  min-height: 25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 12px 4px rgba(47, 46, 46, 0.2);
+  border-radius: 8px;
+  background: #f7f7f7;
 }
 
 .payment_chanel_five_qrCode_box_outer_div {
-    height: 3rem;
-    display: flex;
+  height: 3rem;
+  display: flex;
 }
 
 .bhim_img {
-    width: 50%;
-    height: 100%;
-    background: url(../elephantFootball/rechargePopup/chanel_five_upi_img_two.png) center no-repeat;
-    background-size: 6rem;
+  width: 50%;
+  height: 100%;
+  background: url(../elephantFootball/rechargePopup/chanel_five_upi_img_two.png)
+    center no-repeat;
+  background-size: 6rem;
 }
 
 .upi_img {
-    width: 50%;
-    height: 100%;
-    background: url(../elephantFootball/rechargePopup/chanel_five_upi_img.png) center no-repeat;
-    background-size: 6rem;
+  width: 50%;
+  height: 100%;
+  background: url(../elephantFootball/rechargePopup/chanel_five_upi_img.png)
+    center no-repeat;
+  background-size: 6rem;
 }
 
 .withdrawal_reset_btn {
-    word-spacing: 2px;
-    border: none;
-    outline: none;
-    margin: 0.6rem 0.5rem 0 0;
-    border-radius: 5px;
-    padding: .5rem .3rem;
+  word-spacing: 2px;
+  border: none;
+  outline: none;
+  margin: 0.6rem 0.5rem 0 0;
+  border-radius: 5px;
+  padding: 0.5rem 0.3rem;
 }
-.password_withdrawal{
-    display: flex;
-    border: 1px solid;
+.password_withdrawal {
+  display: flex;
+  border: 1px solid;
 }
-
 
 .two_factor_auth {
-    width: 92vw;
-    margin: 0 auto;
-    padding: 2vw;
-    margin: 0 0 0 1vh;
-  }
-  .password_verify_btn > button {
-    border: 1px solid;
-    word-spacing: 2px;
-    border: none;
-    outline: none;
-    margin: 0.6rem 0.5rem 0 0;
-    border-radius: 5px;
-   padding: .5rem .3rem;
-   margin-left: 6px;
-  }
-  .password_verify_btn > button > p{
-    font-weight: 600;
-    color:#fafafad6;
-  }
+  width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
+  margin: 0 0 0 1vh;
+}
+.password_verify_btn > button {
+  border: 1px solid;
+  word-spacing: 2px;
+  border: none;
+  outline: none;
+  margin: 0.6rem 0.5rem 0 0;
+  border-radius: 5px;
+  padding: 0.5rem 0.3rem;
+  margin-left: 6px;
+}
+.password_verify_btn > button > p {
+  font-weight: 600;
+  color: #fafafad6;
+}

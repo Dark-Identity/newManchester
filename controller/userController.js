@@ -56,7 +56,6 @@ module.exports.get_otp = get_otp = async (req, res) => {
   let body = req.body;
   let user_phone, stat;
 
-
   if (!body["contact"] || body["contact"] == undefined) {
     return res.send({ status: "something went wrong" });
   } else {
@@ -94,6 +93,100 @@ module.exports.get_otp = get_otp = async (req, res) => {
       return res.send({ status: 1 });
     } else {
       return res.send({ status: 0 });
+    }
+  });
+};
+
+module.exports.get_withdraw_phone_otp = get_withdraw_phone_otp = async (
+  req,
+  res
+) => {
+  let number = getrandom();
+  let user_phone, stat;
+  if (!req?.session?.inv) {
+    return res.send({ status: 0 });
+  }
+  let is_user = await User.findOne({ inv: req?.session?.inv });
+  if (!is_user) return res.send({ status: 0 });
+  let phone = is_user.phone;
+
+  if (!phone || phone == undefined) {
+    return res.send({ status: "invalid phone number" });
+  }
+  user_phone = phone;
+
+  var request = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
+  let message = `${number}`;
+
+  request.query({
+    authorization:
+      "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
+    // "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
+    // "w0d8sQkyt4aIiJ5BcKFfVPxLueZSXoMqATgmUlW1G97Y6NvjzRhBczyNPs9SXtpU6jMurlLqGwavWZJ5",
+    variables_values: message,
+    route: "otp",
+    numbers: `${user_phone}`,
+  });
+
+  request.headers({
+    "cache-control": "no-cache",
+  });
+
+  request.end(function (response) {
+    if (response.error) {
+      console.log(response);
+      return res.send({ status: "something went wrong" });
+    }
+    req.session.otp = number;
+    if (response.body.return) {
+      return res.send({ status: 1 });
+    } else {
+      return res.send({ status: 0 });
+    }
+  });
+};
+
+module.exports.get_withdraw_email_otp = get_withdraw_email_otp = async (
+  req,
+  res
+) => {
+  if (!req?.session?.inv) {
+    return res.send({ status: 0 });
+  }
+  let email;
+  let is_user = await User.findOne({ inv: req?.session?.inv });
+  let user_email = is_user.email;
+
+  if (!user_email || user_email == undefined) {
+    return res.send({ status: "invalid email" });
+  } else {
+    if (user_email.includes("@")) email = user_email;
+  }
+  let otp = Math.ceil(Math.random() * 90000 + 1000);
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      // user: "vishwakarma9304411522@gmail.com",
+      // pass: "vigtmiugmomefooi",
+      user: "manchesterfootball871@gmail.com",
+      pass: "cxhvhfknracyxrrr",
+    },
+  });
+
+  let mailOptions = {
+    from: "manchesterfootball871@gmail.com",
+    to: email,
+    subject: "Manchester football",
+    text: `Your OTP for varification is ${otp}`,
+  };
+
+  transporter.sendMail(mailOptions, async (err, info) => {
+    if (err) {
+      req.session["otp"] = "";
+      return res.send({ status: "invalid email" });
+    } else {
+      req.session["otp"] = otp;
+      return res.send({ status: 1 });
     }
   });
 };
@@ -360,9 +453,7 @@ async function increment_parent_mem(inv, prev_members) {
   return;
 }
 
-module.exports.verify_number = async function verify_number (req,res) {
+module.exports.verify_number = async function verify_number(req, res) {
   let body = req.body;
   console.log(req.session);
-  
-  
-}
+};

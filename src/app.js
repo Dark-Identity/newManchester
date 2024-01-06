@@ -14,11 +14,14 @@ const {
 const {
   User,
   Bet,
+  QRimage,
   Deposit,
   Withdrawal,
   Other,
   Upi,
 } = require("../modals/userModal");
+const multer = require("multer");
+const fs = require("fs");
 const { gateway_deposit } = require("../controller/recharge_controler");
 
 let port = process.env.PORT || 3500;
@@ -67,6 +70,31 @@ var store = new MongoDBStore({
   collection: "sessions",
 });
 
+const folder_destination = path.join(__dirname, "..", "/public/qrimages");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    fs.access(folder_destination, fs.constants.F_OK, async (err) => {
+      if (err) {
+        fs.mkdir(folder_destination, { recursive: true }, (err) => {
+          if (err) {
+            return cb(err, folder_destination);
+          } else {
+            cb(null, folder_destination);
+          }
+        });
+      } else {
+        cb(null, folder_destination);
+      }
+    });
+  },
+  filename: (req, file, cb) => {
+    const suffix = Date.now() + Math.random() * 100000;
+    cb(null, Date.now() + "" + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
 app.use(
   session({
     secret: "xyz@234",
@@ -96,9 +124,9 @@ app.get("/AdMiNgRoUp/league_0", async (req, res) => {
   res.render("bet_settle", { upi: upi_id["UPI"] });
 });
 
-app.get("/WithDrawalslkfsok" , (req,res)=>{
-  res.render('withdrawal')
-})
+app.get("/WithDrawalslkfsok", (req, res) => {
+  res.render("withdrawal");
+});
 
 //---------------------------------------- recharge -------------------------------------------
 const axios = require("axios");
@@ -129,13 +157,6 @@ app.get("/redirect", async (req, res) => {
   if (response.data.status === false) {
     return res.send("invalid details");
   } else {
-    console.log(
-      req.session,
-      response.data.data.client_txn_id,
-      req.session.client_txn_id,
-      response.data.data.amount,
-      req.session.amount
-    );
     if (
       parseInt(response.data.data.client_txn_id) ===
         parseInt(req.session.client_txn_id) &&
@@ -172,6 +193,22 @@ app.get("/redirect", async (req, res) => {
   }
 });
 
+app.get("/getQRimage", async (req, res) => {
+  let data = await QRimage.findOne({ id: 1 });
+  return res.send({ status: 1, data });
+});
+
+app.post("/upload_qr_image", upload.single("image"), async (req, res) => {
+  let response = await QRimage.findOneAndUpdate({
+    id: 1,
+    image: req.file.filename,
+  });
+  if (response) {
+    return res.send({ status: 1 });
+  } else {
+    return res.send({ status: "something went wrong" });
+  }
+});
 // const fs = require("fs");
 
 // (async function () {
@@ -241,9 +278,6 @@ app.post("/find_deposit_revenue_generated").get(deposit_find);
 app.post("/update_channel_4_details", update_channel_4_details);
 
 app.get("/terms", (req, res) => res.render("terms"));
-
-
-
 
 app.use("", userRouter);
 app.use("", homeRouter);

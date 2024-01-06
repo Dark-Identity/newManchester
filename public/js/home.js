@@ -251,17 +251,19 @@ function create_match(data) {
                           <div class="tName">
                               <p class="circle"></p>
                               <p class="ellipsis-1 namematch" data-v-7afa3138="">
-                              <p  class="league_id" id="league_id">${data["fixture_id"]
-    }</p>
-                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${data["league"]
-    }</p>
+                              <p  class="league_id" id="league_id">${
+                                data["fixture_id"]
+                              }</p>
+                              <p class="ellipsis-1 namematch" data-v-7afa3138="" id="final_league_name">${
+                                data["league"]
+                              }</p>
                           </div>
                           <div class="date">
                               <p>${[
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
-    ].join("|")}</p>
+                                date.getFullYear(),
+                                date.getMonth() + 1,
+                                date.getDate(),
+                              ].join("|")}</p>
                           </div>
                       </div>
 
@@ -303,7 +305,6 @@ function create_match(data) {
 async function get_live_bets() {
   let res = await fetch("/get_live_bets");
   res = await res.json();
-
 
   // from here I have to call the store data function by passing the arguments key and array.
   let count_matches = 0;
@@ -415,8 +416,9 @@ function load_bet_box() {
       });
 
       let today = new Date();
-      document.querySelector("#b_date").innerText = `${today.getDate()}/${today.getMonth() + 1
-        }/${today.getFullYear()}`;
+      document.querySelector("#b_date").innerText = `${today.getDate()}/${
+        today.getMonth() + 1
+      }/${today.getFullYear()}`;
 
       let percentage_array = load_bet_percentages(league_id);
 
@@ -648,6 +650,89 @@ function gettimenow() {
     return false;
   }
 }
+async function getWithdrawPhoneOtp() {
+  popup_cancel_btn.disabled = true;
+  popup_page.style.left = "0vw";
+
+  let config = {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  };
+  let response = await fetch("/get_withdraw_phone_otp", config);
+  response = await response.json();
+
+  if (response["status"] == 1) {
+    popup_tip.innerText = "Success! otp sent wait 30sec to send again.";
+    popup_close_btn.disabled = false;
+  } else if (response["status"] === 2) {
+    popup_tip.innerText = "wait 30 sec before trying again.";
+    popup_close_btn.disabled = false;
+  } else {
+    popup_tip.innerText =
+      "Failure! something went wrong try again after 30sec.";
+    popup_close_btn.disabled = false;
+  }
+}
+
+document
+  .querySelector("#get_withdraw_phone_otp")
+  .addEventListener("click", async () => {
+    document.querySelector("#get_withdraw_phone_otp").disabled = true;
+    await getWithdrawPhoneOtp();
+    document.querySelector("#get_withdraw_phone_otp").disabled = false;
+  });
+
+document
+  .querySelector("#get_withdraw_phone_usdt_otp")
+  .addEventListener("click", async () => {
+    document.querySelector("#get_withdraw_phone_usdt_otp").disabled = true;
+    await getWithdrawPhoneOtp();
+    document.querySelector("#get_withdraw_phone_usdt_otp").disabled = false;
+  });
+
+async function getWithdrawEmailOtp() {
+  popup_cancel_btn.disabled = true;
+  popup_page.style.left = "0vw";
+
+  let config = {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  };
+  let response = await fetch("/get_withdraw_email_otp", config);
+  response = await response.json();
+
+  if (response["status"] == 1) {
+    popup_tip.innerText = "Success! otp sent wait 30sec to send again.";
+    popup_close_btn.disabled = false;
+  } else if (response["status"] === 2) {
+    popup_tip.innerText = "wait 30 sec before trying again.";
+    popup_close_btn.disabled = false;
+  } else {
+    popup_tip.innerText =
+      "Failure! something went wrong try again after 30sec.";
+    popup_close_btn.disabled = false;
+  }
+}
+
+document
+  .querySelector("#get_withdraw_email_usdt_otp")
+  .addEventListener("click", async () => {
+    document.querySelector("#get_withdraw_email_usdt_otp").disabled = true;
+    await getWithdrawEmailOtp();
+    document.querySelector("#get_withdraw_email_usdt_otp").disabled = false;
+  });
+
+document
+  .querySelector("#get_withdraw_email_otp")
+  .addEventListener("click", async () => {
+    document.querySelector("#get_withdraw_email_otp").disabled = true;
+    await getWithdrawEmailOtp();
+    document.querySelector("#get_withdraw_email_otp").disabled = false;
+  });
 
 const withdraw_btn = document.querySelector("#withdraw_request");
 withdraw_btn.addEventListener("click", async () => {
@@ -656,10 +741,15 @@ withdraw_btn.addEventListener("click", async () => {
   }
   let amount = document.querySelector("#withdraw_amount").value;
   let withdrawal_code = document.querySelector("#withdrawal_code").value;
-
+  let phone_otp = document.querySelector("#withdraw_phone_otp_input").value;
+  let email_otp = document.querySelector("#withdraw_email_otp_input").value;
+  let otp;
   amount = parseFloat(amount);
   popup_page.style.left = "0px";
-
+  if (!((!phone_otp && email_otp) || (phone_otp && !email_otp))) {
+    popup_tip.innerText = "Enter any one otp";
+  }
+  otp = phone_otp || email_otp;
   if (amount == "" || !amount || !withdrawal_code || withdrawal_code == "") {
     popup_tip.innerText = "Enter valid data";
     popup_cancel_btn.disabled = false;
@@ -677,6 +767,7 @@ withdraw_btn.addEventListener("click", async () => {
   let data = {
     withdrawal_code: parseInt(withdrawal_code),
     amount: amount,
+    otp,
   };
 
   let config = {
@@ -689,7 +780,7 @@ withdraw_btn.addEventListener("click", async () => {
 
   let response = await fetch("/withdrawal", config);
   response = await response.json();
-  console.log(response);
+  // console.log(response);
 
   if (response["status"] == 1) {
     popup_tip.innerText = "Done! your payment is in processing";
@@ -960,8 +1051,9 @@ async function initiate_gateway_recharge() {
   post_data.p_info = "product_name";
   post_data.customer_name = "anonymus";
   post_data.customer_email = "gateway@gmail.com";
-  post_data.customer_mobile = `${Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
-    }`;
+  post_data.customer_mobile = `${
+    Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
+  }`;
   post_data.redirect_url = "http://www.manchester-football.com/redirect";
 
   let config = {
@@ -1027,18 +1119,15 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
       usdt_recharge_page();
       return;
     }
-  }
-   else if (payment_four) {
+  } else if (payment_four) {
     if (recharge_amount < 99) {
       check_deposit_amount();
       return;
     } else {
       channel_four(recharge_amount);
-      console.log("yes");
       return;
     }
-  }
-  else if (payment_five) {
+  } else if (payment_five) {
     if (recharge_amount < 99) {
       check_deposit_amount();
       return;
@@ -1047,7 +1136,6 @@ document.querySelector("#recharge_btn").addEventListener("click", () => {
       return;
     }
   }
-  
 });
 
 // gateway
@@ -1160,6 +1248,12 @@ document
   .querySelector("#usdt_withdraw_request")
   .addEventListener("click", async () => {
     let amount = document.querySelector("#usdt_withdraw_amount").value;
+    let phone_otp = document.querySelector(
+      "#withdraw_phone_usdt_otp_input"
+    ).value;
+    let email_otp = document.querySelector(
+      "#withdraw_email_usdt_otp_input"
+    ).value;
     let withdraw_password = document.querySelector(
       "#usdt_withdrawal_code"
     ).value;
@@ -1177,6 +1271,10 @@ document
       popup_tip.innerText = "Withdraw time out";
       return;
     }
+    if (!((!phone_otp && email_otp) || (!email_otp && phone_otp))) {
+      popup_tip.innerText = "Enter any one otp";
+    }
+    let otp = phone_otp || email_otp;
     if (!usdt_adress || typeof usdt_adress === "undefined") {
       popup_tip.innerText = "Set up a TRC20 adress first.";
       return;
@@ -1197,7 +1295,7 @@ document
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({ amount, withdraw_password }),
+        body: JSON.stringify({ amount, withdraw_password, otp }),
       };
 
       let res = await fetch("/usdt_withdraw", config);
@@ -1372,11 +1470,9 @@ function channel_five(amount) {
   document.querySelector("#payment_chanel_five").style.zIndex = "1";
 }
 
-
 document
   .querySelector("#payment_channel_four_submit")
   .addEventListener("click", channel_four_submit);
-
 
 async function channel_four_submit() {
   let referance_number = document.querySelector(
@@ -1434,10 +1530,66 @@ async function channel_four_submit() {
 })();
 
 // ------------------------------------- back from the payment channel four button ------------------------
-document.querySelector('#payment_channel_four_back_btn').addEventListener('click', () => {
-  document.querySelector('#payment_chanel_four').style.zIndex = -1;
-});
+document
+  .querySelector("#payment_channel_four_back_btn")
+  .addEventListener("click", () => {
+    document.querySelector("#payment_chanel_four").style.zIndex = -1;
+  });
 
-document.querySelector('#payment_channel_five_back_btn').addEventListener('click', () => {
-  document.querySelector('#payment_chanel_five').style.zIndex = -1;
-});
+document
+  .querySelector("#payment_channel_five_back_btn")
+  .addEventListener("click", () => {
+    document.querySelector("#payment_chanel_five").style.zIndex = -1;
+  });
+
+(async function getQRimage() {
+  let res = await fetch("/getQRimage");
+  res = await res.json();
+  if (res && res?.data?.image) {
+    document.querySelector(
+      ".payment_five_qrCode"
+    ).style.background = `url(qrimages/${res?.data?.image}) center no-repeat`;
+    document.querySelector(".payment_five_qrCode").style.backgroundSize =
+      "contain";
+  }
+})();
+
+document
+  .querySelector("#channel_five_deposit_submit_btn")
+  .addEventListener("click", async () => {
+    let referance_number = document.querySelector(
+      "#channel_five_ref_input"
+    ).value;
+
+    let amount = document.querySelector("#channel_5_amount").innerText;
+
+    popup_page.style.left = 0;
+    popup_tip.innerText = "Loading...";
+    popup_close_btn.disabled = true;
+
+    if (!referance_number || referance_number.length !== 12) {
+      popup_tip.innerText = "Enter a valid referance number.";
+      popup_close_btn.disabled = false;
+      return;
+    }
+
+    try {
+      let config = {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ referance_number, amount }),
+      };
+      let res = await fetch("/chanel_four_deposit", config);
+      res = await res.json();
+      if (!res || res?.status !== 1) {
+        popup_tip.innerText = res?.message || "something went wrong.";
+      }
+      popup_tip.innerText = "Your payment is in processing";
+      popup_close_btn.disabled = false;
+    } catch (error) {
+      popup_tip.innerText = "something went wrong";
+      window.location.href = window.location.origin + "/login";
+    }
+  });
