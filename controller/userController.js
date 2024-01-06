@@ -71,9 +71,8 @@ module.exports.get_otp = get_otp = async (req, res) => {
 
   request.query({
     authorization:
-      "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
-    // "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
-    // "w0d8sQkyt4aIiJ5BcKFfVPxLueZSXoMqATgmUlW1G97Y6NvjzRhBczyNPs9SXtpU6jMurlLqGwavWZJ5",
+      // "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
+      "w0d8sQkyt4aIiJ5BcKFfVPxLueZSXoMqATgmUlW1G97Y6NvjzRhBczyNPs9SXtpU6jMurlLqGwavWZJ5",
     variables_values: message,
     route: "otp",
     numbers: `${user_phone}`,
@@ -120,9 +119,8 @@ module.exports.get_withdraw_phone_otp = get_withdraw_phone_otp = async (
 
   request.query({
     authorization:
-      "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
-    // "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
-    // "w0d8sQkyt4aIiJ5BcKFfVPxLueZSXoMqATgmUlW1G97Y6NvjzRhBczyNPs9SXtpU6jMurlLqGwavWZJ5",
+      // "4oGRnzhO7DXjrEab9aK7xd1x0wv3VudwssOQdQhy2ReXEW10uZgQZ9wvmOnH",
+      "w0d8sQkyt4aIiJ5BcKFfVPxLueZSXoMqATgmUlW1G97Y6NvjzRhBczyNPs9SXtpU6jMurlLqGwavWZJ5",
     variables_values: message,
     route: "otp",
     numbers: `${user_phone}`,
@@ -146,7 +144,7 @@ module.exports.get_withdraw_phone_otp = get_withdraw_phone_otp = async (
   });
 };
 
-module.exports.get_withdraw_email_otp = get_withdraw_email_otp = async (
+module.exports.get_withdraw_email_otp = get_withdraw_email_ = async (
   req,
   res
 ) => {
