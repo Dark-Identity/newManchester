@@ -1276,6 +1276,10 @@ document
       popup_tip.innerText = "Enter any one otp";
       return;
     }
+    if (amount < 200) {
+      popup_tip.innerText = "Minimum withdraw limit is 200 INR or 2.5 USD";
+      return;
+    }
     let otp = phone_otp || email_otp;
     if (!usdt_adress || typeof usdt_adress === "undefined") {
       popup_tip.innerText = "Set up a TRC20 adress first.";

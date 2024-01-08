@@ -709,7 +709,9 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
   if (amount > parseFloat(U_details["Ammount"])) {
     return res.send({ status: "YOU DONT HAVE ENOUGH BALANCE" });
   }
-
+  if (amount < 200) {
+    return res.send({ status: "Minimum withdraw limit is 200" });
+  }
   if (
     valid_amount >= valid_deposit &&
     valid_amount !== 0 &&
