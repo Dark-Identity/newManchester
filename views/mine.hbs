@@ -20,15 +20,15 @@
 
     <script src="https://unpkg.com/webtonative@1.0.50/webtonative.min.js"></script>
     <script defer src="js/mine.js"></script>
-    <!-- Start of LiveChat (www.livechat.com) code -->
-    <script>
-        window.__lc = window.__lc || {};
-        window.__lc.license = 16860597;
-        ; (function (n, t, c) { function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) } var e = { _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () { i(["once", c.call(arguments)]) }, off: function () { i(["off", c.call(arguments)]) }, get: function () { if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); return i(["get", c.call(arguments)]) }, call: function () { i(["call", c.call(arguments)]) }, init: function () { var n = t.createElement("script"); n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n) } }; !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e }(window, document, [].slice))
-    </script>
-    <noscript><a href="https://www.livechat.com/chat-with/16860597/" rel="nofollow">Chat with us</a>, powered by <a
-            href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-    <!-- End of LiveChat code -->
+  <!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 16987587;
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/16987587/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
+
 
     <style>
         .pass_gap div input {
@@ -741,15 +741,15 @@
                 <h5 style="color: grey;">Two-Factor Authentication (2FA),Choose anyone</h5>
                 <div class="pI"
                     style="display: flex;justify-content: space-between;align-items: center;border:1px solid;margin:2vw 0  0 0;height:5vh">
-                    <input type="number" placeholder="Phone Verification"
+                    <input id="phone_otp" type="number" placeholder="Phone Verification"
                         style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;">
                 </div>
 
                 <div class="password_verify_btn">
-                    <button style="background: #7cd0e2;" id="reset_password_verify_btn">
+                    {{!-- <button style="background: #7cd0e2;" id="reset_password_verify_btn">
                         <p style="">Verify OTP</p>
-                    </button>
-                    <button style="background:#fac069;" id="reset_password_send_otp_btn">
+                    </button> --}}
+                    <button id="get_phone_otp" style="background:#fac069;" id="reset_password_send_otp_btn">
                         <p style="">Resend OTP</p>
                     </button>
                 </div>
@@ -761,15 +761,15 @@
             <div class="pass_gap">
                 <div class="pI"
                     style="display: flex;justify-content: space-between;align-items: center;border:1px solid;margin:2vw 0  0 0;height:5vh">
-                    <input type="email" placeholder="Email Verification"
+                    <input id="email_otp" type="email" placeholder="Email Verification"
                         style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;">
                 </div>
 
                 <div class="password_verify_btn">
-                    <button style="background: #7cd0e2;">
+                    {{!-- <button style="background: #7cd0e2;">
                         <p style="">Verify OTP</p>
-                    </button>
-                    <button style="background:#fac069;">
+                    </button> --}}
+                    <button id="get_email_otp" style="background:#fac069;">
                         <p style="">Resend OTP</p>
                     </button>
                 </div>
