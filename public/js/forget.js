@@ -148,3 +148,21 @@ document.querySelector('#show').addEventListener('click', () => {
     }
 });
 
+
+//  50000 = 2000 insureance 
+//  
+//  hath mai aaya = 47900 = 47000
+//  23500 per person 2000 karcha
+//  21500  lakhi
+//  lakhi paisa di :- 5000 (bandhan) + 3000 (jewar) + 1700 (humko di) + 1200 (idhr udhr karcha) + 150 (koyla)
+//  total paisa = 11050
+//  mishra = 3000
+//  21500 - 14050 = 7450
+//  papa = 7450 - 5000
+// 
+// 
+// 
+// 
+// 
+// 
+// 

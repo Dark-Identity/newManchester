@@ -25,6 +25,7 @@ const {
   get_withdraw_phone_otp,
   get_withdraw_email_otp,
   verify_number,
+  privacy
 } = require("../controller/userController");
 const { history_matches } = require("../controller/homeController");
 
@@ -153,5 +154,8 @@ userRouter.route("/get_history_matches").get(history_matches);
 
 userRouter.use(isAuthenticated);
 userRouter.route("/verify_number").post(verify_number);
+
+userRouter.route('/privacy').get(privacy)
+
 
 module.exports = userRouter;

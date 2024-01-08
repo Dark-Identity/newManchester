@@ -1593,3 +1593,9 @@ document
       window.location.href = window.location.origin + "/login";
     }
   });
+
+
+document.querySelector('#chanel_three').addEventListener('click',()=>{
+  document.querySelector('#yy_pay').style.zIndex = "-1";
+  console.log("yes");
+});  

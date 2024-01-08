@@ -200,3 +200,7 @@ document.querySelector("#show").addEventListener("click", () => {
     z.style.display = "block";
   }
 });
+
+document.querySelector('#privacy').addEventListener('click',()=>{
+  window.location.href = window.location.origin + "/privacy";
+});

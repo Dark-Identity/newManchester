@@ -18,6 +18,7 @@ module.exports.register = (req, res) => {
 module.exports.get_forget = get_forget = (req, res) => {
   res.render("forget");
 };
+
 module.exports.forget_password = forget_password = async (req, res) => {
   let INVITATION_CODE = req.session.inv;
   let { phone, password } = req.body;
@@ -234,6 +235,7 @@ module.exports.get_otp_email = get_otp_email = async (req, res) => {
 module.exports.getlogin = (req, res) => {
   res.render("login");
 };
+
 
 module.exports.getmine = (req, res) => {
   res.render("mine");
@@ -457,3 +459,7 @@ module.exports.verify_number = async function verify_number(req, res) {
   let body = req.body;
   console.log(req.session);
 };
+
+module.exports.privacy = function privacy (req,res) {
+  res.render("privacy")
+}

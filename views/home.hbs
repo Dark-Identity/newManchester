@@ -987,6 +987,17 @@
         </section>
 
         <section id="yy_pay" style="">
+
+            <div id="chanel_three" style="z-index: 1;">
+                <ion-icon name="chevron-back-outline"
+                 style="font-size: 6vw;
+                    font-size: 6vw;
+                    position: absolute;
+                    left: 1rem;
+                    top: 1rem;
+                 "></ion-icon>
+            </div>
+
             <h3 id="yy_amount" style="color : yellow;padding : 0.5rem 0;" class="payment_amount">1000</h3>
 
             <div class="section1">
@@ -1158,10 +1169,10 @@
                                 <input type="text" value="000" class="pay_chanel_four" readonly="readonly"
                                     id="payment_four_acName"
                                     style="padding: 3vw; width: 90%; outline:none;border:none;background:transparent;color:white;text-transform:uppercase;">
-                               
-                                   <ion-icon name="copy-outline" class="copy_payment_reference"
+
+                                <ion-icon name="copy-outline" class="copy_payment_reference"
                                     style="font-size:4vw; color:white"></ion-icon>
-                                    
+
                             </div>
                         </div>
 
@@ -1235,7 +1246,7 @@
 
         </section>
 
-        <section id="payment_chanel_five" >
+        <section id="payment_chanel_five">
 
             <div class="payment_chanel_five_content">
 
@@ -1248,7 +1259,7 @@
 
                 <div class="payment_chanel_five_header"></div>
 
-               
+
 
                 <div class="payment_chanel_five_qrCode_box">
                     <div class="payment_chanel_five_qrCode_box_outer_div">
@@ -1271,7 +1282,8 @@
 
 
                 <div style="display: flex; justify-content: center;align-items: center;margin-top: 1.5rem;">
-                    <button id="channel_five_deposit_submit_btn" style="width: 100%;padding: .8rem;background: #3395ff;border-radius: 8px;border:none">
+                    <button id="channel_five_deposit_submit_btn"
+                        style="width: 100%;padding: .8rem;background: #3395ff;border-radius: 8px;border:none">
                         <h4 style="color:rgba(255, 255, 255, 0.913)">Recharge of RS.<span id="channel_5_amount">0</span>
                         </h4>
                     </button>
@@ -1428,8 +1440,9 @@
                                 <div class="pass_gap">
                                     <h4 style="color: grey;">Two-Factor Authentication (2FA),Choose anyone</h4>
                                     <div class="pI addAccount"
-                                        style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;" >
-                                        <input id="withdraw_phone_otp_input" type="number" placeholder="Phone Verification"
+                                        style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;">
+                                        <input id="withdraw_phone_otp_input" type="number"
+                                            placeholder="Phone Verification"
                                             style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;">
                                     </div>
 
@@ -1437,7 +1450,8 @@
                                         {{!-- <button style="background:#7cd0e2;" id="reset_password_verify_btn">
                                             <p style="">Verify OTP</p>
                                         </button> --}}
-                                        <button id="get_withdraw_phone_otp" style="background:#fac069;" id="reset_password_send_otp_btn">
+                                        <button id="get_withdraw_phone_otp" style="background:#fac069;"
+                                            id="reset_password_send_otp_btn">
                                             <p style="">Resend OTP</p>
                                         </button>
                                     </div>
@@ -1449,7 +1463,8 @@
                                 <div class="pass_gap">
                                     <div class="pI addAccount "
                                         style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;">
-                                        <input id="withdraw_email_otp_input" type="number" placeholder="Email Verification"
+                                        <input id="withdraw_email_otp_input" type="number"
+                                            placeholder="Email Verification"
                                             style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;padding: .5rem;">
                                     </div>
 
@@ -1569,14 +1584,15 @@
                                 </div>
 
                             </div>
-                            
+
                             <div class="gap">
 
                                 <div class="pass_gap">
                                     <h4 style="color: grey;">Two-Factor Authentication (2FA),Choose anyone</h4>
                                     <div class="pI addAccount"
-                                        style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;" >
-                                        <input id="withdraw_phone_usdt_otp_input" type="number" placeholder="Phone Verification"
+                                        style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;">
+                                        <input id="withdraw_phone_usdt_otp_input" type="number"
+                                            placeholder="Phone Verification"
                                             style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;">
                                     </div>
 
@@ -1584,7 +1600,8 @@
                                         {{!-- <button style="background:#7cd0e2;" id="reset_password_verify_btn">
                                             <p style="">Verify OTP</p>
                                         </button> --}}
-                                        <button id="get_withdraw_phone_usdt_otp" style="background:#fac069;" id="reset_password_send_otp_btn">
+                                        <button id="get_withdraw_phone_usdt_otp" style="background:#fac069;"
+                                            id="reset_password_send_otp_btn">
                                             <p style="">Resend OTP</p>
                                         </button>
                                     </div>
@@ -1596,7 +1613,8 @@
                                 <div class="pass_gap">
                                     <div class="pI addAccount "
                                         style="display: flex;justify-content: space-between;align-items: center;margin:2vw 0  0 0;height:6.4vh;background: #f9f9f9;width: 92vw;margin-left: 6px; border-radius: 5px;">
-                                        <input id="withdraw_email_usdt_otp_input" type="number" placeholder="Email Verification"
+                                        <input id="withdraw_email_usdt_otp_input" type="number"
+                                            placeholder="Email Verification"
                                             style=" margin-left:2vw;width:100%;outline:none;border:none;background: transparent;padding: .5rem;">
                                     </div>
 
