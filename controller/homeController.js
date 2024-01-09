@@ -13,6 +13,16 @@ const nodemailer = require("nodemailer");
 const { json } = require("express");
 const crypto = require("crypto");
 
+// (async function () {
+//   let total_withdrawals = await User.find({ deposit: { $gt: 1 } });
+//   let amount = 0;
+//   console.log("started");
+//   for (let withdraw of total_withdrawals) {
+//     amount += Number(withdraw?.deposit);
+//   }
+//   console.log(amount);
+// })();
+
 module.exports.gethome = async (req, res) => {
   let upi_id = await Upi.findOne({ upi: 1 }, { _id: 0, UPI: 1 });
 

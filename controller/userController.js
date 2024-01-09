@@ -242,7 +242,6 @@ module.exports.getlogin = (req, res) => {
   res.render("login");
 };
 
-
 module.exports.getmine = (req, res) => {
   res.render("mine");
 };
@@ -472,7 +471,3 @@ module.exports.verify_number = async function verify_number(req, res) {
   let body = req.body;
   console.log(req.session);
 };
-
-module.exports.privacy = function privacy (req,res) {
-  res.render("privacy")
-}

@@ -220,7 +220,7 @@ app.post("/upload_qr_image", upload.single("image"), async (req, res) => {
 // })();
 
 // (async function () {
-//   let league = 1138848;
+//   let league = 1082497;
 //   let data = [];
 //   let match_data = await Bet.find({ leagueId: league });
 //   for (match of match_data) {
@@ -235,7 +235,7 @@ app.post("/upload_qr_image", upload.single("image"), async (req, res) => {
 //       },
 //     });
 //   }
-//   await User.updateMany(data);
+//   await User.bulkWrite(data);
 //   console.log("done");
 // })();
 
@@ -278,6 +278,10 @@ app.post("/find_deposit_revenue_generated").get(deposit_find);
 app.post("/update_channel_4_details", update_channel_4_details);
 
 app.get("/terms", (req, res) => res.render("terms"));
+
+app.get("/privacy", (req, res) => {
+  res.render("privacy");
+});
 
 app.use("", userRouter);
 app.use("", homeRouter);
