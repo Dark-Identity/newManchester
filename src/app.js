@@ -279,6 +279,8 @@ app.post("/update_channel_4_details", update_channel_4_details);
 
 app.get("/terms", (req, res) => res.render("terms"));
 
+app.get("/delete_my_account", (req, res) => res.render("delete_account"));
+
 app.get("/privacy", (req, res) => {
   res.render("privacy");
 });

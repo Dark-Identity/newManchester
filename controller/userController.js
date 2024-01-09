@@ -471,3 +471,4 @@ module.exports.verify_number = async function verify_number(req, res) {
   let body = req.body;
   console.log(req.session);
 };
+// https://www.manchester-football.com/delete_my_account
