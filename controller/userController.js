@@ -175,13 +175,15 @@ module.exports.get_withdraw_email_otp = get_withdraw_email_ = async (
     auth: {
       // user: "vishwakarma9304411522@gmail.com",
       // pass: "vigtmiugmomefooi",
-      user: "manchesterfootball871@gmail.com",
-      pass: "cxhvhfknracyxrrr",
+      // user: "manchesterfootball871@gmail.com",
+      // pass: "cxhvhfknracyxrrr",
+      user: "m76034324@gmail.com",
+      pass: "fyjxiysmpycsymvm",
     },
   });
 
   let mailOptions = {
-    from: "manchesterfootball871@gmail.com",
+    from: "m76034324@gmail.com",
     to: email,
     subject: "Manchester football",
     text: `Your OTP for varification is ${otp}`,
@@ -215,13 +217,15 @@ module.exports.get_otp_email = get_otp_email = async (req, res) => {
     auth: {
       // user: "vishwakarma9304411522@gmail.com",
       // pass: "vigtmiugmomefooi",
-      user: "manchesterfootball871@gmail.com",
-      pass: "cxhvhfknracyxrrr",
+      // user: "manchesterfootball871@gmail.com",
+      // pass: "cxhvhfknracyxrrr",
+      user: "m76034324@gmail.com",
+      pass: "fyjxiysmpycsymvm",
     },
   });
 
   let mailOptions = {
-    from: "manchesterfootball871@gmail.com",
+    from: "m76034324@gmail.com",
     to: email,
     subject: "Manchester football",
     text: `Your OTP for varification is ${otp}`,
