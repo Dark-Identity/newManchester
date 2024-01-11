@@ -1509,9 +1509,10 @@ async function channel_four_submit() {
     res = await res.json();
     if (!res || res?.status !== 1) {
       popup_tip.innerText = res?.message || "something went wrong.";
+    } else {
+      popup_tip.innerText = "Your payment is in processing";
+      popup_close_btn.disabled = false;
     }
-    popup_tip.innerText = "Your payment is in processing";
-    popup_close_btn.disabled = false;
   } catch (error) {
     popup_tip.innerText = "something went wrong";
     window.location.href = window.location.origin + "/login";
@@ -1598,8 +1599,7 @@ document
     }
   });
 
-
-document.querySelector('#chanel_three').addEventListener('click',()=>{
-  document.querySelector('#yy_pay').style.zIndex = "-1";
+document.querySelector("#chanel_three").addEventListener("click", () => {
+  document.querySelector("#yy_pay").style.zIndex = "-1";
   console.log("yes");
-});  
+});
