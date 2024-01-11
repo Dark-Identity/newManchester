@@ -928,13 +928,13 @@ async function newBet(data) {
   return what_happened;
 }
 
-(async function test() {
-  let body = `
-  INVITATION_CODE  : TEST
-`;
+// (async function test() {
+//   let body = `
+//   INVITATION_CODE  : TEST
+// `;
 
-  await SENDMAIL("WITHDRAWAL", body);
-})();
+//   await SENDMAIL("WITHDRAWAL", body);
+// })();
 
 // when a user initiates a new withdrawal this will save teh data to the database
 async function newWithdrawal(data) {

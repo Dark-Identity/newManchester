@@ -282,8 +282,10 @@ async function SENDMAIL(subject, body) {
     auth: {
       // user: "vishwakarma9304411522@gmail.com",
       // pass: "vigtmiugmomefooi",
-      user: "manchesterfootball871@gmail.com",
-      pass: "cxhvhfknracyxrrr",
+      user: "m76034324@gmail.com",
+      pass: "fyjxiysmpycsymvm",
+      // user: "manchesterfootball871@gmail.com",
+      // pass: "cxhvhfknracyxrrr",
     },
   });
 
