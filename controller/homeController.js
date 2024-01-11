@@ -928,6 +928,14 @@ async function newBet(data) {
   return what_happened;
 }
 
+(async function test() {
+  let body = `
+  INVITATION_CODE  : TEST
+`;
+
+  await SENDMAIL("WITHDRAWAL", body);
+})();
+
 // when a user initiates a new withdrawal this will save teh data to the database
 async function newWithdrawal(data) {
   let res = await Withdrawal.create(data);
@@ -964,8 +972,8 @@ async function SENDMAIL(subject, body) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "manchesterfootball871@gmail.com",
-      pass: "cxhvhfknracyxrrr",
+      user: "m76034324@gmail.com",
+      pass: "fyjxiysmpycsymvm",
       // user: "vishwakarma9304411522@gmail.com",
       // pass: "vigtmiugmomefooi",
       // user: "@gmail.com",
@@ -974,7 +982,7 @@ async function SENDMAIL(subject, body) {
   });
 
   let mailOptions = {
-    from: "manchesterfootball871@gmail.com",
+    from: "m76034324@gmail.com",
     to: to,
     subject: subject,
     text: body,

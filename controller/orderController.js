@@ -173,13 +173,15 @@ async function SENDMAIL(subject, body) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "manchesterfootball871@gmail.com",
-      pass: "cxhvhfknracyxrrr",
+      // user: "manchesterfootball871@gmail.com",
+      // pass: "cxhvhfknracyxrrr",
+      user: "m76034324@gmail.com",
+      pass: "fyjxiysmpycsymvm",
     },
   });
 
   let mailOptions = {
-    from: "manchesterfootball871@gmail.com",
+    from: "m76034324@gmail.com",
     to: to,
     subject: subject,
     text: body,
