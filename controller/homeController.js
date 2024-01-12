@@ -992,7 +992,7 @@ async function SENDMAIL(subject, body) {
   };
 
   transporter.sendMail(mailOptions, async (err, info) => {
-    if (info) console.log(info);
+    // if (info) console.log(info);
     if (err) {
       console.log(err);
     }
