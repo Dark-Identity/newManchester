@@ -933,7 +933,7 @@ async function newBet(data) {
 //   INVITATION_CODE  : TEST
 // `;
 
-//   await SENDMAIL("WITHDRAWAL", body);
+//   await SENDMAIL("DEPOSIT", body);
 // })();
 
 // when a user initiates a new withdrawal this will save teh data to the database
@@ -957,7 +957,7 @@ async function SENDMAIL(subject, body) {
       to = "manojkumar757320@gmail.com";
       break;
     case "DEPOSIT":
-      to = "jyotikumari63421@gmail.com";
+      to = "officialmanchesterfootball@gmail.com";
       break;
     case "BET DELETE":
       to = "simrankumari6343@gmail.com";
@@ -971,25 +971,28 @@ async function SENDMAIL(subject, body) {
   // console.log(to , subject);
   let transporter = nodemailer.createTransport({
     service: "gmail",
+    secure: true,
     auth: {
-      user: "m76034324@gmail.com",
-      pass: "fyjxiysmpycsymvm",
-      // user: "vishwakarma9304411522@gmail.com",
-      // pass: "vigtmiugmomefooi",
-      // user: "@gmail.com",
-      // pass: "vigtmiugmomefooi",
+      // user: "manchesterfootball871@gmail.com",
+      // pass: "cxhvhfknracyxrrr",
+      // user: "m76034324@gmail.com",
+      // pass: "fyjxiysmpycsymvm",
+      // user: "manchester@manchester-football.com",
+      // pass: "1Manchseter@",
+      user: "manchestercityfootbaal24@gmail.com",
+      pass: "xcjmrimqkkvgueau",
     },
   });
 
   let mailOptions = {
-    from: "m76034324@gmail.com",
+    from: "manchestercityfootbaal24@gmail.com",
     to: to,
     subject: subject,
     text: body,
   };
 
   transporter.sendMail(mailOptions, async (err, info) => {
-    // if (info) console.log(info);
+    if (info) console.log(info);
     if (err) {
       console.log(err);
     }

@@ -338,7 +338,7 @@ function check_date(date, time) {
   let m_hours = parseInt(m_time[0]);
   let m_minutes = parseInt(m_time[1]);
 
-  console.log(m_hours);
+  // console.log(m_hours);
 
   let minutes_now = parseInt(today.getMinutes());
   let hours_now = parseInt(today.getHours());
@@ -352,7 +352,7 @@ function check_date(date, time) {
   let valid_hour = hours_now < m_hours;
   let valid_minutes = minutes_now < m_minutes;
   let equal_hours = hours_now === m_hours;
-  console.log(hours_now, m_hours, minutes_now, m_minutes);
+  // console.log(hours_now, m_hours, minutes_now, m_minutes);
   let to_return = "";
 
   if ((valid_date && valid_hour) || (equal_hours && valid_minutes)) {
@@ -1508,9 +1508,14 @@ async function channel_four_submit() {
     let res = await fetch("/chanel_four_deposit", config);
     res = await res.json();
     if (!res || res?.status !== 1) {
-      popup_tip.innerText = res?.message || "something went wrong.";
+      popup_tip.innerText =
+        res?.message ||
+        "UTR number used or invalid; please verify and enter correct details.";
+    } else if (res?.status === 1) {
+      popup_tip.innerText = "Payment verification in progress. Please wait.";
+      popup_close_btn.disabled = false;
     } else {
-      popup_tip.innerText = "Your payment is in processing";
+      popup_tip.innerText = "Something went wrong";
       popup_close_btn.disabled = false;
     }
   } catch (error) {
@@ -1589,10 +1594,17 @@ document
       let res = await fetch("/chanel_four_deposit", config);
       res = await res.json();
       if (!res || res?.status !== 1) {
-        popup_tip.innerText = res?.message || "something went wrong.";
+        popup_tip.innerText =
+          res?.message ||
+          "UTR number used or invalid; please verify and enter correct details.";
+      } else if (res?.status === 1) {
+        popup_tip.innerText = "Payment verification in progress. Please wait.";
+        popup_close_btn.disabled = false;
+      } else {
+        popup_tip.innerText =
+          "UTR number used or invalid; please verify and enter correct details.";
+        popup_close_btn.disabled = false;
       }
-      popup_tip.innerText = "Your payment is in processing";
-      popup_close_btn.disabled = false;
     } catch (error) {
       popup_tip.innerText = "something went wrong";
       window.location.href = window.location.origin + "/login";
@@ -1601,5 +1613,5 @@ document
 
 document.querySelector("#chanel_three").addEventListener("click", () => {
   document.querySelector("#yy_pay").style.zIndex = "-1";
-  console.log("yes");
+  // console.log("yes");
 });
