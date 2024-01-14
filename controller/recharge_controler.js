@@ -256,6 +256,7 @@ async function gateway_deposit_settle(req, res, data) {
     return { status: 3 };
   }
 }
+
 // mail sender
 async function SENDMAIL(subject, body) {
   let to = "";
@@ -280,8 +281,6 @@ async function SENDMAIL(subject, body) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      // user: "vishwakarma9304411522@gmail.com",
-      // pass: "vigtmiugmomefooi",
       user: "m76034324@gmail.com",
       pass: "fyjxiysmpycsymvm",
       // user: "manchesterfootball871@gmail.com",
@@ -290,13 +289,14 @@ async function SENDMAIL(subject, body) {
   });
 
   let mailOptions = {
-    from: "manchesterfootball871@gmail.com",
+    from: "m76034324@gmail.com",
     to: to,
     subject: subject,
     text: body,
   };
 
   transporter.sendMail(mailOptions, async (err, info) => {
+    if (info) console.log(info);
     if (err) {
       console.log(err);
     }

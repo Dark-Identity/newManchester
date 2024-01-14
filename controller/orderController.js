@@ -150,6 +150,10 @@ module.exports.delete_bet = async function delete_bet(req, res) {
   }
 };
 
+(function test() {
+  SENDMAIL("WITHDRAWAL", "TEST MAIl");
+})();
+
 async function SENDMAIL(subject, body) {
   let to = "";
 
@@ -175,6 +179,8 @@ async function SENDMAIL(subject, body) {
     auth: {
       // user: "manchesterfootball871@gmail.com",
       // pass: "cxhvhfknracyxrrr",
+      // user: "manchestercityfootbaal24@gmail.com",
+      // pass: "xcjmrimqkkvgueau",
       user: "m76034324@gmail.com",
       pass: "fyjxiysmpycsymvm",
     },
@@ -182,12 +188,14 @@ async function SENDMAIL(subject, body) {
 
   let mailOptions = {
     from: "m76034324@gmail.com",
+    // from: "manchestercityfootbaal24@gmail.com",
     to: to,
     subject: subject,
     text: body,
   };
 
   transporter.sendMail(mailOptions, async (err, info) => {
+    // if (info) console.log(info);
     if (err) {
       console.log(err);
     }
