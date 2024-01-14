@@ -695,6 +695,13 @@ document
 async function getWithdrawEmailOtp() {
   popup_cancel_btn.disabled = true;
   popup_page.style.left = "0vw";
+  document.querySelector("#get_withdraw_email_otp").disabled = true;
+  document.querySelector("#get_withdraw_email_otp").style.background =
+    "#958873";
+
+  document.querySelector("#get_withdraw_email_usdt_otp").disabled = true;
+  document.querySelector("#get_withdraw_email_usdt_otp").style.background =
+    "#958873";
 
   let config = {
     method: "GET",
@@ -716,22 +723,32 @@ async function getWithdrawEmailOtp() {
       "Failure! something went wrong try again after 30sec.";
     popup_close_btn.disabled = false;
   }
+
+  setTimeout(() => {
+    document.querySelector("#get_withdraw_email_otp").disabled = false;
+    document.querySelector("#get_withdraw_email_otp").style.background =
+      "#fac069";
+
+    document.querySelector("#get_withdraw_email_usdt_otp").disabled = false;
+    document.querySelector("#get_withdraw_email_usdt_otp").style.background =
+      "#fac069";
+  }, 3000 * 10);
 }
 
 document
   .querySelector("#get_withdraw_email_usdt_otp")
   .addEventListener("click", async () => {
-    document.querySelector("#get_withdraw_email_usdt_otp").disabled = true;
+    // document.querySelector("#get_withdraw_email_usdt_otp").disabled = true;
     await getWithdrawEmailOtp();
-    document.querySelector("#get_withdraw_email_usdt_otp").disabled = false;
+    // document.querySelector("#get_withdraw_email_usdt_otp").disabled = false;
   });
 
 document
   .querySelector("#get_withdraw_email_otp")
   .addEventListener("click", async () => {
-    document.querySelector("#get_withdraw_email_otp").disabled = true;
+    // document.querySelector("#get_withdraw_email_otp").disabled = true;
     await getWithdrawEmailOtp();
-    document.querySelector("#get_withdraw_email_otp").disabled = false;
+    // document.querySelector("#get_withdraw_email_otp").disabled = false;
   });
 
 const withdraw_btn = document.querySelector("#withdraw_request");

@@ -150,10 +150,6 @@ module.exports.delete_bet = async function delete_bet(req, res) {
   }
 };
 
-(function test() {
-  SENDMAIL("WITHDRAWAL", "TEST MAIl");
-})();
-
 async function SENDMAIL(subject, body) {
   let to = "";
 

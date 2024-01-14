@@ -975,17 +975,19 @@ async function SENDMAIL(subject, body) {
     auth: {
       // user: "manchesterfootball871@gmail.com",
       // pass: "cxhvhfknracyxrrr",
-      // user: "m76034324@gmail.com",
-      // pass: "fyjxiysmpycsymvm",
+      user: "m76034324@gmail.com",
+      pass: "fyjxiysmpycsymvm",
       // user: "manchester@manchester-football.com",
       // pass: "1Manchseter@",
-      user: "manchestercityfootbaal24@gmail.com",
-      pass: "xcjmrimqkkvgueau",
+      // user: "manchestercityfootbaal24@gmail.com",
+      // pass: "xcjmrimqkkvgueau",
     },
   });
 
   let mailOptions = {
-    from: "manchestercityfootbaal24@gmail.com",
+    // from: "manchestercityfootbaal24@gmail.com",
+    from: "m76034324@gmail.com",
+
     to: to,
     subject: subject,
     text: body,
