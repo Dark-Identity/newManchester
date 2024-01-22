@@ -67,7 +67,6 @@ const newUserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-
   day_withdrawal: {
     type: Number,
     default: 0,

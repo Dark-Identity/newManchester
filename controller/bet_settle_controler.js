@@ -925,6 +925,8 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
       return res.send({ status: "DATA NOT FOUND CHECK THE DATABASE " });
     }
 
+    let vip_level = getVipLevel(amount);
+
     if (user_data["first_deposit"] === true) {
       // updating the parent
       if (user_data["parent"] !== 0) {
@@ -936,8 +938,7 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
               profit: parent_profit,
               promotion_bonus: parent_profit,
             },
-          },
-          { new: true }
+          }
         );
       }
 
@@ -953,6 +954,7 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
             promotion_bonus: user_profit,
             valid_deposit: amount * 2,
           },
+          vipLevel: vip_level,
           first_deposit: false,
           max_deposit: amount,
         }
@@ -981,7 +983,10 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
       });
     } else {
       amount = parseFloat(amount.toFixed(2));
-
+      vip_level =
+        parseInt(user_data.vipLevel) < vip_level
+          ? vip_level
+          : user_data.vipLevel;
       if (
         req.session.max_deposit !== "undefined" &&
         req.session.max_deposit &&
@@ -995,6 +1000,7 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
               deposit: amount,
               valid_deposit: amount * 2,
             },
+            vipLevel: vip_level,
             max_deposit: amount,
           }
         );
@@ -1007,6 +1013,7 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
               deposit: amount,
               valid_deposit: amount * 2,
             },
+            vipLevel: vip_level,
           }
         );
       }
@@ -1037,7 +1044,6 @@ module.exports.settle_usdt_deposit = settle_usdt_deposit = async (req, res) => {
     amount = amount * 80;
     let parent_profit = parseFloat((0.02 * amount).toFixed(2));
     let user_profit = parseFloat((0.04 * amount).toFixed(2));
-    let vip = 0;
 
     // update the amount of both user and parent and send the data to admin;
     let user_data = await User.findOne({ inv: invitation_code });
@@ -1049,6 +1055,10 @@ module.exports.settle_usdt_deposit = settle_usdt_deposit = async (req, res) => {
     ) {
       return res.send({ status: "DATA NOT FOUND CHECK THE DATABASE " });
     }
+
+    let vip = getVipLevel(amount);
+    vip =
+      vip > parseInt(user_data?.vipLevel) ? vip : parseInt(user_data?.vipLevel);
 
     if (user_data["first_deposit"] === true) {
       // updating the parent
@@ -1078,6 +1088,7 @@ module.exports.settle_usdt_deposit = settle_usdt_deposit = async (req, res) => {
             promotion_bonus: user_profit,
             valid_deposit: amount * 2,
           },
+          vipLevel: vip,
           first_deposit: false,
           max_deposit: amount,
         }
@@ -1120,6 +1131,7 @@ module.exports.settle_usdt_deposit = settle_usdt_deposit = async (req, res) => {
               deposit: amount,
               valid_deposit: amount * 2,
             },
+            vipLevel: vip,
             max_deposit: amount,
           }
         );
@@ -1493,4 +1505,23 @@ async function update_parents(
       level++;
     }
   }
+}
+
+function getVipLevel(amount) {
+  if (amount >= 200000 && amount < 600000) {
+    return 1;
+  } else if (amount >= 600000 && amount < 1200000) {
+    return 2;
+  } else if (amount >= 1200000 && amount < 2000000) {
+    return 3;
+  } else if (amount >= 2000000 && amount < 3000000) {
+    return 4;
+  } else if (amount >= 3000000 && amount < 4000000) {
+    return 5;
+  } else if (amount >= 4000000 && amount < 5000000) {
+    return 6;
+  } else if (amount > 5000000) {
+    return 7;
+  }
+  return 0;
 }

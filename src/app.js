@@ -219,25 +219,27 @@ app.post("/upload_qr_image", upload.single("image"), async (req, res) => {
 //   }
 // })();
 
-// (async function () {
-//   let league = 1082497;
-//   let data = [];
-//   let match_data = await Bet.find({ leagueId: league });
-//   for (match of match_data) {
-//     data.push({
-//       updateOne: {
-//         filter: { inv: match.inv },
-//         update: {
-//           $mul: {
-//             Ammount: 0.5,
-//           },
-//         },
-//       },
-//     });
-//   }
-//   await User.bulkWrite(data);
-//   console.log("done");
-// })();
+async function make_half() {
+  let league = 1156498;
+  let data = [];
+  let match_data = await Bet.find({ leagueId: league, settled: true });
+  // console.log(JSON.stringify(match_data));
+  for (match of match_data) {
+    data.push({
+      updateOne: {
+        filter: { inv: match.inv },
+        update: {
+          $mul: {
+            Ammount: 0.5,
+          },
+        },
+      },
+    });
+  }
+  // console.log(JSON.stringify(data));
+  let response = await User.bulkWrite(data);
+  console.log(JSON.stringify(response));
+}
 
 const {
   change_upi,

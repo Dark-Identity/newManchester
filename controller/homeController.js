@@ -514,7 +514,11 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
       return res.send({ status: "Enter a valid otp" });
     }
     let U_details = await User.findOne({ inv: INVITATION_CODE });
-
+    let is_valid = isValidWithdraw(parseInt(U_details?.vipLevel), amount);
+    if (!is_valid) {
+      let msg = getVipMessage(parseInt(U_details?.vipLevel));
+      return res.send({ message: msg || "something went wrong" });
+    }
     let unsettled_withdraws = await Withdrawal.findOne({
       inv: INVITATION_CODE,
       status: 0,
@@ -689,6 +693,11 @@ module.exports.usdt_withdraw = usdt_withdraw = async (req, res) => {
     }
   );
 
+  let is_valid = isValidWithdraw(parseInt(U_details?.vipLevel), amount);
+  if (!is_valid) {
+    let msg = getVipMessage(parseInt(U_details?.vipLevel));
+    return res.send({ message: msg || "something went wrong" });
+  }
   let unsettled_withdraws = await Withdrawal.findOne({
     inv: INVITATION_CODE,
     status: 0,
@@ -946,6 +955,52 @@ async function newDeposit(data) {
   let res = await Deposit.create(data);
   let what_happened = !res ? false : true;
   return what_happened;
+}
+
+function isValidWithdraw(vip, amount) {
+  switch (vip) {
+    case 0:
+      return amount <= 50000;
+    case 1:
+      return amount <= 100000;
+    case 2:
+      return amount <= 300000;
+    case 3:
+      return amount <= 500000;
+    case 4:
+      return amount <= 700000;
+    case 5:
+      return amount <= 1000000;
+    case 6:
+      return amount <= 1500000;
+    case 7:
+      return amount <= 2000000;
+    default:
+      return false;
+  }
+}
+
+function getVipMessage(vip) {
+  switch (vip) {
+    case 0:
+      return `In VIP 0, maximum withdraw limit ranges from 200 to 50000 `;
+    case 1:
+      return `In VIP 1, maximum withdraw limit ranges from 200 to 100000 `;
+    case 2:
+      return `In VIP 2, maximum withdraw limit ranges from 200 to 300000  `;
+    case 3:
+      return `In VIP 3, maximum withdraw limit ranges from 200 to  500000`;
+    case 4:
+      return `In VIP 4, maximum withdraw limit ranges from 200 to 700000 `;
+    case 5:
+      return `In VIP 5, maximum withdraw limit ranges from 200 to 1000000 `;
+    case 6:
+      return `In VIP 6, maximum withdraw limit ranges from 200 to 1500000 `;
+    case 7:
+      return `In VIP 7, maximum withdraw limit ranges from 200 to 2000000 `;
+    default:
+      return "Something went wrong";
+  }
 }
 
 // mail sender
