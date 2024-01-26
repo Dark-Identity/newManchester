@@ -1497,8 +1497,11 @@ async function update_parents(
         },
       });
       let new_parent = await User.findOne({ inv: parent }, { parent: 1 });
-      if (!new_parent) throw new Error("something went wrong");
-      parent = Number(new_parent?.parent);
+      if (!new_parent) {
+        parent = 0;
+      } else {
+        parent = Number(new_parent?.parent);
+      }
     } catch (error) {
       throw new Error(error?.message || error);
     } finally {
