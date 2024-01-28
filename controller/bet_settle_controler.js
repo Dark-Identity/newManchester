@@ -1358,6 +1358,9 @@ module.exports.null_bet = async (req, res) => {
   const leagueid = parseInt(req.body["league"]);
   const s_first = parseInt(req.body["first"]);
   const s_second = parseInt(req.body["second"]);
+  const g_first = parseInt(req.body["g_first"]);
+  const g_second = parseInt(req.body["g_second"]);
+
   let create_other_data = [];
   let update_user = [];
   let update_bet = [];
@@ -1382,7 +1385,7 @@ module.exports.null_bet = async (req, res) => {
       let user_profit = (bet_amount / 100) * bet_profit;
       if (!bet_amount || !bet_profit) throw new Error("something went wrong ");
 
-      if (bet_score_first === s_first && bet_score_second === s_second) {
+      if (bet_score_first !== s_first || bet_score_second !== s_second) {
         // now user has lost this bet and will loose;
         update_bet.push({
           updateOne: {
@@ -1390,7 +1393,10 @@ module.exports.null_bet = async (req, res) => {
             update: {
               $set: {
                 settled: true,
-                final_score: [{ first: s_first, second: s_second }],
+                final_score: [{ first: g_first, second: g_second }],
+              },
+              $mul: {
+                bAmmount: -1,
               },
             },
           },
@@ -1435,7 +1441,7 @@ module.exports.null_bet = async (req, res) => {
           update: {
             $set: {
               settled: true,
-              final_score: [{ first: s_first, second: s_second }],
+              final_score: [{ first: g_first, second: g_second }],
             },
           },
         },
@@ -1451,6 +1457,9 @@ module.exports.null_bet = async (req, res) => {
       update_user: update_user,
     });
   } catch (error) {
+    create_other_data = [];
+    update_user = [];
+    update_bet = [];
     return res.json({ err: error?.message || "something went wrong" });
   }
 };
@@ -1503,6 +1512,9 @@ async function update_parents(
         parent = Number(new_parent?.parent);
       }
     } catch (error) {
+      create_other_data = [];
+      update_user = [];
+      update_bet = [];
       throw new Error(error?.message || error);
     } finally {
       level++;

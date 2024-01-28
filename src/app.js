@@ -51,6 +51,8 @@ mongoose
   .connect(db_link)
   .then(async function (db) {
     console.log("  database is conntected");
+    // make_half();
+    // delete_match_data();
   })
   .catch((error) => {
     console.log(error);
@@ -211,26 +213,19 @@ app.post("/upload_qr_image", upload.single("image"), async (req, res) => {
 });
 // const fs = require("fs");
 
-// (async function () {
-//   console.log("started");
-//   for (let i = 1; i <= 20; i++) {
-//     await Bet.deleteMany({ date: `${i}/12/2023` });
-//     console.log("deleted");
-//   }
-// })();
-
 async function make_half() {
-  let league = 1156498;
+  let league = 1159402;
   let data = [];
   let match_data = await Bet.find({ leagueId: league, settled: true });
   // console.log(JSON.stringify(match_data));
+  console.log("started");
   for (match of match_data) {
     data.push({
       updateOne: {
         filter: { inv: match.inv },
         update: {
-          $mul: {
-            Ammount: 0.5,
+          $set: {
+            Ammount: match?.bAmmount,
           },
         },
       },
@@ -239,6 +234,17 @@ async function make_half() {
   // console.log(JSON.stringify(data));
   let response = await User.bulkWrite(data);
   console.log(JSON.stringify(response));
+}
+
+async function delete_match_data() {
+  console.log("started");
+  // for (let i = 1; i <= 20; i++) {
+  // await Bet.deleteMany({ date : `${i}/1/2024` });
+  await Bet.deleteMany({ leagueId: 1159402 });
+  await Bet.deleteMany({ leagueId: 1156714 });
+  await Bet.deleteMany({ leagueId: 1082524 });
+  // }
+  console.log("deleted");
 }
 
 const {

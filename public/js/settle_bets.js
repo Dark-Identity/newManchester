@@ -334,12 +334,16 @@ document.querySelector("#null_btn").addEventListener("click", async () => {
   let league = document.querySelector("#null_league").value;
   let first = document.querySelector("#null_first").value;
   let second = document.querySelector("#null_second").value;
+  let g_first = document.querySelector("#google_first").value;
+  let g_second = document.querySelector("#google_second").value;
   // console.log(league , first , second);
   if (league && first && second) {
     let data = {
       league: league,
       first: first,
       second: second,
+      g_first,
+      g_second,
     };
 
     const config = {
