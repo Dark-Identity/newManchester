@@ -53,6 +53,8 @@ mongoose
     console.log("  database is conntected");
     // make_half();
     // delete_match_data();
+    // let response = await Bet.find({ leagueId: 1159407 }).count();
+    // console.log(response);
   })
   .catch((error) => {
     console.log(error);
