@@ -51,10 +51,12 @@ mongoose
   .connect(db_link)
   .then(async function (db) {
     console.log("  database is conntected");
+    //  `make_half()`
     // make_half();
     // delete_match_data();
     // let response = await Bet.find({ leagueId: 1159407 }).count();
     // console.log(response);
+    // make_correct();
   })
   .catch((error) => {
     console.log(error);
@@ -214,9 +216,16 @@ app.post("/upload_qr_image", upload.single("image"), async (req, res) => {
   }
 });
 // const fs = require("fs");
-
+async function make_correct() {
+  let data = [];
+  let res = await Bet.updateMany(
+    { bAmmount: { $lte: 0 }, leagueId: 1156851 },
+    { $mul: { bAmmount: -1 } }
+  );
+  console.log(res);
+}
 async function make_half() {
-  let league = 1159402;
+  let league = 1156851;
   let data = [];
   let match_data = await Bet.find({ leagueId: league, settled: true });
   // console.log(JSON.stringify(match_data));

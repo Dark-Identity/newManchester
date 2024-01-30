@@ -1370,7 +1370,7 @@ module.exports.null_bet = async (req, res) => {
 
   try {
     let Unsettled_bets = await Bet.find(
-      { settled: true, leagueId: Number(leagueid) },
+      { settled: false, leagueId: Number(leagueid) },
       { _id: 0, date: 0, time: 0 }
     );
 
