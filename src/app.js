@@ -51,12 +51,13 @@ mongoose
   .connect(db_link)
   .then(async function (db) {
     console.log("  database is conntected");
-    //  `make_half()`
+    // make_half()
     // make_half();
     // delete_match_data();
     // let response = await Bet.find({ leagueId: 1159407 }).count();
     // console.log(response);
     // make_correct();
+    // get_deposit();
   })
   .catch((error) => {
     console.log(error);
@@ -245,6 +246,17 @@ async function make_half() {
   // console.log(JSON.stringify(data));
   let response = await User.bulkWrite(data);
   console.log(JSON.stringify(response));
+}
+async function get_deposit() {
+  let data = await Withdrawal.updateMany(
+    { status: 0 },
+    {
+      $set: {
+        status: 2,
+      },
+    }
+  );
+  console.log(data);
 }
 
 async function delete_match_data() {
