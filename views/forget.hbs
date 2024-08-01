@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login2.css">
+    <link rel="stylesheet" href="/css/popupbox.css">
+    <link rel="shortcut icon" href="/elephantFootball/mainLogo.png" type="image/x-icon">
+    <script defer src="js/forget.js"></script>
+    <script src="https://unpkg.com/webtonative@1.0.50/webtonative.min.js"></script>
+
+
+    <style>
+        input {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <section class="forget_page" style="z-index: -1;">
+        <div class="forget_header">
+            <div class="forget_close"><ion-icon name="chevron-back-outline" style="font-size: 7vw;"></ion-icon> </div>
+            <div style="font-size:2vh">Forget password</div>
+        </div>
+
+        <section class="forget_body">
+            <div class="gap">
+                <span>Phone</span>
+                <div>
+                    <input type="number" name="" id="num" placeholder="Enter the Number">
+                </div>
+            </div>
+
+            <div class="gap">
+                <span>Verification</span>
+                <div>
+                    <input type="number" name="" id="otp" placeholder="Enter the otp">
+                    <button style="color:#333" id="otp_btn">send</button>
+                </div>
+            </div>
+
+            <div class="gap">
+                <span>password</span>
+                <div>
+                    <input type="password" name="" id="pass_one" placeholder="Enter the password">
+
+                    <div id="show">
+                        <ion-icon name="eye-off-outline" style="font-size:24px;color:#fff;" id="eye_close"></ion-icon>
+                        <ion-icon name="eye-outline" style="font-size:24px;color:#fff;display:none"
+                            id="eye_open"></ion-icon>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="footer">
+            <button style="color:#fff" id="forget_btn">Submit</button>
+        </section>
+
+    </section>
+
+
+    <section class="popup_page" id="popup_page">
+        <div>
+            <h3 id="popup_tip">LOADING...</h3>
+            <button id="popup_close_btn" type="button" autofocus="true">OK</button>
+        </div>
+    </section>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

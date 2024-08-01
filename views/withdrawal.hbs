@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>withdrawal page</title>
+
+    <style>
+        /* ------------------- popup
+      styling--------------- */
+        .popup_page {
+            position: absolute;
+            top: 0;
+            left:
+                -100vw;
+            height: 100%;
+            width: 100vw;
+            display: grid;
+            z-index: 1000;
+            place-content: center;
+            background: #4e596eb3;
+        }
+
+        .popup_page>div {
+            width:
+                min(90vw, 500px);
+            padding: 1rem;
+            border-radius: 10px;
+            background-color:
+                var(--white);
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        .popup_page>div>button {
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background: var(--blue);
+            color: var(--white);
+            text-align:
+                center;
+            box-shadow: 0 0 10px -5px var(--grey_dark);
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .popup_page>div>button:disabled {
+            background-color: var(--grey);
+        }
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+    <p id="res_data"></p>
+
+
+    <div class="settle_withdrawal">
+        <h3>SETTLE WITHDRAWAL</h3>
+        <br />
+
+        <label for="">Enter the invitation code .</label>
+        <input class="withdrawal_inpt" type="number" name="" value="" />
+
+        <label for="">Enter the transaction id .</label>
+        <input class="withdrawal_inpt" type="text" name="" value="" />
+
+        <label for="">Enter the amount .</label>
+        <input class="withdrawal_inpt" type="number" name="" value="" />
+        <button id="settle_withdrawal" type="button" name="button">SETTLE</button>
+
+    </div>
+
+    <section class="popup_page" id="popup_page">
+        <div>
+            <h3 id="popup_tip">LOADING...</h3>
+            <button id="popup_close_btn" type="button" autofocus="true">OK</button>
+        </div>
+    </section>
+
+    <script>
+
+        let popup_cancel_btn = document.querySelector("#popup_close_btn");
+        let popup_tip = document.querySelector("#popup_tip");
+        let popup_page = document.querySelector("#popup_page");
+        let tag = document.querySelector("#res_data");
+
+
+        document.querySelector("#popup_close_btn").addEventListener("click", () => {
+            document.querySelector("#popup_page").style.left = "-100vw";
+            popup_tip.innerText = "Loading...";
+        });
+
+
+
+
+        document
+            .querySelector("#settle_withdrawal")
+            .addEventListener("click", async () => {
+                document.querySelector("#settle_withdrawal").disabled = true;
+                popup_page.style.left = "0px";
+                popup_cancel_btn.disabled = true;
+
+                let details = document.querySelectorAll(".withdrawal_inpt");
+                let data = {
+                    id: details[0].value,
+                    transactioin_id: details[1].value,
+                    amount: details[2].value,
+                };
+
+                if (!details[0].value || !details[1].value || !details[2].value) {
+                    popup_tip.innerText = "Failure! Enter all the details correctly.";
+                    popup_cancel_btn.disabled = false;
+                    return;
+                }
+
+                const config = {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                };
+
+                let res = await fetch("/settle_withdrawal", config);
+                res = await res.json();
+
+                if (res["status"]) {
+                    tag.innerText = JSON.stringify(res["status"]);
+                } else {
+                    tag.innerText = JSON.stringify(res["status"]);
+                }
+                popup_tip.innerText = "Success! Check the data";
+                popup_cancel_btn.disabled = false;
+                document.querySelector("#settle_withdrawal").disabled = false;
+            });
+
+    </script>
+
+</body>
+
+</html>

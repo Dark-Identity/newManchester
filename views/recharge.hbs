@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>UPI GATEWAY</title>
+	<meta charset="utf-8">
+    <script src="./js/payment.js" defer></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/popupbox.css">
+<script src="https://unpkg.com/webtonative@1.0.50/webtonative.min.js"></script>
+</head>
+
+<body>
+	<div class="container p-5">
+		<div class="row">
+			<div class="col-md-7 mb-2">
+				<h2>Test Demo</h2>
+				<span>Fill Payment Detail and Pay</span>
+				<hr>
+				<form>
+					<h4>Txn Amount:</h4>
+					<input type="text" name="txnAmount" id="txnAmount" value="1" class="form-control" placeholder="Enter Txn Amount" readonly><br>
+					<h4>Customer Name:</h4>
+					<input type="text" name="customerName" id="customerName" placeholder="Enter Customer Name" class="form-control" required><br>
+					<h4>Customer Mobile:</h4>
+					<input type="text" name="customerMobile" id="customerMobile" placeholder="Enter Customer Mobile" maxlength="10" class="form-control" required><br>
+					<h4>Customer Email:</h4>
+					<input type="email" name="customerEmail" id="customerEmail" placeholder="Enter Customer Email" class="form-control" required><br>
+					<input name="payment" id="submit" value="Payment" class="btn btn-primary">
+				</form>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

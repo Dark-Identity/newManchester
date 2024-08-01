@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manchester City</title>
+    <link rel="shortcut icon" href="../../elephantFootball/mainLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/chunk-vendors.0468bd4c.css">
+    <link rel="stylesheet" href="/css/app.b5a00fe6.css">
+    <link rel="stylesheet" href="/css/889.a7f741d8.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="css/order.css">
+    <link rel="stylesheet" href="/css/364.e2da98d5.css">
+    <link rel="stylesheet" href="/css/889.a7f741d8.css">
+    <link rel="stylesheet" href="/css/loading.css">
+    <link rel="stylesheet" href="/css/popupbox.css">
+  <script src="https://unpkg.com/webtonative@1.0.50/webtonative.min.js"></script>
+    <script defer src="/js/order.js"></script>
+</head>
+
+<body>
+
+
+    <div id="loading">
+        <span class="loader"></span>
+    </div>
+
+
+    <section class="mainContent">
+        <div class="income-box" data-v-0fe9eece="">
+            <div class="nav-topi flex" data-v-0fe9eece="">
+                <div class="leftel" data-v-0fe9eece="">
+                    <img src="/elephantFootball/mainLogo.png" alt="" data-v-0fe9eece="">
+                    <p data-v-0fe9eece="">Manchester Football</p>
+                </div>
+                <div class="rightel" data-v-0fe9eece="" style="display: none;">
+                    <p data-v-0fe9eece="">Match results</p>
+                </div>
+            </div>
+
+            <div class="bettingbox" data-v-0fe9eece="">
+                <div class="top flex" data-v-0fe9eece="">
+                    <div class="iteming" data-v-0fe9eece=""><span data-v-0fe9eece="">Current bet amount</span>
+                        <p data-v-0fe9eece="" id="current_bet_amount">Rs.0</p>
+                    </div>
+                    <div class="iteming" data-v-0fe9eece=""><span data-v-0fe9eece="">Estimated income</span>
+                        <p class="estima" data-v-0fe9eece="" id="est_income">Rs.0</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="tipsi" data-v-0fe9eece=""></p>
+            <div class="van-tabs van-tabs--line tabs-box" data-v-0fe9eece="">
+
+
+                    <div class="outer">
+
+                        <div class="one" id="two">
+                            <p>
+                            <h3 class="ii"style="color:#FFF">Order</h3>
+                            </p>
+                        </div>
+                        <div class="one" id="three">
+                            <p>
+                            <h3 class="iii" style="color: #0f6997;">Historical</h3>
+                            </p>
+                        </div>
+
+                        <div class="secondOuter">
+                            <div class="bg"></div>
+                        </div>
+                    </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="orderPopup" style="background:">
+            {{!-- Dyanamic data added --}}
+
+            {{!-- <div style="margin:0 auto;width:92vw;background:#fff;box-shadow:0 0.4vw 0.8vw 0 rgba(51,51,51,.1);">
+
+                <section class="topGames">
+                    <div class="gamesLogo">
+                        <img src="/elephantFootball/homePage/top_games_logo.png" alt="" srcset="">
+                    </div>
+                    <p>League name</p>
+                </section>
+
+
+                <section class="orders">
+                    <div class="order_teams">
+                        <div class="teamLogo">
+                            <img src="" alt="" srcset="">
+                        </div>
+                        <p class="ellipsis-1">gurani CA</p>
+                    </div>
+
+                    <div style="    white-space: nowrap;
+                        font-size: 5.866667vw;
+                         font-weight: 600;
+                         color: #333;
+                         margin-bottom: 0;">
+                        other
+                    </div>
+
+                    <div class="order_teams">
+                        <div class="teamLogo">
+                            <img src="" alt="" srcset="">
+                        </div>
+                        <p class="ellipsis-1">team name two</p>
+                    </div>
+
+                </section>
+
+                <section style="margin:2vw 0 0 0; padding:2vw">
+
+                    <div style="display: flex; justify-content: space-between;margin-bottom:1vw;">
+                        <p class="x">bet time</p>
+                        <p><span>29/09/2023</span> <span>04:57</span></p>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between;margin-bottom:1vw;">
+                        <p class="x">bet amount</p>
+                        <p><span style="color: red;">Balance</span> <span class="paisa"> ₹1031.00</span></p>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between;margin-bottom:1vw;">
+                        <p class="x">Estimated income</p>
+                        <p><span class="paisa"> ₹1000.00</span></p>
+                    </div>
+
+
+                </section>
+
+                <p style="margin-bottom:5vh; text-align: center;font-size:larger;color:blue"> Win </p>
+
+            </div> --}}
+
+            <div class="trade_del_box" >
+                <p id="del_leagueid" style="display: none;"></P>
+                <h3>Delete this bet ?.</h3>
+                <div class="confirmation_btns">
+                    <div id="del_trade" class="submit d">
+                        <p>Request</p>
+                    </div>
+                    <div class="del_trade_cancel d">
+                        <p>Cancel</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="empty-wrap" data-v-4f44bbea="" data-v-0fe9eece="" style="margin-top: 100px;display:none">
+                <img class="empty" src=" /elephantFootball/empty.43cec754.png" alt="" data-v-4f44bbea="">
+                <p class="text" data-v-4f44bbea="">No content yet!</p>
+            </div>
+
+        </div>
+
+
+
+        <div class="historicalPopup" style="">
+            {{!-- Dyanamic data added --}}
+
+
+
+        </div>
+
+
+
+    <section class="popup_page" id="popup_page">
+        <div>
+            <h3 id="popup_tip">LOADING...</h3>
+            <button id="popup_close_btn" type="button" autofocus="true">OK</button>
+        </div>
+    </section>
+
+
+
+        <!-- ------------------------------------------------------ footer --------------------------------- -->
+        <section class="footerCantainer">
+            <div class="footer">
+                <div class="footflex">
+                    <div class="footImg" href="./login&register/register.html">
+                        <img src="/elephantFootball/footer/home.png" alt="" srcset="" />
+                    </div>
+                    <p>
+                        <a href="/home">Home</a>
+                    </p>
+                </div>
+                <div class="footflex">
+                    <div class="footImg">
+                        <img src="/elephantFootball/footer/orderblue.png" alt="" srcset="" />
+                    </div>
+                    <p>
+                        <a href="/order" style="color:rgb(130 184 228);"> Order</a>
+                    </p>
+                </div>
+                <div class="footflex">
+                    <div class="footImg">
+                        <img src="/elephantFootball/footer/match.png" alt="" srcset="" />
+                    </div>
+                    <p>
+                        <a href="/match">Match</a>
+                    </p>
+                </div>
+                <div class="footflex">
+                    <div class="footImg">
+                        <img src="/elephantFootball/footer/teams.png" alt="" srcset="" />
+                    </div>
+                    <p>
+                        <a href="/team">Team</a>
+                    </p>
+                </div>
+                <div class="footflex">
+                    <div class="footImg">
+                        <img src="/elephantFootball/footer/profile.png" alt="" srcset="" />
+                    </div>
+                    <p>
+                        <a href="/mine">profile</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+
+
+</body>
+
+</html>

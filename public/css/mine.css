@@ -1,0 +1,706 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --x: 11px;
+  --h: 1rem;
+  --grey: #4e596e;
+  --grey_dark: #242a32;
+  --blue: #5a8ed3;
+  --background: #f1f1f6;
+  --white: #ffffff;
+}
+
+body {
+  overflow: hidden;
+  font-family: Avenir-Heavy, PingFang SC, Helvetica Neue, Arial, sans-serif;
+}
+
+.Content {
+  z-index: 1;
+  overflow-y: scroll;
+  padding-bottom: 12vh;
+}
+
+.qr {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  background: #f8f8f8;
+  min-height: 100vh;
+  padding: 6vw 0 0;
+}
+
+.van-nav-bar {
+  background: transparent;
+  font-size: 4.6vw;
+  font-weight: 500;
+  border: none;
+  letter-spacing: 1px;
+}
+
+.joinfor[data-v-82761d38] {
+  font-size: 4.266667vw;
+  font-weight: 900;
+  color: #333;
+  margin-top: 2.666667vw;
+  text-align: center;
+}
+
+.join {
+  text-align: center;
+  color: gray;
+  margin-top: 1vw;
+}
+
+.qrCantain {
+  background-color: #fff;
+  height: 73vh;
+  width: 95vw;
+  margin: 5vh auto;
+  box-shadow: 0 0.666667vw 2vw 0.266667vw rgba(51, 51, 51, 0.1);
+  border-radius: 10px;
+  position: relative;
+}
+
+.qrCantain::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -4%;
+  left: 42.5%;
+  right: 42%;
+  background: url(/elephantFootball/mainLogo.png) center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 2;
+}
+
+.qrCantain::before {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  top: -5%;
+  left: 40%;
+  right: 40%;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.qrCode {
+  height: 43vh;
+  width: 92vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrCode>span {
+  margin-bottom: 2vh;
+  font-size: 4.8vw;
+  font-weight: 600;
+  color: #333;
+}
+
+.invitabox[data-v-82761d38] {
+  margin: 0 auto;
+  width: 92%;
+  background: #fff;
+  box-shadow: 0 0.266667vw 0.533333vw 0 rgba(51, 51, 51, 0.1);
+  border-radius: 2.133333vw;
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  margin-top: 4vw;
+  padding: 2.666667vw;
+}
+
+.invitabox .codeuis .lefti img[data-v-82761d38] {
+  width: 5.333333vw;
+  height: 5.333333vw;
+  margin-right: 2vw;
+}
+
+.invitabox .line[data-v-82761d38] {
+  width: 81.333333vw;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 2vw 0 4vw;
+}
+
+.invitabox .codeuis button[data-v-82761d38] {
+  background: #5ab2eb;
+  color: #fff;
+  padding: 0.933333vw 2vw;
+  font-size: 3.733333vw;
+  font-weight: 500;
+  border-radius: 4vw;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* ----------------------------------- ruleCantainer style ------------------------------- */
+
+.ruleCantainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-size: cover;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: url(../elephantFootball/rulePopup/rules.jpg) no-repeat center;
+  background-size: cover;
+  z-index: -1;
+}
+
+.accordion {
+  margin: 5px auto;
+  width: 92vw;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.accordion .accordion-content {
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  background: skyblue;
+}
+
+.accordion-content.is-open {
+  padding-bottom: 10px;
+}
+
+.accordion-content header {
+  display: flex;
+  justify-content: space-between;
+  min-height: 44px;
+  align-items: center;
+  transition: all 2s linear;
+  text-align: left;
+}
+
+.accordion-content header>i {
+  margin-right: 4vw;
+}
+
+.accordion-content header>span>img {
+  width: 5vw;
+  margin: 0 2vw;
+}
+
+.accordion-content header .accordion-content.is-open header {
+  min-height: 35px;
+  border: 1px solid red;
+}
+
+.accordion-content-title {
+  font-size: 4vw;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.accordion-content-description {
+  height: 0;
+  font-size: 15px;
+  color: gray;
+  font-weight: 600;
+  padding: 0 4vw;
+  margin-top: 2vh;
+}
+
+.ruleHead {
+  display: grid;
+  grid-template-columns: 25vw 50vw 25vw;
+  align-items: end;
+  justify-items: start;
+  height: 8vh;
+  color: white;
+  color: #000;
+  padding-left: 4vw;
+}
+
+.ruleC {
+  width: 80%;
+  text-align: center;
+}
+
+/*-------------------------- -----  customer services  ------------------------------------------------------------------------------------------------------ */
+.serviceCantainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  z-index: -1;
+  background-color: #f8f8f8;
+}
+
+.customermHead {
+  height: 8vh;
+  display: grid;
+  grid-template-columns: 25vw 50vw 25vw;
+  align-content: center;
+  justify-items: center;
+  padding-top: 6vh;
+}
+
+.backbtn {
+  width: 100%;
+  padding-left: 2vw;
+  font-size: 20px;
+}
+
+#backgd {
+  height: 56vw;
+  background: url("../elephantFootball/minePage/telegram.jpg") center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#backgd span {
+  display: block;
+  margin: auto 0;
+  padding-left: 10vw;
+}
+
+.connect {
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+}
+
+.section-box[data-v-7dcec640] {
+  padding: 0 4vw;
+  margin-top: 4vw;
+}
+
+.section-box .telbox[data-v-7dcec640] {
+  margin-top: 4vw;
+  background: #fff;
+  box-shadow: 1px 0.266667vw 0.533333vw 1px rgba(51, 51, 51, 0.15);
+  border-radius: 2.666667vw;
+  padding: 2.666667vw 3.333333vw;
+}
+
+.section-box .telbox .left[data-v-7dcec640] {
+  display: flex;
+  align-items: center;
+}
+
+.section-box .telbox .left img[data-v-7dcec640] {
+  width: 10.666667vw;
+  height: auto;
+  margin-right: 2.666667vw;
+}
+
+.section-box .telbox .left .phonei[data-v-7dcec640] {
+  text-align: left;
+}
+
+.section-box .telbox .left .phonei p[data-v-7dcec640] {
+  font-size: 4vw;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 0.666667vw;
+}
+
+.section-box .telbox .btnuis[data-v-7dcec640] {
+  width: 22.666667vw;
+  height: 8vw;
+  background: #5bb2ea;
+  border-radius: 5.333333vw;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+}
+
+.section-box .onlieser[data-v-7dcec640] {
+  padding: 3.2vw 3.333333vw;
+  background: #fff;
+  box-shadow: 1px 0.266667vw 0.533333vw 1px rgba(51, 51, 51, 0.15);
+  border-radius: 2.666667vw;
+  margin-top: 4vw;
+}
+
+.section-box .onlieser .linei[data-v-7dcec640] {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  margin: 2.666667vw 0;
+}
+
+.section-box .onlieser .problems[data-v-7dcec640] {
+  font-size: 3.466667vw;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.section-box .onlieser .problems img[data-v-7dcec640] {
+  width: 10.533333vw;
+  height: auto;
+  margin-right: 2.666667vw;
+}
+
+.section-box .onlieser .problems p[data-v-7dcec640] {
+  font-size: 3.466667vw;
+  text-align: left;
+  color: #666;
+  font-weight: 600;
+}
+
+.section-box .onlieser .topline button[data-v-7dcec640] {
+  width: 22.666667vw;
+  height: 8vw;
+  background: #5bb2ea;
+  border-radius: 5.333333vw;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+}
+
+.section-box .customers[data-v-7dcec640] {
+  font-size: 3.466667vw;
+  color: #666;
+  text-align: left;
+  margin-top: 4.8vw;
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------- */
+.rewards {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+}
+
+.rewardPopup {
+  height: 85%;
+  display: flex;
+  align-items: center;
+}
+
+.imgPop {
+  width: 400px;
+  height: 400px;
+  background: url(/elephantFootball/minePage/rewordPopup.png) center no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.text {
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  width: 60%;
+}
+
+.text h1 {
+  font-size: 6.4vw;
+  font-weight: 900;
+  background: linear-gradient(180deg, #ffe0a4, #da5e41);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text input {
+  width: 100%;
+  height: 11.733333vw;
+  background: #c00;
+  border-radius: 2vw;
+  height: 12.8vw;
+  background: #f1e7cf;
+  box-shadow: inset 0 0 1.066667vw 1px rgba(206, 169, 78, 0.5);
+  border-radius: 1.6vw;
+  border: 1px solid #e8cd8d;
+  margin-top: 2vw;
+  text-align: center;
+}
+
+.text button {
+  width: 60.8vw;
+  height: 13.066667vw;
+
+  background: url(/elephantFootball/minePage/rewardClick.png) no-repeat;
+  background-size: cover;
+  margin: 9.333333vw auto 0;
+  font-size: 4.266667vw;
+  font-weight: 600;
+  color: #f91111;
+  line-height: 13.333333vw;
+}
+
+.cut {
+  position: absolute;
+  bottom: -10%;
+  left: 45%;
+}
+
+.cut>img {
+  width: 10vw;
+}
+
+#Account {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+.passwordCantainer {
+  position: absolute;
+  top: 0;
+  background-color: #fafafa;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow-y: scroll;
+}
+.passwordCantainer::-webkit-scrollbar {
+  display: none;
+}
+
+.pass_gap {
+  width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
+  margin: 0 0 0 1vh;
+}
+
+.pI {
+  background-color: #fff !important;
+  border: none !important;
+  border-radius: 4px;
+}
+
+.pI>input {
+  text-transform: capitalize;
+}
+
+.p_img {
+  position: absolute;
+  bottom: 10vh;
+  left: 0;
+  right: 0;
+  height: 20vh;
+  width: 80vw;
+  margin: 0 auto;
+  background: url(/elephantFootball/password.png) center no-repeat;
+  background-size: cover;
+}
+
+.btnrech {
+  margin: 1.2rem 0 0 0 ;
+  width: 92vw;
+  height: 13.066667vw;
+  font-size: 4.666667vw;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(180deg, #5bb2ecd1, #3d8af8);
+  border-radius: 6.8vw;
+  border: 0.266667vw solid #8ec0ae;
+  z-index: 333;
+  position: relative;
+}
+
+.mine_header {
+  background: url("../elephantFootball/homePage/header.png") no-repeat;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  background-size: contain;
+}
+
+/* ---------------------------- record page ------------------------------------------ */
+.record_page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: -1;
+  background-color: #fafafa;
+}
+
+.withdraw_parent>div,
+.other_parent>div,
+.deposite_parent>div {
+  margin-top: 1.2rem;
+}
+
+.record_parent_div {
+  display: flex;
+  justify-content: center;
+}
+
+.recordss {
+  background: #fff;
+  width: 92vw;
+  border-radius: 10px;
+  padding: 3vw;
+  background: #fff;
+  border-radius: 1.6vw;
+  box-shadow: 0 0.666667vw 1.6vw 0.266667vw rgba(197, 199, 198, 0.16);
+}
+
+.parent_div {
+  max-height: 100vh;
+  padding-bottom: 20rem;
+  overflow-y: scroll;
+}
+
+.parent_div::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.parent_div {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.outer {
+  margin-top: 2vh;
+  border: 1px solid #107397;
+  height: 40px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.one {
+  color: black;
+  width: 27vw;
+  text-align: center;
+  padding: 1vh;
+  border-radius: 100px;
+  font-size: 4vw;
+  z-index: 1;
+}
+
+.secondOuter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 100px;
+  display: flex;
+  justify-content: start;
+}
+
+.bgm {
+  width: 30vw;
+  height: 40px;
+  border-radius: 100px;
+  text-align: center;
+  background: url(../elephantFootball/orderPage/orderSwip.png) no-repeat;
+  background-size: cover;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------- 
+/* --------------------------------------------------------- download page ------------------------------------------------- */
+
+.download_cantainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url("/elephantFootball/minePage/App\ download.jpg") center no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.download_flex {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 80vh;
+  top: 80dvh;
+  width: 100vw;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.download_flex>a {
+  width: 35vw;
+}
+
+.install {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  background: url("/elephantFootball/Appdownload.jpg") center no-repeat;
+  background-size: cover;
+  background-color: "#ddfdf";
+  z-index: -1;
+}
+
+#install_close {
+  position: absolute;
+  top: 4vh;
+  left: 2vw;
+}
+
+.png {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.two_factor_auth {
+  width: 92vw;
+  margin: 0 auto;
+  padding: 2vw;
+  margin: 0 0 0 1vh;
+}
+.password_verify_btn > button {
+  border: 1px solid;
+  word-spacing: 2px;
+  border: none;
+  outline: none;
+  margin: 0.6rem 0.5rem 0 0;
+  border-radius: 5px;
+ padding: .5rem .3rem;
+}
+.password_verify_btn > button > p{
+  font-weight: 600;
+  color:#fafafad6;
+}

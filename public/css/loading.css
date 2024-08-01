@@ -1,0 +1,56 @@
+
+/* loading animation */
+#loading{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left : 0;
+    top : 0;
+    background: #f8f8f815;
+    /* background: #038824; */
+    display: grid;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    z-index: 10;
+  }
+  /* .loading_backgound{
+    height: 200px;
+    width: 200px;
+    z-index: 4;
+    position: relative;
+    border-radius: 100%;
+    background: conic-gradient( transparent -100deg ,rgb(247, 245, 245) 360deg);
+    background-size: contain;
+    animation : rotate 2s infinite ease-in-out;
+  }
+   */
+  .loader {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: block;
+    margin:15px auto;
+    position: relative;
+    background: #FFF;
+    box-shadow: -24px 0 #FFF, 24px 0 #FFF;
+    box-sizing: border-box;
+    animation: shadowPulse 2s linear infinite;
+  }
+  
+  @keyframes shadowPulse {
+    33% {
+      background: #FFF;
+      box-shadow: -24px 0 #FF3D00, 24px 0 #FFF;
+    }
+    66% {
+      background: #FF3D00;
+      box-shadow: -24px 0 #FFF, 24px 0 #FFF;
+    }
+    100% {
+      background: #FFF;
+      box-shadow: -24px 0 #FFF, 24px 0 #FF3D00;
+    }
+  }
+
+/* loading animation ends here */

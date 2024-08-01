@@ -1,0 +1,287 @@
+.empty-wrap[data-v-4f44bbea] {
+    width: 100%
+}
+
+.empty-wrap .empty[data-v-4f44bbea] {
+    width: 53.333333vw;
+    height: 53.333333vw;
+    margin: 0 auto
+}
+
+.empty-wrap .text[data-v-4f44bbea] {
+    color: #333;
+    font-weight: 500;
+    font-size: 3.733333vw
+}
+
+.match-box[data-v-3997c59e] {
+    min-height: 100vh;
+    background: #fafafa;
+    padding: 6vw 4vw 20vw
+}
+
+.match-box .list-box[data-v-3997c59e] {
+    margin-bottom: 3.333333vw
+}
+
+.match-box .list-box .invest-box[data-v-3997c59e] {
+        width: 91.466667vw;
+        padding: 2.666667vw 2.666667vw;
+        box-shadow: 0 0.666667vw 1.6vw 0.266667vw rgb(0 77 119 / 16%);
+        background: linear-gradient(180deg, #fff, #eff8fe);
+        border-radius: 2.666667vw;
+        margin-bottom: 3.333333vw;
+}
+
+.match-box .list-box .invest-box .league[data-v-3997c59e] {
+    padding-bottom: 2.933333vw
+}
+
+.match-box .list-box .invest-box .league .leftbox[data-v-3997c59e] {
+    display: flex;
+    align-items: center
+}
+
+.match-box .list-box .invest-box .league .leftbox .circlet[data-v-3997c59e] {
+    width: 2.666667vw;
+    height: 2.666667vw;
+    background: #fff;
+    border: .8vw solid skyblue;
+    border-radius: 50%;
+    margin-right: 2vw
+}
+
+.match-box .list-box .invest-box .league .leftbox img[data-v-3997c59e] {
+    width: 4vw;
+    height: 4vw;
+    margin-right: 2vw
+}
+
+.match-box .list-box .invest-box .league .leftbox .namematch[data-v-3997c59e] {
+    width: 49.333333vw;
+    font-size: 4vw;
+    font-weight: 600;
+    color: #333;
+    text-align: left
+}
+
+.match-box .list-box .invest-box .league .matchdata[data-v-3997c59e] {
+    color: #666;
+    font-size: 3.466667vw;
+    font-weight: 500
+}
+
+.match-box .list-box .invest-box .league button[data-v-3997c59e] {
+    background: #1fc7ad;
+    font-size: 3.466667vw;
+    font-weight: 500;
+    color: #fff;
+    padding: 1.066667vw 2.666667vw;
+    border-radius: 4vw
+}
+
+.match-box .list-box .invest-box .vsmath[data-v-3997c59e] {
+    margin-top: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.match-box .list-box .invest-box .vsmath .loadimg[data-v-3997c59e] {
+    width: 40%
+}
+
+.match-box .list-box .invest-box .vsmath .loadimg .nameu[data-v-3997c59e] {
+    font-size: 3.466667vw;
+    font-weight: 600;
+    color: #333;
+    margin-top: 1.333333vw
+}
+
+.match-box .list-box .invest-box .vsmath .centerz[data-v-3997c59e] {
+    margin: 0 2.266667vw
+}
+
+.match-box .list-box .invest-box .vsmath .centerz .scorei[data-v-3997c59e] {
+    font-size: 5.333333vw;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 0;
+    white-space: nowrap
+}
+
+[data-v-3997c59e] .input-box {
+    background: #fafafa;
+    box-shadow: 0 .533333vw .533333vw 0 rgba(51, 51, 51, .2);
+    box-shadow: 0 .666667vw 1.6vw .266667vw rgba(0, 51, 51, .16);
+    border: .266667vw solid #fff;
+    border-radius: 1.066667vw;
+    height: 12.666667vw;
+    padding: 0 4vw
+}
+
+[data-v-3997c59e] .input-box,
+[data-v-3997c59e] .input-box .van-field__left-icon {
+    display: flex;
+    align-items: center
+}
+
+[data-v-3997c59e] .input-box .van-field__left-icon img {
+    width: 5.066667vw;
+    height: 5.066667vw
+}
+
+[data-v-3997c59e] .input-box .van-field__left-icon p {
+    width: 1px;
+    height: 5.066667vw;
+    background: #4f4f4f;
+    margin-left: 2.666667vw
+}
+
+[data-v-3997c59e] .input-box .van-field__right-icon {
+    display: flex;
+    align-items: center
+}
+
+[data-v-3997c59e] .input-box .van-field__right-icon p {
+    width: 1px;
+    height: 5.066667vw;
+    background: #4f4f4f;
+    margin-left: 4vw
+}
+
+[data-v-3997c59e] .input-box .van-field__right-icon span {
+    color: #1fc7ad;
+    font-size: 4.266667vw;
+    margin-left: 2.666667vw
+}
+
+[data-v-3997c59e] .input-box input {
+    color: #333;
+    font-size: 4.266667vw;
+    margin-left: 2.666667vw;
+    font-weight: 500
+}
+
+[data-v-3997c59e] .input-box input::-moz-placeholder {
+    color: #999
+}
+
+[data-v-3997c59e] .input-box input::placeholder {
+    color: #999
+}
+
+[data-v-3997c59e] .input-box:after {
+    display: none
+}
+
+[data-v-3997c59e] .tabs-box {
+    margin-top: 4vw;
+    border-radius: 2.133333vw
+}
+
+[data-v-3997c59e] .tabs-box .van-tabs__wrap {
+    border-radius: 6vw;
+    border: .266667vw solid #00774c;
+    height: 10.533333vw
+}
+
+[data-v-3997c59e] .tabs-box .van-tabs__wrap .van-tabs__nav {
+    background: none
+}
+
+[data-v-3997c59e] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tab {
+    width: 46vw;
+    height: 10.266667vw;
+    padding: 0
+}
+
+[data-v-3997c59e] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tab span {
+    color: #00774c
+}
+
+[data-v-3997c59e] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tab--active span {
+    color: #fff
+}
+
+[data-v-3997c59e] .tabs-box .van-tabs__wrap .van-tabs__nav .van-tabs__line {
+    display: none
+}
+
+[data-v-3997c59e] .tabs-box .van-tabs__content {
+    margin-top: 4vw
+}
+
+[data-v-3997c59e] .logo-img {
+    width: 10.133333vw;
+    height: 10.133333vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #00774c;
+    border-radius: 50%;
+    margin: 0 auto
+}
+
+[data-v-3997c59e] .logo-img img {
+    width: 6.666667vw;
+    height: 6.666667vw
+}
+
+[data-v-3997c59e] .logo-img .van-image__error {
+    width: 7.466667vw;
+    height: 7.466667vw;
+    background: none
+}
+
+[data-v-3997c59e] .logo-img .van-image__error img {
+    width: 7.466667vw;
+    height: 7.466667vw
+}
+
+[data-v-3997c59e] .van-image__loading {
+    background: none;
+    border: 0
+}
+
+[data-v-3997c59e] .countdown {
+    display: flex;
+    align-items: center
+}
+
+[data-v-3997c59e] .countdown .block {
+    font-size: 3.466667vw;
+    font-weight: 500;
+    border-radius: .8vw;
+    line-height: 6vw;
+    color: #fff
+}
+
+[data-v-3997c59e] .countdown .first {
+    margin-right: 1.333333vw
+}
+
+[data-v-3997c59e] .countdown .colon {
+    transform: translateY(-.4vw);
+    color: #fff;
+    font-size: 4.666667vw;
+    margin: 0 .4vw
+}
+
+[data-v-3997c59e] .nav-bar {
+    background: none
+}
+
+[data-v-3997c59e] .nav-bar .van-nav-bar__content .van-nav-bar__left i {
+    color: #333;
+    font-size: 4.666667vw
+}
+
+[data-v-3997c59e] .nav-bar .van-nav-bar__content .van-nav-bar__title {
+    font-size: 5.333333vw;
+    color: #333
+}
+
+[data-v-3997c59e] .nav-bar:after {
+    display: none
+}
