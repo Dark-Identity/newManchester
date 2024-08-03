@@ -21,14 +21,14 @@ module.exports.get_forget = get_forget = (req, res) => {
 
 module.exports.forget_password = forget_password = async (req, res) => {
   let INVITATION_CODE = req.session.inv;
-  let { phone, password, otp } = req.body;
+  let { phone, password } = req.body;
   if (!phone || !password || !otp) {
     return res.send({ status: 3 }); //enter a valid data;
   } else {
     try {
-      if (Number(otp) !== req?.session?.otp) {
-        return res.send({ status: "Enter a valid otp" });
-      }
+      // if (Number(otp) !== req?.session?.otp) {
+      //   return res.send({ status: "Enter a valid otp" });
+      // }
       let user_data = await User.findOne({ phone: phone });
       if (user_data) {
         await User.findOneAndUpdate({ phone: phone }, { password: password });

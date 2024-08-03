@@ -20,46 +20,6 @@ function disable_btns() {
   }, 30 * 1000);
 }
 
-document.querySelector("#otp_btn").addEventListener("click", async () => {
-  document.querySelector("#otp_btn").disabled = true;
-  popup_cancel_btn.disabled = true;
-  popup_page.style.left = "0vw";
-
-  let contact = document.querySelector("#contact_num").value;
-  document.querySelector("#contact_num").disabled = true;
-
-  if (!contact || contact === undefined) {
-    document.querySelector("#contact_num").style.border = "1px solid red";
-    return;
-  } else {
-    let config = {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ contact }),
-    };
-    let response = await fetch("/get_otp", config);
-    response = await response.json();
-
-    if (response["status"] == 1) {
-      popup_tip.innerText = "Success! otp sent wait 30sec to send again.";
-      popup_close_btn.disabled = false;
-      document.querySelector("#otp_btn").style.background = "grey";
-    } else if (response["status"] === 2) {
-      popup_tip.innerText = "wait 30 sec before trying again.";
-      popup_close_btn.disabled = false;
-      document.querySelector("#otp_btn").style.background = "grey";
-    } else {
-      popup_tip.innerText =
-        "Failure! something went wrong try again after 30sec.";
-      popup_close_btn.disabled = false;
-      document.querySelector("#otp_btn").style.background = "grey";
-    }
-
-    disable_btns();
-  }
-});
 
 document.querySelector(".email_btn").addEventListener("click", async () => {
   document.querySelector(".email_btn").disabled = true;
@@ -110,7 +70,7 @@ registerbtn.addEventListener("click", async (e) => {
   let phone = document.querySelector(".num").value;
   let email = document.querySelector(".email").value;
   let password = document.querySelector(".password").value;
-  let verification = document.querySelector(".verification").value;
+  // let verification = document.querySelector(".verification").value;
   let inv = document.querySelector(".invitation").value;
 
   const validEmail = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";

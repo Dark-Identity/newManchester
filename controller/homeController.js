@@ -332,7 +332,7 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
     }
     return res.status(200).send(response_to_send);
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     return res.status(300).send({ status: 0 });
   }
 };

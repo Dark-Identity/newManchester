@@ -390,10 +390,10 @@ document.querySelector('#confirm').addEventListener('click', async () => {
         return;
     }
 
-    if (data['ammount'] < 1000) {
-        popup_tip.innerText = 'Minimum bet amount is 1000';
+    if (data['ammount'] < 200) {
+        popup_tip.innerText = 'Minimum bet amount is 200';
         popup_cancel_btn.disabled = false;
-
+        popup_close_btn.disabled = false
         button.disabled = false;
         return;
     }
@@ -440,7 +440,7 @@ document.querySelector('#confirm').addEventListener('click', async () => {
         button.disabled = true;
         reload();
     } else if (res['status'] == 5) {
-        popup_tip.innerText = 'Failure! Minimum bet amount is 1000.';
+        popup_tip.innerText = 'Failure! Minimum bet amount is 200.';
         popup_cancel_btn.disabled = false;
 
         button.disabled = true;

@@ -100,16 +100,16 @@ document.querySelector("#match_back").addEventListener("click", () => {
   resultCantain.style.zIndex = "-1";
 });
 
-const install = document.querySelector(".install");
-document.querySelector("#download").addEventListener("click", () => {
-  // document.querySelector("#chat-widget-container")?.style?.display = "none";
-  install.style.zIndex = "1";
-});
-document.querySelector("#install_close").addEventListener("click", () => {
-  // document.querySelector("#chat-widget-container")?.style?.display = "block";
-  install.style.zIndex = "-1";
-  content.style.zIndex = "1";
-});
+// const install = document.querySelector(".install");
+// document.querySelector("#download").addEventListener("click", () => {
+//   // document.querySelector("#chat-widget-container")?.style?.display = "none";
+//   install.style.zIndex = "1";
+// });
+// document.querySelector("#install_close").addEventListener("click", () => {
+//   // document.querySelector("#chat-widget-container")?.style?.display = "block";
+//   install.style.zIndex = "-1";
+//   content.style.zIndex = "1";
+// });
 
 const back = document.querySelectorAll(".tirs");
 
@@ -278,30 +278,18 @@ async function getPhoneOtp() {
   }
 }
 
-document.querySelector("#get_email_otp").addEventListener("click", async () => {
-  document.querySelector("#get_email_otp").disabled = true;
-  await getEmailOtp();
-  document.querySelector("#get_email_otp").disabled = false;
-});
-
-document.querySelector("#get_phone_otp").addEventListener("click", async () => {
-  document.querySelector("#get_phone_otp").disabled = true;
-  await getPhoneOtp();
-  document.querySelector("#get_phone_otp").disabled = false;
-});
-
 document.querySelector("#pbtn").addEventListener("click", async () => {
   let details = document.querySelectorAll(".pass_change");
-  let phone_otp = document.querySelector("#phone_otp").value;
-  let email_otp = document.querySelector("#email_otp").value;
+  // let phone_otp = document.querySelector("#phone_otp").value;
+  // let email_otp = document.querySelector("#email_otp").value;
   popup_page.style.left = "0px";
 
-  if (!((!phone_otp && email_otp) || (!email_otp && phone_otp))) {
-    popup_tip.innerText = "Enter only one Otp";
-    return;
-  }
+  // if (!((!phone_otp && email_otp) || (!email_otp && phone_otp))) {
+  //   popup_tip.innerText = "Enter only one Otp";
+  //   return;
+  // }
   popup_cancel_btn.disabled = true;
-  let otp = phone_otp || email_otp;
+  let otp = 123;
   if (
     details[1].value !== "" &&
     details[2].value !== "" &&
@@ -791,11 +779,11 @@ async function copyPageUrl(text) {
   }
 }
 
-document.querySelector("#ios_app").addEventListener("click", (e) => {
-  e.preventDefault();
-  popup_page.style.left = "0vw";
-  popup_tip.innerText = "Comming soon";
-});
+// document.querySelector("#ios_app").addEventListener("click", (e) => {
+//   e.preventDefault();
+//   popup_page.style.left = "0vw";
+//   popup_tip.innerText = "Comming soon";
+// });
 
 // ---------------------------------------------------------------------------------------------------------------------
 // --------------------------------- number verification for reset password --------------------------------
