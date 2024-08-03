@@ -13,11 +13,11 @@ const popup_cancel_btn = document.querySelector("#popup_close_btn");
 const popup_close_btn = document.querySelector("#popup_close_btn");
 
 document.querySelector(".telbox").addEventListener("click", () => {
-  window.location.href = "https://t.me/customerservice_CS";
+  window.location.href = "https://t.me/t.me/Nycsupport";
 });
 
 document.querySelector(".onlieser").addEventListener("click", () => {
-  window.location.href = "https://t.me/+HJ0wT7JQA7wwY2E9";
+  window.location.href = "https://t.me/+lRlAn9qUSAs4YzFl";
 });
 
 window.addEventListener("load", () => {
@@ -800,17 +800,17 @@ document.querySelector("#ios_app").addEventListener("click", (e) => {
 // ---------------------------------------------------------------------------------------------------------------------
 // --------------------------------- number verification for reset password --------------------------------
 
-document
-  .querySelector("#reset_password_send_otp_btn")
-  .addEventListener("click", async () => {
-    const config = {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({}),
-    };
+// document
+//   .querySelector("#reset_password_send_otp_btn")
+//   .addEventListener("click", async () => {
+//     const config = {
+//       method: "POST",
+//       headers: {
+//         "content-type": "application/json",
+//       },
+//       body: JSON.stringify({}),
+//     };
 
-    let res = await fetch("/verify_number", config);
-    let res_data = await res.json();
-  });
+//     let res = await fetch("/verify_number", config);
+//     let res_data = await res.json();
+//   });

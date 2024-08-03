@@ -621,8 +621,8 @@ function gettimenow() {
   let curr_hour = parseInt(d.getHours());
   let curr_min = parseInt(d.getMinutes());
   if (
-    (curr_hour > 9 || (curr_hour === 9 && curr_min >= 30)) &&
-    curr_hour < 18 && d.getDay() !== 0
+    (curr_hour >= 11) &&
+    curr_hour <= 16 && d.getDay() !== 0 && d.getDay() !== 6
   ) {
     return true;
   } else {
