@@ -421,7 +421,7 @@ module.exports.place_bet = async function place_bet(req, res) {
     let deduct_amount = bet_amount - bet_amount * 2;
 
     if (user_balance >= data["bAmmount"]) {
-      if (parseFloat(data["bAmmount"]) >= 1000) {
+      if (parseFloat(data["bAmmount"]) >= 200) {
         if (await newBet(data)) {
           await User.findOneAndUpdate(
             { inv: INVITATION_CODE },
