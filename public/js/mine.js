@@ -13,7 +13,7 @@ const popup_cancel_btn = document.querySelector("#popup_close_btn");
 const popup_close_btn = document.querySelector("#popup_close_btn");
 
 document.querySelector(".telbox").addEventListener("click", () => {
-  window.location.href = "https://t.me/t.me/Nycsupport";
+  window.location.href = "https://t.me/Nycsupport";
 });
 
 document.querySelector(".onlieser").addEventListener("click", () => {

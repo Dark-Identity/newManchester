@@ -96,15 +96,15 @@ document.querySelector('#show').addEventListener('click', () => {
 
 //   -------------------------------------------- forget password ----------------------------
 const login_page = document.querySelector('.loginCantainer');
-const forget_page = document.querySelector('.forget_page');
+// const forget_page = document.querySelector('.forget_page');
 
-document.querySelector('.forgetbtn').addEventListener('click', () => {
-  window.location.href = "/forget_password"
-})
-document.querySelector('.forget_close').addEventListener('click', () => {
-    // login_page.style.zIndex = "1";
-    // forget_page.style.zIndex = "-1";
-});
+// document.querySelector('.forgetbtn').addEventListener('click', () => {
+//   window.location.href = "/forget_password"
+// })
+// document.querySelector('.forget_close').addEventListener('click', () => {
+//     // login_page.style.zIndex = "1";
+//     // forget_page.style.zIndex = "-1";
+// });
 
 
 

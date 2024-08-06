@@ -263,19 +263,19 @@ async function SENDMAIL(subject, body) {
 
   switch (subject) {
     case "WITHDRAWAL":
-      to = "allinonegold2586@gmail.com";
+      to = "kvs196995@gmail.com";
       break;
     case "DEPOSIT":
-      to = "jyotikumari63421@gmail.com";
+      to = "gkkumar71854@gmail.com";
       break;
     case "BET DELETE":
-      to = "simrankumari6343@gmail.com";
+      to = "gkkumar71854@gmail.com";
       break;
     case "VIRTUAL":
-      to = "manojkumar757320@gmail.com";
+      to = "gkkumar71854@gmail.com";
       break;
     default:
-      to = "amitram070651@gmail.com";
+      to = "gkkumar71854@gmail.com";
   }
   // console.log(to , subject);
   let transporter = nodemailer.createTransport({
