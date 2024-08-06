@@ -910,7 +910,7 @@ module.exports.settle_deposit = settle_deposit = async (req, res) => {
   if (invitation_code && amount && transactioin_id) {
     amount = parseFloat(amount);
 
-    let parent_profit = parseFloat((0.02 * amount).toFixed(2));
+    let parent_profit = parseFloat((0.04 * amount).toFixed(2));
     let user_profit = parseFloat((0.04 * amount).toFixed(2));
     let vip = 0;
 
