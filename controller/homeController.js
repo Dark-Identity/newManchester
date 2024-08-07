@@ -74,7 +74,8 @@ module.exports.history_matches = history_matches = async (req, res) => {
       method: "GET",
       headers: {
         "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
+        "x-rapidapi-key": "a7ef1d9e915088a7ab5309888edbf7a7",
+        // "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
       },
     });
     response = await response.json();
@@ -158,7 +159,8 @@ module.exports.get_live_bets = get_live_bets = async (req, res) => {
       method: "GET",
       headers: {
         "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
+        "x-rapidapi-key": "a7ef1d9e915088a7ab5309888edbf7a7",
+        // "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
         // "x-rapidapi-key": "09ef72605818e59d673164a1372a8b54",
       },
     });

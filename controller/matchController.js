@@ -44,7 +44,8 @@ module.exports.get_live_bets_two = get_live_bets_two = async (req, res) => {
       method: "GET",
       headers: {
         "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
+        "x-rapidapi-key": "a7ef1d9e915088a7ab5309888edbf7a7",
+        // "x-rapidapi-key": "021ae6685ec46e47ec83f8848ac1d168",
         // "x-rapidapi-key": "823296afa77a4989062591abc46178ee"
       },
     });
