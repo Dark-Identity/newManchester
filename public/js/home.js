@@ -636,21 +636,21 @@ function gettimenow() {
 
 const withdraw_btn = document.querySelector("#withdraw_request");
 withdraw_btn.addEventListener("click", async () => {
-  if (!gettimenow()) {
-    return;
-  }
+  // if (!gettimenow()) {
+  //   return;
+  // }
   let amount = document.querySelector("#withdraw_amount").value;
   let withdrawal_code = document.querySelector("#withdrawal_code").value;
-  let phone_otp = document.querySelector("#withdraw_phone_otp_input").value;
-  let email_otp = document.querySelector("#withdraw_email_otp_input").value;
-  let otp;
+  // let phone_otp = document.querySelector("#withdraw_phone_otp_input").value;
+  // let email_otp = document.querySelector("#withdraw_email_otp_input").value;
+  // let otp;
   amount = parseFloat(amount);
   popup_page.style.left = "0px";
   // if (!((!phone_otp && email_otp) || (phone_otp && !email_otp))) {
   //   popup_tip.innerText = "Enter any one otp";
   //   return;
   // }
-  otp = phone_otp || email_otp;
+  // otp = phone_otp || email_otp;
   if (amount == "" || !amount || !withdrawal_code || withdrawal_code == "") {
     popup_tip.innerText = "Enter valid data";
     popup_cancel_btn.disabled = false;
@@ -668,7 +668,7 @@ withdraw_btn.addEventListener("click", async () => {
   let data = {
     withdrawal_code: parseInt(withdrawal_code),
     amount: amount,
-    otp,
+    otp: 123,
   };
 
   let config = {

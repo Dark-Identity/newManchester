@@ -512,15 +512,18 @@ module.exports.withdrawalAmount = withdrawalAmount = async (req, res) => {
     let today = new Date(nDate);
     let transactioin_id = crypto.randomBytes(16).toString("hex");
     transactioin_id = transactioin_id.slice(0, 6);
-    if (Number(otp) !== Number(req?.session?.otp)) {
-      return res.send({ status: "Enter a valid otp" });
-    }
+    // if (Number(otp) !== Number(req?.session?.otp)) {
+    //   return res.send({ status: "Enter a valid otp" });
+    // }
     let U_details = await User.findOne({ inv: INVITATION_CODE });
-    let is_valid = isValidWithdraw(parseInt(U_details?.vipLevel), amount);
-    if (!is_valid) {
-      let msg = getVipMessage(parseInt(U_details?.vipLevel));
-      return res.send({ message: msg || "something went wrong" });
+    if(amount > 50000){
+      return res.send({status: "Maximum withdrawal is 50,000" })
     }
+    // let is_valid = isValidWithdraw(parseInt(U_details?.vipLevel), amount);
+    // if (!is_valid) {
+    //   let msg = getVipMessage(parseInt(U_details?.vipLevel));
+    //   return res.send({ message: msg || "something went wrong" });
+    // }
     let unsettled_withdraws = await Withdrawal.findOne({
       inv: INVITATION_CODE,
       status: 0,
